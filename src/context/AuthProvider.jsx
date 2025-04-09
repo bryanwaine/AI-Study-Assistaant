@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
-import { AuthContext } from "./AuthContext";
+import AuthContext from "./AuthContext";
 
 // provider
 const AuthContextProvider = ({ children }) => {
@@ -17,6 +17,7 @@ const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
+      console.log(user)
     });
 
     return unsubscribe;
