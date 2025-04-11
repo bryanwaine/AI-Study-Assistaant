@@ -1,14 +1,35 @@
-const Login = () => {
-    return (
-        <div className="login-container">
-            <h1 className="login-title">Login</h1>
-            <form className="login-form">
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    );
-};    
+import { Link } from "react-router";
+import FormLayout from "../components/FormLayout";
 
-export default Login
+const Login = () => {
+  return (
+    <FormLayout>
+      <form className="login-form" aria-labelledby="login-form">
+        <fieldset>
+          <legend>Login</legend>
+          <div className="form-group-top">
+            <p>Don't have an account? </p>
+            <Link className="link" to="/signup">
+              Sign Up
+            </Link>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-blue" type="submit">
+              Login
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </FormLayout>
+  );
+};
+
+export default Login;

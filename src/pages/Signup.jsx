@@ -1,13 +1,25 @@
+import { Link } from "react-router";
+import FormLayout from "../components/FormLayout";
+
 const Signup = () => {
+  const handleSubmit = (formData) => {
+    console.log(formData.get("firstName"));
+  };
   return (
-    <div className="signup-container">
-      <div className="logo-container">
-              <p className="logo">Br<span>ai</span>nstorm</p>
-              <p className="tagline">Your AI Study Assistant</p>
-      </div>
-      <form className="signup-form" aria-labelledby="signup-form">
+    <FormLayout>
+      <form
+        className="signup-form"
+        aria-labelledby="signup-form"
+        action={handleSubmit}
+      >
         <fieldset>
           <legend>Sign Up</legend>
+          <div className="form-group-top">
+            <p>Already have an account? </p>
+            <Link className="link" to="/login">
+              Login
+            </Link>
+          </div>
           <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" required />
@@ -25,11 +37,13 @@ const Signup = () => {
             <input type="password" id="password" name="password" required />
           </div>
           <div className="form-group">
-            <button type="submit">Sign Up</button>
+            <button className="btn btn-blue" type="submit">
+              Sign Up
+            </button>
           </div>
         </fieldset>
       </form>
-    </div>
+    </FormLayout>
   );
 };
 

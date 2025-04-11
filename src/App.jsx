@@ -3,7 +3,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Layout from "./pages/Layout";
+import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
