@@ -27,7 +27,9 @@ const Home = () => {
           Organise your notes, chat with AI tutors, and quiz yourself with smart
           flashcards.
         </p>
-        <button className="btn btn-blue">Get Started</button>
+        <Link to="/signup">
+            <button className="btn btn-blue">Get Started</button>
+          </Link>
         <div className="home-cards-container">
           <div className="home-card">
             <h2>AI Chat Assistant</h2>

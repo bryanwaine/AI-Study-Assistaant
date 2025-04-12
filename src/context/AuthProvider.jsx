@@ -4,6 +4,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  updateProfile
 } from "firebase/auth";
 import { auth } from "../firebase";
 import AuthContext from "./AuthContext";
@@ -14,17 +15,38 @@ const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in
+        await user.reload();
+        const { uid, email, displayName, photoURL } = user.auth.currentUser;
+        setUser({
+          uid,
+          email,
+          displayName,
+          photoURL
+        });
+      } else {
+        // User is signed out
+        setUser(null);
+      }
       setLoading(false);
-      console.log(user)
+      
     });
-
+    
     return unsubscribe;
   }, []);
-
+  
+  user ? console.log( user) : console.log("null");
   const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const updateUser = (displayName, photoURL = null) => {
+    return updateProfile(auth.currentUser, {
+      displayName,
+      photoURL
+    });
   };
 
   const login = (email, password) => {
@@ -36,7 +58,7 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, signup, updateUser, login, logout }}>
       {loading ? <p>Loading...</p> : children}
     </AuthContext.Provider>
   );

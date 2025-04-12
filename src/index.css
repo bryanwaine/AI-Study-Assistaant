@@ -57,7 +57,6 @@ body {
 }
 
 .logo span {
-  /* color: #dfef05; */
   color: #ed0c0c;
 }
 
@@ -96,7 +95,7 @@ body {
 }
 
 .form-group-top p {
-  font-weight: 400;
+  font-weight: 300;
   margin-bottom: 0.5rem;
 }
 
@@ -147,6 +146,13 @@ body {
 .btn-light {
   background-color: #e6f1f6;
   color: #111111;
+}
+
+button:disabled {
+  opacity: 0.5;
+  background-color: #a3a3a3;
+  color: #111111;
+  cursor: not-allowed;
 }
 
 /* Home */
@@ -227,14 +233,14 @@ body {
 
 .home-content button {
   padding: 0.5rem 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .home-cards-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   margin-bottom: 1.5rem;
 }
 
