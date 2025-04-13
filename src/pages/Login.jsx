@@ -1,25 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const { login, user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
     if (user) {
       navigate("/dashboard", { replace: true });
     }
   }, [user]);
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+    
+  const isFormValid =
+  formData.email &&
+  formData.password.length >= 8;
 
   const origin = location.state?.from || "/dashboard";
 
@@ -34,21 +39,19 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("submitting");
-
     try {
       await login(formData.email, formData.password);
       setStatus("success");
+      setFormData({
+        email: "",
+        password: "",
+      });
       navigate(origin, { replace: true });
     } catch (error) {
       setStatus("error");
-      setError(error.message);
+      setError(error.code);
       console.log(`${error.code} - ${error.message}`);
     }
-
-    setFormData({
-      email: "",
-      password: "",
-    });
   };
 
   return (
@@ -79,22 +82,34 @@ const Login = () => {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              onChange={handleChange}
-              value={formData.password}
-              required
-            />
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                onChange={handleChange}
+                value={formData.password}
+                required
+              />
+              <span
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="password-toggle"
+              >
+                {showPassword ? "hide" : "show"}
+              </span>
+            </div>
+            <ul className="error">
+              <li>{error}</li>
+            </ul>
           </div>
           <div className="form-group">
             <button
               className="btn btn-blue"
               type="submit"
-              disabled={status === "submitting"}
+              disabled={status === "submitting" || !isFormValid}
             >
-              Login
+             {status === "submitting" ? "Loging in..." : "Login"}
             </button>
           </div>
         </fieldset>

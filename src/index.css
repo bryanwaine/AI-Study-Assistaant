@@ -6,7 +6,33 @@
 
 body {
   font-family: sans-serif;
+  font-size: 16px;
 }
+
+input:focus,
+button:focus {
+  outline: 2px solid #00e1ff;
+  outline-offset: 2px;
+}
+
+button,
+input {
+  transition: all 0.2s ease-in-out;
+}
+
+button:disabled {
+  opacity: 0.5;
+  background-color: #a3a3a3;
+  color: #111111;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+}
+
+
 
 /* Signup/Login */
 .form-container {
@@ -35,7 +61,8 @@ body {
   justify-content: center;
   background-color: #e6f1f6;
   width: 80%;
-  padding: 1.75rem;
+  max-width: 500px;
+  padding:  1.75rem 1.75rem 0;
   border-radius: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
@@ -124,6 +151,28 @@ body {
   width: 100%;
 }
 
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  left: 14rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 1.1rem;
+  width: min-content;
+}
+
+.password-toggle:hover {
+  color: #035172;
+}
+
 .form-group button {
   width: 100%;
   margin-top: 1rem;
@@ -146,13 +195,6 @@ body {
 .btn-light {
   background-color: #e6f1f6;
   color: #111111;
-}
-
-button:disabled {
-  opacity: 0.5;
-  background-color: #a3a3a3;
-  color: #111111;
-  cursor: not-allowed;
 }
 
 /* Home */
@@ -189,7 +231,6 @@ button:disabled {
   align-items: center;
   margin-left: 1rem;
   width: 50%;
-
 }
 
 .home-navbar-right {
@@ -199,7 +240,6 @@ button:disabled {
   align-items: center;
   margin-right: 1rem;
   width: 50%;
-
 }
 
 .home-navbar-right button {
@@ -212,6 +252,7 @@ button:disabled {
   align-items: center;
   height: 100%;
   margin-top: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -220,7 +261,7 @@ button:disabled {
   margin-bottom: 1.5rem;
   color: #111111;
   font-weight: 600;
-}  
+}
 
 .home-content p {
   font-size: 1rem;
@@ -253,7 +294,7 @@ button:disabled {
   background-color: #e6f1f6;
   border-radius: 0.5rem;
   text-align: center;
-  width: 300px;
+  width: 20rem;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -270,6 +311,16 @@ button:disabled {
   color: #111111;
   font-weight: 300;
   line-height: 1.5;
+}
+
+/* Media Queries */
+
+@media (max-width: 400px) {
+
+  :root {
+    font-size: 12px;
+  }
+
 }
 
 
