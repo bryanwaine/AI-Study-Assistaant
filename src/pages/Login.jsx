@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
+import useToast from "../hooks/useToast";
+import errorHandler from "../utils/errorHandler";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const { login, user } = useAuth();
+  const { showToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,10 +23,8 @@ const Login = () => {
       navigate("/dashboard", { replace: true });
     }
   }, [user]);
-    
-  const isFormValid =
-  formData.email &&
-  formData.password.length >= 8;
+
+  const isFormValid = formData.email && formData.password.length >= 8;
 
   const origin = location.state?.from || "/dashboard";
 
@@ -41,7 +41,8 @@ const Login = () => {
     setStatus("submitting");
     try {
       await login(formData.email, formData.password);
-      setStatus("success");
+        setStatus("success");
+        showToast("Welcome back!", "success");
       setFormData({
         email: "",
         password: "",
@@ -49,8 +50,8 @@ const Login = () => {
       navigate(origin, { replace: true });
     } catch (error) {
       setStatus("error");
-      setError(error.code);
-      console.log(`${error.code} - ${error.message}`);
+      showToast(errorHandler(error), "error");
+      console.log(error.code, error.message);
     }
   };
 
@@ -99,9 +100,6 @@ const Login = () => {
                 {showPassword ? "hide" : "show"}
               </span>
             </div>
-            <ul className="error">
-              <li>{error}</li>
-            </ul>
           </div>
           <div className="form-group">
             <button
@@ -109,7 +107,7 @@ const Login = () => {
               type="submit"
               disabled={status === "submitting" || !isFormValid}
             >
-             {status === "submitting" ? "Loging in..." : "Login"}
+              {status === "submitting" ? "Loging in..." : "Login"}
             </button>
           </div>
         </fieldset>

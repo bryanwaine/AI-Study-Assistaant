@@ -3,18 +3,19 @@ import { Link, useNavigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import passwordValidation from "../utils/passwordValidation";
+import useToast from "../hooks/useToast";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    userName: "",
     email: "",
     password: "",
   });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const { signup, updateUser, user } = useAuth();
+    const { signup, updateUser, user } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +25,7 @@ const Signup = () => {
   }, [user]);
 
   const isFormValid =
-    formData.firstName &&
-    formData.lastName &&
+    formData.userName &&
     formData.email &&
     formData.password.length >= 8;
 
@@ -48,17 +48,16 @@ const Signup = () => {
     }
     setStatus("submitting");
     try {
-      const displayName = `${formData.firstName.toLowerCase()}.${formData.lastName.toLowerCase()}`;
       await signup(formData.email, formData.password);
-      await updateUser(displayName, formData.photoURL);
-      setStatus("success");
+      await updateUser(formData.userName.toLowerCase(), formData.photoURL);
+        setStatus("success");
+        showToast(`Welcome ${formData.userName}!`, "success");
       setFormData({
-        firstName: "",
-        lastName: "",
+        userName: "",
         email: "",
         password: "",
       });
-      navigate("/dashboard", { replace: false });
+      navigate("/dashboard", { replace: false, state: {userName: formData.userName} });
     } catch (error) {
       setStatus("error");
       setError(error.message);
@@ -82,24 +81,13 @@ const Signup = () => {
             </Link>
           </div>
           <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="userName">Username</label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
+              id="userName"
+              name="userName"
               onChange={handleChange}
-              value={formData.firstName}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              onChange={handleChange}
-              value={formData.lastName}
+              value={formData.userName}
               required
             />
           </div>
@@ -134,7 +122,7 @@ const Signup = () => {
               </span>
             </div>
             {error?.length > 0 && (
-              <ul className="errors">
+              <ul className="error">
                 {error?.map((err, index) => (
                   <li key={index}>{err}</li>
                 ))}
