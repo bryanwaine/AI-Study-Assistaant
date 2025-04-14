@@ -14,7 +14,7 @@ const Signup = () => {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-    const { signup, updateUser, user } = useAuth();
+  const { signup, updateUser, user } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
@@ -25,9 +25,7 @@ const Signup = () => {
   }, [user]);
 
   const isFormValid =
-    formData.userName &&
-    formData.email &&
-    formData.password.length >= 8;
+    formData.userName && formData.email && formData.password.length >= 8;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,26 +40,26 @@ const Signup = () => {
     if (!isValid) {
       setStatus("error");
       setError(errors);
-      console.log(errors);
-      console.log(formData.password);
       return;
     }
     setStatus("submitting");
     try {
       await signup(formData.email, formData.password);
       await updateUser(formData.userName.toLowerCase(), formData.photoURL);
-        setStatus("success");
-        showToast(`Welcome ${formData.userName}!`, "success");
+      setStatus("success");
+      showToast(`Welcome ${formData.userName}!`, "success");
       setFormData({
         userName: "",
         email: "",
         password: "",
       });
-      navigate("/dashboard", { replace: false, state: {userName: formData.userName} });
+      navigate("/dashboard", {
+        replace: false,
+        state: { userName: formData.userName },
+      });
     } catch (error) {
       setStatus("error");
       setError(error.message);
-      console.log(`${error.code} - ${error.message}`);
     }
   };
 
@@ -118,7 +116,7 @@ const Signup = () => {
                 onClick={() => setShowPassword((prev) => !prev)}
                 className="password-toggle"
               >
-                {showPassword ? 'hide' : 'show'}
+                {showPassword ? "hide" : "show"}
               </span>
             </div>
             {error?.length > 0 && (

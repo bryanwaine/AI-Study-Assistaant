@@ -1,21 +1,23 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
-import { useEffect } from "react";
+import useToast from "../hooks/useToast";
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
-    const userName = user?.displayName || location.state?.userName;
-    console.log('userName - ', userName);
+  const userName = user?.displayName || location.state?.userName;
 
-    useEffect(() => {
-      if (!user) {
-        navigate("/login", { replace: true });
-      }
-    }, [user]);
+  useEffect(() => {
+    if (!user) {
+      navigate("/login", { replace: true });
+    }
+  }, [user]);
 
   const handleLogout = () => {
     logout();
+    showToast(`Goodbye ${userName}!`, "success");
     navigate("/login", { replace: true });
   };
   return (

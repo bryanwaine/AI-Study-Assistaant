@@ -4,7 +4,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase";
 import AuthContext from "./AuthContext";
@@ -24,20 +24,17 @@ const AuthContextProvider = ({ children }) => {
           uid,
           email,
           displayName,
-          photoURL
+          photoURL,
         });
       } else {
         // User is signed out
         setUser(null);
       }
       setLoading(false);
-      
     });
-    
+
     return unsubscribe;
   }, []);
-  
-  user ? console.log( user) : console.log("null");
   const signup = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -45,7 +42,7 @@ const AuthContextProvider = ({ children }) => {
   const updateUser = (displayName, photoURL = null) => {
     return updateProfile(auth.currentUser, {
       displayName,
-      photoURL
+      photoURL,
     });
   };
 

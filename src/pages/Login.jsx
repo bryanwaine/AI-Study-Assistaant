@@ -40,9 +40,9 @@ const Login = () => {
     e.preventDefault();
     setStatus("submitting");
     try {
-      await login(formData.email, formData.password);
-        setStatus("success");
-        showToast("Welcome back!", "success");
+      const data = await login(formData.email, formData.password);
+      setStatus("success");
+      showToast(`Welcome back ${data?.user.displayName}!`, "success");
       setFormData({
         email: "",
         password: "",
@@ -51,7 +51,6 @@ const Login = () => {
     } catch (error) {
       setStatus("error");
       showToast(errorHandler(error), "error");
-      console.log(error.code, error.message);
     }
   };
 
@@ -107,7 +106,7 @@ const Login = () => {
               type="submit"
               disabled={status === "submitting" || !isFormValid}
             >
-              {status === "submitting" ? "Loging in..." : "Login"}
+              {status === "submitting" ? "Logging in..." : "Login"}
             </button>
           </div>
         </fieldset>
