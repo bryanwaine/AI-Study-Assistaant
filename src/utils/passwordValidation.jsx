@@ -28,8 +28,7 @@ const passwordValidation = async (password) => {
   if (!status.meetsMinPasswordLength) {
     errors.push("Password must be at least 8 characters long.");
   }
-    // console.log(status);
-    console.log(errors);
+  
   return { isValid, errors };
 };
 

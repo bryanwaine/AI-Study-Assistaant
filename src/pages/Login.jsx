@@ -4,11 +4,13 @@ import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import errorHandler from "../utils/errorHandler";
+import googleIcon from "../assets/google-icon.png";
+import firstNameFilter from "../utils/firstNameFilter";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
   const [showPassword, setShowPassword] = useState(false);
-  const { login, user } = useAuth();
+  const { login, logInWithGoogle, user } = useAuth();
   const { showToast } = useToast();
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ const Login = () => {
     try {
       const data = await login(formData.email, formData.password);
       setStatus("success");
-      showToast(`Welcome back ${data?.user.displayName}!`, "success");
+      showToast(`Welcome back ${firstNameFilter(data?.user.displayName)}!`, "success");
       setFormData({
         email: "",
         password: "",
@@ -50,6 +52,16 @@ const Login = () => {
       navigate(origin, { replace: true });
     } catch (error) {
       setStatus("error");
+      showToast(errorHandler(error), "error");
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await logInWithGoogle();
+      showToast(`Welcome back ${firstNameFilter(result?.user.displayName)}!`, "success");
+      navigate(origin, { replace: true });
+    } catch (error) {
       showToast(errorHandler(error), "error");
     }
   };
@@ -107,6 +119,14 @@ const Login = () => {
               disabled={status === "submitting" || !isFormValid}
             >
               {status === "submitting" ? "Logging in..." : "Login"}
+            </button>
+            <button
+              className="btn btn-transparent btn-google"
+              type="button"
+              onClick={handleGoogleLogin}
+            >
+              <img src={googleIcon} className="google-icon" alt="google-icon" />
+              Log in with Google
             </button>
           </div>
         </fieldset>

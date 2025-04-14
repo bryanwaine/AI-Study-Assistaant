@@ -6,10 +6,10 @@ import ToastContextProvider from "./context/ToastContextProvider";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthContextProvider>
-      <ToastContextProvider>
+    <ToastContextProvider>
+      <AuthContextProvider>
         <App />
-      </ToastContextProvider>
-    </AuthContextProvider>
+      </AuthContextProvider>
+    </ToastContextProvider>
   </StrictMode>
 );

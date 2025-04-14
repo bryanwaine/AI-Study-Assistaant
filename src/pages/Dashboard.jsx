@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
+import firstNameFilter from "../utils/firstNameFilter";
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const { showToast } = useToast();
@@ -17,7 +18,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     logout();
-    showToast(`Goodbye ${userName}!`, "success");
+    showToast(`Goodbye ${firstNameFilter(userName)}!`, "success");
     navigate("/login", { replace: true });
   };
   return (

@@ -4,17 +4,21 @@ import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import passwordValidation from "../utils/passwordValidation";
 import useToast from "../hooks/useToast";
+import errorHandler from "../utils/errorHandler";
+import googleIcon from "../assets/google-icon.png";
+import firstNameFilter from "../utils/firstNameFilter";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    userName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const { signup, updateUser, user } = useAuth();
+  const { signup, logInWithGoogle, updateUser, user } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
@@ -25,7 +29,10 @@ const Signup = () => {
   }, [user]);
 
   const isFormValid =
-    formData.userName && formData.email && formData.password.length >= 8;
+    formData.firstName &&
+    formData.lastName &&
+    formData.email &&
+    formData.password.length >= 8;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,10 +51,14 @@ const Signup = () => {
     }
     setStatus("submitting");
     try {
+      const userName =
+        formData.firstName.toLowerCase() +
+        " " +
+        formData.lastName.toLowerCase();
       await signup(formData.email, formData.password);
-      await updateUser(formData.userName.toLowerCase(), formData.photoURL);
+      await updateUser(userName, formData.photoURL);
       setStatus("success");
-      showToast(`Welcome ${formData.userName}!`, "success");
+      showToast(`Welcome ${firstNameFilter(userName)}!`, "success");
       setFormData({
         userName: "",
         email: "",
@@ -55,11 +66,24 @@ const Signup = () => {
       });
       navigate("/dashboard", {
         replace: false,
-        state: { userName: formData.userName },
+        state: { userName: userName },
       });
     } catch (error) {
       setStatus("error");
-      setError(error.message);
+      showToast(errorHandler(error), "error");
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await logInWithGoogle();
+      showToast(
+        `Welcome ${firstNameFilter(result?.user.displayName)}!`,
+        "success"
+      );
+      navigate("/dashboard", { replace: true });
+    } catch (error) {
+      showToast(errorHandler(error), "error");
     }
   };
 
@@ -79,13 +103,24 @@ const Signup = () => {
             </Link>
           </div>
           <div className="form-group">
-            <label htmlFor="userName">Username</label>
+            <label htmlFor="firstName">First Name</label>
             <input
               type="text"
-              id="userName"
-              name="userName"
+              id="firstName"
+              name="firstName"
               onChange={handleChange}
-              value={formData.userName}
+              value={formData.firstName}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              onChange={handleChange}
+              value={formData.lastName}
               required
             />
           </div>
@@ -134,6 +169,14 @@ const Signup = () => {
               disabled={status === "submitting" || !isFormValid}
             >
               {status === "submitting" ? "Signing Up..." : "Sign Up"}
+            </button>
+            <button
+              className="btn btn-transparent btn-google"
+              type="button"
+              onClick={handleGoogleLogin}
+            >
+              <img src={googleIcon} className="google-icon" alt="google-icon" />
+              Sign Up with Google
             </button>
           </div>
         </fieldset>
