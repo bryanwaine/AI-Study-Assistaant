@@ -121,7 +121,7 @@ const Login = () => {
               {status === "submitting" ? "Logging in..." : "Login"}
             </button>
             <button
-              className="btn btn-transparent btn-google"
+              className="btn btn-transparent"
               type="button"
               onClick={handleGoogleLogin}
             >

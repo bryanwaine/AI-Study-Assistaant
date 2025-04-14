@@ -171,7 +171,7 @@ const Signup = () => {
               {status === "submitting" ? "Signing Up..." : "Sign Up"}
             </button>
             <button
-              className="btn btn-transparent btn-google"
+              className="btn btn-transparent"
               type="button"
               onClick={handleGoogleLogin}
             >
