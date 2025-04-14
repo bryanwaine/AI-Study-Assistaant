@@ -178,7 +178,7 @@ a {
   background-color: #e6f1f6;
   width: 80%;
   max-width: 500px;
-  padding:  1.75rem 1.75rem 0;
+  padding:  1.75rem 1.75rem 1rem ;
   border-radius: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
@@ -213,7 +213,7 @@ a {
 .login-form fieldset {
   border: none;
   padding: 0;
-  margin: 0 0 1rem;
+  margin: 2rem 0 0;
   width: 100%;
 }
 
@@ -221,8 +221,7 @@ a {
 .login-form fieldset legend {
   font-size: 2rem;
   font-weight: bold;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -233,7 +232,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   width: 100%;
 }
 
