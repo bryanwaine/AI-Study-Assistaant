@@ -11,6 +11,7 @@ import { auth, googleProvider } from "../firebase";
 import AuthContext from "./AuthContext";
 import useToast from "../hooks/useToast";
 import errorHandler from "../utils/errorHandler";
+import Loader from "../components/Loader";
 
 // provider
 const AuthContextProvider = ({ children }) => {
@@ -74,7 +75,7 @@ const AuthContextProvider = ({ children }) => {
     <AuthContext.Provider
       value={{ user, signup, updateUser, login, logout, logInWithGoogle }}
     >
-      {loading ? <p>Loading...</p> : children}
+      {loading ? <Loader/> : children}
     </AuthContext.Provider>
   );
 };

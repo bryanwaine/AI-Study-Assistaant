@@ -32,6 +32,9 @@ button:disabled {
   font-size: 0.7rem;
 }
 
+a {
+  text-decoration: none;
+}
 /* Button */
 
 .btn {
@@ -46,7 +49,7 @@ button:disabled {
   font-size: 1rem;
   font-weight: 300;
   cursor: pointer;
-
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-blue {
@@ -65,8 +68,6 @@ button:disabled {
   border: none;
   cursor: pointer;
 }
-
-
 
 .google-icon {
   width: 1.5rem;
@@ -119,6 +120,35 @@ button:disabled {
   }
 }
 
+/* Loader */
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(230, 241, 246, 0.5);
+  z-index: 9999;
+}
+
+.spinner {
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-top: 6px solid #00e1ff;
+  border-radius: 50%;
+  width: 3.75rem;
+  height: 3.75rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* Signup/Login */
 .form-container {
