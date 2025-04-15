@@ -170,7 +170,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background-color: #035172;
 }
@@ -189,6 +189,17 @@ a {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   margin-bottom: 2rem;
+  overflow-y: scroll;
+}
+
+.signup-form  {
+  height: 75%;
+
+}
+
+.login-form  {
+  height: 60%;
+
 }
 
 .logo-container {
@@ -220,6 +231,10 @@ a {
   border: none;
   padding: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .signup-form fieldset legend,
@@ -239,8 +254,15 @@ a {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
   font-size: 1rem;
+}
+
+.form-group-top {
+  margin-bottom: 4rem;
+}
+
+.form-group-bottom {
+  margin-top: 1rem;
 }
 
 .form-group-top p,
@@ -261,16 +283,26 @@ a {
   flex-direction: column;
   margin-bottom: 0.85rem;
   width: 100%;
+  position: relative;
+  padding: .75rem .5rem .25rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 .form-group label {
   font-weight: 200;
-  margin-bottom: 0.25rem;
-  font-size: 1rem;
+  position: absolute;
+  top: -0.7rem;
+  left: 1rem;
+  background-color:  #e6f1f6; 
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  color: #333;
+  font-weight: 500;
 }
 
 .form-group input {
-  padding: 0.75rem;
+  padding: 0.35rem;
   border: 1px solid #e9e9e9;
   border-radius: 0.5rem;
   width: 100%;
@@ -280,6 +312,7 @@ a {
 .password-input-container {
   position: relative;
   width: 100%;
+  margin-bottom: .35rem;
 }
 
 .password-toggle {
@@ -292,16 +325,16 @@ a {
   color: #666;
   cursor: pointer;
   width: min-content;
-  font-size: 1rem;
+  font-size: .85rem;
 }
 
 .password-toggle:hover {
   color: #035172;
 }
 
-.form-group button {
+fieldset .btn {
   width: 100%;
-  margin-top: 1rem;
+  margin: .75rem 0;
 }
 
 /* Home */

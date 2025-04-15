@@ -166,7 +166,6 @@ const Signup = () => {
                 </ul>
               )}
           />
-          <div className="form-group">
             <Button
               type="submit"
               disabled={status === "submitting" || !isFormValid}
@@ -179,7 +178,6 @@ const Signup = () => {
               <img src={googleIcon} className="google-icon" alt="google-icon" />
               Sign In with Google
             </Button>
-          </div>
         </fieldset>
       </form>
     </FormLayout>

@@ -102,7 +102,6 @@ const Login = () => {
             showPassword={showPassword}
             onClick={() => setShowPassword((prev) => !prev)}
           />
-          <div className="form-group">
             <Button
               type="submit"
               variant="primary"
@@ -115,7 +114,6 @@ const Login = () => {
               <img src={googleIcon} className="google-icon" alt="google-icon" />
               Sign in with Google
             </Button>
-          </div>
           <div className="form-group-bottom">
             <Link className="link" to="/">
               Forgotten password?
