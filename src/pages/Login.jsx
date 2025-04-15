@@ -63,7 +63,7 @@ const Login = () => {
     try {
       const data = await logInWithGoogle();
       showToast(
-        `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
+        `Welcome ${firstNameFilter(data?.user.displayName)}!`,
         "success"
       );
       navigate(origin, { replace: true });

@@ -219,7 +219,6 @@ a {
 .login-form fieldset {
   border: none;
   padding: 0;
-  margin: 2rem 0 0;
   width: 100%;
 }
 
@@ -239,7 +238,6 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
   width: 100%;
 }
 
@@ -284,7 +282,6 @@ a {
 .password-toggle {
   position: absolute;
   top: 50%;
-  /* left: 14rem; */
   right: 1rem;
   transform: translateY(-50%);
   background: transparent;
