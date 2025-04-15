@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, Navigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
@@ -11,11 +10,9 @@ const Dashboard = () => {
   const location = useLocation();
   const userName = user?.displayName || location.state?.userName;
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/login", { replace: true });
-    }
-  }, [user]);
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
   const handleLogout = () => {
     logout();

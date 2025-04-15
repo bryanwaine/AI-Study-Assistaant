@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate, Navigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import passwordValidation from "../utils/passwordValidation";
@@ -22,11 +22,9 @@ const Signup = () => {
   const { showToast } = useToast();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      navigate("/dashboard", { replace: true });
-    }
-  }, [user]);
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   const isFormValid =
     formData.firstName &&

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useState } from "react";
+import { Link, useLocation, useNavigate, Navigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
@@ -20,15 +20,13 @@ const Login = () => {
     password: "",
   });
 
-  useEffect(() => {
-    if (user) {
-      navigate("/dashboard", { replace: true });
-      } 
-  }, [user]);
-
   const isFormValid = formData.email && formData.password.length >= 8;
 
   const origin = location.state?.from || "/dashboard";
+
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
