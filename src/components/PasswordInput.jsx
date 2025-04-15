@@ -1,16 +1,16 @@
 const PasswordInput = (props) => {
-    const{label, handleChange, formData, formError, showPassword, onClick} = props
+    const{handleChange, className, value, renderError, showPassword, onClick} = props
     return (
         <div className="form-group">
-            <label htmlFor="password">{label}</label>
+            <label htmlFor="password">Password</label>
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                className={formError?.password?.length > 0 ? "input-error" : ""}
+                className={className}
                 onChange={handleChange}
-                value={formData.password}
+                value={value}
                 required
               />
               <span
@@ -23,13 +23,7 @@ const PasswordInput = (props) => {
                 {showPassword ? "hide" : "show"}
               </span>
             </div>
-            {formError?.password?.length > 0 && (
-              <ul className="error-list">
-                {formError?.password?.map((err, index) => (
-                  <li key={index}>{err}</li>
-                ))}
-              </ul>
-            )}
+           {renderError}
           </div>
     )
 }

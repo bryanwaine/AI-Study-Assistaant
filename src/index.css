@@ -56,17 +56,17 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
-.btn-blue {
+.btn-primary {
   background-color: #035172;
   color: #ffffff;
 }
 
-.btn-light {
+.btn-secondary {
   background-color: #e6f1f6;
   color: #111111;
 }
 
-.btn-transparent {
+.btn-ghost {
   background-color: transparent;
   color: #035172;
   border: none;
@@ -292,6 +292,7 @@ a {
   color: #666;
   cursor: pointer;
   width: min-content;
+  font-size: 1rem;
 }
 
 .password-toggle:hover {
@@ -421,3 +422,8 @@ a {
 
 /* Media Queries */
 
+@media screen and (max-width: 395px) {
+  :root {
+    font-size: 12px;
+  }
+}

@@ -1,19 +1,19 @@
 const TextInput = (props) => {
-  const { label, type, id, handleChange, formData, formError } = props;
+  const { label, type, id, name, handleChange, className, renderError , value} = props;
   return (
     <div className="form-group">
       <label htmlFor="email">{label}</label>
       <input
         type={type}
         id={id}
-        name={type}
-        className={formError?.email?.length > 0 ? "input-error" : ""}
+        name={name}
+        className={className}
         onChange={handleChange}
-        value={formData.email}
+        value={value}
         required
       />
       <ul className="error-list">
-        {formError?.email && <li>{formError.email}</li>}
+        {renderError}
       </ul>
     </div>
   );

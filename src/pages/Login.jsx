@@ -8,6 +8,7 @@ import googleIcon from "../assets/google-icon.png";
 import firstNameFilter from "../utils/firstNameFilter";
 import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
+import Button from "../components/Button";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
@@ -91,32 +92,29 @@ const Login = () => {
             label="Email"
             type="email"
             id="email"
+            name="email"
+            value={formData.email}
             handleChange={handleChange}
-            formData={formData}
           />
           <PasswordInput
-            label="Password"
             handleChange={handleChange}
-            formData={formData}
+            value={formData.password}
             showPassword={showPassword}
             onClick={() => setShowPassword((prev) => !prev)}
           />
           <div className="form-group">
-            <button
-              className="btn btn-blue"
+            <Button
               type="submit"
+              variant="primary"
               disabled={status === "submitting" || !isFormValid}
+              onClick={handleSubmit}
             >
               {status === "submitting" ? "Logging in..." : "Login"}
-            </button>
-            <button
-              className="btn btn-transparent"
-              type="button"
-              onClick={handleGoogleLogin}
-            >
+            </Button>
+            <Button variant="ghost" onClick={handleGoogleLogin}>
               <img src={googleIcon} className="google-icon" alt="google-icon" />
               Sign in with Google
-            </button>
+            </Button>
           </div>
           <div className="form-group-bottom">
             <Link className="link" to="/">
