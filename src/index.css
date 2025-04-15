@@ -420,6 +420,10 @@ a {
     font-size: 12px;
   }
 
+  .password-toggle {
+    left: 17rem;
+  }
+
 }
 
 
