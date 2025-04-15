@@ -48,10 +48,10 @@ a {
   align-items: center;
   gap: 0.25rem;
   padding: 0.75rem;
+  font-size: 1rem;
   margin: 0;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -239,6 +239,8 @@ a {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .form-group-top p,
@@ -264,14 +266,15 @@ a {
 .form-group label {
   font-weight: 200;
   margin-bottom: 0.25rem;
+  font-size: 1rem;
 }
 
 .form-group input {
   padding: 0.75rem;
   border: 1px solid #e9e9e9;
   border-radius: 0.5rem;
-  font-size: 1rem;
   width: 100%;
+  font-size: 1rem;
 }
 
 .password-input-container {
@@ -418,12 +421,3 @@ a {
 
 /* Media Queries */
 
-@media (max-width: 400px) {
-  :root {
-    font-size: 12px;
-  }
-
-  .password-toggle {
-    left: 17rem;
-  }
-}
