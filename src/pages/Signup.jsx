@@ -65,7 +65,7 @@ const Signup = () => {
         password: "",
       });
       navigate("/dashboard", {
-        replace: false,
+        replace: true,
         state: { userName: userName },
       });
     } catch (error) {
@@ -76,9 +76,9 @@ const Signup = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      const result = await logInWithGoogle();
+      const data = await logInWithGoogle();
       showToast(
-        `Welcome ${firstNameFilter(result?.user.displayName)}!`,
+        `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
         "success"
       );
       navigate("/dashboard", { replace: true });
@@ -176,7 +176,7 @@ const Signup = () => {
               onClick={handleGoogleLogin}
             >
               <img src={googleIcon} className="google-icon" alt="google-icon" />
-              Sign Up with Google
+              Sign In with Google
             </button>
           </div>
         </fieldset>

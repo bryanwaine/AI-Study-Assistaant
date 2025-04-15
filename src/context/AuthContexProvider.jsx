@@ -25,12 +25,13 @@ const AuthContextProvider = ({ children }) => {
       if (user) {
         // User is signed in
         await user.reload();
-        const { uid, email, displayName, photoURL } = user.auth.currentUser;
+        const { uid, email, displayName, photoURL, metadata: { creationTime } } = user.auth.currentUser;
         setUser({
           uid,
           email,
           displayName,
           photoURL,
+          creationTime
         });
       } else {
         // User is signed out

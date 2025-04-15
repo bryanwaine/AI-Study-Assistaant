@@ -132,6 +132,7 @@ a {
   align-items: center;
   background-color: rgba(230, 241, 246, 0.5);
   z-index: 9999;
+  opacity: 0;
   animation: fadeIn 0.3s ease-in-out forwards;
 }
 
@@ -150,6 +151,12 @@ a {
   }
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
 /* Signup/Login */
 .form-container {
   display: flex;
@@ -159,14 +166,6 @@ a {
   height: 100vh;
   width: 100vw;
   background-color: #035172;
-}
-
-.signup-form {
-  height: 80%;
-}
-
-.login-form {
-  height: 60%;
 }
 
 .signup-form,
@@ -227,7 +226,8 @@ a {
   justify-content: center;
 }
 
-.form-group-top {
+.form-group-top,
+.form-group-bottom {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -236,12 +236,14 @@ a {
   width: 100%;
 }
 
-.form-group-top p {
+.form-group-top p,
+.form-group-bottom p {
   font-weight: 300;
   margin-bottom: 0.5rem;
 }
 
-.form-group-top .link {
+.form-group-top .link,
+.form-group-bottom .link {
   text-decoration: none;
   color: #035172;
   font-size: 1rem;

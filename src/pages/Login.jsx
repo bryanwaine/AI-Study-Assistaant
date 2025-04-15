@@ -23,7 +23,7 @@ const Login = () => {
   useEffect(() => {
     if (user) {
       navigate("/dashboard", { replace: true });
-    }
+      } 
   }, [user]);
 
   const isFormValid = formData.email && formData.password.length >= 8;
@@ -44,7 +44,10 @@ const Login = () => {
     try {
       const data = await login(formData.email, formData.password);
       setStatus("success");
-      showToast(`Welcome back ${firstNameFilter(data?.user.displayName)}!`, "success");
+      showToast(
+        `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
+        "success"
+      );
       setFormData({
         email: "",
         password: "",
@@ -58,8 +61,11 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      const result = await logInWithGoogle();
-      showToast(`Welcome back ${firstNameFilter(result?.user.displayName)}!`, "success");
+      const data = await logInWithGoogle();
+      showToast(
+        `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
+        "success"
+      );
       navigate(origin, { replace: true });
     } catch (error) {
       showToast(errorHandler(error), "error");
@@ -126,8 +132,13 @@ const Login = () => {
               onClick={handleGoogleLogin}
             >
               <img src={googleIcon} className="google-icon" alt="google-icon" />
-              Log in with Google
+              Sign in with Google
             </button>
+          </div>
+          <div className="form-group-bottom">
+            <Link className="link" to="/">
+              Forgotten password?
+            </Link>
           </div>
         </fieldset>
       </form>
