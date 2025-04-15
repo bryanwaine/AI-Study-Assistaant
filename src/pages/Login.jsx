@@ -6,6 +6,8 @@ import useToast from "../hooks/useToast";
 import errorHandler from "../utils/errorHandler";
 import googleIcon from "../assets/google-icon.png";
 import firstNameFilter from "../utils/firstNameFilter";
+import TextInput from "../components/TextInput";
+import PasswordInput from "../components/PasswordInput";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
@@ -85,37 +87,20 @@ const Login = () => {
               Sign Up
             </Link>
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={handleChange}
-              value={formData.email}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-input-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                onChange={handleChange}
-                value={formData.password}
-                required
-              />
-              <span
-                type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="password-toggle"
-              >
-                {showPassword ? "hide" : "show"}
-              </span>
-            </div>
-          </div>
+          <TextInput
+            label="Email"
+            type="email"
+            id="email"
+            handleChange={handleChange}
+            formData={formData}
+          />
+          <PasswordInput
+            label="Password"
+            handleChange={handleChange}
+            formData={formData}
+            showPassword={showPassword}
+            onClick={() => setShowPassword((prev) => !prev)}
+          />
           <div className="form-group">
             <button
               className="btn btn-blue"

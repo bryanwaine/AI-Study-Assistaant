@@ -2,10 +2,10 @@ import { getAuth, validatePassword } from "firebase/auth";
 
 const passwordValidation = async (password) => {
   const errors = [];
-  let isValid = false;
+  let isPasswordValid = false;
   const status = await validatePassword(getAuth(), password);
   if (status.isValid) {
-    isValid = true;
+    isPasswordValid = true;
     
   }
 
@@ -29,7 +29,7 @@ const passwordValidation = async (password) => {
     errors.push("Password must be at least 8 characters long.");
   }
   
-  return { isValid, errors };
+  return { isPasswordValid, errors };
 };
 
 export default passwordValidation;

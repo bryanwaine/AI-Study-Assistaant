@@ -7,6 +7,8 @@ import useToast from "../hooks/useToast";
 import errorHandler from "../utils/errorHandler";
 import googleIcon from "../assets/google-icon.png";
 import firstNameFilter from "../utils/firstNameFilter";
+import TextInput from "../components/TextInput";
+import PasswordInput from "../components/PasswordInput";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +18,7 @@ const Signup = () => {
     password: "",
   });
   const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null);
+  const [formError, setFormError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const { signup, logInWithGoogle, updateUser, user } = useAuth();
   const { showToast } = useToast();
@@ -27,8 +29,8 @@ const Signup = () => {
   }
 
   const isFormValid =
-    formData.firstName &&
-    formData.lastName &&
+    formData.firstName.length &&
+    formData.lastName.length &&
     formData.email &&
     formData.password.length >= 8;
 
@@ -42,11 +44,30 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { isValid, errors } = await passwordValidation(formData.password);
+    const isEmailValid = /\S+@\S+\.\S+/.test(formData.email);
+    const isFirstNameValid = formData.firstName.length >= 2;
+    const isLastNameValid = formData.lastName.length >= 2;
+
+    const errorObject = {};
     if (!isValid) {
+      errorObject.password = errors;
+    }
+    if (!isFirstNameValid) {
+      errorObject.firstName = "First name must be at least 2 characters long";
+    }
+    if (!isLastNameValid) {
+      errorObject.lastName = "Last name must be at least 2 characters long";
+    }
+    if (!isEmailValid) {
+      errorObject.email = "Invalid email address";
+    }
+
+    if (Object.keys(errorObject).length > 0) {
       setStatus("error");
-      setError(errors);
+      setFormError(errorObject);
       return;
     }
+
     setStatus("submitting");
     try {
       const userName =
@@ -100,66 +121,38 @@ const Signup = () => {
               Login
             </Link>
           </div>
-          <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              onChange={handleChange}
-              value={formData.firstName}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              onChange={handleChange}
-              value={formData.lastName}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={handleChange}
-              value={formData.email}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-input-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                onChange={handleChange}
-                value={formData.password}
-                required
-              />
-              <span
-                type="button"
-                onClick={() => setShowPassword((prev) => !prev)}
-                className="password-toggle"
-              >
-                {showPassword ? "hide" : "show"}
-              </span>
-            </div>
-            {error?.length > 0 && (
-              <ul className="error">
-                {error?.map((err, index) => (
-                  <li key={index}>{err}</li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <TextInput
+            label="First Name"
+            type="text"
+            id="firstName"
+            handleChange={handleChange}
+            formData={formData}
+            formError={formError}
+          />
+          <TextInput
+            label="Last Name"
+            type="text"
+            id="lastName"
+            handleChange={handleChange}
+            formData={formData}
+            formError={formError}
+          />
+          <TextInput
+            label="Email"
+            type="email"
+            id="email"
+            handleChange={handleChange}
+            formData={formData}
+            formError={formError}
+          />
+          <PasswordInput
+            label="Password"
+            handleChange={handleChange}
+            formData={formData}
+            formError={formError}
+            showPassword={showPassword}
+            onClick={() => setShowPassword((prev) => !prev)}
+          />
           <div className="form-group">
             <button
               className="btn btn-blue"

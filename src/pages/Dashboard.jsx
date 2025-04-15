@@ -2,7 +2,6 @@ import { useLocation, useNavigate, Navigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
-import dateComparison from "../utils/dateComparison";
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const { showToast } = useToast();
@@ -22,7 +21,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>{`${dateComparison(user.creationTime)} ${firstNameFilter(
+      <p>{`Good morning ${firstNameFilter(
         userName
       )}`}</p>
       <button onClick={handleLogout} className="btn btn-blue">
