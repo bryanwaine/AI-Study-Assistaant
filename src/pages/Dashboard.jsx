@@ -1,6 +1,5 @@
-import { useLocation, useNavigate, Navigate, Link } from "react-router";
+import { useLocation, Navigate, Link } from "react-router";
 import useAuth from "../hooks/useAuth";
-import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
 import Layout from "../components/Layout";
 import greetingHandler from "../utils/greetingHandler";
@@ -8,9 +7,7 @@ import Button from "../components/Button";
 import { NavigateNext } from "@mui/icons-material";
 import { Fragment } from "react";
 const Dashboard = () => {
-  const { user, logout } = useAuth();
-  const { showToast } = useToast();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const location = useLocation();
   const userName = user?.displayName || location.state?.userName;
 
@@ -18,11 +15,7 @@ const Dashboard = () => {
     return <Navigate to="/login" replace />;
   }
 
-  const handleLogout = () => {
-    logout();
-    showToast(`Goodbye ${firstNameFilter(userName)}!`, "success");
-    navigate("/login", { replace: true });
-  };
+  
   return (
       <Layout>
         <div className="dashboard-container">
@@ -66,9 +59,6 @@ const Dashboard = () => {
             </div>
           </section>
         </div>
-        <button onClick={handleLogout} className="btn btn-blue">
-          Logout
-        </button>
       </Layout>
   );
 };
