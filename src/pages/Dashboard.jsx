@@ -50,24 +50,24 @@ const Dashboard = () => {
         <section className="card--blue">
           <h2>Quick Links</h2>
           <div className="dashboard-quicklinks">
-            <Link to="/Ask" className="link quicklink">
+            <Link to="/ask-question" className="link quicklink">
               <p>Ask a Question</p>
               <NavigateNext />
             </Link>
-            <Link to="/NewNote" className="link quicklink">
+            <Link to="/new-note" className="link quicklink">
               <p>Create a Note</p>
               <NavigateNext />
             </Link>
-            <Link to="/NewQuiz" className="link quicklink">
+            <Link to="/new-quiz" className="link quicklink">
               <p>Take a Quiz</p>
               <NavigateNext />
             </Link>
           </div>
         </section>
       </div>
-      {/* <button onClick={handleLogout} className="btn btn-blue">
+      <button onClick={handleLogout} className="btn btn-blue">
               Logout
-            </button> */}
+            </button>
     </>
   );
 };
