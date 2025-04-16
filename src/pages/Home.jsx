@@ -28,15 +28,15 @@ const Home = () => {
           <Button variant="primary">Get Started</Button>
         </Link>
         <div className="home-cards-container">
-          <div className="home-card">
+          <div className="card">
             <h2>AI Chat Assistant</h2>
             <p>Ask questions and get instant answers.</p>
           </div>
-          <div className="home-card">
+          <div className="card">
             <h2>Smart Notes</h2>
             <p>Take, summarize, and organise your study notes.</p>
           </div>
-          <div className="home-card">
+          <div className="card">
             <h2>Flashcards and Quizzes</h2>
             <p>Auto-generate flashcards and quizzes from your notes.</p>
           </div>

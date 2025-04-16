@@ -1,6 +1,6 @@
 const emailValidation = (email) => {
   let isValid = false;
-  if (/\S+@\S+\.\S+/.test(email)) {
+  if (/\S+@\S+\.\S+/.test(email.trim())) {
     isValid = true;
   }
 

@@ -55,16 +55,22 @@ a {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  width: 100%;
 }
 
 .btn-primary {
-  background-color: #035172;
+  background-color: #e74c3c;
   color: #ffffff;
 }
 
 .btn-secondary {
   background-color: #e6f1f6;
   color: #111111;
+}
+
+.btn-blue {
+  background-color: #035172;
+  color: #ffffff;
 }
 
 .btn-ghost {
@@ -87,6 +93,7 @@ a {
   text-decoration: none;
   color: #035172;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 /* Toast */
@@ -214,7 +221,6 @@ nav {
   color: #ff5100;
 }
 
-
 .tagline-lg,
 .tagline-sm {
   font-weight: 200;
@@ -240,6 +246,8 @@ nav {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
+  border: 2px solid #ff5100;
+  object-fit: cover;
 }
 
 /* Signup/Login */
@@ -448,7 +456,7 @@ fieldset .btn {
   margin-bottom: 1.5rem;
 }
 
-.home-card {
+.card--blue {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -461,19 +469,99 @@ fieldset .btn {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.home-card h2 {
+.card--blue h2 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: #111111;
   font-weight: 500;
 }
 
-.home-card p {
+.card--blue p {
   font-size: 1rem;
   margin-bottom: 1rem;
   color: #111111;
   font-weight: 300;
   line-height: 1.5;
+}
+
+.card--white {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.dashboard-container > h1 {
+  align-self: flex-start;
+  margin: 2rem 0 2rem 2rem;
+}
+
+.dashboard-container > section {
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+  width: 85%;
+}
+
+.dashboard-overview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-overview .dashboard-item {
+  min-width: 6rem;
+  gap: 0.5rem;
+}
+
+.dashboard-item .dashboard-label {
+  font-weight: 300;
+}
+
+.dashboard-item .dashboard-value {
+  font-size: 1.5rem;
+  color: #111111;
+  font-weight: 700;
+}
+
+.dashboard-quicklinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 1rem 1rem 0 0;
+  border-radius: 0.5rem;
+  gap: .5rem;
+}
+
+.quicklink {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+}
+
+.quicklink p {
+  color: #035172;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
 }
 
 /* Media Queries */
