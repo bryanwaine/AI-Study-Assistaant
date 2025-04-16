@@ -47,7 +47,7 @@ const ResetPassword = () => {
       message="✅ Password reset link sent."
     >
       <p style={{ padding: 0, marginTop: "-1rem" }}>
-        Please check your email for password reset instructions.
+        Please check your email for instructions on how to reset your password.
       </p>
     </FormLayout>
   ) : (
@@ -71,7 +71,7 @@ const ResetPassword = () => {
         disabled={status === "Submitting" || !isFormValid}
       >
         {" "}
-        {status === "Submitting" ? "Sending Reset Email" : "Send Reset Email"}
+        {status === "Submitting" ? "Sending Reset Email..." : "Send Reset Email"}
       </Button>
     </FormLayout>
   );
