@@ -83,6 +83,12 @@ a {
   padding: 0;
 }
 
+.link {
+  text-decoration: none;
+  color: #035172;
+  font-size: 1rem;
+}
+
 /* Toast */
 
 .toast {
@@ -260,13 +266,6 @@ form fieldset legend {
 .form-group-bottom p {
   font-weight: 300;
   margin-bottom: 0.5rem;
-}
-
-.form-group-top .link,
-.form-group-bottom .link {
-  text-decoration: none;
-  color: #035172;
-  font-size: 1rem;
 }
 
 .form-group {

@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 import errorHandler from "../utils/errorHandler";
 import useToast from "../hooks/useToast";
 import emailValidation from "../utils/emailValidation";
+import { Link } from "react-router";
 
 const ResetPassword = () => {
   const [status, setStatus] = useState("idle");
@@ -48,7 +49,10 @@ const ResetPassword = () => {
     >
       <p style={{ padding: 0, marginTop: "-1rem" }}>
         Please check your email for instructions on how to reset your password.
-      </p>
+          </p>
+          <Link style={{ marginTop: "1rem" }}className="link" to="/login">
+              Back to Login
+            </Link>
     </FormLayout>
   ) : (
     <FormLayout
