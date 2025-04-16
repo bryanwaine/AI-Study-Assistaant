@@ -43,7 +43,7 @@ const ResetPassword = () => {
           title="Reset Password"
           message="✅ Password reset link sent."
       >
-      <p style={{ padding: 0, marginTop: '-1rem' }}>Please check your email for password reset instructions</p>
+      <p style={{ padding: 0, marginTop: '-1rem' }}>Please check your email for password reset instructions.</p>
     </FormLayout>
   ) : (
     <FormLayout

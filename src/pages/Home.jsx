@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Button from "../components/Button";
 
 const Home = () => {
   return (
@@ -14,10 +15,10 @@ const Home = () => {
         </div>
         <div className="home-navbar-right">
           <Link to="/login">
-            <button className="btn btn-light">Login</button>
+            <Button variant="secondary">Login</Button>
           </Link>
           <Link to="/signup">
-            <button className="btn btn-blue">Sign Up</button>
+            <Button variant="primary" >Sign Up</Button>
           </Link>
         </div>
       </div>
@@ -28,7 +29,7 @@ const Home = () => {
           flashcards.
         </p>
         <Link to="/signup">
-            <button className="btn btn-blue">Get Started</button>
+            <Button variant="primary" >Get Started</Button>
           </Link>
         <div className="home-cards-container">
           <div className="home-card">
