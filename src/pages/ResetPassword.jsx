@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import useAuth from "../hooks/useAuth";
 import errorHandler from "../utils/errorHandler";
 import useToast from "../hooks/useToast";
+import emailValidation from "../utils/emailValidation";
 
 const ResetPassword = () => {
   const [status, setStatus] = useState("idle");
@@ -14,6 +15,8 @@ const ResetPassword = () => {
 
   const { resetPassword } = useAuth();
   const { showToast } = useToast();
+
+  const isFormValid = formData.email && emailValidation(formData.email);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,12 +41,14 @@ const ResetPassword = () => {
   };
 
   return status === "success" ? (
-      <FormLayout
-          type="reset-password"
-          title="Reset Password"
-          message="✅ Password reset link sent."
-      >
-      <p style={{ padding: 0, marginTop: '-1rem' }}>Please check your email for password reset instructions.</p>
+    <FormLayout
+      type="reset-password"
+      title="Reset Password"
+      message="✅ Password reset link sent."
+    >
+      <p style={{ padding: 0, marginTop: "-1rem" }}>
+        Please check your email for password reset instructions.
+      </p>
     </FormLayout>
   ) : (
     <FormLayout
@@ -63,7 +68,7 @@ const ResetPassword = () => {
       <Button
         type="submit"
         variant="primary"
-        disabled={status === "Submitting"}
+        disabled={status === "Submitting" || !isFormValid}
       >
         {" "}
         {status === "Submitting" ? "Sending Reset Email" : "Send Reset Email"}

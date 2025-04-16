@@ -10,6 +10,7 @@ import firstNameFilter from "../utils/firstNameFilter";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import PasswordInput from "../components/PasswordInput";
+import emailValidation from "../utils/emailValidation";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ const Signup = () => {
     const { isPasswordValid, errors } = await passwordValidation(
       formData.password
     );
-    const isEmailValid = /\S+@\S+\.\S+/.test(formData.email);
+    const isEmailValid = emailValidation(formData.email);
     const isFirstNameValid = formData.firstName.length >= 2;
     const isLastNameValid = formData.lastName.length >= 2;
 
