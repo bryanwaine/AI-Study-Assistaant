@@ -44,7 +44,9 @@ const Signup = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { isPasswordValid, errors } = await passwordValidation(formData.password);
+    const { isPasswordValid, errors } = await passwordValidation(
+      formData.password
+    );
     const isEmailValid = /\S+@\S+\.\S+/.test(formData.email);
     const isFirstNameValid = formData.firstName.length >= 2;
     const isLastNameValid = formData.lastName.length >= 2;
@@ -108,78 +110,72 @@ const Signup = () => {
   };
 
   return (
-    <FormLayout>
-      <form
-        className="signup-form"
-        aria-labelledby="signup-form"
-        onSubmit={handleSubmit}
+    <FormLayout
+      type="signup-form"
+      title="Sign Up"
+      message="Already have an account?"
+      linkText="Log In"
+      link="/login"
+      handleSubmit={handleSubmit}
+    >
+      <TextInput
+        label="First Name"
+        type="text"
+        id="firstName"
+        name="firstName"
+        className={formError?.firstName?.length > 0 ? "input-error" : ""}
+        handleChange={handleChange}
+        value={formData.firstName}
+        renderError={formError?.firstName && <li>{formError.firstName}</li>}
+      />
+      <TextInput
+        label="Last Name"
+        type="text"
+        id="lastName"
+        name="lastName"
+        className={formError?.lastName?.length > 0 ? "input-error" : ""}
+        handleChange={handleChange}
+        value={formData.lastName}
+        renderError={formError?.lastName && <li>{formError.lastName}</li>}
+      />
+      <TextInput
+        label="Email"
+        type="email"
+        id="email"
+        name="email"
+        className={formError?.email?.length > 0 ? "input-error" : ""}
+        handleChange={handleChange}
+        value={formData.email}
+        renderError={formError?.email && <li>{formError.email}</li>}
+      />
+      <PasswordInput
+        handleChange={handleChange}
+        className={formError?.password?.length > 0 ? "input-error" : ""}
+        value={formData.password}
+        showPassword={showPassword}
+        onClick={() => setShowPassword((prev) => !prev)}
+        renderError={
+          formError?.password?.length > 0 && (
+            <ul className="error-list">
+              {formError?.password?.map((err, index) => (
+                <li key={index}>{err}</li>
+              ))}
+            </ul>
+          )
+        }
+      />
+      <Button
+        type="submit"
+        disabled={status === "submitting" || !isFormValid}
+        variant="primary"
+        onClick={handleSubmit}
       >
-        <fieldset>
-          <legend>Sign Up</legend>
-          <div className="form-group-top">
-            <p>Already have an account? </p>
-            <Link className="link" to="/login">
-              Login
-            </Link>
-          </div>
-          <TextInput
-            label="First Name"
-            type="text"
-            id="firstName"
-            name="firstName"
-            className={formError?.firstName?.length > 0 ? "input-error" : ""}
-            handleChange={handleChange}
-            value={formData.firstName}
-            renderError={formError?.firstName && <li>{formError.firstName}</li>}
-          />
-          <TextInput
-            label="Last Name"
-            type="text"
-            id="lastName"
-            name="lastName"
-            className={formError?.lastName?.length > 0 ? "input-error" : ""}
-            handleChange={handleChange}
-            value={formData.lastName}
-            renderError={formError?.lastName && <li>{formError.lastName}</li>}
-          />
-          <TextInput
-            label="Email"
-            type="email"
-            id="email"
-            name="email"
-            className={formError?.email?.length > 0 ? "input-error" : ""}
-            handleChange={handleChange}
-            value={formData.email}
-            renderError={formError?.email && <li>{formError.email}</li>}
-          />
-          <PasswordInput
-            handleChange={handleChange}
-            className={formError?.password?.length > 0 ? "input-error" : ""}
-            value={formData.password}
-            showPassword={showPassword}
-            onClick={() => setShowPassword((prev) => !prev)}
-            renderError={formError?.password?.length > 0 && (
-                <ul className="error-list">
-                  {formError?.password?.map((err, index) => (
-                    <li key={index}>{err}</li>
-                  ))}
-                </ul>
-              )}
-          />
-            <Button
-              type="submit"
-              disabled={status === "submitting" || !isFormValid}
-              variant="primary"
-              onClick={handleSubmit}
-            >
-              {status === "submitting" ? "Signing Up..." : "Sign Up"}
-            </Button>
-            <Button type="submit" variant="ghost" onClick={handleGoogleLogin}>
-              <img src={googleIcon} className="google-icon" alt="google-icon" />
-              Sign In with Google
-            </Button>
-        </fieldset>
-      </form>
+        {status === "submitting" ? "Signing Up..." : "Sign Up"}
+      </Button>
+      <Button type="submit" variant="ghost" onClick={handleGoogleLogin}>
+        <img src={googleIcon} className="google-icon" alt="google-icon" />
+        Sign In with Google
+      </Button>
     </FormLayout>
   );
 };

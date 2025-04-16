@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   updateProfile,
   signInWithPopup,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
 import AuthContext from "./AuthContext";
@@ -72,9 +73,13 @@ const AuthContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, signup, updateUser, login, logout, logInWithGoogle }}
+      value={{ user, signup, updateUser, login, logout, resetPassword, logInWithGoogle }}
     >
       {loading ? <Loader/> : children}
     </AuthContext.Provider>

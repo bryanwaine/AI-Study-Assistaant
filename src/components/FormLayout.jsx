@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 
-const FormLayout = ({ children }) => {
+const FormLayout = (props) => {
+    const { type, title, message, linkText, link, children, handleSubmit, } = props;
   return (
     <div className="form-container">
       <Link to="/" className="logo-container">
@@ -9,7 +10,18 @@ const FormLayout = ({ children }) => {
         </p>
         <p className="tagline">Your AI Study Assistant</p>
       </Link>
-      {children}
+      <form  aria-labelledby={type} onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>{title}</legend>
+          <div className="form-group-top">
+            <p>{message}</p>
+            <Link className="link" to={link}>
+              {linkText}
+            </Link>
+          </div>
+          {children}
+        </fieldset>
+      </form>
     </div>
   );
 };

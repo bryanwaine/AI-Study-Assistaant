@@ -74,20 +74,14 @@ const Login = () => {
   };
 
   return (
-    <FormLayout>
-      <form
-        className="login-form"
-        aria-labelledby="login-form"
-        onSubmit={handleSubmit}
+      <FormLayout
+      type="login-form"
+      title="Login"
+      message="Don't have an account?"
+      linkText="Sign Up"
+      link="/signup"
+      handleSubmit={handleSubmit}
       >
-        <fieldset>
-          <legend>Login</legend>
-          <div className="form-group-top">
-            <p>Don't have an account? </p>
-            <Link className="link" to="/signup">
-              Sign Up
-            </Link>
-          </div>
           <TextInput
             label="Email"
             type="email"
@@ -115,12 +109,10 @@ const Login = () => {
               Sign in with Google
             </Button>
           <div className="form-group-bottom">
-            <Link className="link" to="/">
+            <Link className="link" to="/reset-password">
               Forgotten password?
             </Link>
           </div>
-        </fieldset>
-      </form>
     </FormLayout>
   );
 };
