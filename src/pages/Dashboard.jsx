@@ -2,6 +2,7 @@ import { useLocation, useNavigate, Navigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
+import Layout from "../components/Layout";
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const { showToast } = useToast();
@@ -19,15 +20,15 @@ const Dashboard = () => {
     navigate("/login", { replace: true });
   };
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>{`Good morning ${firstNameFilter(
-        userName
-      )}`}</p>
-      <button onClick={handleLogout} className="btn btn-blue">
-        Logout
-      </button>
-    </div>
+    <>
+      <div>
+        <h1>Dashboard</h1>
+        <p>{`Good morning ${firstNameFilter(userName)}`}</p>
+        <button onClick={handleLogout} className="btn btn-blue">
+          Logout
+        </button>
+      </div>
+    </>
   );
 };
 

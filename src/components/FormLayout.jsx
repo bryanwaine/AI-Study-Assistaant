@@ -1,15 +1,11 @@
 import { Link } from "react-router";
+import LogoLg from "./LogoLg";
 
 const FormLayout = (props) => {
     const { type, title, message, linkText, link, children, handleSubmit, } = props;
   return (
     <div className="form-container">
-      <Link to="/" className="logo-container">
-        <p className="logo">
-          <span>Ai</span>demy
-        </p>
-        <p className="tagline">Your AI Study Assistant</p>
-      </Link>
+      <LogoLg variant="light"/>
       <form  aria-labelledby={type} onSubmit={handleSubmit}>
         <fieldset>
           <legend>{title}</legend>

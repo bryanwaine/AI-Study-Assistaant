@@ -171,6 +171,77 @@ a {
   }
 }
 
+/* Layout */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #035172;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.logo-lg,
+.logo-sm {
+  font-weight: bold;
+}
+
+.logo-lg {
+  font-size: 3rem;
+}
+
+.logo-sm {
+  font-size: 1.5rem;
+}
+
+.logo-dark {
+  color: #111111;
+}
+
+.logo-light {
+  color: #e9e9e9;
+}
+
+.logo-lg span,
+.logo-sm span {
+  color: #ff5100;
+}
+
+
+.tagline-lg,
+.tagline-sm {
+  font-weight: 200;
+}
+
+.tagline-lg {
+  font-size: 0.85rem;
+}
+
+.tagline-sm {
+  font-size: 0.5rem;
+}
+
+.tagline-light {
+  color: #e9e9e9;
+}
+
+.tagline-dark {
+  color: #111111;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
 /* Signup/Login */
 .form-container {
   display: flex;
@@ -198,30 +269,6 @@ form {
   margin-top: 2rem;
   margin-bottom: 2rem;
   overflow-y: scroll;
-}
-
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.logo {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #e9e9e9;
-}
-
-.logo span {
-  color: #ed0c0c;
-}
-
-.tagline {
-  font-size: 0.85rem;
-  font-weight: 200;
-  color: #e9e9e9;
 }
 
 form fieldset,
@@ -274,7 +321,7 @@ form fieldset legend {
   margin-bottom: 0.85rem;
   width: 100%;
   position: relative;
-  padding: .75rem .5rem .25rem;
+  padding: 0.75rem 0.5rem 0.25rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
 }
@@ -284,7 +331,7 @@ form fieldset legend {
   position: absolute;
   top: -0.7rem;
   left: 1rem;
-  background-color:  #e6f1f6; 
+  background-color: #e6f1f6;
   padding: 0 0.5rem;
   font-size: 0.75rem;
   color: #333;
@@ -302,7 +349,7 @@ form fieldset legend {
 .password-input-container {
   position: relative;
   width: 100%;
-  margin-bottom: .35rem;
+  margin-bottom: 0.35rem;
 }
 
 .password-toggle {
@@ -315,7 +362,7 @@ form fieldset legend {
   color: #666;
   cursor: pointer;
   width: min-content;
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
 .password-toggle:hover {
@@ -324,7 +371,7 @@ form fieldset legend {
 
 fieldset .btn {
   width: 100%;
-  margin: .75rem 0;
+  margin: 0.75rem 0;
 }
 
 /* Home */
@@ -340,20 +387,6 @@ fieldset .btn {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-}
-
-.home-logo {
-  font-size: 1.5rem;
-  color: #111111;
-}
-
-.home-logo span {
-  color: #ed0c0c;
-}
-
-.home-tagline {
-  font-size: 0.5rem;
-  color: #111111;
 }
 
 .home-navbar-left {

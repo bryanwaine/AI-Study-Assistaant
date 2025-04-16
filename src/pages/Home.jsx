@@ -1,24 +1,20 @@
 import { Link } from "react-router";
 import Button from "../components/Button";
+import LogoSm from "../components/LogoSm";
 
 const Home = () => {
   return (
     <div className="home-container">
       <div className="home-navbar">
         <div className="home-navbar-left">
-          <Link to="/" className="logo-container">
-            <p className="logo home-logo">
-              <span>Ai</span>demy
-            </p>
-            <p className="tagline home-tagline">Your AI Study Assistant</p>
-          </Link>
+                  <LogoSm variant="dark"/>
         </div>
         <div className="home-navbar-right">
           <Link to="/login">
             <Button variant="secondary">Login</Button>
           </Link>
           <Link to="/signup">
-            <Button variant="primary" >Sign Up</Button>
+            <Button variant="primary">Sign Up</Button>
           </Link>
         </div>
       </div>
@@ -29,8 +25,8 @@ const Home = () => {
           flashcards.
         </p>
         <Link to="/signup">
-            <Button variant="primary" >Get Started</Button>
-          </Link>
+          <Button variant="primary">Get Started</Button>
+        </Link>
         <div className="home-cards-container">
           <div className="home-card">
             <h2>AI Chat Assistant</h2>
