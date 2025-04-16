@@ -1,5 +1,11 @@
+import { useState } from "react";
+
 const PasswordInput = (props) => {
-    const{handleChange, className, value, renderError, showPassword, onClick} = props
+    const { handleChange, className, value, renderError } = props
+    
+    const [showPassword, setShowPassword] = useState(false);
+        
+        (false);
     return (
         <div className="form-group">
             <label htmlFor="password">Password</label>
@@ -17,7 +23,7 @@ const PasswordInput = (props) => {
                 role="button"
                 tabIndex="0"
                 aria-label={showPassword ? "hide password" : "show password"}
-                onClick={onClick}
+                onClick={() => setShowPassword((prev) => !prev)}
                 className="password-toggle"
               >
                 {showPassword ? "hide" : "show"}

@@ -21,7 +21,6 @@ const Signup = () => {
   });
   const [status, setStatus] = useState("idle");
   const [formError, setFormError] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
   const { signup, logInWithGoogle, updateUser, user } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
@@ -124,9 +123,9 @@ const Signup = () => {
         type="text"
         id="firstName"
         name="firstName"
+        value={formData.firstName}
         className={formError?.firstName?.length > 0 ? "input-error" : ""}
         handleChange={handleChange}
-        value={formData.firstName}
         renderError={formError?.firstName && <li>{formError.firstName}</li>}
       />
       <TextInput
@@ -134,9 +133,9 @@ const Signup = () => {
         type="text"
         id="lastName"
         name="lastName"
+        value={formData.lastName}
         className={formError?.lastName?.length > 0 ? "input-error" : ""}
         handleChange={handleChange}
-        value={formData.lastName}
         renderError={formError?.lastName && <li>{formError.lastName}</li>}
       />
       <TextInput
@@ -144,17 +143,15 @@ const Signup = () => {
         type="email"
         id="email"
         name="email"
+        value={formData.email}
         className={formError?.email?.length > 0 ? "input-error" : ""}
         handleChange={handleChange}
-        value={formData.email}
         renderError={formError?.email && <li>{formError.email}</li>}
       />
       <PasswordInput
         handleChange={handleChange}
-        className={formError?.password?.length > 0 ? "input-error" : ""}
         value={formData.password}
-        showPassword={showPassword}
-        onClick={() => setShowPassword((prev) => !prev)}
+        className={formError?.password?.length > 0 ? "input-error" : ""}
         renderError={
           formError?.password?.length > 0 && (
             <ul className="error-list">

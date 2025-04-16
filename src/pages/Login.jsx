@@ -12,7 +12,6 @@ import Button from "../components/Button";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
-  const [showPassword, setShowPassword] = useState(false);
   const { login, logInWithGoogle, user } = useAuth();
   const { showToast } = useToast();
   const location = useLocation();
@@ -93,8 +92,6 @@ const Login = () => {
           <PasswordInput
             handleChange={handleChange}
             value={formData.password}
-            showPassword={showPassword}
-            onClick={() => setShowPassword((prev) => !prev)}
           />
             <Button
               type="submit"
