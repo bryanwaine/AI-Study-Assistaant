@@ -560,6 +560,7 @@ fieldset .btn {
   width: 85%;
   left: -100%;
   top: 0;
+  padding: 2rem 0;
   opacity: 0;
   height: 100vh;
   display: flex;
