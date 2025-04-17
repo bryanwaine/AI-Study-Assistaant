@@ -839,12 +839,12 @@ fieldset .btn {
   flex-direction: column;
   align-items: flex-end;
   padding: 0 0 1rem 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  left: 5%;
+  bottom: 5%;
+  width: 90%;
   height: auto;
   background-color: #e6f1f6;
-  border-radius: 1.5rem ;
+  border-radius: 1.5rem  ;
   z-index: 50;
 }
 
