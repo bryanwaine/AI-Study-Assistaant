@@ -9,6 +9,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import HistoryIcon from "@mui/icons-material/History";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -36,6 +39,91 @@ const Layout = ({ children }) => {
           setSidebarOpen(false);
         }}
       />
+      <div className="menu" data-menu-open={menuOpen}>
+        <ul className="menu-list">
+          <li>
+            <Link to="#sessions">
+              <div>
+                <HistoryIcon className="icon" />
+                <span>Sessions</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="#notes">
+              <div>
+                <DescriptionOutlinedIcon className="icon" />
+                <span>Notes</span>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link to="#quizzes">
+              <div>
+                <QuizOutlinedIcon className="icon" />
+                <span>Quizzes</span>
+              </div>
+            </Link>
+          </li>
+        </ul>
+        <ul className="menu-list">
+          <h3>Today</h3>
+          <li>
+            <div>
+              <span> Memoization in React</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>useState hook best practices</span>
+            </div>
+          </li>
+        </ul>
+        <ul className="menu-list">
+          <h3>Last week</h3>
+          <li>
+            <div>
+              <span> Object destructuring in JavaScript</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>Empty array truthy or falsy</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>Save fetch data to local storage</span>
+            </div>
+          </li>
+        </ul>
+        <ul className="menu-list">
+          <h3>2 weeks ago</h3>
+          <li>
+            <div>
+              <span>Shalow vs deep copy</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>Searchng algorithm complexity</span>
+            </div>
+          </li>
+        </ul>
+        <ul className="menu-list">
+          <h3>1 month ago</h3>
+          <li>
+            <div>
+              <span>Select list items in Html</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span>Conditional rendering in React</span>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div
         className="page-container"
         data-menu-open={menuOpen}
@@ -73,7 +161,7 @@ const Layout = ({ children }) => {
       </div>
       <div className="sidebar" data-sidebar-open={sidebarOpen}>
         <ul className="sidebar-list">
-          <h3>Account</h3>
+          <h3>ACCOUNT</h3>
           <li>
             <div>
               <PersonOutlineIcon className="icon" />
@@ -87,6 +175,16 @@ const Layout = ({ children }) => {
               <span>Email</span>
             </div>
             <p>{email}</p>
+          </li>
+        </ul>
+        <ul className="sidebar-list">
+          <h3>APP</h3>
+          <li>
+            <div>
+              <PersonOutlineIcon className="icon" />
+              <span> Color Scheme</span>
+            </div>
+            <p>Light</p>
           </li>
           <li>
             <div>
