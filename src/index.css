@@ -188,12 +188,21 @@ a {
 }
 
 /* Layout */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   background-color: #035172;
+  
 }
 
 .logo-container {
@@ -570,6 +579,7 @@ fieldset .btn {
   left: -100%;
   top: 0;
   padding: 2rem 0 4rem;
+  margin: 0;
   opacity: 0;
   height: 100vh;
   display: flex;
@@ -578,6 +588,7 @@ fieldset .btn {
   background-color: #fff;
   transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out,
     width 0.3ms ease-in-out;
+    overflow-x: hidden;
   overflow-y: scroll;
 }
 
