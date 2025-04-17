@@ -12,6 +12,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import HistoryIcon from "@mui/icons-material/History";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -40,6 +41,12 @@ const Layout = ({ children }) => {
         }}
       />
       <div className="menu" data-menu-open={menuOpen}>
+      <div className="search-container">
+          <input type="text" placeholder="Search" />
+          <button>
+            <SearchOutlinedIcon  style={{ color: "#035172" }}/>
+          </button>
+        </div>
         <ul className="menu-list">
           <li>
             <Link to="#sessions">
@@ -147,13 +154,15 @@ const Layout = ({ children }) => {
               className="nav-right"
               onClick={() => setSidebarOpen((prev) => !prev)}
             >
-              {photoURL ? (
-                <img className="avatar" src={photoURL} alt={displayName} />
-              ) : (
-                <AccountCircleIcon
-                  style={{ color: "white", fontSize: "3rem" }}
-                />
-              )}
+              <div className="avatar-container">
+                {photoURL ? (
+                  <img className="avatar" src={photoURL} alt={displayName} />
+                ) : (
+                  <AccountCircleIcon
+                    style={{ color: "white", fontSize: "3rem" }}
+                  />
+                )}
+              </div>
             </div>
           </nav>
         </header>
