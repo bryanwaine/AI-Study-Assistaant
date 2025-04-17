@@ -840,7 +840,7 @@ fieldset .btn {
   align-items: flex-end;
   padding: 0 0 1rem 0;
   left: 5%;
-  bottom: 5%;
+  bottom: 0;
   width: 90%;
   height: auto;
   background-color: #e6f1f6;
