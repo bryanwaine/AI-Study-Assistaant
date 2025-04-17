@@ -67,28 +67,34 @@ a {
   width: 100%;
 }
 
-.btn-primary {
+.btn--orange {
   background-color: #e74c3c;
   color: #ffffff;
 }
 
-.btn-secondary {
+.btn--light {
   background-color: #e6f1f6;
   color: #111111;
 }
 
-.btn-blue {
+.btn--blue {
   background-color: #035172;
   color: #ffffff;
 }
 
-.btn-ghost {
+.btn--ghost {
   background-color: transparent;
   color: #035172;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
   border: 1px solid #035172;
+}
+
+.btn--link {
+  background-color: transparent;
+  width: 100%;
+  color: #ffffff;
 }
 
 .google-icon {
@@ -697,23 +703,30 @@ fieldset .btn {
 }
 
 .menu-list h3 {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  color: #035172;
+
+}
+
+.sidebar-list h3 {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #035172;
 }
 
 .search-container {
   display: flex;
-  /* align-items: center; */
-  width: 90%;
+  width: 95%;
   border: 1px solid #035172;
   border-radius: 0.5rem;
-  padding: 0 0.5rem 0 0;
+  padding: 0 .5rem 0 .5rem;
 }
 
 .search-container input {
   width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  padding: .5rem .5rem .5rem .5rem;
   border: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 300;
   color: #111111;
   background-color: transparent;

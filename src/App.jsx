@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import ResetPassword from "./pages/ResetPassword";
+import Session from "./pages/Session";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/new-session" element={<Session />} />
         </Route>
       </Routes>
     </BrowserRouter>

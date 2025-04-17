@@ -165,7 +165,7 @@ const Signup = () => {
       <Button
         type="submit"
         disabled={status === "submitting" || !isFormValid}
-        variant="primary"
+        variant="orange"
         onClick={handleSubmit}
       >
         {status === "submitting" ? "Signing Up..." : "Sign Up"}

@@ -95,7 +95,7 @@ const Login = () => {
           />
             <Button
               type="submit"
-              variant="primary"
+              variant="orange"
               disabled={status === "submitting" || !isFormValid}
               onClick={handleSubmit}
             >

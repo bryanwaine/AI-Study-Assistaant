@@ -11,10 +11,10 @@ const Home = () => {
         </div>
         <div className="home-navbar-right">
           <Link to="/login">
-            <Button variant="secondary">Login</Button>
+            <Button variant="light">Login</Button>
           </Link>
           <Link to="/signup">
-            <Button variant="primary">Sign Up</Button>
+            <Button variant="orange">Sign Up</Button>
           </Link>
         </div>
       </div>
@@ -25,7 +25,7 @@ const Home = () => {
           flashcards.
         </p>
         <Link to="/signup">
-          <Button variant="primary">Get Started</Button>
+          <Button variant="orange">Get Started</Button>
         </Link>
         <div className="home-cards-container">
           <div className="card--blue">

@@ -13,6 +13,7 @@ import HistoryIcon from "@mui/icons-material/History";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -42,10 +43,10 @@ const Layout = ({ children }) => {
       />
       <div className="menu" data-menu-open={menuOpen}>
       <div className="search-container">
-          <input type="text" placeholder="Search" />
           <button>
             <SearchOutlinedIcon  style={{ color: "#035172" }}/>
           </button>
+          <input type="text" placeholder="Search" />
         </div>
         <ul className="menu-list">
           <li>
@@ -190,7 +191,7 @@ const Layout = ({ children }) => {
           <h3>APP</h3>
           <li>
             <div>
-              <PersonOutlineIcon className="icon" />
+              <DarkModeOutlinedIcon className="icon" />
               <span> Color Scheme</span>
             </div>
             <p>Light</p>
