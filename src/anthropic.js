@@ -24,16 +24,12 @@ const anthropic = new Anthropic({
 
 const generateResponse = async (question, history) => {
   const MAX_CONTEXT = 10;
-  const recentContext = history.slice(-MAX_CONTEXT);
+  const recentContext = history?.slice(-MAX_CONTEXT);
   const msg = await anthropic.messages.create({
     model: "claude-3-7-sonnet-20250219",
     max_tokens: 1024,
     system: SYSTEM_PROMPT,
     messages: [
-      {
-        role: "system",
-        content: SYSTEM_PROMPT,
-      },
       ...recentContext.map((message) => ({
         role: message.role,
         content: message.content,
