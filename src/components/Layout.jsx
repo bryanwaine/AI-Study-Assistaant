@@ -14,6 +14,8 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import { DashboardOutlined } from "@mui/icons-material";
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -49,6 +51,14 @@ const Layout = ({ children }) => {
           <input type="text" placeholder="Search" />
         </div>
         <ul className="menu-list">
+          <li>
+            <Link to="/dashboard">
+              <div>
+                <DashboardOutlined className="icon" />
+                <span>Dashboard</span>
+              </div>
+            </Link>
+          </li>
           <li>
             <Link to="#sessions">
               <div>
