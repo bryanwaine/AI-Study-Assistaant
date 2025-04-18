@@ -61,40 +61,6 @@ const Dashboard = () => {
             </Link>
           </div>
         </section>
-        <section className="card--blue">
-          <h2>Quick Links</h2>
-          <div className="dashboard-quicklinks">
-            <Link to="/new-session" className="link quicklink">
-              <p>Ask a Question</p>
-              <NavigateNext />
-            </Link>
-            <Link to="/new-note" className="link quicklink">
-              <p>Create a Note</p>
-              <NavigateNext />
-            </Link>
-            <Link to="/new-quiz" className="link quicklink">
-              <p>Take a Quiz</p>
-              <NavigateNext />
-            </Link>
-          </div>
-        </section>
-        <section className="card--blue">
-          <h2>Quick Links</h2>
-          <div className="dashboard-quicklinks">
-            <Link to="/new-session" className="link quicklink">
-              <p>Ask a Question</p>
-              <NavigateNext />
-            </Link>
-            <Link to="/new-note" className="link quicklink">
-              <p>Create a Note</p>
-              <NavigateNext />
-            </Link>
-            <Link to="/new-quiz" className="link quicklink">
-              <p>Take a Quiz</p>
-              <NavigateNext />
-            </Link>
-          </div>
-        </section>
       </div>
     </Layout>
   );
