@@ -831,8 +831,20 @@ fieldset .btn {
   height: 100%;
 }
 
+.chat-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+  overflow-y: scroll;
+  height: 78vh;
+  margin-bottom: 2rem;
+}
+
 .textarea-container {
-  position: fixed;
+  position: sticky;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
