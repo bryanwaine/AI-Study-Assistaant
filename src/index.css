@@ -5,7 +5,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   font-family: sans-serif;
 }
@@ -194,7 +193,7 @@ a {
 /* Layout */
 
 header {
-  position: sticky;
+  position: sticky !important;
   top: 0;
   width: 100%;
   z-index: 1000;
