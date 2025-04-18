@@ -697,6 +697,7 @@ fieldset .btn {
 .menu-list li span,
 .sidebar-list li span {
   font-weight: 500;
+  
 }
 
 .menu-list li p,
@@ -704,6 +705,7 @@ fieldset .btn {
   color: #111111;
   font-size: 0.95rem;
   font-weight: 300;
+  width: 100%;
 }
 
 .menu-list h3 {
