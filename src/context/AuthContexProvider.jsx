@@ -11,8 +11,8 @@ import {
 import { auth, googleProvider } from "../firebase";
 import AuthContext from "./AuthContext";
 import useToast from "../hooks/useToast";
-import errorHandler from "../utils/errorHandler";
 import Loader from "../components/Loader";
+import handleFirebaseError from "../utils/firebaseErrorhandler";
 
 // provider
 const AuthContextProvider = ({ children }) => {
@@ -50,7 +50,7 @@ const AuthContextProvider = ({ children }) => {
       return result;
     } catch (error) {
       console.error(error);
-      showToast(errorHandler(error), "error");
+      showToast(handleFirebaseError(error).message, "error");
       throw error;
     }
   };

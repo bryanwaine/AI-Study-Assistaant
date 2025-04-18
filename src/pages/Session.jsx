@@ -9,11 +9,14 @@ import TypingIndicator from "../components/TypingIndicator";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
+import handleAnthropicError from "../utils/anthropicErrorHandler";
+import Button from "../components/Button";
 
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [error, setError] = useState(null);
   const [partialContent, setPartialContent] = useState("");
   const { user } = useAuth();
   const messagesEndRef = useRef(null);
@@ -22,9 +25,9 @@ const Session = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
 
-//   useEffect(() => {
-//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-//   }, [messages, partialContent]);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [question]);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -37,41 +40,45 @@ const Session = () => {
   const onSubmit = async () => {
     if (!question.trim()) return;
 
-    const userMessage = {
-      id: Date.now(),
-      role: "user",
-      content: question,
-    };
-    setLoading(true);
-    setMessages((prev) => [...prev, userMessage]);
-    setQuestion("");
+    try {
+      const userMessage = {
+        id: Date.now(),
+        role: "user",
+        content: question,
+      };
+      setLoading(true);
+      setMessages((prev) => [...prev, userMessage]);
+      setQuestion("");
 
-    const aiResponse = await generateResponse(question, messages);
-    const words = aiResponse.split(" ");
-    let currentWord = 0;
-    setPartialContent("");
+      const aiResponse = await generateResponse(question, messages);
+      const words = aiResponse.split(" ");
+      let currentWord = 0;
+      setPartialContent("");
 
-    const interval = setInterval(() => {
-      setPartialContent((prev) => prev + words[currentWord] + " ");
-      currentWord++;
+      const interval = setInterval(() => {
+        setPartialContent((prev) => prev + words[currentWord] + " ");
+        currentWord++;
 
-      if (currentWord >= words.length) {
-        clearInterval(interval);
-        const aiMessage = {
-          id: Date.now() + 1,
-          role: "assistant",
-          content: aiResponse,
-        };
-        setMessages((prev) => [...prev, aiMessage]);
-        setPartialContent("");
-        setLoading(false);
-      }
-    }, 30);
+        if (currentWord >= words.length) {
+          clearInterval(interval);
+          const aiMessage = {
+            id: Date.now() + 1,
+            role: "assistant",
+            content: aiResponse,
+          };
+          setMessages((prev) => [...prev, aiMessage]);
+          setPartialContent("");
+        }
+      }, 30);
+    } catch (error) {
+      setError(handleAnthropicError(error).message);
+    }
+    setLoading(false);
   };
+
   return (
     <Layout>
       <div className="session-container">
-        <div className="chat-header"></div>
         <div className="chat-window">
           {messages.map((message) => (
             <div key={message.id} className={`chat-message ${message.role}`}>
@@ -100,9 +107,19 @@ const Session = () => {
           )}
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
-              </div>
-              <div className="chat-footer"/>
-        <TextArea value={question} onChange={onChange} onSubmit={onSubmit} />
+        </div>
+        {error && (
+          <div className="chat-error-container">
+            <p className="error">{error}</p>
+            <Button variant="orange">Retry</Button>
+          </div>
+        )}
+        <TextArea
+          value={question}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          loading={loading}
+        />
       </div>
     </Layout>
   );

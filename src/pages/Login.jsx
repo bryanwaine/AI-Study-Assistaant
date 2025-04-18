@@ -3,12 +3,12 @@ import { Link, useLocation, useNavigate, Navigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
-import errorHandler from "../utils/errorHandler";
 import googleIcon from "../assets/google-icon.png";
 import firstNameFilter from "../utils/firstNameFilter";
 import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
 import Button from "../components/Button";
+import handleFirebaseError from "../utils/firebaseErrorhandler";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
@@ -55,7 +55,7 @@ const Login = () => {
       navigate(origin, { replace: true });
     } catch (error) {
       setStatus("error");
-      showToast(errorHandler(error), "error");
+      showToast(handleFirebaseError(error).message, "error");
     }
   };
 
@@ -68,7 +68,7 @@ const Login = () => {
       );
       navigate(origin, { replace: true });
     } catch (error) {
-      showToast(errorHandler(error), "error");
+      showToast(handleFirebaseError(error).message, "error");
     }
   };
 

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Button from "./Button";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-const TextArea = ({ value, onChange, onSubmit }) => {
+const TextArea = ({ value, onChange, onSubmit, loading }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const TextArea = ({ value, onChange, onSubmit }) => {
 
 
   const handleKeyDown = (event) => {
+    if(loading) return
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       onSubmit();
@@ -40,7 +41,7 @@ const TextArea = ({ value, onChange, onSubmit }) => {
           <AddOutlinedIcon fontSize="small" />
         </Button>
         <Button variant="orange" onClick={onSubmit} ariaLabel="submit"
-          disabled={!value}
+          disabled={!value || loading}
         >
           <ArrowUpwardOutlinedIcon fontSize="small" />
         </Button>

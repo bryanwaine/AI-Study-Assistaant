@@ -3,10 +3,10 @@ import FormLayout from "../components/FormLayout";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import useAuth from "../hooks/useAuth";
-import errorHandler from "../utils/errorHandler";
 import useToast from "../hooks/useToast";
 import emailValidation from "../utils/emailValidation";
 import { Link } from "react-router";
+import handleFirebaseError from "../utils/firebaseErrorhandler";
 
 const ResetPassword = () => {
   const [status, setStatus] = useState("idle");
@@ -37,7 +37,7 @@ const ResetPassword = () => {
       console.log(data);
     } catch (error) {
       setStatus("error");
-      showToast(errorHandler(error), "error");
+      showToast(handleFirebaseError(error).message, "error");
     }
   };
 

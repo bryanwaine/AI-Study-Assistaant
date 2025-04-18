@@ -1,4 +1,4 @@
-const greetingHandler = (name) => {
+const handleGreeting = (name) => {
   const hour = new Date().getHours();
   if (hour < 12) {
     return `Good Morning, ${name}.`;
@@ -9,4 +9,4 @@ const greetingHandler = (name) => {
   }
 };
 
-export default greetingHandler;
+export default handleGreeting;

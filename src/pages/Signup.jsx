@@ -4,13 +4,13 @@ import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
 import passwordValidation from "../utils/passwordValidation";
 import useToast from "../hooks/useToast";
-import errorHandler from "../utils/errorHandler";
 import googleIcon from "../assets/google-icon.png";
 import firstNameFilter from "../utils/firstNameFilter";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import PasswordInput from "../components/PasswordInput";
 import emailValidation from "../utils/emailValidation";
+import handleFirebaseError from "../utils/firebaseErrorhandler";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -92,7 +92,7 @@ const Signup = () => {
       });
     } catch (error) {
       setStatus("error");
-      showToast(errorHandler(error), "error");
+      showToast(handleFirebaseError(error).message, "error");
     }
   };
 
@@ -105,7 +105,7 @@ const Signup = () => {
       );
       navigate("/dashboard", { replace: true });
     } catch (error) {
-      showToast(errorHandler(error), "error");
+      showToast(handleFirebaseError(error).message, "error");
     }
   };
 

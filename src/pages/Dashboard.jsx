@@ -2,7 +2,7 @@ import { useLocation, Navigate, Link } from "react-router";
 import useAuth from "../hooks/useAuth";
 import firstNameFilter from "../utils/firstNameFilter";
 import Layout from "../components/Layout";
-import greetingHandler from "../utils/greetingHandler";
+import handleGreeting from "../utils/greetingHandler";
 import Button from "../components/Button";
 import { NavigateNext } from "@mui/icons-material";
 import { Fragment } from "react";
@@ -20,7 +20,7 @@ const Dashboard = () => {
       <div className="dashboard-container">
         <h1>Dashboard</h1>
         <section className="card--blue">
-          <h2>{greetingHandler(firstNameFilter(userName))}</h2>
+          <h2>{handleGreeting(firstNameFilter(userName))}</h2>
           <p className="dashboard-message">
             Here's an overview of your study progress:
           </p>
