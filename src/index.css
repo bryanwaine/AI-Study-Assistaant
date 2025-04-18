@@ -1043,6 +1043,7 @@ main {
   margin: 0.5rem 0;
   align-items: center;
   height: 20px;
+  margin-bottom: 2rem;
 }
 
 .typing-indicator span {
@@ -1070,6 +1071,15 @@ main {
     transform: scale(1.2);
     opacity: 1;
   }
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 

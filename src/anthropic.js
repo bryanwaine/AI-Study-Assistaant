@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk"
+import Anthropic from "@anthropic-ai/sdk";
 
 const SYSTEM_PROMPT = `
 You are an AI-powered study assistant designed to help students understand and learn academic topics more effectively.
@@ -15,23 +15,34 @@ Do not generate false or made-up information. If unsure, say so honestly.
 
 Use bullet points, headers, and formatting to improve readability for longer explanations.
 
-Always prioritize clarity and usefulness in your responses.`
+Always prioritize clarity and usefulness in your responses.`;
 
-const anthropic = new Anthropic({   
-    apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
-    dangerouslyAllowBrowser: true
-})
+const anthropic = new Anthropic({
+  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
-const generateResponse = async (question) => {
-    const msg = await anthropic.messages.create({
-        model: "claude-3-7-sonnet-20250219",
-        max_tokens: 1024,
-        system: SYSTEM_PROMPT,
-        messages: [
-            { role: "user", content: question },
-        ],
-    });
-    return msg.content[0].text
-}
+const generateResponse = async (question, history) => {
+  const MAX_CONTEXT = 10;
+  const recentContext = history.slice(-MAX_CONTEXT);
+  const msg = await anthropic.messages.create({
+    model: "claude-3-7-sonnet-20250219",
+    max_tokens: 1024,
+    system: SYSTEM_PROMPT,
+    messages: [
+      {
+        role: "system",
+        content: SYSTEM_PROMPT,
+      },
+      ...recentContext.map((message) => ({
+        role: message.role,
+        content: message.content,
+      })),
 
-export { generateResponse }
+      { role: "user", content: question },
+    ],
+  });
+  return msg.content[0].text;
+};
+
+export { generateResponse };

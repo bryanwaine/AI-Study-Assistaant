@@ -24,7 +24,7 @@ const Session = () => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, partialContent]);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -46,16 +46,16 @@ const Session = () => {
     setMessages((prev) => [...prev, userMessage]);
     setQuestion("");
 
-    const aiResponse = await generateResponse(question);
-    const lines = aiResponse.split(" ");
-    let currentLine = 0;
+    const aiResponse = await generateResponse(question, messages);
+    const words = aiResponse.split(" ");
+    let currentWord = 0;
     setPartialContent("");
 
     const interval = setInterval(() => {
-      setPartialContent((prev) => prev + lines[currentLine] + "\n");
-      currentLine++;
+      setPartialContent((prev) => prev + words[currentWord] + " ");
+      currentWord++;
 
-      if (currentLine >= lines.length) {
+      if (currentWord >= words.length) {
         clearInterval(interval);
         const aiMessage = {
           id: Date.now() + 1,
@@ -66,7 +66,7 @@ const Session = () => {
         setPartialContent("");
         setLoading(false);
       }
-    }, 30); 
+    }, 30);
   };
   return (
     <Layout>
@@ -89,7 +89,7 @@ const Session = () => {
             </div>
           ))}
           {partialContent && (
-            <div className="chat-message assistant">
+            <div className="chat-message assistant typing-cursor">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeHighlight]}
