@@ -680,6 +680,7 @@ fieldset .btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  width: 100%;
   color: #035172;
 }
 
@@ -687,6 +688,10 @@ fieldset .btn {
 .sidebar-list li .icon {
   font-size: 1.2rem;
   font-weight: 800;
+}
+
+.sidebar-list li div a {
+  width: 100%;
 }
 
 .menu-list li span,
