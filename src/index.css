@@ -933,7 +933,7 @@ fieldset .btn {
   overflow-y: scroll;
   height: 80vh;
   margin: 0 0 2rem 0;
-  padding: 2rem 1.5rem 2rem 1.5rem;
+  padding: 4rem 1.5rem 2rem 1.5rem;
   
 }
 
@@ -949,13 +949,37 @@ fieldset .btn {
   align-self: flex-end;
   background-color: #e74c3c;
   color: white;
+  max-width: 70%;
 }
 
 .chat-message.assistant {
   width: 100%;
-  
   align-self: flex-start;
   color: #333;
+  padding: 0;
+}
+
+.chat-message.assistant ul {
+  padding-left: 1rem;
+}
+
+.chat-message h1 {
+  font-size: 1.4rem;
+
+}
+
+.chat-message h2 {
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.chat-message h3 {
+  font-size: 1rem;
+}
+
+.chat-message p {
+  margin: 0;
+  font-size: .9rem;
 }
 
 .chat-message table {
@@ -971,16 +995,20 @@ fieldset .btn {
 }
 
 .chat-message code {
+  width: 100%;
+  font-size: .9rem;
   background-color: #e6f1f6;
-  padding: 2px 4px;
-  border-radius: 4px;
+  padding: 1px 2px;
+  border-radius: 6px;
+  border: 1px solid #e74c3c;
 }
 
 .chat-message pre {
   background-color: #f4f4f4;
-  padding: 1em;
+  /* padding: 1em; */
   border-radius: 6px;
   overflow-x: auto;
+  margin: .5rem 0 1rem;
 }
 
 /* Typing Indicator */

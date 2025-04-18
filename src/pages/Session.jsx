@@ -42,6 +42,7 @@ const Session = () => {
       content: question,
     };
     setLoading(true);
+
     setMessages((prev) => [...prev, userMessage]);
     setQuestion("");
     const aiResponse = await generateResponse(question);
@@ -58,7 +59,10 @@ const Session = () => {
       <div className="session-container">
         <div className="chat-window">
           {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role}`}>
+            <div
+              key={message.id}
+              className={`chat-message ${message.role}`}
+            >
               <div>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
