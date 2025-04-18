@@ -14,7 +14,7 @@ const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
-
+  const [partialContent, setPartialContent] = useState("");
   const { user } = useAuth();
   const messagesEndRef = useRef(null);
 
@@ -33,6 +33,7 @@ const Session = () => {
   const onChange = (e) => {
     setQuestion(e.target.value);
   };
+
   const onSubmit = async () => {
     if (!question.trim()) return;
 
@@ -42,21 +43,35 @@ const Session = () => {
       content: question,
     };
     setLoading(true);
-
     setMessages((prev) => [...prev, userMessage]);
     setQuestion("");
+
     const aiResponse = await generateResponse(question);
-    const aiMessage = {
-      id: Date.now() + 1,
-      role: "assistant",
-      content: aiResponse,
-    };
-    setMessages((prev) => [...prev, aiMessage]);
-    setLoading(false);
+    const lines = aiResponse.split(" ");
+    let currentLine = 0;
+    setPartialContent("");
+
+    const interval = setInterval(() => {
+      setPartialContent((prev) => prev + lines[currentLine] + "\n");
+      currentLine++;
+
+      if (currentLine >= lines.length) {
+        clearInterval(interval);
+        const aiMessage = {
+          id: Date.now() + 1,
+          role: "assistant",
+          content: aiResponse,
+        };
+        setMessages((prev) => [...prev, aiMessage]);
+        setPartialContent("");
+        setLoading(false);
+      }
+    }, 30); 
   };
   return (
     <Layout>
       <div className="session-container">
+        <div className="chat-header"></div>
         <div className="chat-window">
           {messages.map((message) => (
             <div key={message.id} className={`chat-message ${message.role}`}>
@@ -73,12 +88,20 @@ const Session = () => {
               </div>
             </div>
           ))}
+          {partialContent && (
+            <div className="chat-message assistant">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              >
+                {partialContent}
+              </ReactMarkdown>
+            </div>
+          )}
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
         </div>
-        <div className="textarea-wrapper">
-          <TextArea value={question} onChange={onChange} onSubmit={onSubmit} />
-        </div>
+        <TextArea value={question} onChange={onChange} onSubmit={onSubmit} />
       </div>
     </Layout>
   );
