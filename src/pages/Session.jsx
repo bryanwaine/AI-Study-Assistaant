@@ -22,9 +22,9 @@ const Session = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, partialContent]);
+//   useEffect(() => {
+//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+//   }, [messages, partialContent]);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -100,7 +100,8 @@ const Session = () => {
           )}
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
-        </div>
+              </div>
+              <div className="chat-footer"/>
         <TextArea value={question} onChange={onChange} onSubmit={onSubmit} />
       </div>
     </Layout>
