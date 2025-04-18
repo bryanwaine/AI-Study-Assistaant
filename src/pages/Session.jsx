@@ -59,10 +59,7 @@ const Session = () => {
       <div className="session-container">
         <div className="chat-window">
           {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`chat-message ${message.role}`}
-            >
+            <div key={message.id} className={`chat-message ${message.role}`}>
               <div>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
@@ -79,7 +76,9 @@ const Session = () => {
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
         </div>
-        <TextArea value={question} onChange={onChange} onSubmit={onSubmit} />
+        <div className="textarea-wrapper">
+          <TextArea value={question} onChange={onChange} onSubmit={onSubmit} />
+        </div>
       </div>
     </Layout>
   );
