@@ -101,7 +101,7 @@ const Login = () => {
             >
               {status === "submitting" ? "Logging in..." : "Login"}
             </Button>
-            <Button variant="ghost" onClick={handleGoogleLogin}>
+            <Button variant="ghost--blue" onClick={handleGoogleLogin}>
               <img src={googleIcon} className="google-icon" alt="google-icon" />
               Sign in with Google
             </Button>

@@ -36,10 +36,10 @@ const TextArea = ({ value, onChange, onSubmit }) => {
         required
       />
       <div className="textarea-buttons">
-        <Button variant="ghost" onClick={onSubmit} ariaLabel="submit" className="submit-btn">
+        <Button variant="ghost--orange" onClick={onSubmit} ariaLabel="submit" className="submit-btn">
           <AddOutlinedIcon fontSize="small" />
         </Button>
-        <Button variant="blue" onClick={onSubmit} ariaLabel="submit"
+        <Button variant="orange" onClick={onSubmit} ariaLabel="submit"
           disabled={!value}
         >
           <ArrowUpwardOutlinedIcon fontSize="small" />

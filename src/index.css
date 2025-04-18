@@ -79,13 +79,22 @@ a {
   color: #ffffff;
 }
 
-.btn--ghost {
+.btn--ghost--blue {
   background-color: transparent;
   color: #035172;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
   border: 1px solid #035172;
+}
+
+.btn--ghost--orange {
+  background-color: transparent;
+  color: #e74c3c;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 1px solid #e74c3c;
 }
 
 .btn--link {
@@ -914,6 +923,102 @@ fieldset .btn {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+.chat-window {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  overflow-y: scroll;
+  height: 80vh;
+  margin: 0 0 2rem 0;
+  padding: 2rem 1.5rem 2rem 1.5rem;
+  
+}
+
+.chat-message {
+  max-width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  line-height: 1.4;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background-color: #e74c3c;
+  color: white;
+}
+
+.chat-message.assistant {
+  width: 100%;
+  
+  align-self: flex-start;
+  color: #333;
+}
+
+.chat-message table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.chat-message th,
+.chat-message td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.chat-message code {
+  background-color: #e6f1f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.chat-message pre {
+  background-color: #f4f4f4;
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  margin: 0.5rem 0;
+  align-items: center;
+  height: 20px;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #e74c3c;
+  border-radius: 50%;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
 
 /* Media Queries */
 
