@@ -39,7 +39,9 @@ const TextArea = ({ value, onChange, onSubmit }) => {
         <Button variant="ghost" onClick={onSubmit} ariaLabel="submit" className="submit-btn">
           <AddOutlinedIcon fontSize="small" />
         </Button>
-        <Button variant="blue" onClick={onSubmit} ariaLabel="submit">
+        <Button variant="blue" onClick={onSubmit} ariaLabel="submit"
+          disabled={!value}
+        >
           <ArrowUpwardOutlinedIcon fontSize="small" />
         </Button>
       </div>

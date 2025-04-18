@@ -706,6 +706,10 @@ fieldset .btn {
   font-size: 0.95rem;
   font-weight: 300;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  text-overflow: ellipsis;
 }
 
 .menu-list h3 {
@@ -863,6 +867,7 @@ fieldset .btn {
   background-color: #e6f1f6;
   border-radius: 1.5rem  ;
   z-index: 50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .textarea-input {
@@ -901,7 +906,7 @@ fieldset .btn {
   transition: all 0.2s ease-in-out;
 }
 
-.submit-btn:focus {
+.textarea-buttons button:focus {
   outline: none;
 }
 
