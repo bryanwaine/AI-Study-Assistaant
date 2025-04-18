@@ -206,7 +206,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 5.825rem;;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
@@ -218,7 +218,6 @@ nav {
   padding: 1rem;
   background-color: #035172;
   height: 100%;
-  
 }
 
 .logo-container {
@@ -291,6 +290,10 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+main {
+  height: 52.84rem;
 }
 
 /* Signup/Login */
@@ -547,7 +550,6 @@ fieldset .btn {
   height: 100vh;
   padding: 0;
   margin: 0;
-
 }
 
 .overlay {
@@ -614,7 +616,7 @@ main {
   background-color: #fff;
   transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out,
     width 0.3ms ease-in-out;
-    overflow-x: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -718,7 +720,6 @@ main {
 .menu-list li span,
 .sidebar-list li span {
   font-weight: 500;
-  
 }
 
 .menu-list li p,
@@ -736,7 +737,6 @@ main {
 .menu-list h3 {
   font-size: 0.75rem;
   color: #035172;
-
 }
 
 .sidebar-list h3 {
@@ -750,12 +750,12 @@ main {
   width: 95%;
   border: 1px solid #035172;
   border-radius: 0.5rem;
-  padding: 0 .5rem 0 .5rem;
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 .search-container input {
   width: 100%;
-  padding: .5rem .5rem .5rem .5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border: none;
   font-size: 1rem;
   font-weight: 300;
@@ -897,7 +897,7 @@ main {
   width: 90%;
   height: auto;
   background-color: #e6f1f6;
-  border-radius: 1.5rem  ;
+  border-radius: 1.5rem;
   z-index: 50;
   box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.5);
 }
@@ -922,7 +922,7 @@ main {
 }
 
 .textarea-buttons {
-  width: 100% ;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -957,11 +957,10 @@ main {
   height: 80vh;
   /* margin: 0 0 2rem 0; */
   padding: 2rem 1.5rem 2rem 1.5rem;
-  
 }
 
 .chat-message {
-  font-size: .95rem;
+  font-size: 0.95rem;
   max-width: 100%;
   padding: 12px;
   margin-bottom: 10px;
@@ -990,7 +989,6 @@ main {
 
 .chat-message h1 {
   font-size: 1.3rem;
-
 }
 
 .chat-message h2 {
@@ -1004,7 +1002,6 @@ main {
 
 .chat-message p {
   margin: 0;
-  
 }
 
 .chat-message table {
@@ -1021,7 +1018,7 @@ main {
 
 .chat-message code {
   width: 100%;
-  font-size: .85rem;
+  font-size: 0.85rem;
   background-color: #e6f1f6;
   padding: 1px 2px;
   border-radius: 6px;
@@ -1033,7 +1030,7 @@ main {
   /* padding: 1em; */
   border-radius: 6px;
   overflow-x: auto;
-  margin: .5rem 0 1rem;
+  margin: 0.5rem 0 1rem;
 }
 
 /* Typing Indicator */
@@ -1065,7 +1062,9 @@ main {
 }
 
 @keyframes bounce {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     transform: scale(0.8);
     opacity: 0.6;
   }
@@ -1076,14 +1075,15 @@ main {
 }
 
 .typing-cursor::after {
-  content: '|';
+  content: "|";
   animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
-
 
 /* Media Queries */
 
