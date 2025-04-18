@@ -2,14 +2,21 @@ import { Navigate } from "react-router";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
     
 const Session = () => {
     const [question, setQuestion] = useState("");
     const { user } = useAuth();
+
+    useEffect(() => {
+        window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+    }, []);
+
     if (!user) {
         return <Navigate to="/login" replace />;
     }
+
+    
     
     const onChange = (e) => {
         setQuestion(e.target.value);
