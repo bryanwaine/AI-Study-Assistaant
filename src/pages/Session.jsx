@@ -20,13 +20,17 @@ const Session = () => {
   const [partialContent, setPartialContent] = useState("");
   const { user } = useAuth();
   const messagesEndRef = useRef(null);
+  const scrollToQuestionRef = useRef(false);
 
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollToQuestionRef.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+    scrollToQuestionRef.current = false;
   }, [messages]);
 
   if (!user) {
@@ -49,6 +53,7 @@ const Session = () => {
       setLoading(true);
       setMessages((prev) => [...prev, userMessage]);
       setQuestion("");
+      scrollToQuestionRef.current = true;
 
       const aiResponse = await generateResponse(question, messages);
       const words = aiResponse.split(" ");

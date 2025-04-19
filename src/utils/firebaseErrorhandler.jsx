@@ -11,7 +11,7 @@ export function handleFirebaseError(error) {
   
     switch (error.code) {
       // Auth Errors
-      case "auth/invalid-email":
+      case "auth/invalid-credential":
         message = "The email address is not valid.";
         break;
       case "auth/user-disabled":
