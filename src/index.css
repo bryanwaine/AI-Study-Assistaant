@@ -12,8 +12,14 @@ html, body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   background-color: #f5f5f5;
-  height: var(--app-height)
+  height: 100%
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 input:focus,
@@ -203,7 +209,7 @@ a {
 /* Layout */
 
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -295,7 +301,7 @@ nav {
 
 main {
   height: 100%;
-  padding: 5rem 0 7.5rem 0;
+  padding: 0 0 0 0;
   overflow: hidden;
 }
 
@@ -888,7 +894,7 @@ fieldset .btn {
 }
 
 .textarea-container {
-  position: fixed;
+  position: sticky;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
