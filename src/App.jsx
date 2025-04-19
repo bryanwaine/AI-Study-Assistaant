@@ -10,7 +10,8 @@ import Session from "./pages/Session";
 import setAppHeight from "./utils/setAppHeight";
 
 function App() {
-
+  window.addEventListener("resize", setAppHeight);
+  window.addEventListener("load", setAppHeight);
   return (
     <BrowserRouter>
       <Routes>
