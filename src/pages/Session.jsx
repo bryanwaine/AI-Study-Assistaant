@@ -75,59 +75,61 @@ const Session = () => {
           setPartialContent("");
           setLoading(false);
         }
-    }, 30);
-} catch (error) {
-    setError(handleAnthropicError(error).message);
-    setLoading(false);
+      }, 30);
+    } catch (error) {
+      setError(handleAnthropicError(error).message);
+      setLoading(false);
     }
   };
 
   return (
-    <Layout>
-      <div className="session-container">
-        <div className="chat-window">
-          {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role}`}>
-              <div>
-                {message.role === "user" ? (
-                  <p>{message.content}</p>
-                ) : (
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeHighlight]}
-                    children={message.content}
-                  />
-                )}
+    <>
+      <Layout>
+        <div className="session-container">
+          <div className="chat-window">
+            {messages.map((message) => (
+              <div key={message.id} className={`chat-message ${message.role}`}>
+                <div>
+                  {message.role === "user" ? (
+                    <p>{message.content}</p>
+                  ) : (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeHighlight]}
+                      children={message.content}
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-          {partialContent && (
-            <div className="chat-message assistant typing-cursor">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeHighlight]}
-              >
-                {partialContent}
-              </ReactMarkdown>
+            ))}
+            {partialContent && (
+              <div className="chat-message assistant typing-cursor">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeHighlight]}
+                >
+                  {partialContent}
+                </ReactMarkdown>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+            {loading && <TypingIndicator />}
+          </div>
+          {error && (
+            <div className="chat-error-container">
+              <p className="error">{error}</p>
+              <Button variant="orange">Retry</Button>
             </div>
           )}
-          <div ref={messagesEndRef} />
-          {loading && <TypingIndicator />}
         </div>
-        {error && (
-          <div className="chat-error-container">
-            <p className="error">{error}</p>
-            <Button variant="orange">Retry</Button>
-          </div>
-        )}
-      </div>
-        <TextArea
-          value={question}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          loading={loading}
-        />
-    </Layout>
+      </Layout>
+      <TextArea
+        value={question}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        loading={loading}
+      />
+    </>
   );
 };
 

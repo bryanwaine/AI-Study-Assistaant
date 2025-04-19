@@ -12,16 +12,16 @@ html, body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
+  overflow: hidden;
   background-color: #f5f5f5;
   /* height: var(--app-height); */
   height: 100vh;
 }
 
 main {
-  height: 100%;
-  padding: 5rem 0 0 0;
-  /* overflow: hidden; */
+  height: 100vh;
+  /* padding: 5rem 0 0 0; */
+ 
 }
 
 input:focus,
@@ -585,6 +585,7 @@ fieldset .btn {
 
 
 .page-container {
+  
   height: 100%;
   width: 100vw;
   display: flex;
@@ -966,7 +967,7 @@ fieldset .btn {
   overflow-y: auto;
   height: 100%;
   /* margin: 0 0 2rem 0; */
-  padding: 2rem 1.5rem 2rem 1.5rem;
+  padding: 10rem 1.5rem 10rem 1.5rem;
 }
 
 .chat-message {
