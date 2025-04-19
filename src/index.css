@@ -304,7 +304,6 @@ nav {
 main {
   height: 100%;
   overflow: hidden;
-  padding: 5rem 0 0 0;
 }
 
 /* Signup/Login */
@@ -888,7 +887,7 @@ fieldset .btn {
 }
 
 .textarea-wrapper {
-  position: sticky;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
