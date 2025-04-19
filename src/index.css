@@ -20,7 +20,7 @@ html, body {
 
 main {
   height: 100%;
-  padding: 5rem 0 0 0;
+  padding: 0 0 0 0;
   /* overflow: hidden; */
 }
 
@@ -793,11 +793,12 @@ fieldset .btn {
   align-items: center;
   width: 100vw;
   overflow: hidden;
+
 }
 
 .dashboard-container > h1 {
   align-self: flex-start;
-  margin: 2rem 0 2rem 2rem;
+  margin: 0 0 2rem 2rem;
 }
 
 .dashboard-container > section {
