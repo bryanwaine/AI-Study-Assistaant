@@ -211,7 +211,7 @@ a {
 /* Layout */
 
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -884,7 +884,7 @@ fieldset .btn {
 }
 
 .textarea-wrapper {
-  position: fixed;
+  position: sticky;
   display: flex;
   justify-content: center;
   align-items: center;
