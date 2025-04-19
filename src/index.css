@@ -21,7 +21,7 @@ html, body {
 main {
   height: 100%;
   
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 input:focus,
@@ -585,6 +585,7 @@ fieldset .btn {
 
 
 .page-container {
+  overflow: hidden;
   height: 100%;
   width: 100vw;
   display: flex;
