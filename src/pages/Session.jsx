@@ -119,13 +119,13 @@ const Session = () => {
             <Button variant="orange">Retry</Button>
           </div>
         )}
+      </div>
         <TextArea
           value={question}
           onChange={onChange}
           onSubmit={onSubmit}
           loading={loading}
         />
-      </div>
     </Layout>
   );
 };
