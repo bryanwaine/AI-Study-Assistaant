@@ -20,6 +20,7 @@ html, body {
 
 main {
   height: 100%;
+  padding: 5rem 0 0 0;
   
   /* overflow: hidden; */
 }
@@ -585,7 +586,6 @@ fieldset .btn {
 
 
 .page-container {
-  overflow: hidden;
   height: 100%;
   width: 100vw;
   display: flex;
