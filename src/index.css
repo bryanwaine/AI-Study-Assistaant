@@ -304,6 +304,7 @@ nav {
 main {
   height: 100%;
   overflow: hidden;
+  padding: 5rem 0 0 0;
 }
 
 /* Signup/Login */
