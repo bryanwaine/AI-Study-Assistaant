@@ -19,8 +19,9 @@ html, body {
 }
 
 main {
-  height: 90%;
+  height: 80%;
   padding: 3rem 0 0 0;
+  background-color: brown;
   /* overflow: hidden; */
 }
 
@@ -587,8 +588,8 @@ fieldset .btn {
 .page-container {
   height: 100%;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   transform: translateX(0);
   opacity: 1;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
