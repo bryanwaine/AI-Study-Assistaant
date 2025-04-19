@@ -21,8 +21,6 @@ html, body {
 main {
   height: 100%;
   /* padding: 5rem 0 0 0; */
-  position: sticky;
-  top: 4.5rem;
   /* overflow: hidden; */
 }
 
