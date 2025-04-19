@@ -30,10 +30,6 @@ const generateResponse = async (question, history) => {
     max_tokens: 1024,
     system: SYSTEM_PROMPT,
     messages: [
-      {
-        role: "system",
-        content: SYSTEM_PROMPT,
-      },
       ...recentContext.map((message) => ({
         role: message.role,
         content: message.content,
