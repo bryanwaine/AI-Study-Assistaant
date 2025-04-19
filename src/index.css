@@ -893,20 +893,31 @@ fieldset .btn {
   /* flex: 1; */
 }
 
-.textarea-container {
+.textarea-wrapper {
   position: sticky;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 0 0 1rem 0;
-  /* margin: 0 0 1em 0; */
+  justify-content: center;
+  align-items: center;
   left: 0;
   right: 0;
   bottom: 0;
-  /* width: 92%; */
+  padding: 0 0 1rem 0;
+}
+
+.textarea-container {
+  /* position: sticky; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end; */
+  padding: 0 0 1rem 0;
+  /* margin: 0 0 1em 0; */
+  /* left: 0;
+  right: 0;
+  bottom: 0; */
+  width: 92%;
   height: auto;
   background-color: #e6f1f6;
-  border-radius: 1.5rem 1.5rem 0 0;
+  border-radius: 1.5rem ;
   z-index: 50;
   box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.5);
 }
