@@ -20,9 +20,9 @@ html, body {
 
 main {
   height: 100%;
-  padding: 5rem 0 0 0;
-  background-color: #2ecc71;
-  
+  /* padding: 5rem 0 0 0; */
+  position: sticky;
+  top: 4.5rem;
   /* overflow: hidden; */
 }
 
@@ -218,7 +218,7 @@ header {
   left: 0;
   right: 0;
   width: 100%;
-  height: 8%;
+  height: 4.5rem;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
@@ -969,7 +969,6 @@ fieldset .btn {
   height: 100%;
   /* margin: 0 0 2rem 0; */
   padding: 2rem 1.5rem 2rem 1.5rem;
-  background-color: blueviolet;
 }
 
 .chat-message {
