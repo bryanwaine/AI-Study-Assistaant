@@ -27,7 +27,7 @@ const Session = () => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [question]);
+  }, [messages]);
 
   if (!user) {
     return <Navigate to="/login" replace />;
