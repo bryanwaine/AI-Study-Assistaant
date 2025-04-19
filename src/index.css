@@ -902,7 +902,8 @@ fieldset .btn {
   right: 0;
   bottom: 0;
   padding: 0 0 1rem 0;
-  border-radius: 100% 100% 0 0;
+  border-radius: 3.5rem 3.5rem 0 0;
+  background-color: #e74c3c;
 }
 
 .textarea-container {
@@ -985,7 +986,7 @@ fieldset .btn {
   max-width: 100%;
   padding: 12px;
   margin-bottom: 10px;
-  border-radius: 1rem;
+  border-radius: .5rem;
   line-height: 1.4;
 }
 
