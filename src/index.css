@@ -296,6 +296,7 @@ nav {
 main {
   height: 100%;
   padding: 5rem 0 7.5rem 0;
+  overflow: hidden;
 }
 
 /* Signup/Login */
@@ -578,9 +579,7 @@ fieldset .btn {
   pointer-events: auto;
 }
 
-main {
-  height: 100%;;
-}
+
 
 .page-container {
   height: 100%;
