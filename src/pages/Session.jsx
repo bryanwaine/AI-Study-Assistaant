@@ -73,12 +73,13 @@ const Session = () => {
           };
           setMessages((prev) => [...prev, aiMessage]);
           setPartialContent("");
+          setLoading(false);
         }
-      }, 30);
-    } catch (error) {
-      setError(handleAnthropicError(error).message);
-    }
+    }, 30);
+} catch (error) {
+    setError(handleAnthropicError(error).message);
     setLoading(false);
+    }
   };
 
   return (
