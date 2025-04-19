@@ -302,8 +302,7 @@ nav {
 }
 
 main {
-  height: 93%;
-  max-height: 93%;
+  height: auto
   
   /* overflow: hidden; */
 }
