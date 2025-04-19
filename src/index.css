@@ -21,6 +21,10 @@ html, body {
 main {
   height: 100%;
   padding: 0 0 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   /* overflow: hidden; */
 }
 
@@ -211,7 +215,7 @@ a {
 /* Layout */
 
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -884,7 +888,7 @@ fieldset .btn {
 }
 
 .textarea-wrapper {
-  position: sticky;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
