@@ -884,7 +884,7 @@ fieldset .btn {
 }
 
 .textarea-wrapper {
-  position: sticky;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
