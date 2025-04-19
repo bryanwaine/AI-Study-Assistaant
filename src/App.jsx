@@ -7,8 +7,11 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import ResetPassword from "./pages/ResetPassword";
 import Session from "./pages/Session";
+import setAppHeight from "./utils/setAppHeight";
 
 function App() {
+  window.addEventListener("resize", setAppHeight);
+  window.addEventListener("load", setAppHeight);
   return (
     <BrowserRouter>
       <Routes>
