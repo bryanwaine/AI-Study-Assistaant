@@ -11,6 +11,7 @@ import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
+import CodeBlock from "../components/CodeBlock";
 
 const Session = () => {
   const [question, setQuestion] = useState("");
@@ -96,6 +97,9 @@ const Session = () => {
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeHighlight]}
+                    components={{
+                      code: CodeBlock,
+                    }}
                     children={message.content}
                   />
                 )}

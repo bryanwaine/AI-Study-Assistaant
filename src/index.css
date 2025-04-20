@@ -8,7 +8,8 @@
   font-size: 16px;
 }
 
-html, body {
+html,
+body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
@@ -20,7 +21,6 @@ html, body {
 main {
   height: 100vh;
   /* padding: 5rem 0 0 0; */
- 
 }
 
 input:focus,
@@ -450,7 +450,7 @@ fieldset .btn {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  background-color: #f5f5f5;;
+  background-color: #f5f5f5;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -551,7 +551,6 @@ fieldset .btn {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .page-wrapper {
   position: relative;
   display: flex;
@@ -599,7 +598,7 @@ fieldset .btn {
   align-items: center;
   background-color: #fff;
   transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out,
-  width 0.3ms ease-in-out;
+    width 0.3ms ease-in-out;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 999999;
@@ -646,7 +645,7 @@ fieldset .btn {
   align-items: center;
   background-color: #fff;
   transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
-  width 0.3ms ease-in, visibility 0.3s;
+    width 0.3ms ease-in, visibility 0.3s;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 999999;
@@ -896,14 +895,15 @@ fieldset .btn {
   width: 92%;
   height: auto;
   background-color: #e6f1f6;
-  border-radius: 1.5rem ;
+  border-radius: 1.5rem;
   box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.5);
 }
 
 .textarea-input {
   width: 100%;
   max-height: 10rem;
-  padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  margin: 0 0 1rem 0;
   font-size: 1rem;
   font-family: inherit;
   border: none;
@@ -953,7 +953,6 @@ fieldset .btn {
   gap: 1rem;
   overflow-y: auto;
   height: 100%;
-  /* margin: 0 0 2rem 0; */
   padding: 10rem 1.5rem 10rem 1.5rem;
 }
 
@@ -1022,38 +1021,49 @@ fieldset .btn {
   background-color: #e6f1f6;
 }
 
-.chat-message pre {
+.code-block-container {
+  width: 100%;
+  margin: 0.5rem 0 1rem;
+  padding: 2rem 0 0 0;
+  border-radius: 1rem;
   position: relative;
   background-color: #e6f1f6;
-  border-radius: 1rem;
-  overflow-x: auto;
-  margin: 0.5rem 0 1rem;
   box-shadow: 0px 0px 8px rgba(231, 76, 60, 0.2);
-  border: .5px solid #e74c3c;
   padding: 2rem 0 0 0;
-  /* border-top: 3rem solid #e74c3c; */
+  margin: 1rem 0 1rem;
+  border-radius: 0.75rem;
+  border: 0.5px solid rgba(231, 76, 60, 0.2);
 }
 
-.chat-message pre::after {
-  content: "Copy ";
-  color: #e74c3c;
+.code-block-container pre {
+  border-top: 0.5px solid rgba(231, 76, 60, 0.2);
+  width: 100%;
+  padding: 1rem;
+}
+
+.chat-message pre {
+  overflow-x: auto;
+  width: 100%;
+  padding: 1rem;
+}
+
+.copy-button {
   position: absolute;
   top: 0.5rem;
-  right: 0.5rem;
-  font-size: 0.9rem;
+  right: 1rem;
+  background: transparent;
+  font-size: 1rem;
+  color: #999;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
-.chat-message pre code {
-  /* background-color: #f4f4f4; */
-  background-color: #e6f1f6;
-  padding: 1em;
-  overflow-x: auto;
-  margin: 0.5rem 0 1rem;
-  border: none;
-  border-radius: 0;
-  border-top: .5px solid #e74c3c;
-  /* border-top: 3rem solid #e74c3c; */
+.copy-button:focus {
+  outline: none;
 }
 
 .chat-error-container {
@@ -1062,7 +1072,7 @@ fieldset .btn {
   padding: 1rem;
   width: 100%;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
