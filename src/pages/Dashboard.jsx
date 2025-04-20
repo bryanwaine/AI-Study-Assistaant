@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Layout />
+      <Layout userName={userName}/>
         <div className="dashboard-container">
           <h1>Dashboard</h1>
           <section className="card--blue">
@@ -63,7 +63,6 @@ const Dashboard = () => {
             </div>
           </section>
         </div>
-      {/* </div> */}
     </>
   );
 };

@@ -16,14 +16,14 @@ const CodeBlock = ({ className, children }) => {
   };
 
   return (
-    <div className="code-block-container">
+      <div className="code-block-container">
       <button
         ref={copyButtonRef}
         className="copy-button"
         onClick={handleCopy}
         title="Copy code"
-      >
-        {isCopied ? "✓ Copied" : "⧉ Copy"}
+          >
+        {isCopied ? "✓ Copied!" : "⧉ Copy"}
       </button>
       <code ref={codeRef} className={className}>
         {children}

@@ -4,7 +4,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
-const Sidebar = ({ sidebarOpen, handleLogout, displayName, email }) => {
+const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
     return (
         <div className="sidebar" data-sidebar-open={sidebarOpen}>
         <ul className="sidebar-list">
@@ -14,7 +14,7 @@ const Sidebar = ({ sidebarOpen, handleLogout, displayName, email }) => {
               <PersonOutlineIcon className="icon" />
               <span>Name</span>
             </div>
-            <p>{displayName}</p>
+            <p>{userName}</p>
           </li>
           <li>
             <div>

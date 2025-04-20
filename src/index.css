@@ -986,6 +986,7 @@ fieldset .btn {
 
 .chat-message h1 {
   font-size: 1.3rem;
+  margin-bottom: .5rem;
 }
 
 .chat-message h2 {
@@ -1017,7 +1018,7 @@ fieldset .btn {
   width: 100%;
   font-size: 0.85rem;
   padding: 1px 2px;
-  border-radius: 6px;
+  border-radius: 1rem;
   background-color: #e6f1f6;
 }
 
@@ -1029,19 +1030,22 @@ fieldset .btn {
   background-color: #e6f1f6;
   box-shadow: 0px 0px 8px rgba(231, 76, 60, 0.2);
   margin: 1rem 0 1rem;
-  border-radius: 0.75rem;
   border: 0.5px solid rgba(231, 76, 60, 0.2);
 }
 
 .code-block-container code {
-  border-top: 0.5px solid rgba(231, 76, 60, 0.2);
+  display: block;
+  background: transparent;
+  border-radius: 0;
+  border-top: .5px solid rgba(231, 76, 60, 0.2);
   width: 100%;
+  padding: .5rem ;
 }
 
 .chat-message pre {
   overflow-x: auto;
   width: 100%;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .copy-button {

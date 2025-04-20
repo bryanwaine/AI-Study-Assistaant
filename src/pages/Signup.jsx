@@ -24,6 +24,10 @@ const Signup = () => {
   const { signup, logInWithGoogle, updateUser, user } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
+  const userName =
+  formData.firstName.toLowerCase() +
+  " " +
+  formData.lastName.toLowerCase();
 
   if (user) {
     return <Navigate to="/dashboard" replace />;
@@ -73,22 +77,20 @@ const Signup = () => {
 
     setStatus("submitting");
     try {
-      const userName =
-        formData.firstName.toLowerCase() +
-        " " +
-        formData.lastName.toLowerCase();
+      
       await signup(formData.email, formData.password);
       await updateUser(userName, formData.photoURL);
       setStatus("success");
       showToast(`Welcome ${firstNameFilter(userName)}!`, "success");
       setFormData({
-        userName: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
       });
       navigate("/dashboard", {
         replace: true,
-        state: { userName: userName },
+        state: { userName: userName }
       });
     } catch (error) {
       setStatus("error");
@@ -103,7 +105,8 @@ const Signup = () => {
         `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
         "success"
       );
-      navigate("/dashboard", { replace: true });
+      navigate("/dashboard", { replace: true, 
+        state: { userName: userName } });
     } catch (error) {
       showToast(handleFirebaseError(error).message, "error");
     }

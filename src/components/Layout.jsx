@@ -9,7 +9,8 @@ import Menu from "./Menu";
 import Sidebar from "./Sidebar";
 import Overlay from "./Overlay";
 
-const Layout = () => {
+const Layout = (props) => {
+  const { userName } = props;
   const { user, logout } = useAuth();
   const { photoURL, displayName, email } = user;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,12 +38,12 @@ const Layout = () => {
          setMenuOpen={setMenuOpen}
          setSidebarOpen={setSidebarOpen}
          photoURL={photoURL}
-         displayName={displayName}
+         userName={userName}
        />
       <Sidebar
         sidebarOpen={sidebarOpen}
         handleLogout={handleLogout}
-        displayName={displayName}
+        userName={userName}
         email={email}
       />
     </>
