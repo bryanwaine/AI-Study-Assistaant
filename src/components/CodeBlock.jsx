@@ -5,7 +5,7 @@ const CodeBlock = ({ className, children }) => {
   const codeRef = useRef(null);
   const copyButtonRef = useRef(null);
 
-  const handleCopy = (e) => {
+  const handleCopy = () => {
     if (codeRef.current) {
       navigator.clipboard.writeText(codeRef.current.innerText);
     }
