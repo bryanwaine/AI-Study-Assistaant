@@ -44,7 +44,7 @@ const Session = () => {
 
   const onSubmit = async () => {
     if (!question.trim()) return;
-
+    setError(false);
     try {
       const userMessage = {
         id: Date.now(),
@@ -79,6 +79,7 @@ const Session = () => {
       }, 30);
     } catch (error) {
       setError(handleAnthropicError(error).message);
+      console.log("error-", error.message);
       setLoading(false);
     }
   };
@@ -116,15 +117,15 @@ const Session = () => {
               </ReactMarkdown>
             </div>
           )}
+          {error && (
+            <div className="chat-error-container">
+              <p className="error">{error}</p>
+              <Button variant="orange">Retry</Button>
+            </div>
+          )}
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
         </div>
-        {error && (
-          <div className="chat-error-container">
-            <p className="error">{error}</p>
-            <Button variant="orange">Retry</Button>
-          </div>
-        )}
       </div>
       <TextArea
         value={question}

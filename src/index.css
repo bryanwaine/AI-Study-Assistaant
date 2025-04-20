@@ -1033,7 +1033,7 @@ fieldset .btn {
   border: 0.5px solid rgba(231, 76, 60, 0.2);
 }
 
-.code-block-container pre {
+.code-block-container code {
   border-top: 0.5px solid rgba(231, 76, 60, 0.2);
   width: 100%;
 }
@@ -1066,17 +1066,17 @@ fieldset .btn {
 .chat-error-container {
   color: #e74c3c;
   font-size: 0.9rem;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
+  margin-bottom: 5em;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  border-top: 1px solid #e74c3c;
 }
 
 .chat-error-container p {
-  border-top: 1px solid #e74c3c;
   padding: 1.5rem 0;
 }
 

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 const CodeBlock = ({ className, children }) => {
-    const [isCopied, setIsCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const codeRef = useRef(null);
   const copyButtonRef = useRef(null);
 
@@ -16,20 +16,18 @@ const CodeBlock = ({ className, children }) => {
   };
 
   return (
-    <div className="code-block-container" style={{ position: "relative" }}>
+    <div className="code-block-container">
       <button
         ref={copyButtonRef}
         className="copy-button"
         onClick={handleCopy}
         title="Copy code"
       >
-       { isCopied ? "✓ Copied" : "⧉ Copy"}
+        {isCopied ? "✓ Copied" : "⧉ Copy"}
       </button>
-      <pre>
-        <code ref={codeRef} className={className}>
-          {children}
-        </code>
-      </pre>
+      <code ref={codeRef} className={className}>
+        {children}
+      </code>
     </div>
   );
 };
