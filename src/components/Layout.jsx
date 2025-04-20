@@ -39,12 +39,6 @@ const Layout = () => {
          photoURL={photoURL}
          displayName={displayName}
        />
-      {/* <div
-        className="page-container"
-        data-menu-open={menuOpen}
-        data-sidebar-open={sidebarOpen}
-      >
-      </div> */}
       <Sidebar
         sidebarOpen={sidebarOpen}
         handleLogout={handleLogout}

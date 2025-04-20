@@ -585,30 +585,6 @@ fieldset .btn {
   pointer-events: auto;
 }
 
-
-
-.page-container {
-  height: 0;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  transform: translateX(0);
-  opacity: 1;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.page-container[data-menu-open="true"] {
-  transform: translateX(85%);
-  opacity: 0.5;
-  height: 100%;
-}
-
-.page-container[data-sidebar-open="true"] {
-  transform: translateX(-85%);
-  opacity: 0.5;
-  height: 100%;
-}
-
 .menu {
   position: fixed;
   width: 85%;
@@ -978,7 +954,7 @@ fieldset .btn {
   overflow-y: auto;
   height: 100%;
   /* margin: 0 0 2rem 0; */
-  padding: 10rem 1.5rem 15rem 1.5rem;
+  padding: 10rem 1.5rem 10rem 1.5rem;
 }
 
 .chat-message {

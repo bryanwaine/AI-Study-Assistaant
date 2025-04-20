@@ -18,11 +18,6 @@ const Dashboard = () => {
   return (
     <>
       <Layout />
-      {/* <div
-        className="page-container"
-        // data-menu-open={menuOpen}
-        // data-sidebar-open={sidebarOpen}
-      > */}
         <div className="dashboard-container">
           <h1>Dashboard</h1>
           <section className="card--blue">
