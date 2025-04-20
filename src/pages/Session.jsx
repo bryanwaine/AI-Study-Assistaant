@@ -17,7 +17,8 @@ const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
+    const[retry, setRetry] = useState(null)
   const [partialContent, setPartialContent] = useState("");
   const { user } = useAuth();
   const messagesEndRef = useRef(null);
@@ -42,9 +43,10 @@ const Session = () => {
     setQuestion(e.target.value);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (question) => {
     if (!question.trim()) return;
     setError(false);
+
     try {
       const userMessage = {
         id: Date.now(),
@@ -52,7 +54,8 @@ const Session = () => {
         content: question,
       };
       setLoading(true);
-      setMessages((prev) => [...prev, userMessage]);
+        setMessages((prev) => [...prev, userMessage]);
+        console.log('error reached here')
       setQuestion("");
       scrollToQuestionRef.current = true;
 
@@ -81,7 +84,17 @@ const Session = () => {
       setError(handleAnthropicError(error).message);
       console.log("error-", error.message);
       setLoading(false);
+        console.log(question);
+        setRetry(question)
+    console.log(messages);
     }
+  };
+
+    const onResubmit = () => {
+      console.log(retry)
+        setError(false);
+        messages.pop()
+    onSubmit(retry);
   };
 
   return (
@@ -120,7 +133,9 @@ const Session = () => {
           {error && (
             <div className="chat-error-container">
               <p className="error">{error}</p>
-              <Button variant="orange">Retry</Button>
+              <Button variant="orange" onClick={onResubmit}>
+                Retry
+              </Button>
             </div>
           )}
           <div ref={messagesEndRef} />
@@ -130,7 +145,7 @@ const Session = () => {
       <TextArea
         value={question}
         onChange={onChange}
-        onSubmit={onSubmit}
+        onSubmit={() => onSubmit(question)}
         loading={loading}
       />
     </div>
