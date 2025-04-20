@@ -83,53 +83,52 @@ const Session = () => {
   };
 
   return (
-    <>
-      <Layout>
-        <div className="session-container">
-          <div className="chat-window">
-            {messages.map((message) => (
-              <div key={message.id} className={`chat-message ${message.role}`}>
-                <div>
-                  {message.role === "user" ? (
-                    <p>{message.content}</p>
-                  ) : (
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      rehypePlugins={[rehypeHighlight]}
-                      children={message.content}
-                    />
-                  )}
-                </div>
+    <div className="session-wrapper">
+      <Layout />
+      <div className="session-container">
+        <div className="chat-window">
+          {messages.map((message) => (
+            <div key={message.id} className={`chat-message ${message.role}`}>
+              <div>
+                {message.role === "user" ? (
+                  <p>{message.content}</p>
+                ) : (
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                    children={message.content}
+                  />
+                )}
               </div>
-            ))}
-            {partialContent && (
-              <div className="chat-message assistant typing-cursor">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeHighlight]}
-                >
-                  {partialContent}
-                </ReactMarkdown>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-            {loading && <TypingIndicator />}
-          </div>
-          {error && (
-            <div className="chat-error-container">
-              <p className="error">{error}</p>
-              <Button variant="orange">Retry</Button>
+            </div>
+          ))}
+          {partialContent && (
+            <div className="chat-message assistant typing-cursor">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              >
+                {partialContent}
+              </ReactMarkdown>
             </div>
           )}
+          <div ref={messagesEndRef} />
+          {loading && <TypingIndicator />}
         </div>
-      </Layout>
+        {error && (
+          <div className="chat-error-container">
+            <p className="error">{error}</p>
+            <Button variant="orange">Retry</Button>
+          </div>
+        )}
+      </div>
       <TextArea
         value={question}
         onChange={onChange}
         onSubmit={onSubmit}
         loading={loading}
       />
-    </>
+    </div>
   );
 };
 

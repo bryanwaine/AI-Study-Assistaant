@@ -211,7 +211,7 @@ a {
 /* Layout */
 
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -547,7 +547,6 @@ fieldset .btn {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Dashboard */
 
 .page-wrapper {
   position: relative;
@@ -586,7 +585,7 @@ fieldset .btn {
 
 .page-container {
   
-  height: 100%;
+  height: 0;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -598,11 +597,13 @@ fieldset .btn {
 .page-container[data-menu-open="true"] {
   transform: translateX(85%);
   opacity: 0.5;
+  height: 100%;
 }
 
 .page-container[data-sidebar-open="true"] {
   transform: translateX(-85%);
   opacity: 0.5;
+  height: 100%;
 }
 
 .menu {
@@ -619,9 +620,10 @@ fieldset .btn {
   align-items: center;
   background-color: #fff;
   transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out,
-    width 0.3ms ease-in-out;
+  width 0.3ms ease-in-out;
   overflow-x: hidden;
   overflow-y: scroll;
+  z-index: 999999;
 }
 
 .menu[data-menu-open="true"] {
@@ -665,7 +667,10 @@ fieldset .btn {
   align-items: center;
   background-color: #fff;
   transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
-    width 0.3ms ease-in, visibility 0.3s;
+  width 0.3ms ease-in, visibility 0.3s;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 999999;
 }
 
 .sidebar[data-sidebar-open="true"] {
@@ -788,13 +793,14 @@ fieldset .btn {
   outline: none;
 }
 
+/* Dashboard */
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  overflow: hidden;
-
+  padding: 2rem 0 0 0;
 }
 
 .dashboard-container > h1 {
@@ -864,28 +870,29 @@ fieldset .btn {
   /* position: relative; */
   display: flex;
   flex-direction: column;
+  justify-content: end;
   width: 100vw;
-  height: 100%;
-  /* overflow-y: auto; */
-  padding: 0;
+  overflow-y: hidden;
+  padding: 0 0 0 0;
   z-index: 10;
 }
 
-.chat-container {
-  position: relative;
+.session-wrapper {
+  /* position: relative; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
-  padding: 1.5rem;
-  overflow-y: auto;
+  height: 100vh;
+  /* padding: 1.5rem; */
+  /* overflow-y: auto; */
   /* height: 85vh; */
   /* margin: 2rem 0; */
   /* flex: 1; */
 }
 
 .textarea-wrapper {
-  position: sticky;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -894,6 +901,7 @@ fieldset .btn {
   bottom: 0;
   padding: 0 0 1rem 0;
   border-radius: 100% 100% 0 0;
+  z-index: 99999;
 }
 
 .textarea-container {
@@ -909,7 +917,7 @@ fieldset .btn {
   height: auto;
   background-color: #e6f1f6;
   border-radius: 1.5rem ;
-  z-index: 50;
+  
   box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.5);
 }
 
@@ -967,7 +975,7 @@ fieldset .btn {
   overflow-y: auto;
   height: 100%;
   /* margin: 0 0 2rem 0; */
-  padding: 10rem 1.5rem 10rem 1.5rem;
+  padding: 6rem 1.5rem 15rem 1.5rem;
 }
 
 .chat-message {
