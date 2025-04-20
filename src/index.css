@@ -974,7 +974,7 @@ fieldset .btn {
   overflow-y: auto;
   height: 100%;
   /* margin: 0 0 2rem 0; */
-  padding: 6rem 1.5rem 15rem 1.5rem;
+  padding: 10rem 1.5rem 15rem 1.5rem;
 }
 
 .chat-message {
