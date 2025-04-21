@@ -128,7 +128,7 @@ a {
 /* Toast */
 
 .toast {
-  position: absolute;
+  position: fixed;
   top: -100px;
   left: 50%;
   display: flex;
