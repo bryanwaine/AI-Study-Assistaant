@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Navigate } from "react-router";
 import { generateResponse } from "../anthropic";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css";
 import TypingIndicator from "../components/TypingIndicator";
 import Layout from "../components/Layout";
@@ -11,29 +8,60 @@ import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
-import CodeBlock from "../components/CodeBlock";
-
+import MarkdownRenderer from "../components/MarkdownRenderer";
+import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
-    const [error, setError] = useState(null);
-    const[retry, setRetry] = useState(null)
+  const [error, setError] = useState(null);
+  const [retry, setRetry] = useState(null);
   const [partialContent, setPartialContent] = useState("");
+  const [showScrollToBottom, setShowScrollToBottom] = useState(false);
   const { user } = useAuth();
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
-
+  const chatWindowRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+    
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
     if (scrollToQuestionRef.current) {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      scrollToBottom();
     }
     scrollToQuestionRef.current = false;
   }, [messages]);
+
+  useEffect(() => {
+    if (error) {
+      scrollToBottom();
+    }
+  }, [error]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = chatWindowRef.current;
+      if (!el) return;
+      const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 100;
+      setShowScrollToBottom(!nearBottom);
+    };
+
+    const chatWindow = chatWindowRef.current;
+    if (chatWindow) {
+      chatWindow.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (chatWindow) {
+        chatWindow.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -54,8 +82,7 @@ const Session = () => {
         content: question,
       };
       setLoading(true);
-        setMessages((prev) => [...prev, userMessage]);
-        console.log('error reached here')
+      setMessages((prev) => [...prev, userMessage]);
       setQuestion("");
       scrollToQuestionRef.current = true;
 
@@ -82,18 +109,14 @@ const Session = () => {
       }, 30);
     } catch (error) {
       setError(handleAnthropicError(error).message);
-      console.log("error-", error.message);
       setLoading(false);
-        console.log(question);
-        setRetry(question)
-    console.log(messages);
+      setRetry(question);
     }
   };
 
-    const onResubmit = () => {
-      console.log(retry)
-        setError(false);
-        messages.pop()
+  const onResubmit = () => {
+    setError(false);
+    messages.pop();
     onSubmit(retry);
   };
 
@@ -101,33 +124,21 @@ const Session = () => {
     <div className="session-wrapper">
       <Layout />
       <div className="session-container">
-        <div className="chat-window">
+        <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
             <div key={message.id} className={`chat-message ${message.role}`}>
               <div>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
                 ) : (
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeHighlight]}
-                    components={{
-                      code: CodeBlock,
-                    }}
-                    children={message.content}
-                  />
+                  <MarkdownRenderer>{message.content}</MarkdownRenderer>
                 )}
               </div>
             </div>
           ))}
           {partialContent && (
             <div className="chat-message assistant typing-cursor">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeHighlight]}
-              >
-                {partialContent}
-              </ReactMarkdown>
+              <MarkdownRenderer>{partialContent}</MarkdownRenderer>
             </div>
           )}
           {error && (
@@ -142,6 +153,11 @@ const Session = () => {
           {loading && <TypingIndicator />}
         </div>
       </div>
+      {showScrollToBottom && <div className="scroll-to-bottom">
+        <Button variant="orange" onClick={scrollToBottom}>
+          <ArrowDownwardOutlinedIcon />
+        </Button>
+      </div>}
       <TextArea
         value={question}
         onChange={onChange}

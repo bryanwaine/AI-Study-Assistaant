@@ -4,6 +4,9 @@ const CodeBlock = ({ className, children }) => {
   const [isCopied, setIsCopied] = useState(false);
   const codeRef = useRef(null);
   const copyButtonRef = useRef(null);
+  const language = className?.replace("hljs language-", "") || "code";
+
+ 
 
   const handleCopy = () => {
     if (codeRef.current) {
@@ -16,7 +19,8 @@ const CodeBlock = ({ className, children }) => {
   };
 
   return (
-      <div className="code-block-container">
+    <div className="code-block-container">
+      <span className="code-block-language">{language}</span>
       <button
         ref={copyButtonRef}
         className="copy-button"

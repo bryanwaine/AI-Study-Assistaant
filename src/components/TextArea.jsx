@@ -37,14 +37,22 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
           required
         />
         <div className="textarea-buttons">
-          <Button
+          {/* <Button
             variant="ghost--orange"
             onClick={onSubmit}
             ariaLabel="submit"
             className="submit-btn"
           >
+          </Button> */}
+          <input
+            type="file"
+            name="file-upload"
+            id="file-upload"
+            className="file-upload"
+          />
+          <label htmlFor="file-upload" className="btn--round">
             <AddOutlinedIcon fontSize="small" />
-          </Button>
+          </label>
           <Button
             variant="orange"
             onClick={onSubmit}
