@@ -18,7 +18,8 @@ const Session = () => {
   const [retry, setRetry] = useState(null);
   const [partialContent, setPartialContent] = useState("");
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
-  const { user } = useAuth();
+    const { user } = useAuth();
+    const userName = user?.displayName || location.state?.userName;
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
@@ -122,7 +123,7 @@ const Session = () => {
 
   return (
     <div className="session-wrapper">
-      <Layout />
+      <Layout userName={userName}/>
       <div className="session-container">
         <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
