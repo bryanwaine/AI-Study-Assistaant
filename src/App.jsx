@@ -7,11 +7,10 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import ResetPassword from "./pages/ResetPassword";
 import Session from "./pages/Session";
+import Sessions from "./pages/Sessions";
 // import setAppHeight from "./utils/setAppHeight";
 
 function App() {
-  // window.addEventListener("resize", setAppHeight);
-  // window.addEventListener("load", setAppHeight);
   return (
     <BrowserRouter>
       <Routes>
@@ -21,6 +20,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/sessions" element={<Sessions />} />
           <Route path="/new-session" element={<Session />} />
         </Route>
       </Routes>

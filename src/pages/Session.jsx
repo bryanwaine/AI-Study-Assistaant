@@ -119,11 +119,11 @@ const Session = () => {
           setPartialContent("");
           setLoading(false);
         }
-      }, 10);
+      }, 30);
       await updateSession(user.uid, sessionId || newSessionId, finalMessages);
     } catch (error) {
-      console.log(error);
       setError(handleAnthropicError(error).message);
+    } finally {
       setLoading(false);
       setRetry(question);
     }

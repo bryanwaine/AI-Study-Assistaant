@@ -24,7 +24,7 @@ const Menu = ({ menuOpen }) => {
               </Link>
             </li>
             <li>
-              <Link to="#sessions">
+              <Link to="/sessions">
                 <div>
                   <HistoryIcon className="icon" />
                   <span>Sessions</span>

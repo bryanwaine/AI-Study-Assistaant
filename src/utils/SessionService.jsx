@@ -26,8 +26,8 @@ const saveSession = async (userId, messages) => {
     metadata,
   });
 
-//   const sessionKey = `sessionId_${userId}`;
-//   sessionStorage.setItem(sessionKey, sessionId);
+  //   const sessionKey = `sessionId_${userId}`;
+  //   sessionStorage.setItem(sessionKey, sessionId);
 
   return sessionId;
 };
@@ -77,4 +77,4 @@ const getAllSessions = async (userId) => {
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
-export { updateSession, getAllSessions, saveSession };
+export { saveSession, updateSession, getAllSessions };
