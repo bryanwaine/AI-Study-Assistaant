@@ -866,7 +866,8 @@ fieldset .btn {
 }
 
 .sessions-container  h2 {
-  font-size: 1.5rem;
+  align-self: flex-start;
+  text-align: left;
 }
 
 .sessions-container > ul {
@@ -897,6 +898,7 @@ fieldset .btn {
   align-items: flex-start;
   width: 100%;
   margin: 0;
+  font-size: 1rem;
 }
 
 /* Session */
