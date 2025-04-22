@@ -1,55 +1,65 @@
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllSessions } from "../utils/SessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
+import Loader from "../components/Loader";
+import Button from "../components/Button";
+import formatFirebaseTimestamp from "../utils/formatTimestamp";
 
 const Sessions = () => {
-    const [sessions, setSessions] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+  const [sessions, setSessions] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
-    const userName = user?.displayName || location.state?.userName;
-    
-    useEffect(() => {
-        const fetchSessions = async () => {
-            setLoading(true);
-            try {
-                const data = await getAllSessions(user.uid);
-                setSessions(data);
-            } catch (error) {
-                setError(handleAnthropicError(error).message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        
-        fetchSessions();
-    }, []);
+  const userName = user?.displayName || location.state?.userName;
 
-    console.log("sessions", sessions);
+  useEffect(() => {
+    const fetchSessions = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllSessions(user.uid);
+        setSessions(data);
+      } catch (error) {
+        setError(handleAnthropicError(error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSessions();
+  }, []);
 
   return (
     <>
       <Layout userName={userName} />
       <div className="sessions-container">
-              <h1>Sessions</h1>
-              {/* <div className="sessions">
-                  {loading ? (
-                      <p>Loading...</p>
-                  ) : error ? (
-                      <p>{error}</p>
-                  ) : (
-                      sessions.map((session) => (
-                          <div key={session.id} className="session">
-                              <h2>{session.title}</h2>
-                              <p>{session.content}</p>
-                          </div>
-                      ))
-                  )}
-              </div> */}
+        <h1>Your Sessions</h1>
+        <Button variant="orange">
+          <Link to="/new-session" className="btn--link">
+            New Session
+          </Link>
+        </Button>
+        <ul className="sessions">
+          {loading ? (
+            <Loader />
+          ) : (
+            sessions.map((session) => (
+              <Link to={session.id} key={session.id}>
+                <li className="session card--blue">
+                  <h2>{session.metadata.title}</h2>
+
+                  <p>
+                    <span>Last updated:</span>
+                    {formatFirebaseTimestamp(session.metadata.updatedAt)}
+                  </p>
+                </li>
+              </Link>
+            ))
+          )}
+        </ul>
       </div>
     </>
   );

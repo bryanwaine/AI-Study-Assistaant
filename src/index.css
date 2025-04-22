@@ -828,6 +828,10 @@ fieldset .btn {
   gap: 0.5rem;
 }
 
+.dashboard-label{
+  color: #111111;
+}
+
 .quicklink {
   width: 100%;
   display: flex;
@@ -840,6 +844,59 @@ fieldset .btn {
   font-weight: 500;
   margin: 0;
   padding: 0;
+}
+
+/* Sessions */
+.sessions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding: 7rem 0 0 0;
+}
+
+.sessions-container  button {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.sessions-container > h1 {
+  align-self: flex-start;
+  margin: 0 0 2rem 2rem;
+}
+
+.sessions-container  h2 {
+  font-size: 1.5rem;
+}
+
+.sessions-container > ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 0 3rem; */
+}
+
+.sessions-container > ul > a {
+  width: 80%;
+} 
+
+.session {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.session p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
 }
 
 /* Session */

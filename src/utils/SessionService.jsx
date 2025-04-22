@@ -7,13 +7,12 @@ import {
   setDoc,
   serverTimestamp,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 const saveSession = async (userId, messages) => {
   const sessionId = uuidv4();
-  console.log("userId", userId);
-  console.log("Saving session:", sessionId);
   const metadata = {
     title: messages[0]?.content.slice(0, 30) || "Chat Session",
     createdAt: serverTimestamp(),
@@ -33,8 +32,6 @@ const saveSession = async (userId, messages) => {
 };
 
 const updateSession = async (userId, sessionId, messages) => {
-  console.log("userId", userId);
-  console.log("updating session:", sessionId);
   const sessionRef = doc(db, "users", userId, "sessions", sessionId);
   await updateDoc(sessionRef, {
     messages,
@@ -77,4 +74,10 @@ const getAllSessions = async (userId) => {
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
-export { saveSession, updateSession, getAllSessions };
+const getSession = async (userId, sessionId) => {
+  const sessionRef = doc(db, "users", userId, "sessions", sessionId);
+  const snapshot = await getDoc(sessionRef);
+  return snapshot.data();
+};
+
+export { saveSession, updateSession, getAllSessions, getSession };

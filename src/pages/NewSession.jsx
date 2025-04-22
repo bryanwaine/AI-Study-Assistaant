@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Navigate, useParams } from "react-router";
+import { Navigate } from "react-router";
 import { generateResponse } from "../anthropic";
 import "highlight.js/styles/github.css";
 import TypingIndicator from "../components/TypingIndicator";
@@ -7,11 +7,11 @@ import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
-import { getSession, updateSession } from "../utils/SessionService";
+import { saveSession, updateSession } from "../utils/SessionService";
 import Button from "../components/Button";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
-const Session = () => {
+const NewSession = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -25,24 +25,9 @@ const Session = () => {
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
-  const params = useParams();
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-    
-    useEffect(() => {
-      const fetchSession = async () => {
-        try {
-          const data = await getSession(user.uid, params.sessionId);
-          setMessages(data.messages);
-        } catch (error) {
-          console.error("Error fetching session:", error);
-          setError(handleAnthropicError(error).message);
-        }
-      };
-  
-      fetchSession();
-    }, []);
 
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
@@ -107,10 +92,11 @@ const Session = () => {
       scrollToQuestionRef.current = true;
       let newSessionId;
       if (!sessionId) {
-        newSessionId = params.sessionId;
+        newSessionId = await saveSession(user.uid, updatedMessages);
         setSessionId(newSessionId);
+      } else {
+        await updateSession(user.uid, sessionId || newSessionId, updatedMessages);
       }
-      await updateSession(user.uid, sessionId || newSessionId, updatedMessages);
 
       const aiResponse = await generateResponse(question, updatedMessages);
       const words = aiResponse.split(" ");
@@ -199,4 +185,4 @@ const Session = () => {
   );
 };
 
-export default Session;
+export default NewSession;

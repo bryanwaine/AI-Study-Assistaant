@@ -25,11 +25,13 @@ const Dashboard = () => {
             <p className="dashboard-message">
               Here's an overview of your study progress:
             </p>
-            <div className="dashboard-overview">
+          <div className="dashboard-overview">
+            <Link to="/sessions" className="link">
               <div className="dashboard-item card--white">
                 <span className="dashboard-label">Sessions</span>
                 <span className="dashboard-value">3</span>
               </div>
+            </Link>
               <div className="dashboard-item card--white">
                 <span className="dashboard-label">Notes</span>
                 <span className="dashboard-value">5</span>
