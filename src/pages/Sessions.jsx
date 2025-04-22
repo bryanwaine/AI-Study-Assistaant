@@ -7,6 +7,7 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
 import formatFirebaseTimestamp from "../utils/formatTimestamp";
+import useToast from "../hooks/useToast";
 
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);
@@ -14,6 +15,7 @@ const Sessions = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
+  const { showToast } = useToast();
   const userName = user?.displayName || location.state?.userName;
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const Sessions = () => {
         setSessions(data);
       } catch (error) {
         setError(handleAnthropicError(error).message);
+        showToast(error, "error");
       } finally {
         setLoading(false);
       }
@@ -45,6 +48,8 @@ const Sessions = () => {
         <ul className="sessions">
           {loading ? (
             <Loader />
+          ) : error ? (
+            <p>{error}</p>
           ) : (
             sessions.map((session) => (
               <Link to={session.id} key={session.id}>
