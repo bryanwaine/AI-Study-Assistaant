@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import PasswordInput from "../components/PasswordInput";
 import emailValidation from "../utils/emailValidation";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
+import { addUser, setGoogleUser } from "../firebase";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -25,9 +26,7 @@ const Signup = () => {
   const { showToast } = useToast();
   const navigate = useNavigate();
   const userName =
-  formData.firstName.toLowerCase() +
-  " " +
-  formData.lastName.toLowerCase();
+    formData.firstName.toLowerCase() + " " + formData.lastName.toLowerCase();
 
   if (user) {
     return <Navigate to="/dashboard" replace />;
@@ -76,10 +75,14 @@ const Signup = () => {
     }
 
     setStatus("submitting");
+    const { userName, email, password } = formData;
     try {
-      
-      await signup(formData.email, formData.password);
-      await updateUser(userName, formData.photoURL);
+      await addUser({
+        userName,
+        email,
+      });
+      await signup(email, password);
+      await updateUser(userName);
       setStatus("success");
       showToast(`Welcome ${firstNameFilter(userName)}!`, "success");
       setFormData({
@@ -90,7 +93,7 @@ const Signup = () => {
       });
       navigate("/dashboard", {
         replace: true,
-        state: { userName: userName }
+        state: { userName: userName },
       });
     } catch (error) {
       setStatus("error");
@@ -101,12 +104,17 @@ const Signup = () => {
   const handleGoogleLogin = async () => {
     try {
       const data = await logInWithGoogle();
+      const { displayName, email, uid } = data.user;
+      await setGoogleUser({
+        userId: uid,
+        userName: displayName,
+        email,
+      });
       showToast(
         `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
         "success"
       );
-      navigate("/dashboard", { replace: true, 
-        state: { userName: userName } });
+      navigate("/dashboard", { replace: true, state: { userName: userName } });
     } catch (error) {
       showToast(handleFirebaseError(error).message, "error");
     }

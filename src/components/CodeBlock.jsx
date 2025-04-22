@@ -19,7 +19,7 @@ const CodeBlock = ({ className, children }) => {
   };
 
   return (
-    <div className="code-block-container">
+    <span className="code-block-container">
       <span className="code-block-language">{language}</span>
       <button
         ref={copyButtonRef}
@@ -32,8 +32,9 @@ const CodeBlock = ({ className, children }) => {
       <code ref={codeRef} className={className}>
         {children}
       </code>
-    </div>
+    </span>
   );
 };
 
 export default CodeBlock;
+

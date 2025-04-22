@@ -9,6 +9,7 @@ import TextInput from "../components/TextInput";
 import PasswordInput from "../components/PasswordInput";
 import Button from "../components/Button";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
+import { setGoogleUser } from "../firebase";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
@@ -62,6 +63,12 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       const data = await logInWithGoogle();
+      const { uid, displayName, email } = data.user;
+      await setGoogleUser({
+        userId: uid,
+        userName: displayName,
+        email,
+      });
       showToast(
         `Welcome ${firstNameFilter(data?.user.displayName)}!`,
         "success"

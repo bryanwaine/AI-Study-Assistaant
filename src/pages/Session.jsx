@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
+import { saveSession, updateSession } from "../utils/SessionService";
 import Button from "../components/Button";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
@@ -18,15 +19,16 @@ const Session = () => {
   const [retry, setRetry] = useState(null);
   const [partialContent, setPartialContent] = useState("");
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
-    const { user } = useAuth();
-    const userName = user?.displayName || location.state?.userName;
+  const [sessionId, setSessionId] = useState(null);
+  const { user } = useAuth();
+  const userName = user?.displayName || location.state?.userName;
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-    
+
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
@@ -73,8 +75,8 @@ const Session = () => {
   };
 
   const onSubmit = async (question) => {
-    if (!question.trim()) return;
     setError(false);
+    if (!question.trim()) return;
 
     try {
       const userMessage = {
@@ -82,15 +84,30 @@ const Session = () => {
         role: "user",
         content: question,
       };
-      setLoading(true);
-      setMessages((prev) => [...prev, userMessage]);
-      setQuestion("");
-      scrollToQuestionRef.current = true;
 
-      const aiResponse = await generateResponse(question, messages);
+      setQuestion("");
+      setLoading(true);
+      const updatedMessages = [...messages, userMessage];
+      setMessages(updatedMessages);
+      scrollToQuestionRef.current = true;
+      let newSessionId;
+      if (!sessionId) {
+        newSessionId = await saveSession(user.uid, updatedMessages);
+        setSessionId(newSessionId);
+      } else {
+        await updateSession(user.uid, sessionId, updatedMessages);
+      }
+
+      const aiResponse = await generateResponse(question, updatedMessages);
       const words = aiResponse.split(" ");
       let currentWord = 0;
       setPartialContent("");
+      const aiMessage = {
+        id: Date.now() + 1,
+        role: "assistant",
+        content: aiResponse,
+      };
+      const finalMessages = [...updatedMessages, aiMessage];
 
       const interval = setInterval(() => {
         setPartialContent((prev) => prev + words[currentWord] + " ");
@@ -98,17 +115,14 @@ const Session = () => {
 
         if (currentWord >= words.length) {
           clearInterval(interval);
-          const aiMessage = {
-            id: Date.now() + 1,
-            role: "assistant",
-            content: aiResponse,
-          };
-          setMessages((prev) => [...prev, aiMessage]);
+          setMessages(finalMessages);
           setPartialContent("");
           setLoading(false);
         }
-      }, 30);
+      }, 10);
+      await updateSession(user.uid, sessionId || newSessionId, finalMessages);
     } catch (error) {
+      console.log(error);
       setError(handleAnthropicError(error).message);
       setLoading(false);
       setRetry(question);
@@ -123,7 +137,7 @@ const Session = () => {
 
   return (
     <div className="session-wrapper">
-      <Layout userName={userName}/>
+      <Layout userName={userName} />
       <div className="session-container">
         <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
@@ -154,11 +168,13 @@ const Session = () => {
           {loading && <TypingIndicator />}
         </div>
       </div>
-      {showScrollToBottom && <div className="scroll-to-bottom">
-        <Button variant="orange" onClick={scrollToBottom}>
-          <ArrowDownwardOutlinedIcon />
-        </Button>
-      </div>}
+      {showScrollToBottom && (
+        <div className="scroll-to-bottom">
+          <Button variant="orange" onClick={scrollToBottom}>
+            <ArrowDownwardOutlinedIcon />
+          </Button>
+        </div>
+      )}
       <TextArea
         value={question}
         onChange={onChange}
