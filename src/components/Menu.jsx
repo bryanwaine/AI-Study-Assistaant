@@ -1,55 +1,80 @@
+import { Link } from "react-router";
 import HistoryIcon from "@mui/icons-material/History";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { DashboardOutlined } from "@mui/icons-material";
-import { Link } from "react-router";
+import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
+import Loader from "./Loader";
 
-const Menu = ({ menuOpen }) => {
-    return (
-        <div className="menu" data-menu-open={menuOpen}>
-        <div className="search-container">
-            <button>
-              <SearchOutlinedIcon  style={{ color: "#035172" }}/>
-            </button>
-            <input type="text" placeholder="Search" />
-          </div>
-          <ul className="menu-list">
-            <li>
-              <Link to="/dashboard">
-                <div>
-                  <DashboardOutlined className="icon" />
-                  <span>Dashboard</span>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions">
-                <div>
-                  <HistoryIcon className="icon" />
-                  <span>Sessions</span>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to="#notes">
-                <div>
-                  <DescriptionOutlinedIcon className="icon" />
-                  <span>Notes</span>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to="#quizzes">
-                <div>
-                  <QuizOutlinedIcon className="icon" />
-                  <span>Quizzes</span>
-                </div>
-              </Link>
-            </li>
-          </ul>
-          <ul className="menu-list">
-            <h3>Today</h3>
+const Menu = (props) => {
+  const { menuOpen, sessions, loading, error } = props;
+  return (
+    <div className="menu" data-menu-open={menuOpen}>
+      <div className="search-container">
+        <button>
+          <SearchOutlinedIcon style={{ color: "#035172" }} />
+        </button>
+        <input type="text" placeholder="Search" />
+      </div>
+      <ul className="menu-list">
+        <li>
+          <Link to="/dashboard">
+            <div>
+              <DashboardOutlined className="icon" />
+              <span>Dashboard</span>
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="/sessions">
+            <div>
+              <HistoryIcon className="icon" />
+              <span>Sessions</span>
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="#notes">
+            <div>
+              <DescriptionOutlinedIcon className="icon" />
+              <span>Notes</span>
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="#quizzes">
+            <div>
+              <QuizOutlinedIcon className="icon" />
+              <span>Quizzes</span>
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link to="#flashcards">
+            <div>
+              <StyleOutlinedIcon className="icon" />
+              <span>Flashcards</span>
+            </div>
+          </Link>
+        </li>
+      </ul>
+      <ul className="menu-list">
+        <h3>Session History</h3>
+        {loading && <Loader />}
+        {error && <p>{error}</p>}
+        {sessions.map((session) => (
+          <li key={session.id}>
+            <Link to={`/sessions/${session.id}`}>
+            <div>
+              <span>{session.metadata.title}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      {/* <ul className="menu-list">
+            <h3>This week</h3>
             <li>
               <div>
                 <span> Memoization in React</span>
@@ -104,9 +129,9 @@ const Menu = ({ menuOpen }) => {
                 <span>Conditional rendering in React</span>
               </div>
             </li>
-          </ul>
-        </div>
-    )   
-}
+          </ul> */}
+    </div>
+  );
+};
 
-export default Menu
+export default Menu;

@@ -34,7 +34,7 @@ const Sessions = () => {
 
   return (
     <>
-      <Layout userName={userName} />
+      <Layout userName={userName}  />
       <div className="sessions-container">
         <h1>Your Sessions</h1>
         <Button variant="orange">

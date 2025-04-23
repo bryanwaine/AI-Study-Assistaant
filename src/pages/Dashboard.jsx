@@ -90,6 +90,10 @@ const Dashboard = () => {
                   <p>Take a Quiz</p>
                   <NavigateNext />
                 </Link>
+                <Link to="/new-flashcards" className="link quicklink">
+                  <p>Create Flashcards</p>
+                  <NavigateNext />
+                </Link>
               </div>
             </section>
           </>

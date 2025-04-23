@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
-import { useState } from "react";
 import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
 
@@ -8,6 +8,8 @@ import Header from "./Header";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
 import Overlay from "./Overlay";
+import { getAllSessions } from "../utils/SessionService";
+import handleAnthropicError from "../utils/anthropicErrorHandler";
 
 const Layout = (props) => {
   const { userName } = props;
@@ -15,9 +17,28 @@ const Layout = (props) => {
   const { photoURL, displayName, email } = user;
   const [menuOpen, setMenuOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sessions, setSessions] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { showToast } = useToast();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSessions = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllSessions(user.uid);
+        setSessions(data);
+      } catch (error) {
+        setError(handleAnthropicError(error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSessions();
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -33,13 +54,13 @@ const Layout = (props) => {
         setMenuOpen={setMenuOpen}
         setSidebarOpen={setSidebarOpen}
       />
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} sessions={sessions} loading={loading} error={error} />
       <Header
-         setMenuOpen={setMenuOpen}
-         setSidebarOpen={setSidebarOpen}
-         photoURL={photoURL}
-         userName={userName}
-       />
+        setMenuOpen={setMenuOpen}
+        setSidebarOpen={setSidebarOpen}
+        photoURL={photoURL}
+        userName={userName}
+      />
       <Sidebar
         sidebarOpen={sidebarOpen}
         handleLogout={handleLogout}
