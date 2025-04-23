@@ -29,7 +29,6 @@ const Session = () => {
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
   const aiMessageRef = useRef(null);
-  const copyButtonRef = useRef(null);
   const params = useParams();
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -90,9 +89,9 @@ const Session = () => {
     return <Navigate to="/login" replace />;
   }
 
-  const handleCopy = () => {
+  const handleCopy = (message) => {
     if (aiMessageRef.current) {
-      navigator.clipboard.writeText(aiMessageRef.current.innerText);
+      navigator.clipboard.writeText(message);
     }
     setIsCopied(true);
     setTimeout(() => {
@@ -185,19 +184,21 @@ const Session = () => {
               {message.role === "assistant" && (
                 <span>
                   <button
-                    ref={copyButtonRef}
                     className="message-copy-button"
-                    onClick={handleCopy}
+                    onClick={() => handleCopy(message.content)}
                     title="Copy code"
                   >
                     {isCopied ? (
                       <span>
-                        <CheckOutlinedIcon style={{ fontSize: ".85rem" }}/>
+                        <CheckOutlinedIcon style={{ fontSize: ".85rem" }} />
                         Copied!
                       </span>
                     ) : (
                       <span>
-                        <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} /> Copy
+                        <ContentCopyOutlinedIcon
+                          style={{ fontSize: ".85rem" }}
+                        />{" "}
+                        Copy
                       </span>
                     )}
                   </button>

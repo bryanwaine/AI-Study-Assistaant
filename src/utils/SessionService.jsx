@@ -15,7 +15,7 @@ const saveSession = async (userId, messages) => {
   const sessionId = uuidv4();
   const messageTitle =
     messages[0]?.content.length > 60
-      ? messages[0]?.content.slice(0, 60) + " ..."
+      ? messages[0]?.content.slice(0, 30) + " ..."
       : messages[0]?.content;
   const metadata = {
     title: messageTitle || "Chat Session",
@@ -40,6 +40,7 @@ const updateSession = async (userId, sessionId, messages) => {
   await updateDoc(sessionRef, {
     messages,
     "metadata.updatedAt": serverTimestamp(),
+    "metadata.messageCount": messages.length,
   });
 };
 

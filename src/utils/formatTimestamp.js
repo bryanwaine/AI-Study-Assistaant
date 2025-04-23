@@ -7,7 +7,7 @@ const formatFirebaseTimestamp = (timestamp) => {
 
   try {
     const date = timestamp.toDate();
-    return moment(date).format("dddd, DD MMMM YYYY, hh:mm A");
+    return moment(date).format("DD MMMM YYYY, hh:mm A");
   } catch (error) {
     console.error("Error formatting timestamp:", error);
     return "Error formatting date";

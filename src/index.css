@@ -873,7 +873,7 @@ fieldset .btn {
 }
 
 .sessions-container  h2 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   align-self: flex-start;
   text-align: left;
 }
@@ -901,13 +901,26 @@ fieldset .btn {
   gap: 1rem;
 }
 
+.session-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+
+}
+
 .session p {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
   width: 100%;
   margin: 0;
   font-size: .85rem;
+}
+
+.session p span {
+  color: #035172;
+  font-weight: 500;
 }
 
 /* Session */
@@ -1220,7 +1233,7 @@ fieldset .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: .5rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }

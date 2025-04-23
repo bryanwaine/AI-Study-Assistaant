@@ -52,11 +52,26 @@ const Sessions = () => {
               <Link to={session.id} key={session.id}>
                 <li className="session card--blue">
                   <h2>{session.metadata.title}</h2>
-
-                  <p>
-                    <span>Last updated:</span>
-                    {formatFirebaseTimestamp(session.metadata.updatedAt)}
-                  </p>
+                  <div className="session-footer">
+                    <div className="session-footer-left">
+                      <p>
+                        <span>Created</span>
+                        {formatFirebaseTimestamp(session.metadata.createdAt)}
+                      </p>
+                      <p>
+                        <span>Updated</span>
+                        {formatFirebaseTimestamp(session.metadata.updatedAt)}
+                      </p>
+                    </div>
+                    <div className="session-footer-right">
+                      <p>
+                        {session.metadata.messageCount}
+                        {session.metadata.messageCount === 1
+                          ? " message"
+                          : " messages"}
+                      </p>
+                    </div>
+                  </div>
                 </li>
               </Link>
             ))
