@@ -15,7 +15,7 @@ const saveSession = async (userId, messages) => {
   const sessionId = uuidv4();
   const messageTitle =
     messages[0]?.content.length > 40
-      ? messages[0]?.content.slice(0, 40) + " ..."
+      ? messages[0]?.content.slice(0, 40) + "..."
       : messages[0]?.content;
   const metadata = {
     title: messageTitle || "Chat Session",
