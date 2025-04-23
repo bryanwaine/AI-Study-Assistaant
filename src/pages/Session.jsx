@@ -19,30 +19,33 @@ const Session = () => {
   const [retry, setRetry] = useState(null);
   const [partialContent, setPartialContent] = useState("");
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
-  const [sessionId, setSessionId] = useState(null);
+    const [sessionId, setSessionId] = useState(null);
+    const [isCopied, setIsCopied] = useState(false);
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
-  const chatWindowRef = useRef(null);
+    const chatWindowRef = useRef(null);
+    const aiMessageRef = useRef(null);
+  const copyButtonRef = useRef(null);
   const params = useParams();
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-    
-    useEffect(() => {
-      const fetchSession = async () => {
-        try {
-          const data = await getSession(user.uid, params.sessionId);
-          setMessages(data.messages);
-        } catch (error) {
-          console.error("Error fetching session:", error);
-          setError(handleAnthropicError(error).message);
-        }
-      };
-  
-      fetchSession();
-    }, []);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const data = await getSession(user.uid, params.sessionId);
+        setMessages(data.messages);
+      } catch (error) {
+        console.error("Error fetching session:", error);
+        setError(handleAnthropicError(error).message);
+      }
+    };
+
+    fetchSession();
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
@@ -84,6 +87,17 @@ const Session = () => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+    
+    
+  const handleCopy = () => {
+    if (aiMessageRef.current) {
+      navigator.clipboard.writeText(aiMessageRef.current.innerText);
+    }
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
+  };
 
   const onChange = (e) => {
     setQuestion(e.target.value);
@@ -155,7 +169,7 @@ const Session = () => {
       <div className="session-container">
         <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role}`}>
+            <div key={message.id} className={`chat-message ${message.role}`} ref={message.role === "assistant" ? aiMessageRef : null}>
               <div>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
@@ -163,6 +177,18 @@ const Session = () => {
                   <MarkdownRenderer>{message.content}</MarkdownRenderer>
                 )}
               </div>
+              {message.role === "assistant" && (
+                <span>
+                  <button
+                    ref={copyButtonRef}
+                    className="message-copy-button"
+                    onClick={handleCopy}
+                    title="Copy code"
+                  >
+                    {isCopied ? "✓ Copied!" : "⧉ Copy"}
+                  </button>
+                </span>
+              )}
             </div>
           ))}
           {partialContent && (

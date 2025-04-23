@@ -913,7 +913,6 @@ fieldset .btn {
 /* Session */
 
 .session-container {
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -927,21 +926,14 @@ fieldset .btn {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   width: 100%;
   height: 100vh;
-  /* padding: 1.5rem; */
-  /* overflow-y: auto; */
-  /* height: 85vh; */
-  /* margin: 2rem 0; */
-  /* flex: 1; */
 }
 
 .textarea-wrapper {
   position: fixed;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   left: 0;
   right: 0;
   bottom: 0;
@@ -1187,17 +1179,19 @@ fieldset .btn {
   top: 0.4rem;
   left: .5rem;
   font-size: 0.85rem;
+  font-weight: 900;
   color: #999;
   background-color: transparent;
   padding: 0 0.5rem; 
 }
 
-.copy-button {
+.code-copy-button {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
   background: transparent;
   font-size: 0.85rem;
+  font-weight: 900;
   color: #999;
   border: none;
   display: flex;
@@ -1207,7 +1201,24 @@ fieldset .btn {
   transition: all 0.2s ease-in-out;
 }
 
-.copy-button:focus {
+.code-copy-button:focus {
+  outline: none;
+}
+
+.message-copy-button {
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #999;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.message-copy-button:focus {
   outline: none;
 }
 

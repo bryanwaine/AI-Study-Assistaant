@@ -23,7 +23,7 @@ const CodeBlock = ({ className, children }) => {
       <span className="code-block-language">{language}</span>
       <button
         ref={copyButtonRef}
-        className="copy-button"
+        className="code-copy-button"
         onClick={handleCopy}
         title="Copy code"
           >

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Button from "./Button";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-const TextArea = ({ value, onChange, onSubmit, loading }) => {
+const TextArea = ({ value, onChange, handleFileUpload, onSubmit, loading }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -46,9 +46,11 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
           </Button> */}
           <input
             type="file"
+            accept="application/pdf"
             name="file-upload"
             id="file-upload"
             className="file-upload"
+            onChange={handleFileUpload}
           />
           <label htmlFor="file-upload" className="btn--round">
             <AddOutlinedIcon fontSize="small" />
