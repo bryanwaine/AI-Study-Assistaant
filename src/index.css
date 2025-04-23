@@ -1051,7 +1051,7 @@ fieldset .btn {
   font-size: 1.1rem;
   width: 2rem;
   height: 2rem;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; 
 }
 
 .scroll-to-bottom button:focus {
@@ -1138,6 +1138,11 @@ fieldset .btn {
   padding: 6px 10px;
   text-align: left;
 }
+
+.chat-message hr {
+  margin: 1rem 0;
+}
+
 .chat-message code.hljs {
   padding: .5rem 1rem;
 }
