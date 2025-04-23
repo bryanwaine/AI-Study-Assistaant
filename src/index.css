@@ -1106,7 +1106,7 @@ fieldset .btn {
   margin-bottom: 0.5rem;
 }
 
-.chat-message p {
+.chat-message.chat-message.assistant p {
   margin: 0 0 .5rem 0;
 }
 
@@ -1179,7 +1179,6 @@ fieldset .btn {
   top: 0.4rem;
   left: .5rem;
   font-size: 0.85rem;
-  font-weight: 900;
   color: #999;
   background-color: transparent;
   padding: 0 0.5rem; 
@@ -1191,7 +1190,6 @@ fieldset .btn {
   right: 1rem;
   background: transparent;
   font-size: 0.85rem;
-  font-weight: 900;
   color: #999;
   border: none;
   display: flex;
@@ -1201,25 +1199,30 @@ fieldset .btn {
   transition: all 0.2s ease-in-out;
 }
 
-.code-copy-button:focus {
+.code-copy-button span,
+.message-copy-button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.code-copy-button:focus,
+.message-copy-button:focus {
   outline: none;
 }
 
 .message-copy-button {
   background: transparent;
   font-size: 0.85rem;
-  font-weight: 900;
   color: #999;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-}
-
-.message-copy-button:focus {
-  outline: none;
 }
 
 .chat-error-container {

@@ -11,6 +11,8 @@ import { getSession, updateSession } from "../utils/SessionService";
 import Button from "../components/Button";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
+import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,14 +21,14 @@ const Session = () => {
   const [retry, setRetry] = useState(null);
   const [partialContent, setPartialContent] = useState("");
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
-    const [sessionId, setSessionId] = useState(null);
-    const [isCopied, setIsCopied] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
+  const [isCopied, setIsCopied] = useState(false);
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
-    const chatWindowRef = useRef(null);
-    const aiMessageRef = useRef(null);
+  const chatWindowRef = useRef(null);
+  const aiMessageRef = useRef(null);
   const copyButtonRef = useRef(null);
   const params = useParams();
   const scrollToBottom = () => {
@@ -87,8 +89,7 @@ const Session = () => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-    
-    
+
   const handleCopy = () => {
     if (aiMessageRef.current) {
       navigator.clipboard.writeText(aiMessageRef.current.innerText);
@@ -169,7 +170,11 @@ const Session = () => {
       <div className="session-container">
         <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role}`} ref={message.role === "assistant" ? aiMessageRef : null}>
+            <div
+              key={message.id}
+              className={`chat-message ${message.role}`}
+              ref={message.role === "assistant" ? aiMessageRef : null}
+            >
               <div>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
@@ -185,7 +190,16 @@ const Session = () => {
                     onClick={handleCopy}
                     title="Copy code"
                   >
-                    {isCopied ? "✓ Copied!" : "⧉ Copy"}
+                    {isCopied ? (
+                      <span>
+                        <CheckOutlinedIcon style={{ fontSize: ".85rem" }}/>
+                        Copied!
+                      </span>
+                    ) : (
+                      <span>
+                        <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} /> Copy
+                      </span>
+                    )}
                   </button>
                 </span>
               )}
