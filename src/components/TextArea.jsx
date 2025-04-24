@@ -37,13 +37,6 @@ const TextArea = ({ value, onChange, handleFileUpload, onSubmit, loading }) => {
           required
         />
         <div className="textarea-buttons">
-          {/* <Button
-            variant="ghost--orange"
-            onClick={onSubmit}
-            ariaLabel="submit"
-            className="submit-btn"
-          >
-          </Button> */}
           <input
             type="file"
             accept="application/pdf"

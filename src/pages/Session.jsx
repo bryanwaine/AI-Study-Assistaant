@@ -40,7 +40,7 @@ const Session = () => {
         const data = await getSession(user.uid, params.sessionId);
         setMessages(data.messages);
       } catch (error) {
-        console.error("Error fetching session:", error);
+          
         setError(handleAnthropicError(error).message);
       }
     };
