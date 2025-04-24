@@ -614,7 +614,7 @@ fieldset .btn {
   list-style-type: none;
   text-align: left;
   margin: 1rem 0 1rem 0;
-  padding: 0 1rem;
+  padding: 0 .5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -622,12 +622,14 @@ fieldset .btn {
 }
 
 .menu-list li {
+  border: none;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e6f1f6;
+  padding: 0 ;
+  margin: .5rem;
   cursor: pointer;
 }
 
@@ -667,10 +669,6 @@ fieldset .btn {
   flex-direction: column;
   gap: 1rem;
   align-items: flex-start;
-}
-
-.menu-list li {
-  border: none;
 }
 
 .sidebar-list li {

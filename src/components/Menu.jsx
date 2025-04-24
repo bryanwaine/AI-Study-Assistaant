@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import HistoryIcon from "@mui/icons-material/History";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
@@ -10,6 +10,13 @@ import sortSessionsByTime from "../utils/sortSessionsByTime";
 
 const Menu = (props) => {
   const { menuOpen, sessions, loading, error } = props;
+
+  const activeStyles = {
+    backgroundColor: "#e6f1f6",
+    width: "100%",
+    height: "100%",
+    borderRadius: ".5rem",
+  };
   return (
     <div className="menu" data-menu-open={menuOpen}>
       <div className="search-container">
@@ -19,46 +26,56 @@ const Menu = (props) => {
         <input type="text" placeholder="Search" />
       </div>
       <ul className="menu-list">
+          <NavLink to="/dashboard"
+          style={({ isActive }) => isActive ? activeStyles : null}
+          >
         <li>
-          <Link to="/dashboard">
             <div>
               <DashboardOutlined className="icon" />
               <span>Dashboard</span>
             </div>
-          </Link>
         </li>
+          </NavLink>
+          <NavLink to="/sessions"
+          style={({ isActive }) => isActive ? activeStyles : null}
+          >
         <li>
-          <Link to="/sessions">
             <div>
               <HistoryIcon className="icon" />
               <span>Sessions</span>
             </div>
-          </Link>
         </li>
+          </NavLink>
+          <NavLink to="/notes"
+          style={({ isActive }) => isActive ? activeStyles : null}
+          >
         <li>
-          <Link to="#notes">
             <div>
               <DescriptionOutlinedIcon className="icon" />
               <span>Notes</span>
             </div>
-          </Link>
         </li>
+          </NavLink>
+          <NavLink to="/quizzes"
+          style={({ isActive }) => isActive ? activeStyles : null}
+          >
         <li>
-          <Link to="#quizzes">
             <div>
               <QuizOutlinedIcon className="icon" />
               <span>Quizzes</span>
             </div>
-          </Link>
         </li>
+          </NavLink>
+          <NavLink to="/flashcards"
+          style={({ isActive }) => isActive ? activeStyles : null}
+          >
         <li>
-          <Link to="#flashcards">
             <div>
               <StyleOutlinedIcon className="icon" />
               <span>Flashcards</span>
             </div>
-          </Link>
         </li>
+          </NavLink>
       </ul>
       <ul className="menu-list">
         <h3>Session History</h3>
