@@ -67,7 +67,7 @@ const Menu = (props) => {
           <li key={session.id}>
             <Link to={`/sessions/${session.id}`}>
             <div>
-              <span>{session.metadata.title}</span>
+              <span>{session.metadata.title.length > 40 ? session.metadata.title.slice(0, 40) + "..." : session.metadata.title}</span>
               </div>
             </Link>
           </li>
