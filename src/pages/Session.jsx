@@ -46,7 +46,7 @@ const Session = () => {
     };
 
     fetchSession();
-  }, []);
+  }, [params.sessionId]);
 
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });

@@ -17,6 +17,10 @@ const Menu = (props) => {
     height: "100%",
     borderRadius: ".5rem",
   };
+
+  const onClick = () => {
+    props.setMenuOpen(false);
+  };
   return (
     <div className="menu" data-menu-open={menuOpen}>
       <div className="search-container">
@@ -26,69 +30,88 @@ const Menu = (props) => {
         <input type="text" placeholder="Search" />
       </div>
       <ul className="menu-list">
-          <NavLink to="/dashboard"
-          style={({ isActive }) => isActive ? activeStyles : null}
-          >
-        <li>
+        <NavLink
+          to="/dashboard"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
             <div>
               <DashboardOutlined className="icon" />
               <span>Dashboard</span>
             </div>
-        </li>
-          </NavLink>
-          <NavLink to="/sessions"
-          style={({ isActive }) => isActive ? activeStyles : null}
-          >
-        <li>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/sessions"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
             <div>
               <HistoryIcon className="icon" />
               <span>Sessions</span>
             </div>
-        </li>
-          </NavLink>
-          <NavLink to="/notes"
-          style={({ isActive }) => isActive ? activeStyles : null}
-          >
-        <li>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/notes"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
             <div>
               <DescriptionOutlinedIcon className="icon" />
               <span>Notes</span>
             </div>
-        </li>
-          </NavLink>
-          <NavLink to="/quizzes"
-          style={({ isActive }) => isActive ? activeStyles : null}
-          >
-        <li>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/quizzes"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
             <div>
               <QuizOutlinedIcon className="icon" />
               <span>Quizzes</span>
             </div>
-        </li>
-          </NavLink>
-          <NavLink to="/flashcards"
-          style={({ isActive }) => isActive ? activeStyles : null}
-          >
-        <li>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/flashcards"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
             <div>
               <StyleOutlinedIcon className="icon" />
               <span>Flashcards</span>
             </div>
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       </ul>
       <ul className="menu-list">
         <h3>Session History</h3>
         {loading && <Loader />}
         {error && <p>{error}</p>}
         {sortSessionsByTime(sessions).map((session) => (
-          <li key={session.id}>
-            <Link to={`/sessions/${session.id}`}>
-            <div>
-              <span>{session.metadata.title.length > 40 ? session.metadata.title.slice(0, 40) + "..." : session.metadata.title}</span>
+          <NavLink
+            to={`/sessions/${session.id}`}
+            key={session.id}
+            style={({ isActive }) => (isActive ? activeStyles : null)}
+            onClick={onClick}
+          >
+            <li>
+              <div>
+                <span>
+                  {session.metadata.title.length > 40
+                    ? session.metadata.title.slice(0, 40) + "..."
+                    : session.metadata.title}
+                </span>
               </div>
-            </Link>
-          </li>
+            </li>
+          </NavLink>
         ))}
       </ul>
       {/* <ul className="menu-list">
