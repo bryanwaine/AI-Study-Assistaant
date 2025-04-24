@@ -8,7 +8,7 @@ import Header from "./Header";
 import Menu from "./Menu";
 import Sidebar from "./Sidebar";
 import Overlay from "./Overlay";
-import { getAllSessions } from "../utils/SessionService";
+import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 
 const Layout = (props) => {

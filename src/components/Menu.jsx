@@ -6,6 +6,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { DashboardOutlined } from "@mui/icons-material";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import Loader from "./Loader";
+import sortSessionsByTime from "../utils/sortSessionsByTime";
 
 const Menu = (props) => {
   const { menuOpen, sessions, loading, error } = props;
@@ -63,7 +64,7 @@ const Menu = (props) => {
         <h3>Session History</h3>
         {loading && <Loader />}
         {error && <p>{error}</p>}
-        {sessions.map((session) => (
+        {sortSessionsByTime(sessions).map((session) => (
           <li key={session.id}>
             <Link to={`/sessions/${session.id}`}>
             <div>

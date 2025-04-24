@@ -2,11 +2,12 @@ import { Link, useLocation } from "react-router";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
-import { getAllSessions } from "../utils/SessionService";
+import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
-import formatFirebaseTimestamp from "../utils/formatTimestamp";
+import formatFirebaseTimestamp from "../utils/formatFirebaseTimestamp";
+import sortSessionsByTime from "../utils/sortSessionsByTime";
 
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);
@@ -48,7 +49,7 @@ const Sessions = () => {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            sessions.map((session) => (
+            sortSessionsByTime(sessions).map((session) => (
               <Link to={session.id} key={session.id}>
                 <li className="session card--blue">
                   <h2>{session.metadata.title}</h2>

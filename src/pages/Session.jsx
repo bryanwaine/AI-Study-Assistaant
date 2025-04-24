@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import TextArea from "../components/TextArea";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
-import { getSession, updateSession } from "../utils/SessionService";
+import { getSession, updateSession } from "../utils/sessionService";
 import Button from "../components/Button";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";

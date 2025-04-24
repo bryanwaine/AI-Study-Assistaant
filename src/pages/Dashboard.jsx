@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 import handleGreeting from "../utils/greetingHandler";
 import Button from "../components/Button";
 import { NavigateNext } from "@mui/icons-material";
-import { getAllSessions } from "../utils/SessionService";
+import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 const Dashboard = () => {
