@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navigate } from "react-router";
 import { generateFlashcards } from "../anthropic";
 import "highlight.js/styles/github.css";
@@ -20,9 +20,15 @@ const NewFlashcards = () => {
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
 
-  useEffect(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  }, []);
+  const endRef = useRef(null);
+
+  const scrollToBottom = () => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  //   useEffect(() => {
+  //     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  //   }, []);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -173,6 +179,7 @@ const NewFlashcards = () => {
                   <p>{card.answer}</p>
                   <span>Tap to flip</span>
                 </div>
+                <div ref={endRef} />
               </div>
             );
           })}
