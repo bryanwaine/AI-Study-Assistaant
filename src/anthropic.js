@@ -56,7 +56,7 @@ const generateResponse = async ( question, history) => {
   const recentContext = history?.slice(-MAX_CONTEXT);
   const msg = await anthropic.messages.create({
     model: "claude-3-7-sonnet-20250219",
-    max_tokens: 1024,
+    max_tokens: 2048,
     system: SESSION_SYSTEM_PROMPT,
     messages: [
       ...recentContext.map((message) => ({
@@ -73,7 +73,7 @@ const generateResponse = async ( question, history) => {
 const generateFlashcards = async (topic, numberOfCards) => {
   const msg = await anthropic.messages.create({
     model: "claude-3-7-sonnet-20250219",
-    max_tokens: 1024,
+    max_tokens: 2048,
     system: FLASHCARD_SYSTEM_PROMPT(topic, numberOfCards),
     messages: [
       { role: "user", content: topic },

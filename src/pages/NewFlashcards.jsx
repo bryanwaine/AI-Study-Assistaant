@@ -93,7 +93,8 @@ const NewFlashcards = () => {
     setLoading(true);
     try {
       const aiResponse = await generateFlashcards(topic, numberOfCards);
-      setLoading(false);
+        setLoading(false);
+        console.log(aiResponse);
       const parsedResponse = JSON.parse(aiResponse);
       const messagesWithZIndex = parsedResponse.map(
         (message, index, array) => ({
@@ -104,14 +105,14 @@ const NewFlashcards = () => {
       setDeck(messagesWithZIndex);
     } catch (error) {
       setLoading(false);
-      setError(handleAnthropicError(error).message);
+        setError(handleAnthropicError(error).message);
+        console.log(error);
     }
   };
 
   return (
     <>
       <Layout userName={userName} />
-      {/* <div ref={startRef} /> */}
       <div className="flashcards-container">
         <div className="input-wrapper">
           <div className="input-container">
