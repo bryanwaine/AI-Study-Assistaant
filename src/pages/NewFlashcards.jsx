@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import { generateFlashcards } from "../anthropic";
 import "highlight.js/styles/github.css";
@@ -15,8 +15,6 @@ const NewFlashcards = () => {
   const [deck, setDeck] = useState([]);
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
-  const [retry, setRetry] = useState(null);
-  const [partialContent, setPartialContent] = useState("");
   const [deckId, setDeckId] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const { user } = useAuth();

@@ -1339,7 +1339,7 @@ input #file-upload-button {
   align-items: center;
   gap: .5rem;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .input-container label {
@@ -1351,7 +1351,7 @@ input #file-upload-button {
 .input-container input {
   width: auto;
   max-width: 400px;
-  padding: 1rem;
+  padding: .5rem;
   font-size: 1rem;
   font-family: inherit;
   border: 1px solid #ccc;
@@ -1370,12 +1370,11 @@ input #file-upload-button {
 }
 
 .input-container #number-of-cards {
-  width: 5rem;
+  width: 3rem;
 }
 
 .flashcards-container button {
   margin: .5rem 5rem 0 5rem;
-  /* width: 100%; */
   padding: 1rem 1.5rem;
   font-size: 1rem;
   font-family: inherit;
@@ -1450,7 +1449,7 @@ input #file-upload-button {
 }
 
 .flashcard h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   line-height: 1.5;
   margin: auto 0;
@@ -1460,7 +1459,7 @@ input #file-upload-button {
   font-size: 1.2rem;
   text-align: center;
   line-height: 1.5;
-  margin: auto 0;
+  margin: 1rem 0;
 }
 
 .front span, .back span {
@@ -1474,17 +1473,19 @@ input #file-upload-button {
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 0;
+  bottom: 1rem;
   left: 0;
   right: 0;
   width: 100%;
-  padding: 1rem 6rem;
+  height: 4rem;
+  /* padding: .5rem 6rem; */
   gap: 2rem;
   z-index: 999999;
 }
 
 .flashcards-container .navigation button {
   margin: 0;
+  padding: 0;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -1492,18 +1493,18 @@ input #file-upload-button {
 
 .flashcards-container .card-number {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: .5rem;
+  left: .5rem;
   display: flex;
   justify-content: center;
   align-items:center;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background-color: #ff5100;
   color: #ffffff;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: .85rem;
   z-index: 999999;
 }
 
