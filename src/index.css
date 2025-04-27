@@ -1514,7 +1514,7 @@ input #file-upload-button {
   outline: none;
 }
 
-.card-number {
+.card-number-top {
   position: absolute;
   top: .5rem;
   left: .5rem;
@@ -1530,6 +1530,21 @@ input #file-upload-button {
   font-size: .85rem;
   z-index: 999999;
 }
+
+.card-number-bottom {
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #ff5100;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: .85rem;}
 
 .card-toggle {
   position: absolute;
