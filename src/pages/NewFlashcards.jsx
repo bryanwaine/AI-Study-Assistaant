@@ -175,8 +175,9 @@ const NewFlashcards = () => {
                 style={{ zIndex: card.zIndex }}
               >
                 <div className="front" onClick={flipCard}>
-                  <span className="card-number">{card.id}</span>
-                  <h2>{card.question}</h2>
+                        <span className="card-number">{card.id}</span>
+                        <h2>{topic.toUpperCase()}</h2>
+                  <h3>{card.question}</h3>
                   <span>Tap to flip</span>
                 </div>
                 <div className="back" onClick={flipCard}>
