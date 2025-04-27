@@ -180,7 +180,7 @@ const NewFlashcards = () => {
                   <p>{card.answer}</p>
                   <span>Tap to flip</span>
                 </div>
-                <div ref={endRef} />
+                
               </div>
             );
           })}
@@ -204,7 +204,8 @@ const NewFlashcards = () => {
             </div>
           )}
         </div>
-      </div>
+          </div>
+          <div ref={endRef} />
     </>
   );
 };
