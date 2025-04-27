@@ -26,9 +26,9 @@ const NewFlashcards = () => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  //   useEffect(() => {
-  //     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  //   }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -111,6 +111,7 @@ const NewFlashcards = () => {
   return (
     <>
       <Layout userName={userName} />
+      {/* <div ref={startRef} /> */}
       <div className="flashcards-container">
         <div className="input-wrapper">
           <div className="input-container">
@@ -180,7 +181,6 @@ const NewFlashcards = () => {
                   <p>{card.answer}</p>
                   <span>Tap to flip</span>
                 </div>
-                
               </div>
             );
           })}
@@ -204,8 +204,8 @@ const NewFlashcards = () => {
             </div>
           )}
         </div>
-          </div>
-          <div ref={endRef} />
+      </div>
+      <div ref={endRef} />
     </>
   );
 };

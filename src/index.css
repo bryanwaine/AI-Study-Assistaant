@@ -1494,6 +1494,7 @@ input #file-upload-button {
   border-radius: 50%;
   border: none;
   background: transparent;
+  color: #111111;
 }
 
 .flashcards-container .card-number {
