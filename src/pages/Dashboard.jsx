@@ -68,6 +68,12 @@ const Dashboard = () => {
                   <span className="dashboard-label">Quizzes</span>
                   <span className="dashboard-value">2</span>
                 </div>
+                <Link to="/flashcards" className="link">
+                  <div className="dashboard-item card--white">
+                    <span className="dashboard-label">Decks</span>
+                    <span className="dashboard-value">4</span>
+                  </div>
+                </Link>
               </div>
               <Button variant="orange">
                 <Link to="/new-session" className="btn--link">
@@ -91,7 +97,7 @@ const Dashboard = () => {
                   <NavigateNext />
                 </Link>
                 <Link to="/new-flashcards" className="link quicklink">
-                  <p>Create Flashcards</p>
+                  <p>Create a deck of Flashcards</p>
                   <NavigateNext />
                 </Link>
               </div>

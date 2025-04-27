@@ -3,12 +3,13 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import ResetPassword from "./pages/ResetPassword";
 import Session from "./pages/Session";
 import Sessions from "./pages/Sessions";
 import NewSession from "./pages/NewSession";
+import Flashcards from "./pages/Flashcards";
+import NewFlashcards from "./pages/NewFlashcards";
 // import setAppHeight from "./utils/setAppHeight";
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/new-session" element={<NewSession />} />
           <Route path="/sessions/:sessionId" element={<Session />} />
+          <Route path="/flashcards" element={<Flashcards />} />
+          <Route path="/new-flashcards" element={<NewFlashcards/>} />
         </Route>
       </Routes>
     </BrowserRouter>

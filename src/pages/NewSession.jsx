@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Navigate } from "react-router";
-import { generateResponse } from "../anthropic";
+import { generateResponse} from "../anthropic";
 import "highlight.js/styles/github.css";
 import TypingIndicator from "../components/TypingIndicator";
 import Layout from "../components/Layout";
@@ -95,10 +95,17 @@ const NewSession = () => {
         newSessionId = await saveSession(user.uid, updatedMessages);
         setSessionId(newSessionId);
       } else {
-        await updateSession(user.uid, sessionId || newSessionId, updatedMessages);
+        await updateSession(
+          user.uid,
+          sessionId || newSessionId,
+          updatedMessages
+        );
       }
 
-      const aiResponse = await generateResponse(question, updatedMessages);
+      const aiResponse = await generateResponse(
+      question,
+      updatedMessages
+      );
       const words = aiResponse.split(" ");
       let currentWord = 0;
       setPartialContent("");

@@ -44,35 +44,6 @@ const updateSession = async (userId, sessionId, messages) => {
   });
 };
 
-// const createSession = async (userId, firstMessage) => {
-//   console.log("Creating session for user:", userId);
-//   const sessionId = uuidv4();
-//   const sessionRef = doc(db, "users", userId, "sessions", sessionId);
-//   await setDoc(sessionRef, {
-//     title: firstMessage.content.slice(0, 30) || "New Chat",
-//     createdAt: serverTimestamp(),
-//     updatedAt: serverTimestamp(),
-//     messageCount: 1,
-//     messages: {
-//       [firstMessage.id]: firstMessage,
-//     },
-//   });
-//   return sessionId;
-// };
-
-// const updateSession = async (userId, message) => {
-//     const sessionId = uuidv4();
-
-//   const sessionRef = doc(db, "users", userId, "sessions", sessionId);
-//   await updateDoc(sessionRef, {
-//     [`messages.${message.id}`]: message,
-//     updatedAt: serverTimestamp(),
-//     messageCount: increment(1),
-//   });
-
-//   return sessionId;
-// };
-
 const getAllSessions = async (userId) => {
   const sessionsRef = collection(db, "users", userId, "sessions");
   const snapshot = await getDocs(sessionsRef);

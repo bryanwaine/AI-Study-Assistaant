@@ -10,9 +10,11 @@ import PasswordInput from "../components/PasswordInput";
 import Button from "../components/Button";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { setGoogleUser } from "../firebase";
+import Loader from "../components/Loader";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
+  const [loading, setLoading] = useState(false);
   const { login, logInWithGoogle, user } = useAuth();
   const { showToast } = useToast();
   const location = useLocation();
@@ -42,9 +44,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("submitting");
+    setLoading(true);
     try {
       const data = await login(formData.email, formData.password);
       setStatus("success");
+      setLoading(false);
       showToast(
         `Welcome back ${firstNameFilter(data?.user.displayName)}!`,
         "success"
@@ -55,12 +59,14 @@ const Login = () => {
       });
       navigate(origin, { replace: true });
     } catch (error) {
+      setLoading(false);
       setStatus("error");
       showToast(handleFirebaseError(error).message, "error");
     }
   };
 
   const handleGoogleLogin = async () => {
+    setLoading(true);
     try {
       const data = await logInWithGoogle();
       const { uid, displayName, email } = data.user;
@@ -69,55 +75,59 @@ const Login = () => {
         userName: displayName,
         email,
       });
+
+      setLoading(false);
       showToast(
         `Welcome ${firstNameFilter(data?.user.displayName)}!`,
         "success"
       );
       navigate(origin, { replace: true });
     } catch (error) {
+      setLoading(false);
+      setStatus("error");
       showToast(handleFirebaseError(error).message, "error");
     }
   };
 
   return (
+    <>
+      {loading && <Loader />}
       <FormLayout
-      type="login-form"
-      title="Login"
-      message="Don't have an account?"
-      linkText="Sign Up"
-      link="/signup"
-      handleSubmit={handleSubmit}
+        type="login-form"
+        title="Login"
+        message="Don't have an account?"
+        linkText="Sign Up"
+        link="/signup"
+        handleSubmit={handleSubmit}
       >
-          <TextInput
-            label="Email"
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            handleChange={handleChange}
-          />
-          <PasswordInput
-            handleChange={handleChange}
-            value={formData.password}
-          />
-            <Button
-              type="submit"
-              variant="orange"
-              disabled={status === "submitting" || !isFormValid}
-              onClick={handleSubmit}
-            >
-              {status === "submitting" ? "Logging in..." : "Login"}
-            </Button>
-            <Button variant="ghost--blue" onClick={handleGoogleLogin}>
-              <img src={googleIcon} className="google-icon" alt="google-icon" />
-              Sign in with Google
-            </Button>
-          <div className="form-group-bottom">
-            <Link className="link" to="/reset-password">
-              Forgotten password?
-            </Link>
-          </div>
-    </FormLayout>
+        <TextInput
+          label="Email"
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          handleChange={handleChange}
+        />
+        <PasswordInput handleChange={handleChange} value={formData.password} />
+        <Button
+          type="submit"
+          variant="orange"
+          disabled={status === "submitting" || !isFormValid}
+          onClick={handleSubmit}
+        >
+          {status === "submitting" ? "Logging in..." : "Login"}
+        </Button>
+        <Button variant="ghost--blue" onClick={handleGoogleLogin}>
+          <img src={googleIcon} className="google-icon" alt="google-icon" />
+          Sign in with Google
+        </Button>
+        <div className="form-group-bottom">
+          <Link className="link" to="/reset-password">
+            Forgotten password?
+          </Link>
+        </div>
+      </FormLayout>
+    </>
   );
 };
 
