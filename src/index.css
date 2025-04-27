@@ -1474,6 +1474,7 @@ input #file-upload-button {
 
 .front li, .back li {
   line-height: 1.5;
+  margin: 0 0 0 .5rem;
 }
 
 .front span, .back span {
