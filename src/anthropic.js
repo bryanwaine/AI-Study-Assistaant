@@ -29,7 +29,7 @@ Consider the following when creating flashcards:
 - Include key terminology, definitions, and important concepts
 - For factual topics, ensure information is accurate
 - For math or science, include formulas where appropriate
-- For programming, include code examples
+- For programming, do not include code examples
 - For history, include key events and periods
 - For literature, include key characters, settings, and themes
 - For medicine, include key diseases, symptoms, and treatments

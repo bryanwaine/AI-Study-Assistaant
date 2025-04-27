@@ -9,6 +9,7 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import MarkdownRenderer from "../components/MarkdownRenderer";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
@@ -179,8 +180,8 @@ const NewFlashcards = () => {
                 </div>
                 <div className="back" onClick={flipCard}>
                   <span className="card-number">{card.id}</span>
-                  <p>{card.answer}</p>
-                  <span>Tap to flip</span>
+                  <MarkdownRenderer>{card.answer}</MarkdownRenderer>
+                  <span className="card-toggle">Tap to flip</span>
                 </div>
               </div>
             );
