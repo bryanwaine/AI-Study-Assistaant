@@ -88,6 +88,7 @@ const NewFlashcards = () => {
   };
 
   const onSubmit = async (topic, numberOfCards) => {
+    scrollToBottom();
     setError(null);
     setLoading(true);
     try {
