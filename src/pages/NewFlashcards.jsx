@@ -9,7 +9,6 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import MarkdownRenderer from "../components/MarkdownRenderer";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
@@ -183,7 +182,8 @@ const NewFlashcards = () => {
                   }}
                 >
                   <span className="card-number">{card.id}</span>
-                  <h2>{card.topic.toUpperCase()}</h2>
+                        <h2>{card.topic.toUpperCase()}</h2>
+                        <span className="card-question">Question</span>
                   <h3>{card.question}</h3>
                   <span>Tap to flip</span>
                 </div>
@@ -194,8 +194,9 @@ const NewFlashcards = () => {
                     trackCardFace();
                   }}
                 >
-                  <span className="card-number">{card.id}</span>
-                  <MarkdownRenderer>{card.answer}</MarkdownRenderer>
+                        <span className="card-number">{card.id}</span>
+                        <span className="card-answer">Answer</span>
+                  <p>{card.answer}</p>
                   <span className="card-toggle">Tap to flip</span>
                 </div>
               </div>
