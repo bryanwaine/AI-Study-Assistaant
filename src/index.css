@@ -1406,7 +1406,7 @@ input #file-upload-button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 75%;
   height: 100%;
   padding: 1rem;
   margin: 0;
@@ -1505,6 +1505,11 @@ input #file-upload-button {
   border: none;
   background: transparent;
   color: #111111;
+}
+
+.flashcards-container .navigation button:hover,
+.flashcards-container .navigation button:focus {
+  outline: none;
 }
 
 .card-number {

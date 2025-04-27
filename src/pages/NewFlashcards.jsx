@@ -18,6 +18,7 @@ const NewFlashcards = () => {
   const [error, setError] = useState(null);
   const [deckId, setDeckId] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isFrontCardVisible, setIsFrontCardVisible] = useState("");
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
 
@@ -29,6 +30,7 @@ const NewFlashcards = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsFrontCardVisible("yes");
   }, []);
 
   if (!user) {
@@ -49,44 +51,44 @@ const NewFlashcards = () => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
   };
 
+  const trackCardFace = () => {
+    setIsFrontCardVisible((prev) => (prev === "yes" ? "no" : "yes"));
+  };
+
   const flipCard = () => {
     setIsFlipped(!isFlipped);
   };
 
   const showPreviousCard = () => {
-    setDeck((prev) => {
-      const newDeck = prev.map((deck, index, array) => {
-        let newZIndex;
-        if (deck.zIndex === 1) {
-          newZIndex = array.length;
-        } else {
-          newZIndex = deck.zIndex - 1;
-        }
-        return {
-          ...deck,
-          zIndex: newZIndex,
-        };
-      });
-      return newDeck;
-    });
+    const updateDeck = (prev) => 
+      prev.map((card, _, array) => ({
+        ...card,
+        zIndex: card.zIndex === 1 ? array.length : card.zIndex - 1,
+      }));
+  
+    if (isFrontCardVisible === "no") {
+      flipCard();
+      setIsFrontCardVisible("yes");
+    }
+  
+    setDeck(updateDeck);
   };
+  
   const showNextCard = () => {
-    setDeck((prev) => {
-      const newDeck = prev.map((deck, index, array) => {
-        let newZIndex;
-        if (deck.zIndex === array.length) {
-          newZIndex = 1;
-        } else {
-          newZIndex = deck.zIndex + 1;
-        }
-        return {
-          ...deck,
-          zIndex: newZIndex,
-        };
-      });
-      return newDeck;
-    });
+    const updateDeck = (prev) => 
+      prev.map((card, _, array) => ({
+        ...card,
+        zIndex: card.zIndex === array.length ? 1 : card.zIndex + 1,
+      }));
+  
+    if (isFrontCardVisible === "no") {
+      flipCard();
+      setIsFrontCardVisible("yes");
+    }
+    
+    setDeck(updateDeck);
   };
+  
 
   const onSubmit = async (topic, numberOfCards) => {
     setDeck([]);
@@ -96,12 +98,11 @@ const NewFlashcards = () => {
     try {
       const aiResponse = await generateFlashcards(topic, numberOfCards);
       setLoading(false);
-      console.log(aiResponse);
       const parsedResponse = JSON.parse(aiResponse);
       const messagesWithZIndex = parsedResponse.map(
         (message, index, array) => ({
           ...message,
-              zIndex: array.length - index,
+          zIndex: array.length - index,
           topic: topic,
         })
       );
@@ -174,13 +175,25 @@ const NewFlashcards = () => {
                 key={card.id}
                 style={{ zIndex: card.zIndex }}
               >
-                <div className="front" onClick={flipCard}>
-                        <span className="card-number">{card.id}</span>
-                        <h2>{card.topic.toUpperCase()}</h2>
+                <div
+                  className="front"
+                  onClick={() => {
+                    flipCard();
+                    trackCardFace();
+                  }}
+                >
+                  <span className="card-number">{card.id}</span>
+                  <h2>{card.topic.toUpperCase()}</h2>
                   <h3>{card.question}</h3>
                   <span>Tap to flip</span>
                 </div>
-                <div className="back" onClick={flipCard}>
+                <div
+                  className="back"
+                  onClick={() => {
+                    flipCard();
+                    trackCardFace();
+                  }}
+                >
                   <span className="card-number">{card.id}</span>
                   <MarkdownRenderer>{card.answer}</MarkdownRenderer>
                   <span className="card-toggle">Tap to flip</span>
