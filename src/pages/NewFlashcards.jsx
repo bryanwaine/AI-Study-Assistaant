@@ -89,13 +89,14 @@ const NewFlashcards = () => {
   };
 
   const onSubmit = async (topic, numberOfCards) => {
+    setDeck([]);
     scrollToBottom();
     setError(null);
     setLoading(true);
     try {
       const aiResponse = await generateFlashcards(topic, numberOfCards);
-        setLoading(false);
-        console.log(aiResponse);
+      setLoading(false);
+      console.log(aiResponse);
       const parsedResponse = JSON.parse(aiResponse);
       const messagesWithZIndex = parsedResponse.map(
         (message, index, array) => ({
@@ -106,8 +107,8 @@ const NewFlashcards = () => {
       setDeck(messagesWithZIndex);
     } catch (error) {
       setLoading(false);
-        setError(handleAnthropicError(error).message);
-        console.log(error);
+      setError(handleAnthropicError(error).message);
+      console.log(error);
     }
   };
 
