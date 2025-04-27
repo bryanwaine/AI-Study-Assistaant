@@ -1472,6 +1472,10 @@ input #file-upload-button {
   margin: 1rem 0;
 }
 
+.front li, .back li {
+  line-height: 1.5;
+}
+
 .front span, .back span {
   font-weight: 300;
   font-size: .85rem;

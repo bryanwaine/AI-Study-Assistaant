@@ -101,7 +101,8 @@ const NewFlashcards = () => {
       const messagesWithZIndex = parsedResponse.map(
         (message, index, array) => ({
           ...message,
-          zIndex: array.length - index,
+              zIndex: array.length - index,
+          topic: topic,
         })
       );
       setDeck(messagesWithZIndex);
@@ -122,7 +123,7 @@ const NewFlashcards = () => {
             <input
               type="text"
               name="topic"
-              placeholder="JavaScript Concepts"
+              placeholder="Enter a topic or subject"
               id="topic"
               value={topic}
               onChange={onChange}
@@ -130,13 +131,12 @@ const NewFlashcards = () => {
             />
           </div>
           <div className="input-container">
-            <label htmlFor="numberOfCards">Number of Cards</label>
+            <label htmlFor="numberOfCards">Number of cards to generate</label>
             <input
               type="text"
               pattern="[0-9]*"
               inputMode="numeric"
               name="numberOfCards"
-              placeholder="10"
               id="number-of-cards"
               value={numberOfCards}
               onChange={onChange}
@@ -176,7 +176,7 @@ const NewFlashcards = () => {
               >
                 <div className="front" onClick={flipCard}>
                         <span className="card-number">{card.id}</span>
-                        <h2>{topic.toUpperCase()}</h2>
+                        <h2>{card.topic.toUpperCase()}</h2>
                   <h3>{card.question}</h3>
                   <span>Tap to flip</span>
                 </div>
