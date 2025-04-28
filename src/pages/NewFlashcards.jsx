@@ -9,10 +9,11 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import { saveDeck } from "../utils/flashcardService";
+import { getAllDecks, saveDeck } from "../utils/flashcardService";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
+  const [flashcards, setFlashcards] = useState([]);
   const [deck, setDeck] = useState([]);
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
@@ -27,6 +28,22 @@ const NewFlashcards = () => {
   const scrollToBottom = () => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const fetchDecks = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllDecks(user.uid);
+        setFlashcards(data);
+      } catch (error) {
+        setError(handleAnthropicError(error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDecks();
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -103,17 +120,17 @@ const NewFlashcards = () => {
       scrollToBottom();
       setError(null);
       setLoading(true);
-      const aiResponse = await generateFlashcards(topic, numberOfCards);
+      const aiResponse = await generateFlashcards(topic, numberOfCards, flashcards);
       const parsedResponse = JSON.parse(aiResponse);
-      const messagesWithZIndex = parsedResponse.map(
-        (message, index, array) => ({
-          ...message,
+      const cardsWithZIndex = parsedResponse.map(
+        (card, index, array) => ({
+          ...card,
           zIndex: array.length - index,
           topic: topic,
         })
       );
-      await saveDeck(user.uid, messagesWithZIndex, title, cardCount);
-      setDeck(messagesWithZIndex);
+      await saveDeck(user.uid, cardsWithZIndex, title, cardCount);
+      setDeck(cardsWithZIndex);
       setLoading(false);
     } catch (error) {
       setLoading(false);
