@@ -1324,9 +1324,15 @@ input #file-upload-button {
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 124vh;
   padding: 7rem 0 0 0;
 }
+.flashcards-container.extended {
+  height: 124vh;
+}
+.flashcards-container.regular {
+  height: 100vh;
+}
+
 
 .input-wrapper {
   display: flex;
@@ -1400,7 +1406,7 @@ input #file-upload-button {
   outline: none;
 }
 
-.deck-wrapper {
+.deck-wrapper{
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1411,6 +1417,10 @@ input #file-upload-button {
   padding: 0 2rem 2rem 2rem;
   margin-top: 2rem;
   border: none;
+}
+
+.deck-wrapper-regular {
+
 }
 
 .flashcard {

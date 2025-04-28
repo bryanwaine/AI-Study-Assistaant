@@ -91,7 +91,7 @@ const Deck = () => {
   return (
     <>
       <Layout userName={userName} />
-      <div className="flashcards-container">
+      <div className="flashcards-container regular">
         <div className="deck-wrapper">
           {loading && <Loader />}
           {error && (

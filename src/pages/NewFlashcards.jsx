@@ -125,7 +125,7 @@ const NewFlashcards = () => {
   return (
     <>
       <Layout userName={userName} />
-      <div className="flashcards-container">
+      <div className="flashcards-container extended">
         <div className="input-wrapper">
           <div className="input-container">
             <label htmlFor="topic">Topic</label>
