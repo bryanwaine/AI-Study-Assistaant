@@ -9,11 +9,10 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import { getAllDecks, saveDeck } from "../utils/flashcardService";
+import { saveDeck } from "../utils/flashcardService";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
-  const [flashcards, setFlashcards] = useState([]);
   const [deck, setDeck] = useState([]);
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
@@ -28,22 +27,6 @@ const NewFlashcards = () => {
   const scrollToBottom = () => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  useEffect(() => {
-    const fetchDecks = async () => {
-      setLoading(true);
-      try {
-        const data = await getAllDecks(user.uid);
-        setFlashcards(data);
-      } catch (error) {
-        setError(handleAnthropicError(error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDecks();
-  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -120,11 +103,11 @@ const NewFlashcards = () => {
       scrollToBottom();
       setError(null);
       setLoading(true);
-      const aiResponse = await generateFlashcards(topic, numberOfCards, flashcards);
+      const aiResponse = await generateFlashcards(topic, numberOfCards);
       const parsedResponse = JSON.parse(aiResponse);
       const cardsWithZIndex = parsedResponse.map(
-        (card, index, array) => ({
-          ...card,
+        (cards, index, array) => ({
+          ...cards,
           zIndex: array.length - index,
           topic: topic,
         })

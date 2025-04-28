@@ -33,7 +33,7 @@ Consider the following when creating flashcards:
 - For history, include key events and periods
 - For literature, include key characters, settings, and themes
 - For medicine, include key diseases, symptoms, and treatments
-- Generate flashcards with brand new questions on each request
+- Generate brand new flashcards on each request
 
 Return ONLY a valid JSON array without any delimiters. Use this exact format:
 [
@@ -71,18 +71,12 @@ const generateResponse = async ( question, history) => {
   return msg.content[0].text;
 };
 
-const generateFlashcards = async (topic, numberOfCards, history) => {
-  const MAX_CONTEXT = 10;
-  const recentContext = history?.slice(-MAX_CONTEXT);
+const generateFlashcards = async (topic, numberOfCards) => {
   const msg = await anthropic.messages.create({
     model: "claude-3-7-sonnet-20250219",
     max_tokens: 2048,
     system: FLASHCARD_SYSTEM_PROMPT(topic, numberOfCards),
     messages: [
-      ...recentContext.map((card) => ({
-        role: "assistant",
-        content: card.deck.question,
-      })),
       { role: "user", content: topic },
     ],
   });
