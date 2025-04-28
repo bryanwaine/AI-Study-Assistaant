@@ -2,14 +2,14 @@ import { Link, useLocation } from "react-router";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
-import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
 import formatFirebaseTimestamp from "../utils/formatFirebaseTimestamp";
-import sortSessionsByTime from "../utils/sortSessionsByTime";
+import sortDataByTime from "../utils/sortDataByTime";
+import { getAllDecks } from "../utils/flashcardService";
 
-const Sessions = () => {
+const Decks = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,10 +18,10 @@ const Sessions = () => {
   const userName = user?.displayName || location.state?.userName;
 
   useEffect(() => {
-    const fetchSessions = async () => {
+    const fetchDecks = async () => {
       setLoading(true);
       try {
-        const data = await getAllSessions(user.uid);
+        const data = await getAllDecks(user.uid);
         setFlashcards(data);
       } catch (error) {
         setError(handleAnthropicError(error).message);
@@ -30,16 +30,16 @@ const Sessions = () => {
       }
     };
 
-    fetchSessions();
+    fetchDecks();
   }, []);
 
   return (
     <>
-      <Layout userName={userName}  />
+      <Layout userName={userName} />
       <div className="sessions-container">
         <h1>Your Flashcards</h1>
         <Button variant="orange">
-          <Link to="/new-flashcards" className="btn--link">
+          <Link to="/new-deck" className="btn--link">
             New Flashcards
           </Link>
         </Button>
@@ -49,7 +49,7 @@ const Sessions = () => {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            sortSessionsByTime(flashcards).map((deck) => (
+            sortDataByTime(flashcards).map((deck) => (
               <Link to={deck.id} key={deck.id}>
                 <li className="session card--blue">
                   <h2>{deck.metadata.title}</h2>
@@ -59,18 +59,9 @@ const Sessions = () => {
                         <span>Created</span>
                         {formatFirebaseTimestamp(deck.metadata.createdAt)}
                       </p>
-                      <p>
-                        <span>Updated</span>
-                        {formatFirebaseTimestamp(deck.metadata.updatedAt)}
-                      </p>
                     </div>
                     <div className="session-footer-right">
-                      <p>
-                        {deck.metadata.messageCount}
-                        {deck.metadata.messageCount === 1
-                          ? " flashcard"
-                          : " flashcards"}
-                      </p>
+                      <p>{`${deck.metadata.cardCount} flashcards`} </p>
                     </div>
                   </div>
                 </li>
@@ -83,4 +74,4 @@ const Sessions = () => {
   );
 };
 
-export default Sessions;
+export default Decks;

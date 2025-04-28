@@ -1,4 +1,4 @@
-// utils/SessionService.js
+
 import { db } from "../firebase";
 import {
   collection,
@@ -28,9 +28,6 @@ const saveSession = async (userId, messages) => {
     messages,
     metadata,
   });
-
-  //   const sessionKey = `sessionId_${userId}`;
-  //   sessionStorage.setItem(sessionKey, sessionId);
 
   return sessionId;
 };

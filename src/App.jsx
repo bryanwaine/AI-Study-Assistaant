@@ -8,8 +8,9 @@ import ResetPassword from "./pages/ResetPassword";
 import Session from "./pages/Session";
 import Sessions from "./pages/Sessions";
 import NewSession from "./pages/NewSession";
-import Flashcards from "./pages/Flashcards";
 import NewFlashcards from "./pages/NewFlashcards";
+import Decks from "./pages/Decks";
+import Deck from "./pages/Deck";
 // import setAppHeight from "./utils/setAppHeight";
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/new-session" element={<NewSession />} />
           <Route path="/sessions/:sessionId" element={<Session />} />
-          <Route path="/flashcards" element={<Flashcards />} />
-          <Route path="/new-flashcards" element={<NewFlashcards/>} />
+          <Route path="/new-deck" element={<NewFlashcards/>} />
+          <Route path="/decks" element={<Decks />} />
+          <Route path="/decks/:deckId" element={<Deck />} />
         </Route>
       </Routes>
     </BrowserRouter>

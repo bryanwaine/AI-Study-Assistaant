@@ -7,7 +7,7 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
 import formatFirebaseTimestamp from "../utils/formatFirebaseTimestamp";
-import sortSessionsByTime from "../utils/sortSessionsByTime";
+import sortDataByTime from "../utils/sortDataByTime";
 
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);
@@ -49,7 +49,7 @@ const Sessions = () => {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            sortSessionsByTime(sessions).map((session) => (
+            sortDataByTime(sessions).map((session) => (
               <Link to={session.id} key={session.id}>
                 <li className="session card--blue">
                   <h2>{session.metadata.title}</h2>

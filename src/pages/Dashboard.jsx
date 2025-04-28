@@ -68,7 +68,7 @@ const Dashboard = () => {
                   <span className="dashboard-label">Quizzes</span>
                   <span className="dashboard-value">2</span>
                 </div>
-                <Link to="/flashcards" className="link">
+                <Link to="/decks" className="link">
                   <div className="dashboard-item card--white">
                     <span className="dashboard-label">Decks</span>
                     <span className="dashboard-value">4</span>
@@ -96,7 +96,7 @@ const Dashboard = () => {
                   <p>Take a Quiz</p>
                   <NavigateNext />
                 </Link>
-                <Link to="/new-flashcards" className="link quicklink">
+                <Link to="/new-deck" className="link quicklink">
                   <p>Create a deck of Flashcards</p>
                   <NavigateNext />
                 </Link>

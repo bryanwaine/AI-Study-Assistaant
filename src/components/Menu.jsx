@@ -6,7 +6,7 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { DashboardOutlined } from "@mui/icons-material";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import Loader from "./Loader";
-import sortSessionsByTime from "../utils/sortSessionsByTime";
+import sortDataByTime from "../utils/sortDataByTime";
 
 const Menu = (props) => {
   const { menuOpen, sessions, loading, error } = props;
@@ -79,7 +79,7 @@ const Menu = (props) => {
           </li>
         </NavLink>
         <NavLink
-          to="/flashcards"
+          to="/decks"
           style={({ isActive }) => (isActive ? activeStyles : null)}
           onClick={onClick}
         >
@@ -95,7 +95,7 @@ const Menu = (props) => {
         <h3>Session History</h3>
         {loading && <Loader />}
         {error && <p>{error}</p>}
-        {sortSessionsByTime(sessions).map((session) => (
+        {sortDataByTime(sessions).map((session) => (
           <NavLink
             to={`/sessions/${session.id}`}
             key={session.id}
