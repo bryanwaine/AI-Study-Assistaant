@@ -15,6 +15,7 @@ const NewFlashcards = () => {
   const [deck, setDeck] = useState([]);
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState(null);
   const [deckId, setDeckId] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFrontCardVisible, setIsFrontCardVisible] = useState("");
@@ -59,37 +60,41 @@ const NewFlashcards = () => {
   };
 
   const showPreviousCard = () => {
-    const updateDeck = (prev) => 
+    const updateDeck = (prev) =>
       prev.map((card, _, array) => ({
         ...card,
         zIndex: card.zIndex === 1 ? array.length : card.zIndex - 1,
       }));
-  
+
     if (isFrontCardVisible === "no") {
       flipCard();
       setIsFrontCardVisible("yes");
     }
-  
+
     setDeck(updateDeck);
   };
-  
+
   const showNextCard = () => {
-    const updateDeck = (prev) => 
+    const updateDeck = (prev) =>
       prev.map((card, _, array) => ({
         ...card,
         zIndex: card.zIndex === array.length ? 1 : card.zIndex + 1,
       }));
-  
+
     if (isFrontCardVisible === "no") {
       flipCard();
       setIsFrontCardVisible("yes");
     }
-    
+
     setDeck(updateDeck);
   };
-  
 
   const onSubmit = async (topic, numberOfCards) => {
+    setInputError(null);
+    if (numberOfCards < 5 || numberOfCards > 20) {
+        setInputError("Please enter a number between 1 and 20");
+      return;
+    }
     setDeck([]);
     scrollToBottom();
     setError(null);
@@ -131,18 +136,20 @@ const NewFlashcards = () => {
             />
           </div>
           <div className="input-container">
-            <label htmlFor="numberOfCards">Number of cards to generate</label>
+            <label htmlFor="numberOfCards">Number of cards</label>
             <input
               type="text"
               pattern="[0-9]*"
               inputMode="numeric"
               name="numberOfCards"
               id="number-of-cards"
+              className={inputError ? "input-error" : ""}
               value={numberOfCards}
               onChange={onChange}
               onInput={onInput}
               required
             />
+            {inputError && <span className="error">{inputError}</span>}
           </div>
 
           <Button
@@ -182,11 +189,11 @@ const NewFlashcards = () => {
                   }}
                 >
                   <span className="card-number-top">{card.id}</span>
-                        <h2>{card.topic.toUpperCase()}</h2>
-                        <span className="card-question">Question</span>
-                        <h3>{card.question}</h3>
-                        <span className="card-number-bottom">{card.id}</span>
-                  <span>Tap to flip</span>
+                  <h2>{card.topic.toUpperCase()}</h2>
+                  <span className="card-question">Question</span>
+                  <h3>{card.question}</h3>
+                  <span className="card-number-bottom">{card.id}</span>
+                  <span className="card-toggle">Tap to flip</span>
                 </div>
                 <div
                   className="back"
@@ -195,10 +202,10 @@ const NewFlashcards = () => {
                     trackCardFace();
                   }}
                 >
-                        <span className="card-number-top">{card.id}</span>
-                        <span className="card-answer">Answer</span>
-                        <p>{card.answer}</p>
-                        <span className="card-number-bottom">{card.id}</span>
+                  <span className="card-number-top">{card.id}</span>
+                  <span className="card-answer">Answer</span>
+                  <p>{card.answer}</p>
+                  <span className="card-number-bottom">{card.id}</span>
                   <span className="card-toggle">Tap to flip</span>
                 </div>
               </div>

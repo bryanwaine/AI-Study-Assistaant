@@ -41,6 +41,11 @@ button:disabled {
   cursor: not-allowed !important;
 }
 
+.error {
+  color: red;
+  font-size: 0.7rem;
+}
+
 .error-list {
   color: red;
   font-size: 0.7rem;
@@ -49,7 +54,7 @@ button:disabled {
 }
 
 .input-error {
-  outline: 1px solid red;
+  outline: 1px solid red !important;
 }
 
 a {
@@ -1375,6 +1380,10 @@ input #file-upload-button {
   width: 3rem;
 }
 
+.input-container .error {
+  /* word-wrap: break-word; */
+}
+
 .flashcards-container button {
   margin: .5rem 5rem 0 5rem;
   padding: 1rem 1.5rem;
@@ -1386,6 +1395,11 @@ input #file-upload-button {
   color: #fff;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+}
+
+.flashcards-container button:hover,
+.flashcards-container button:focus {
+  outline: none;
 }
 
 .deck-wrapper {
@@ -1422,7 +1436,7 @@ input #file-upload-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   backface-visibility: hidden;
   transition: transform 0.6s;
   width: 100%;
@@ -1455,34 +1469,35 @@ input #file-upload-button {
 }
 
 .flashcard h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   line-height: 1.5;
-  margin: 0;
+  margin: 1rem 0 0 0;
 }
 
 .flashcard h3 {
   font-size: 1.1rem;
   text-align: center;
   line-height: 1.5;
-  margin: 1rem 0 auto 0;
+  margin: 1rem 0;
 }
 
 .front p, .back p {
-  font-size: 1rem;
+  font-size: .85rem;
   text-align: center;
   line-height: 1.7;
   margin: 1rem 0;
 }
 
 .front li, .back li {
+  font-size: .85rem;
   line-height: 1.7;
   margin: 0 0 0 .5rem;
 }
 
 .front span, .back span {
   font-weight: 300;
-  font-size: .75rem;
+  font-size: .65rem;
 }
 
 .flashcards-container .navigation {
@@ -1553,8 +1568,12 @@ input #file-upload-button {
   margin: 0 0 1rem 0;
 }
 
-.card-question{
- margin: auto 0 0 0;
+.card-question, .card-answer {
+ margin: 3rem 0 0 0;
+}
+
+.card-answer{
+  margin: 5.125rem 0 0 0;
 }
 
 
