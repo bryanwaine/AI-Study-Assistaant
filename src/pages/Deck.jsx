@@ -21,10 +21,6 @@ const Deck = () => {
   const params = useParams();
   const endRef = useRef(null);
 
-  const scrollToBottom = () => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
     const fetchDeck = async () => {
       try {
@@ -42,7 +38,7 @@ const Deck = () => {
   }, [params.sessionId]);
 
   useEffect(() => {
-    scrollToBottom();
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setIsFrontCardVisible("yes");
   }, []);
 
