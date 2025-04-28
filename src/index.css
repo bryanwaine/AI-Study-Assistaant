@@ -1379,7 +1379,7 @@ input #file-upload-button {
 }
 
 .input-container .error {
-  width: auto;
+  width: 8rem;
 }
 
 .flashcards-container button {
