@@ -33,6 +33,7 @@ Consider the following when creating flashcards:
 - For history, include key events and periods
 - For literature, include key characters, settings, and themes
 - For medicine, include key diseases, symptoms, and treatments
+- Generate brand new flashcards on each request
 
 Return ONLY a valid JSON array without any delimiters. Use this exact format:
 [
