@@ -91,8 +91,8 @@ const NewFlashcards = () => {
 
   const onSubmit = async (topic, numberOfCards) => {
     setInputError(null);
-    if (numberOfCards < 5 || numberOfCards > 20) {
-      setInputError("Please enter a number between 1 and 20");
+    if (numberOfCards < 5 || numberOfCards > 40) {
+      setInputError("Please enter a number between 5 and 40");
       return;
     }
     try {
