@@ -52,7 +52,7 @@ const Decks = () => {
             sortDataByTime(flashcards).map((deck) => (
               <Link to={deck.id} key={deck.id}>
                 <li className="session card--blue">
-                  <h2>{`${deck.metadata.title.toUpperCase()} FLASHCARDS`}</h2>
+                  <h2>{deck.metadata.title.toUpperCase()}</h2>
                   <div className="session-footer">
                     <div className="session-footer-left">
                       <p>
