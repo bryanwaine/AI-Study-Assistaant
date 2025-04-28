@@ -9,9 +9,11 @@ import { NavigateNext } from "@mui/icons-material";
 import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
+import { getAllDecks } from "../utils/flashcardService";
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [sessions, setSessions] = useState([]);
+  const [flashcards, setFlashcards] = useState([]);
   const [error, setError] = useState(null);
   const { user } = useAuth();
   const location = useLocation();
@@ -30,7 +32,20 @@ const Dashboard = () => {
       }
     };
 
+    const fetchDecks = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllDecks(user.uid);
+        setFlashcards(data);
+      } catch (error) {
+        setError(handleAnthropicError(error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
     fetchSessions();
+    fetchDecks();
   }, []);
 
   if (!user) {
@@ -71,7 +86,7 @@ const Dashboard = () => {
                 <Link to="/decks" className="link">
                   <div className="dashboard-item card--white">
                     <span className="dashboard-label">Decks</span>
-                    <span className="dashboard-value">4</span>
+                    <span className="dashboard-value">{flashcards.length}</span>
                   </div>
                 </Link>
               </div>
