@@ -113,8 +113,10 @@ const Deck = () => {
                   <h2>{card.topic.toUpperCase()}</h2>
                   <span className="card-question">Question</span>
                   <h3>{card.question}</h3>
-                  <span className="card-number-bottom">{card.id}</span>
-                  <span className="card-toggle">Tap to flip</span>
+                  <div className="card-footer">
+                    <span className="card-number-bottom">{card.id}</span>
+                    <span className="card-toggle">Tap to flip</span>
+                  </div>
                 </div>
                 <div
                   className="back"
@@ -126,8 +128,10 @@ const Deck = () => {
                   <span className="card-number-top">{card.id}</span>
                   <span className="card-answer">Answer</span>
                   <p>{card.answer}</p>
-                  <span className="card-number-bottom">{card.id}</span>
-                  <span className="card-toggle">Tap to flip</span>
+                  <div className="card-footer">
+                    <span className="card-number-bottom">{card.id}</span>
+                    <span className="card-toggle">Tap to flip</span>
+                  </div>
                 </div>
               </div>
             );
