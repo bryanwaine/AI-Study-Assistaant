@@ -6,8 +6,8 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
 import formatFirebaseTimestamp from "../utils/formatFirebaseTimestamp";
-import sortDataByTime from "../utils/sortDataByTime";
 import { getAllDecks } from "../utils/flashcardService";
+import sortFlashcardsByTime from "../utils/sortFlashcardsByTime";
 
 const Decks = () => {
   const [flashcards, setFlashcards] = useState([]);
@@ -49,7 +49,7 @@ const Decks = () => {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            sortDataByTime(flashcards).map((deck) => (
+            sortFlashcardsByTime(flashcards).map((deck) => (
               <Link to={deck.id} key={deck.id}>
                 <li className="session card--blue">
                   <h2>{deck.metadata.title.toUpperCase()}</h2>
