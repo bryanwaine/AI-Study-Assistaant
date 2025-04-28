@@ -34,7 +34,7 @@ const Home = () => {
           </div>
           <div className="card--blue">
             <h2>Smart Notes</h2>
-            <p>Take, summarize, and organise your study notes.</p>
+            <p>Upload, summarize, and organise your study notes.</p>
           </div>
           <div className="card--blue">
             <h2>Flashcards and Quizzes</h2>
