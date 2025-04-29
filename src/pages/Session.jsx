@@ -38,12 +38,13 @@ const Session = () => {
 
   useEffect(() => {
     const fetchSession = async () => {
+      setFetching(true);
       try {
-        setFetching(true);
         const data = await getSession(user.uid, params.sessionId);
         setMessages(data.messages);
         setFetching(false);
       } catch (error) {
+        setFetching(false);
         setError(handleAnthropicError(error).message);
       }
     };

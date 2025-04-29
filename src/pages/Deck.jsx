@@ -15,6 +15,7 @@ const Deck = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFrontCardVisible, setIsFrontCardVisible] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
@@ -23,13 +24,13 @@ const Deck = () => {
 
   useEffect(() => {
     const fetchDeck = async () => {
+      setFetching(true);
       try {
-        setLoading(true);
         const data = await getDeck(user.uid, params.deckId);
         setDeck(data.deck);
-        setLoading(false);
+        setFetching(false);
       } catch (error) {
-        setLoading(false);
+        setFetching(false);
         setError(handleAnthropicError(error).message);
       }
     };
@@ -89,7 +90,7 @@ const Deck = () => {
       <Layout userName={userName} />
       <div className="flashcards-container regular">
         <div className="deck-wrapper">
-          {loading && <Loader />}
+          {fetching && <Loader />}
           {error && (
             <div className="chat-error-container">
               <p className="error">Something went wrong. Please try again</p>
