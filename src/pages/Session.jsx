@@ -13,9 +13,11 @@ import MarkdownRenderer from "../components/MarkdownRenderer";
 import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import Loader from "../components/Loader";
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
   const [retry, setRetry] = useState(null);
@@ -37,8 +39,10 @@ const Session = () => {
   useEffect(() => {
     const fetchSession = async () => {
       try {
+        setFetching(true);
         const data = await getSession(user.uid, params.sessionId);
         setMessages(data.messages);
+        setFetching(false);
       } catch (error) {
         setError(handleAnthropicError(error).message);
       }
@@ -167,6 +171,7 @@ const Session = () => {
 
   return (
     <div className="session-wrapper">
+      {fetching && <Loader />}
       <Layout userName={userName} />
       <div className="session-container">
         <div className="chat-window" ref={chatWindowRef}>
