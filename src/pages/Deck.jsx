@@ -14,7 +14,6 @@ const Deck = () => {
   const [error, setError] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFrontCardVisible, setIsFrontCardVisible] = useState("");
-  const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
