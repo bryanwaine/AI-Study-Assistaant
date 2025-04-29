@@ -813,12 +813,13 @@ fieldset .btn {
 }
 
 .dashboard-overview .dashboard-item {
-  width: 5.5rem;
+  width: 5rem;
   gap: 0.5rem;
 }
 
 .dashboard-item .dashboard-label {
   font-weight: 300;
+  font-size: 0.85rem;
 }
 
 .dashboard-item .dashboard-value {
