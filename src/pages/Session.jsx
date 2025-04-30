@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Navigate, useParams } from "react-router";
-import { generateResponse} from "../anthropic";
+import { generateResponse } from "../anthropic";
 import "highlight.js/styles/github.css";
 import TypingIndicator from "../components/TypingIndicator";
 import Layout from "../components/Layout";
@@ -49,8 +49,12 @@ const Session = () => {
       }
     };
 
+    if (user) {
+      fetchSession();
+    }
+
     fetchSession();
-  }, [params.sessionId]);
+  }, [params, user]);
 
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
@@ -130,10 +134,7 @@ const Session = () => {
       }
       await updateSession(user.uid, sessionId || newSessionId, updatedMessages);
 
-      const aiResponse = await generateResponse(
-        question,
-        updatedMessages
-      );
+      const aiResponse = await generateResponse(question, updatedMessages);
       const words = aiResponse.split(" ");
       let currentWord = 0;
       setPartialContent("");
