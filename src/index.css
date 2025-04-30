@@ -1434,7 +1434,7 @@ input #file-upload-button {
   border: none;
 }
 
-.front,
+/* .front,
 .back {
   position: absolute;
   bottom: 0;
@@ -1452,7 +1452,7 @@ input #file-upload-button {
   border-radius: 0.5rem;
   background-color: #e6f1f6;
   cursor: pointer;
-}
+} */
 
 .front {
   background-color: #f8f9fa;
