@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import { saveDeck } from "../utils/flashcardService";
+import CardStack from "../components/Cardstack/CardStack";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,8 +18,6 @@ const NewFlashcards = () => {
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(null);
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [isFrontCardVisible, setIsFrontCardVisible] = useState("");
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
 
@@ -30,7 +29,6 @@ const NewFlashcards = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setIsFrontCardVisible("yes");
   }, []);
 
   if (!user) {
@@ -51,44 +49,6 @@ const NewFlashcards = () => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
   };
 
-  const trackCardFace = () => {
-    setIsFrontCardVisible((prev) => (prev === "yes" ? "no" : "yes"));
-  };
-
-  const flipCard = () => {
-    setIsFlipped(!isFlipped);
-  };
-
-  const showPreviousCard = () => {
-    const updateDeck = (prev) =>
-      prev.map((card, _, array) => ({
-        ...card,
-        zIndex: card.zIndex === 1 ? array.length : card.zIndex - 1,
-      }));
-
-    if (isFrontCardVisible === "no") {
-      flipCard();
-      setIsFrontCardVisible("yes");
-    }
-
-    setDeck(updateDeck);
-  };
-
-  const showNextCard = () => {
-    const updateDeck = (prev) =>
-      prev.map((card, _, array) => ({
-        ...card,
-        zIndex: card.zIndex === array.length ? 1 : card.zIndex + 1,
-      }));
-
-    if (isFrontCardVisible === "no") {
-      flipCard();
-      setIsFrontCardVisible("yes");
-    }
-
-    setDeck(updateDeck);
-  };
-
   const onSubmit = async (topic, numberOfCards) => {
     setInputError(null);
     if (numberOfCards < 5 || numberOfCards > 40) {
@@ -105,13 +65,11 @@ const NewFlashcards = () => {
       setLoading(true);
       const aiResponse = await generateFlashcards(topic, numberOfCards);
       const parsedResponse = JSON.parse(aiResponse);
-      const cardsWithZIndex = parsedResponse.map(
-        (cards, index, array) => ({
-          ...cards,
-          zIndex: array.length - index,
-          topic: topic,
-        })
-      );
+      const cardsWithZIndex = parsedResponse.map((cards, index, array) => ({
+        ...cards,
+        zIndex: array.length - index,
+        topic: topic,
+      }));
       await saveDeck(user.uid, cardsWithZIndex, title, cardCount);
       setDeck(cardsWithZIndex);
       setLoading(false);
@@ -173,65 +131,14 @@ const NewFlashcards = () => {
               <TypingIndicator />
             </div>
           )}
+           {!loading && deck.length > 0 &&
+            <>
+              <h1>{deck[0].topic.toUpperCase()}</h1>
+              <CardStack cards={deck} />
+            </>}
           {error && (
             <div className="chat-error-container">
               <p className="error">Something went wrong. Please try again</p>
-            </div>
-          )}
-          {deck?.map((card) => {
-            return (
-              <div
-                className={`flashcard ${isFlipped ? "flipped" : ""}`}
-                key={card.id}
-                style={{ zIndex: card.zIndex }}
-              >
-                <div
-                  className="front"
-                  onClick={() => {
-                    flipCard();
-                    trackCardFace();
-                  }}
-                >
-                  <span className="card-number-top">{card.id}</span>
-                  <h2>{card.topic.toUpperCase()}</h2>
-                  <span className="card-question">Question</span>
-                  <h3>{card.question}</h3>
-                  <span className="card-number-bottom">{card.id}</span>
-                  <span className="card-toggle">Tap to flip</span>
-                </div>
-                <div
-                  className="back"
-                  onClick={() => {
-                    flipCard();
-                    trackCardFace();
-                  }}
-                >
-                  <span className="card-number-top">{card.id}</span>
-                  <span className="card-answer">Answer</span>
-                  <p>{card.answer}</p>
-                  <span className="card-number-bottom">{card.id}</span>
-                  <span className="card-toggle">Tap to flip</span>
-                </div>
-              </div>
-            );
-          })}
-          {deck?.length > 0 && (
-            <div className="navigation">
-              <Button
-                variant="ghost--orange"
-                onClick={showPreviousCard}
-                style={{ margin: 0, width: "2rem" }}
-              >
-                <KeyboardArrowLeftOutlinedIcon />
-              </Button>
-
-              <Button
-                variant="ghost--orange"
-                onClick={showNextCard}
-                style={{ margin: 0 }}
-              >
-                <KeyboardArrowRightOutlinedIcon />
-              </Button>
             </div>
           )}
         </div>
