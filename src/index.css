@@ -1327,7 +1327,7 @@ input #file-upload-button {
 }
 .flashcards-container.extended {
   height: 124vh;
-  padding: 7rem 0 0 0;
+  padding: 2rem 0 0 0;
 }
 .flashcards-container.regular {
   height: 100vh;
