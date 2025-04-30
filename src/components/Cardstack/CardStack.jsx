@@ -61,7 +61,6 @@ const CardStack = ({ cards }) => {
                   onClick={handleFlip}
                 >
                   <div className="card-face card-front">
-                    <h3>{card.topic}</h3>
                     <span className="card-question">Question</span>
                     <p>{card.question}</p>
                     <span className="card-toggle">Tap to flip</span>
@@ -76,7 +75,7 @@ const CardStack = ({ cards }) => {
             ) : (
               <div className="card-inner">
                 <div className="card-face card-front">
-                  <h3>{card.topic}</h3>
+                  {/* <h3>{card.topic}</h3> */}
                 </div>
               </div>
             )}

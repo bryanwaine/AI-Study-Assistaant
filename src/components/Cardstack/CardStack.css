@@ -1,7 +1,8 @@
+
 .card-stack-container {
   position: relative;
-  width: 320px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   perspective: 1000px;
 }
@@ -61,12 +62,12 @@
 
 .card-face p {
   margin: 0.5rem 0 0 0;
-  line-height: 2;
+  line-height: 1.75;
 }
 
 .card-face li {
   margin: 1rem 0 0 0;
-  line-height: 2;
+  line-height: 1.75;
 }
 
 .card-back {
@@ -82,7 +83,7 @@
 
 .card-question,
 .card-answer {
-  margin: 3rem 0 0 0;
+  margin: 1rem 0 0 0;
 }
 
 .card-question,
