@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import "./CardStack.css"; // Include styles below or convert to Tailwind
+import "./CardStack.css"; 
 
 const CardStack = ({ cards }) => {
   const [deck, setDeck] = useState(cards);
@@ -32,7 +32,7 @@ const CardStack = ({ cards }) => {
     <div className="card-stack-container">
       {deck.map((card, index) => {
         const isTop = index === 0;
-        const offset = Math.min(index, 4); // only show top 4 stacked
+        const offset = Math.min(index, 4); // only show top 5 stacked
 
         return (
           <div
