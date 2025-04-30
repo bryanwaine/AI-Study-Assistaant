@@ -32,7 +32,7 @@ const CardStack = ({ cards }) => {
     <div className="card-stack-container">
       {deck.map((card, index) => {
         const isTop = index === 0;
-        const offset = Math.min(index, 3); // only show top 4 stacked
+        const offset = Math.min(index, 4); // only show top 4 stacked
 
         return (
           <div
