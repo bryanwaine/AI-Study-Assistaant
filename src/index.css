@@ -1414,15 +1414,16 @@ input #file-upload-button {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 85%;
+  height: 80%;
   padding: 0 2rem 4rem 2rem;
   /* margin-top: 2rem; */
   border: none;
 }
 
 .flashcards-container.extended .deck-wrapper {
-  height: 65%;
+  height: 60%;
   padding: 0 2rem 2rem 2rem;
+  margin-bottom: 2rem;
   
 }
 
