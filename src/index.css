@@ -792,7 +792,7 @@ fieldset .btn {
 }
 
 .dashboard-container > h1 {
-  margin: 0 0 2rem 2rem;
+  margin: 0 0 2rem 0;
 }
 
 .dashboard-container > section {
@@ -870,7 +870,8 @@ fieldset .btn {
 }
 
 .sessions-container > h1 {
-  margin: 0 0 2rem 2rem;
+  margin: 0 0 2rem 0;
+  align-self: center;
 }
 
 .sessions-container h2 {
@@ -1421,6 +1422,7 @@ input #file-upload-button {
   margin: 0 0 2rem 0;
   font-size: 1.2rem;
   text-align: center;
+  align-self: center;
 }
 
 .flashcard {
