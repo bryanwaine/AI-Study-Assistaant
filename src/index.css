@@ -1322,16 +1322,17 @@ input #file-upload-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 100vw;
 }
 .flashcards-container.extended {
   height: 124vh;
-  padding: 2rem 0 0 0;
+  padding: 3rem 0 0 0;
 }
+
 .flashcards-container.regular {
   height: 100vh;
-  padding: 0;
+  padding: 7rem 0 0 0;
 }
 
 
