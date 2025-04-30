@@ -59,7 +59,7 @@ const Deck = () => {
           )}
           {!fetching && deck.length > 0 &&
             <>
-              <h1>{deck[0].topic}</h1>
+              <h1>{deck[0].topic.toUpperCase()}</h1>
               <CardStack cards={deck} />
             </>}
         </div>

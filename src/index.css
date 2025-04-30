@@ -1420,6 +1420,7 @@ input #file-upload-button {
 .deck-wrapper h1 {
   margin: 0 0 2rem 0;
   font-size: 1.2rem;
+  text-align: center;
 }
 
 .flashcard {
