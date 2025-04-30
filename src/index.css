@@ -1322,14 +1322,16 @@ input #file-upload-button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   width: 100vw;
-  padding: 7rem 0 0 0;
 }
 .flashcards-container.extended {
   height: 124vh;
+  padding: 7rem 0 0 0;
 }
 .flashcards-container.regular {
   height: 100vh;
+  padding: 0;
 }
 
 
@@ -1421,6 +1423,11 @@ input #file-upload-button {
 .flashcards-container.extended .deck-wrapper {
   height: 65%;
   padding: 0 2rem 2rem 2rem;
+  
+}
+
+.flashcards-container.regular .deck-wrapper {
+  margin-bottom: 2rem;
 }
 
 .deck-wrapper h1 {
