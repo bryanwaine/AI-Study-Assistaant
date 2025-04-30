@@ -1420,6 +1420,7 @@ input #file-upload-button {
 
 .flashcards-container.extended .deck-wrapper {
   height: 70%;
+  padding: 0 2rem 2rem 2rem;
 }
 
 .deck-wrapper h1 {
