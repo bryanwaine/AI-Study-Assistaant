@@ -1424,12 +1424,12 @@ input #file-upload-button {
 .flashcards-container.extended .deck-wrapper {
   height: 80vh;
   padding: 0 2rem 2rem 2rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   
 }
 
 .flashcards-container.regular .deck-wrapper {
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   height: 80vh;
 }
 
