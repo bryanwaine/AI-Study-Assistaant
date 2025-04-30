@@ -56,7 +56,7 @@ const NewFlashcards = () => {
       return;
     }
     try {
-      const title = topic;
+      const cardTopic = topic;
       const cardCount = numberOfCards;
       setTopic("");
       setNumberOfCards("");
@@ -65,13 +65,13 @@ const NewFlashcards = () => {
       setLoading(true);
       const aiResponse = await generateFlashcards(topic, numberOfCards);
       const parsedResponse = JSON.parse(aiResponse);
-      const cardsWithZIndex = parsedResponse.map((cards, index, array) => ({
-        ...cards,
-        zIndex: array.length - index,
-        topic: topic,
+      const flashcards = parsedResponse.map((card, index) => ({
+        ...card,
+        id: card.id || index + 1,
+        topic: cardTopic,
       }));
-      await saveDeck(user.uid, cardsWithZIndex, title, cardCount);
-      setDeck(cardsWithZIndex);
+      await saveDeck(user.uid, flashcards, cardTopic, cardCount);
+      setDeck(flashcards);
       setLoading(false);
     } catch (error) {
       setLoading(false);
