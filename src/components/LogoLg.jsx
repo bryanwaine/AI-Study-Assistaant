@@ -4,7 +4,7 @@ const LogoLg = ({variant}) => {
   return (
     <Link to="/" className="logo-container">
       <p className={`logo-lg logo-${variant}`}>
-        <span>Ai</span>demy
+        Auxili<span>ai</span>re
       </p>
       <p className={`tagline-lg tagline-${variant}`}>Your AI Study Assistant</p>
     </Link>
