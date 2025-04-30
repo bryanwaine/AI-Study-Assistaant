@@ -75,7 +75,6 @@ const CardStack = ({ cards }) => {
             ) : (
               <div className="card-inner">
                 <div className="card-face card-front">
-                  {/* <h3>{card.topic}</h3> */}
                 </div>
               </div>
             )}

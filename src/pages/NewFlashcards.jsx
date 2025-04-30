@@ -124,7 +124,7 @@ const NewFlashcards = () => {
             {loading ? "Generating Flashcards..." : "Generate Flashcards"}
           </Button>
         </div>
-        <div ref={endRef} />
+        <div ref={endRef} style={{marginTop: "2rem"}} />
         <div className="deck-wrapper">
           {loading && (
             <div className="loading-indicator">
