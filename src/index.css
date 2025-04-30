@@ -1430,6 +1430,10 @@ input #file-upload-button {
   align-self: center;
 }
 
+.flashcards-container.extended .deck-wrapper h1 {
+  margin-top: 2rem;
+}
+
 .flashcard {
   position: absolute;
   bottom: 0;
