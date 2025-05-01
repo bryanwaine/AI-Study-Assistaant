@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import "./CardStack.css"; 
+import "./CardStack.css";
 
 const CardStack = ({ cards }) => {
   const [deck, setDeck] = useState(cards);
@@ -39,7 +39,9 @@ const CardStack = ({ cards }) => {
             key={card.id}
             className="card-wrapper"
             style={{
-              transform: `translateY(${offset * 15}px) scale(${1 - offset * 0.03})`,
+              transform: `translateY(${offset * 15}px) scale(${
+                1 - offset * 0.03
+              })`,
               zIndex: deck.length - index,
             }}
           >
@@ -63,19 +65,24 @@ const CardStack = ({ cards }) => {
                   <div className="card-face card-front">
                     <span className="card-question">Question</span>
                     <p>{card.question}</p>
-                    <span className="card-toggle">Tap to flip</span>
+                    <div className="card-face-footer">
+                      <span className="card-toggle">Tap to flip</span>
+                      <span className="card-swipe">Swipe to change</span>
+                    </div>
                   </div>
                   <div className="card-face card-back">
                     <span className="card-answer">Answer</span>
                     <p>{card.answer}</p>
-                    <span className="card-toggle">Tap to flip</span>
+                    <div className="card-face-footer">
+                      <span className="card-toggle">Tap to flip</span>
+                      <span className="card-swipe">Swipe to change</span>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
             ) : (
               <div className="card-inner">
-                <div className="card-face card-front">
-                </div>
+                <div className="card-face card-front"></div>
               </div>
             )}
           </div>
