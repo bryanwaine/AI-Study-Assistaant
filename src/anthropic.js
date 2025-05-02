@@ -93,4 +93,14 @@ const generateFlashcards = async (topic, numberOfCards) => {
   return msg.content[0].text;
 };
 
-export { generateResponse, generateFlashcards };
+const generateNoteSummary = async (notes) => {
+  const msg = await anthropic.messages.create({
+    model: "claude-3-7-sonnet-20250219",
+    max_tokens: 1024,
+    system: NOTE_SUMMARY_SYSTEM_PROMPT(notes),
+    messages: [{ role: "user", content: notes }],
+  });
+  return msg.content[0].text;
+};
+
+export { generateResponse, generateFlashcards, generateNoteSummary };

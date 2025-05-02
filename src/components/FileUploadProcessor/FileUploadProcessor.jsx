@@ -2,9 +2,9 @@ import { useState } from "react";
 import mammoth from "mammoth";
 import "./FileUploadProcessor.css";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
-import pdf from '/images/pdf_file_icon.png';
-import docx from '/images/doc_file_icon.png';
-import txt from '/images/txt_file_icon.png';
+import pdf from "/images/pdf_file_icon.png";
+import docx from "/images/doc_file_icon.png";
+import txt from "/images/txt_file_icon.png";
 
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
@@ -15,12 +15,11 @@ const FileUploadProcessor = ({ onExtractedText }) => {
   const [status, setStatus] = useState(null);
   const [fileName, setFileName] = useState("");
 
+
   const handleFile = async (e) => {
     const file = e.target.files[0];
     setFileName(file.name);
     if (!file) return;
-
-    console.log(file);
 
     setStatus({ loading: true, message: "Uploading file..." });
     let extractedText = "";
@@ -40,7 +39,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       }
 
       setStatus({ success: true, message: "File uploaded successfully" });
-      onExtractedText(extractedText); // Pass to AI assistant for summarizing or quiz generation
+      onExtractedText(extractedText, setFileName, setStatus); 
     } catch (error) {
       console.error(error);
       setStatus({ error: true, message: "Failed to upload file" });
@@ -84,13 +83,17 @@ const FileUploadProcessor = ({ onExtractedText }) => {
     if (fileName.endsWith(".txt")) return txt;
     return "";
   };
-    
-    const displayFileName = () => {
-      if (fileName.length > 20) {
-        return fileName.substring(0, 10) + "..." + fileName.substring(fileName.length - 10);
-      }
-      return fileName;
-    };
+
+  const displayFileName = () => {
+    if (fileName.length > 30) {
+      return (
+        fileName.substring(0, 15) +
+        "..." +
+        fileName.substring(fileName.length - 15)
+      );
+    }
+    return fileName;
+  };
 
   return (
     <div className="file-upload-wrapper">
@@ -119,10 +122,12 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       >
         {status?.message}
       </p>
-      { status && <div className="file-name">
-        <img src={setImg(fileName)} alt="" />
-        <p>{displayFileName()}</p>
-      </div>}
+      {status && (
+        <div className="file-name">
+          <img src={setImg(fileName)} alt="" />
+          <p>{displayFileName()}</p>
+        </div>
+      )}
     </div>
   );
 };

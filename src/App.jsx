@@ -15,6 +15,7 @@ import NewQuiz from "./pages/NewQuiz";
 import NewNote from "./pages/NewNote";
 import Notes from "./pages/Notes";
 import Quizzes from "./pages/Quizzes";
+import Note from "./pages/Note";
 // import setAppHeight from "./utils/setAppHeight";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/decks/:deckId" element={<Deck />} />
           <Route path="/new-note" element={<NewNote />} />
           <Route path="/notes" element={<Notes />} />
+          <Route path="/notes/:noteId" element={<Note />} />
           <Route path="/new-quiz" element={<NewQuiz />} />
           <Route path="/quizzes" element={<Quizzes />} />
         </Route>

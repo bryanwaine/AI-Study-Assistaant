@@ -76,7 +76,6 @@ const NewFlashcards = () => {
     } catch (error) {
       setLoading(false);
       setError(handleAnthropicError(error).message);
-      console.log(error);
     }
   };
 

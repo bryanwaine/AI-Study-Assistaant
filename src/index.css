@@ -1629,6 +1629,10 @@ input #file-upload-button {
   padding: 4rem 2rem 2rem 2rem;
 }
 
+.notes-wrapper button {
+  margin: 1rem 0 2rem 0 ;
+}
+
 .notes-container {
   display: flex;
   flex-direction: column;
@@ -1640,6 +1644,36 @@ input #file-upload-button {
   background-color: #e6f1f6;
   color: #035172;
   border-radius: .5rem;
+}
+
+.note-summary h1 {
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 1.5;
+  margin: 1rem 0 0 0;
+}
+
+.note-summary h2 {
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.5;
+  margin: 1rem 0 0 0;
+}
+
+.note-summary p,
+.note-summary li {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.note-summary h2,
+.note-summary ul{
+  margin: 0 0 1rem 0;
+}
+
+.notes-title {
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
 }
 
 /* Media Queries */
