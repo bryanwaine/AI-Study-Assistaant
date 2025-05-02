@@ -23,7 +23,6 @@ const Note = () => {
       setFetching(true);
       try {
         const data = await getNote(user.uid, noteId);
-        console.log(data);
         setSummary(data.summary);
         setMetaData(data.metadata);
       } catch (error) {
@@ -41,6 +40,7 @@ const Note = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+    
 
   if (!user) return <Navigate to="/login" replace />;
 
@@ -49,14 +49,14 @@ const Note = () => {
       <Layout userName={userName} />
       <div className="notes-wrapper">
         {fetching && <Loader />}
-        <div className="notes-title">{metaData.title.toUpperCase()}</div>
+       { metaData?.title && <div className="notes-title">{metaData.title.toUpperCase()}</div>}
         <div className="notes-container">
-        {error && (
-          <div className="chat-error-container">
-            <p className="error">Something went wrong. Please try again.</p>
-          </div>
-        )}
-          {summary.map(
+          {error && (
+            <div className="chat-error-container">
+              <p className="error">Something went wrong. Please try again.</p>
+            </div>
+          )}
+          {summary?.map(
             (obj) =>
               obj.role === "assistant" && (
                 <div key={obj.id} className={`note-summary ${obj.role}`}>
