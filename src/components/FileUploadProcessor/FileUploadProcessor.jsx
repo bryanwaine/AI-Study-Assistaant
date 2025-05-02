@@ -76,9 +76,9 @@ const FileUploadProcessor = ({ onExtractedText }) => {
   };
 
   const setImg = (fileName) => {
-    if (fileName.endsWith(".pdf")) return "public/images/pdf_file_icon.png";
+    if (fileName.endsWith(".pdf")) return "/public/images/pdf_file_icon.png";
     if (fileName.endsWith(".docx") || fileName.endsWith(".doc")) return "public/images/doc_file_icon.png";
-    if (fileName.endsWith(".txt")) return "public/images/txt_file_icon.png";
+    if (fileName.endsWith(".txt")) return "/public/images/txt_file_icon.png";
     return "";
   };
 
