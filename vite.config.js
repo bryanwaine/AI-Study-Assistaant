@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['@emotion/styled'],
+    include: ['@emotion/styled', 'pdfjs-dist/legacy/build/pdf', 'pdfjs-dist/legacy/build/pdf.worker.entry'],
     exclude: ['firebase', 'firebase/app', 'firebase/firestore']
-  },
+  }
 })

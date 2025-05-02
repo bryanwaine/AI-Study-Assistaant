@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, Navigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
@@ -29,6 +29,10 @@ const Signup = () => {
   const navigate = useNavigate();
   const userName =
     formData.firstName.toLowerCase() + " " + formData.lastName.toLowerCase();
+
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, []);
 
   if (user) {
     return <Navigate to="/dashboard" replace />;

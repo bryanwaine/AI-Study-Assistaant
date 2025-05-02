@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, Navigate } from "react-router";
 import FormLayout from "../components/FormLayout";
 import useAuth from "../hooks/useAuth";
@@ -29,6 +29,10 @@ const Login = () => {
 
   const origin = location.state?.from || "/dashboard";
 
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, []);
+  
   if (user) {
     return <Navigate to="/dashboard" replace />;
   }

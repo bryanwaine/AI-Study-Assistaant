@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormLayout from "../components/FormLayout";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
@@ -19,6 +19,9 @@ const ResetPassword = () => {
 
   const isFormValid = formData.email && emailValidation(formData.email);
 
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -49,10 +52,10 @@ const ResetPassword = () => {
     >
       <p style={{ padding: 0, marginTop: "-1rem" }}>
         Please check your email for instructions on how to reset your password.
-          </p>
-          <Link style={{ marginTop: "1rem" }}className="link" to="/login">
-              Back to Login
-            </Link>
+      </p>
+      <Link style={{ marginTop: "1rem" }} className="link" to="/login">
+        Back to Login
+      </Link>
     </FormLayout>
   ) : (
     <FormLayout
@@ -75,7 +78,9 @@ const ResetPassword = () => {
         disabled={status === "Submitting" || !isFormValid}
       >
         {" "}
-        {status === "Submitting" ? "Sending Reset Email..." : "Send Reset Email"}
+        {status === "Submitting"
+          ? "Sending Reset Email..."
+          : "Send Reset Email"}
       </Button>
     </FormLayout>
   );

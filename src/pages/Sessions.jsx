@@ -18,6 +18,10 @@ const Sessions = () => {
   const userName = user?.displayName || location.state?.userName;
 
   useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
     const fetchSessions = async () => {
       setLoading(true);
       try {
@@ -33,7 +37,7 @@ const Sessions = () => {
     if (user) {
       fetchSessions();
     }
-  }, [ user ]);
+  }, [user]);
 
   return (
     <>

@@ -18,32 +18,44 @@ Use bullet points, headers, and formatting to improve readability for longer exp
 Always prioritize clarity and usefulness in your responses.`;
 
 const FLASHCARD_SYSTEM_PROMPT = (topic, numberOfCards) => `
-You are an expert AI-powered study assistant and flashcard creator designed to help students prepare for exams by generating flashcards for educational purposes. 
+You are an AI-powered flashcard generator and academic assistant trained to help students study efficiently and retain key concepts across a wide range of subjects.
 
-Your goal is to generate flashcards that cover a wide range of topics and are easy to remember. Use a helpful, friendly tone and adapt your explanations based on the user’s level of knowledge.
+Your task is to generate exactly ${numberOfCards} high-quality, exam-focused flashcards on the topic: **${topic}**.
 
-Generate ${numberOfCards} high-quality flashcards about: ${topic}
-Consider the following when creating flashcards:
-- Front side should contain a clear, concise question or concept
-- Back side should contain a comprehensive but succinct answer
-- Include key terminology, definitions, and important concepts
-- For factual topics, ensure information is accurate
-- For math or science, include formulas where appropriate
-- For programming, do not include code examples
-- For history, include key events and periods
-- For literature, include key characters, settings, and themes
-- For medicine, include key diseases, symptoms, and treatments
-- Generate brand new flashcards on each request
+Each flashcard should follow these guidelines:
+- The **front side** contains a clear, concise question, term, or concept prompt.
+- The **back side** provides a succinct yet complete explanation or answer, tailored to a student’s level of knowledge.
+- Ensure information is **factually accurate** and uses **student-friendly language**.
+- Focus on **key terms, definitions, and core principles**.
+- For different subject areas:
+  - **Math/Science**: Include formulas, laws, or structured logic (avoid long derivations).
+  - **Programming**: Avoid full code examples; describe syntax, logic, or concepts.
+  - **History**: Include important dates, events, figures, and their significance.
+  - **Literature**: Mention characters, plot points, themes, and literary devices.
+  - **Medicine**: Highlight diseases, symptoms, diagnostics, and treatments.
 
-Return ONLY a valid JSON array without any delimiters. Use this exact format:
+Each flashcard must be unique and relevant to the topic. Do not reuse or repeat cards between requests.
+
+Return the output as a **valid JSON array**, using the **exact format** below with no extra explanation or commentary:
+
 [
   {
     "id": 1,
-    "question": "Question text here",
-    "answer": "Answer text here"
+    "question": "What is the definition of ...?",
+    "answer": "..."
   },
   ...
 ]
+`;
+
+const NOTE_SUMMARY_SYSTEM_PROMPT = (notes) => `
+You are an AI-powered study assistant designed to help students learn and retain academic material effectively.
+
+Summarize the following study notes in a clear, concise, and easy-to-understand manner:
+
+${notes}
+
+Highlight the key concepts, important facts, and essential takeaways. Use a friendly and supportive tone, and tailor your explanations to a student’s level of understanding. Where appropriate, use bullet points, analogies, or simple examples to make complex ideas easier to grasp.
 
 `;
 
@@ -52,7 +64,7 @@ const anthropic = new Anthropic({
   dangerouslyAllowBrowser: true,
 });
 
-const generateResponse = async ( question, history) => {
+const generateResponse = async (question, history) => {
   const MAX_CONTEXT = 10;
   const recentContext = history?.slice(-MAX_CONTEXT);
   const msg = await anthropic.messages.create({
@@ -76,9 +88,7 @@ const generateFlashcards = async (topic, numberOfCards) => {
     model: "claude-3-7-sonnet-20250219",
     max_tokens: 4096,
     system: FLASHCARD_SYSTEM_PROMPT(topic, numberOfCards),
-    messages: [
-      { role: "user", content: topic },
-    ],
+    messages: [{ role: "user", content: topic }],
   });
   return msg.content[0].text;
 };

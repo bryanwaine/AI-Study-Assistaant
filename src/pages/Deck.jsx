@@ -7,7 +7,6 @@ import handleAnthropicError from "../utils/anthropicErrorHandler";
 import { getDeck } from "../utils/flashcardService";
 import CardStack from "../components/Cardstack/CardStack";
 
-
 const Deck = () => {
   const [deck, setDeck] = useState([]);
   const [error, setError] = useState(null);
@@ -40,7 +39,7 @@ const Deck = () => {
     }
   }, [deckId, user]);
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
@@ -57,11 +56,12 @@ const Deck = () => {
               <p className="error">Something went wrong. Please try again.</p>
             </div>
           )}
-          {!fetching && deck.length > 0 &&
+          {!fetching && deck.length > 0 && (
             <>
               <h1>{deck[0]?.topic.toUpperCase()}</h1>
               <CardStack cards={deck} />
-            </>}
+            </>
+          )}
         </div>
       </div>
     </>

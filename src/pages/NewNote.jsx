@@ -1,3 +1,4 @@
+import FileUploadProcessor from "../components/FileUploadProcessor/FileUploadProcessor";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 
@@ -7,7 +8,12 @@ const NewNote = () => {
   return (
     <>
       <Layout userName={userName} />
-      <h1 style={{ textAlign: "center", marginTop: "6rem" }}>Coming soon 😎</h1>
+      <div className="notes-wrapper">
+        <FileUploadProcessor onExtractedText={(text) => console.log(text)}/>
+        <div className="notes-container">
+          
+        </div>
+      </div>
     </>
   );
 };

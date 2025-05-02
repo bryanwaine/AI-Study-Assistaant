@@ -20,6 +20,10 @@ const Dashboard = () => {
   const userName = user?.displayName || location.state?.userName;
 
   useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
     const fetchSessions = async () => {
       setLoading(true);
       try {
@@ -43,7 +47,7 @@ const Dashboard = () => {
         setLoading(false);
       }
     };
-    
+
     fetchSessions();
     fetchDecks();
   }, []);
@@ -77,11 +81,11 @@ const Dashboard = () => {
                 </Link>
                 <div className="dashboard-item card--white">
                   <span className="dashboard-label">Notes</span>
-                  <span className="dashboard-value">5</span>
+                  <span className="dashboard-value">0</span>
                 </div>
                 <div className="dashboard-item card--white">
                   <span className="dashboard-label">Quizzes</span>
-                  <span className="dashboard-value">2</span>
+                  <span className="dashboard-value">0</span>
                 </div>
                 <Link to="/decks" className="link">
                   <div className="dashboard-item card--white">
