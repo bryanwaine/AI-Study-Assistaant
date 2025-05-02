@@ -1,18 +1,14 @@
 import { Link } from "react-router";
 import Button from "../components/Button";
 import LogoSm from "../components/LogoSm";
-import { useEffect } from "react";
 
 const Home = () => {
-  useEffect(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  }, []);
-
+  
   return (
     <div className="home-container">
       <div className="home-navbar">
         <div className="home-navbar-left">
-          <LogoSm variant="dark" />
+                  <LogoSm variant="dark"/>
         </div>
         <div className="home-navbar-right">
           <Link to="/login">
