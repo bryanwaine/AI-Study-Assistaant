@@ -9,7 +9,7 @@ import txt from '/public/images/txt_file_icon.png';
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js";
 
 const FileUploadProcessor = ({ onExtractedText }) => {
   const [status, setStatus] = useState(null);
