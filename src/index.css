@@ -1647,14 +1647,21 @@ input #file-upload-button {
 }
 
 .note-summary h1 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   text-align: center;
   line-height: 1.5;
   margin: 1rem 0 0 0;
 }
 
 .note-summary h2 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  text-align: center;
+  line-height: 1.5;
+  margin: 1rem 0 1rem 0;
+}
+
+.note-summary h3 {
+  font-size: 1rem;
   text-align: center;
   line-height: 1.5;
   margin: 1rem 0 0 0;
@@ -1666,7 +1673,7 @@ input #file-upload-button {
   line-height: 1.5;
 }
 
-.note-summary h2,
+
 .note-summary ul{
   margin: 0 0 1rem 0;
 }
