@@ -2,14 +2,14 @@ import { useState } from "react";
 import mammoth from "mammoth";
 import "./FileUploadProcessor.css";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
-import pdf from '/public/images/pdf_file_icon.png';
-import docx from '/public/images/doc_file_icon.png';
-import txt from '/public/images/txt_file_icon.png';
+import pdf from '/images/pdf_file_icon.png';
+import docx from '/images/doc_file_icon.png';
+import txt from '/images/txt_file_icon.png';
 
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js";
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
 const FileUploadProcessor = ({ onExtractedText }) => {
   const [status, setStatus] = useState(null);
