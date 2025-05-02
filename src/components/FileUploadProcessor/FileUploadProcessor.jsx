@@ -2,6 +2,9 @@ import { useState } from "react";
 import mammoth from "mammoth";
 import "./FileUploadProcessor.css";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
+import pdf from '/public/images/pdf_file_icon.png';
+import docx from '/public/images/doc_file_icon.png';
+import txt from '/public/images/txt_file_icon.png';
 
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
@@ -76,11 +79,18 @@ const FileUploadProcessor = ({ onExtractedText }) => {
   };
 
   const setImg = (fileName) => {
-    if (fileName.endsWith(".pdf")) return "/public/images/pdf_file_icon.png";
-    if (fileName.endsWith(".docx") || fileName.endsWith(".doc")) return "public/images/doc_file_icon.png";
-    if (fileName.endsWith(".txt")) return "/public/images/txt_file_icon.png";
+    if (fileName.endsWith(".pdf")) return pdf;
+    if (fileName.endsWith(".docx") || fileName.endsWith(".doc")) return docx;
+    if (fileName.endsWith(".txt")) return txt;
     return "";
   };
+    
+    const displayFileName = () => {
+      if (fileName.length > 20) {
+        return fileName.substring(0, 10) + "..." + fileName.substring(fileName.length - 10);
+      }
+      return fileName;
+    };
 
   return (
     <div className="file-upload-wrapper">
@@ -109,10 +119,10 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       >
         {status?.message}
       </p>
-      <div className="file-name">
+      { status && <div className="file-name">
         <img src={setImg(fileName)} alt="" />
-        <p>{fileName}</p>
-      </div>
+        <p>{displayFileName()}</p>
+      </div>}
     </div>
   );
 };
