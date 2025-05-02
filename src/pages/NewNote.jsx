@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { generateNoteSummary } from "../anthropic";
 import FileUploadProcessor from "../components/FileUploadProcessor/FileUploadProcessor";
 import Layout from "../components/Layout";
@@ -20,6 +20,13 @@ const NewNote = () => {
   const [title, setTitle] = useState("");
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
+  const isTitleValid = title.trim().length > 0;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  if (!user) return <Navigate to="/login" replace />;
 
   const onChange = (e) => {
     setTitle(e.target.value);
@@ -27,10 +34,11 @@ const NewNote = () => {
 
   const onsubmit = async (fileUploadProps) => {
     const { text, setStatus, setFileName } = fileUploadProps;
-    if (!text || !title) {
+    
+    if (!text || !isTitleValid) {
       console.log("No text or title provided");
       return;
-    };
+    }
     try {
       const userMessage = {
         id: Date.now(),
@@ -108,12 +116,17 @@ const NewNote = () => {
         </div>
         <Button
           variant="orange"
-          disabled={!fileUploadProps.text || !title}
+          disabled={!fileUploadProps.text || !isTitleValid || loading}
           onClick={() => onsubmit(fileUploadProps)}
         >
-          {loading ? "Generating summary..." : "Generate summary"}  
+          {loading ? "Generating summary..." : "Generate summary"}
         </Button>
         <div className="notes-container">
+          {error && (
+            <div className="chat-error-container">
+              <p className="error">Something went wrong. Please try again.</p>
+            </div>
+          )}
           {loading && <TypingIndicator />}
           {summary.map(
             (obj) =>

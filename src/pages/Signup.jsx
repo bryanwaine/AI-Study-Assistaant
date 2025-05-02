@@ -53,8 +53,8 @@ const Signup = () => {
       formData.password
     );
     const isEmailValid = emailValidation(formData.email);
-    const isFirstNameValid = formData.firstName.length >= 2;
-    const isLastNameValid = formData.lastName.length >= 2;
+    const isFirstNameValid = formData.firstName.trim().length >= 2;
+    const isLastNameValid = formData.lastName.trim().length >= 2;
 
     const errorObject = {};
     if (!isPasswordValid) {
