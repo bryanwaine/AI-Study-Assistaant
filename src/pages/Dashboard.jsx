@@ -10,10 +10,12 @@ import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Loader from "../components/Loader";
 import { getAllDecks } from "../utils/flashcardService";
+import { getAllNotes } from "../utils/noteService";
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [sessions, setSessions] = useState([]);
   const [flashcards, setFlashcards] = useState([]);
+  const [notes, setNotes] = useState([]);
   const [error, setError] = useState(null);
   const { user } = useAuth();
   const location = useLocation();
@@ -43,10 +45,24 @@ const Dashboard = () => {
         setLoading(false);
       }
     };
-    
+
+    const fetchNotes = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllNotes(user.uid);
+        setNotes(data);
+      } catch (error) {
+        setError(handleAnthropicError(error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNotes();
+
     fetchSessions();
     fetchDecks();
-  }, []);
+  }, [user]);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -75,14 +91,18 @@ const Dashboard = () => {
                     <span className="dashboard-value">{sessions.length}</span>
                   </div>
                 </Link>
-                <div className="dashboard-item card--white">
-                  <span className="dashboard-label">Notes</span>
-                  <span className="dashboard-value">0</span>
-                </div>
-                <div className="dashboard-item card--white">
-                  <span className="dashboard-label">Quizzes</span>
-                  <span className="dashboard-value">0</span>
-                </div>
+                <Link to="/notes" className="link">
+                  <div className="dashboard-item card--white">
+                    <span className="dashboard-label">Notes</span>
+                    <span className="dashboard-value">{notes.length}</span>
+                  </div>
+                </Link>
+                <Link to="/quizzes" className="link">
+                  <div className="dashboard-item card--white">
+                    <span className="dashboard-label">Quizzes</span>
+                    <span className="dashboard-value">0</span>
+                  </div>
+                </Link>
                 <Link to="/decks" className="link">
                   <div className="dashboard-item card--white">
                     <span className="dashboard-label">Decks</span>

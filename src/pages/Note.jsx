@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import { getNote } from "../utils/noteService";
 import MarkdownRenderer from "../components/MarkdownRenderer";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import Loader from "../components/Loader";
 
 const Note = () => {
@@ -13,6 +13,7 @@ const Note = () => {
   const [metaData, setMetaData] = useState({});
   const [error, setError] = useState(null);
 
+  const location = useLocation();
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
   const { noteId } = useParams();
