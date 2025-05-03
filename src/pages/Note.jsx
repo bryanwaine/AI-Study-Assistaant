@@ -11,7 +11,7 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import { saveDeck } from "../utils/flashcardService";
-import { generateFlashcards, generateFlashcardsFromNotes } from "../anthropic";
+import { generateFlashcardsFromNotes } from "../anthropic";
 import Button from "../components/Button";
 import TypingIndicator from "../components/TypingIndicator";
 import CardStack from "../components/Cardstack/CardStack";
@@ -69,6 +69,7 @@ const Note = () => {
         setSummary(data.summary);
         setMetaData(data.metadata);
         setNotes(data.summary[0].content);
+        console.log(data.summary[0].content.slice(0, 100));
       } catch (error) {
         setError(handleAnthropicError(error).message);
       } finally {
@@ -119,7 +120,7 @@ const Note = () => {
     setTopic(metaData.title.toUpperCase());
   };
 
-  const onSubmit = async (notes, numberOfCards) => {
+  const onSubmit = async () => {
     setInputError(null);
     if (numberOfCards < 5 || numberOfCards > 40) {
       setInputError("Please enter a number between 5 and 40");
@@ -254,6 +255,7 @@ const Note = () => {
           </div>
           <div className="flashcards-container regular">
             <div className="deck-wrapper">
+            <div ref={cardStackRef } style={{ height: "4rem" }}/>
               {loading && (
                 <div className="loading-indicator">
                   <TypingIndicator />
@@ -273,7 +275,7 @@ const Note = () => {
                 </div>
               )}
             </div>
-            <div ref={cardStackRef } />
+           
           </div>
         </>
       )}

@@ -53,7 +53,7 @@ const NewFlashcards = () => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
   };
 
-  const onSubmit = async (topic, numberOfCards) => {
+  const onSubmit = async () => {
     setInputError(null);
     if (numberOfCards < 5 || numberOfCards > 40) {
       setInputError("Please enter a number between 5 and 40");
