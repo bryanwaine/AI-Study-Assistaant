@@ -97,9 +97,9 @@ const Session = () => {
     return <Navigate to="/login" replace />;
   }
 
-  const handleCopy = (message) => {
+  const handleCopy = () => {
     if (aiMessageRef.current) {
-      navigator.clipboard.writeText(message);
+      navigator.clipboard.writeText(aiMessageRef.current.textContent);
     }
     setIsCopied(true);
     setTimeout(() => {
@@ -181,9 +181,9 @@ const Session = () => {
             <div
               key={message.id}
               className={`chat-message ${message.role}`}
-              ref={message.role === "assistant" ? aiMessageRef : null}
+              
             >
-              <div>
+              <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
                 ) : (
@@ -194,7 +194,7 @@ const Session = () => {
                 <span>
                   <button
                     className="message-copy-button"
-                    onClick={() => handleCopy(message.content)}
+                    onClick={() => handleCopy()}
                     title="Copy code"
                   >
                     {isCopied ? (

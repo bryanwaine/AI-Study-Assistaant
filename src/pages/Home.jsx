@@ -22,7 +22,7 @@ const Home = () => {
       <section className="home-content">
         <h1>Study Smarter with AI</h1>
         <p>
-          Organise your notes, chat with AI tutors, and quiz yourself with smart
+          Summarize your notes, chat with AI tutors, and quiz yourself with smart
           flashcards.
         </p>
         <Link to="/signup">

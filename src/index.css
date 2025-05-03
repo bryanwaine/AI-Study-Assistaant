@@ -618,7 +618,7 @@ fieldset .btn {
   width: 100%;
   list-style-type: none;
   text-align: left;
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0 2rem 0;
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
@@ -628,7 +628,6 @@ fieldset .btn {
 
 .menu-list li {
   border: none;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -636,6 +635,10 @@ fieldset .btn {
   padding: 0;
   margin: 0.5rem;
   cursor: pointer;
+}
+
+.menu-list a {
+  width: 100%;
 }
 
 .sidebar {
@@ -693,8 +696,8 @@ fieldset .btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
   color: #035172;
+  width: 100%;
 }
 
 .sidebar-list li .icon,
@@ -1092,6 +1095,10 @@ fieldset .btn {
   background-color: #e74c3c;
   color: white;
   max-width: 70%;
+}
+
+.chat-message.user p {
+  word-break: break-all;
 }
 
 .chat-message.assistant {
@@ -1682,6 +1689,17 @@ input #file-upload-button {
   margin: 2rem 0 1rem 0;
   font-weight: 700;
 }
+
+.notes-wrapper-action-buttons {
+  margin: 0 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+
 
 /* Media Queries */
 
