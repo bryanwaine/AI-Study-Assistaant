@@ -28,6 +28,7 @@ const Note = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
   const [createFlashcards, setCreateFlashcards] = useState(false);
+  const [createQuiz, setCreateQuiz] = useState(false);
 
   const location = useLocation();
   const { user } = useAuth();
@@ -46,7 +47,7 @@ const Note = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [createFlashcards]);
+  }, [createFlashcards, createQuiz]);
 
   useEffect(() => {
     const fetchNote = async () => {
@@ -94,8 +95,16 @@ const Note = () => {
   };
 
   const handleCreateFlashcards = () => {
-    console.log(endRef.current);
+    setCreateQuiz(false);
     setCreateFlashcards(true);
+    setTopic(metaData.title.toUpperCase())
+
+  };
+
+  const handleCreateQuiz = () => {
+    setCreateFlashcards(false);
+    setCreateQuiz(true);
+    setTopic(metaData.title.toUpperCase())
   };
 
   const onSubmit = async (topic, numberOfCards) => {
@@ -184,7 +193,7 @@ const Note = () => {
               Flashcards
             </span>
           </button>
-          <button className="message-copy-button" title="Ask a question">
+          <button className="message-copy-button" title="Create quiz" onClick={handleCreateQuiz}>
             <span>
               <QuizOutlinedIcon style={{ fontSize: ".85rem" }} />
               Quiz
@@ -194,7 +203,8 @@ const Note = () => {
       </div>
       {createFlashcards && (
         <div>
-          <div className="input-wrapper">
+          <div className="input-wrapper notes">
+            <p className="input-title">{`Generate flashcards from ${topic}`}</p>
             <div className="input-container">
               <label htmlFor="numberOfCards">Number of cards</label>
               <input
@@ -220,6 +230,58 @@ const Note = () => {
               onClick={() => onSubmit(topic, numberOfCards)}
             >
               {loading ? "Generating Flashcards..." : "Generate Flashcards"}
+            </Button>
+          </div>
+          <div ref={endRef} style={{ height: "4rem" }} />
+          <div className="deck-wrapper">
+            {loading && (
+              <div className="loading-indicator">
+                <TypingIndicator />
+              </div>
+            )}
+            {!loading && deck.length > 0 && (
+              <>
+                <h1>{deck[0].topic.toUpperCase()}</h1>
+                <CardStack cards={deck} />
+              </>
+            )}
+            {error && (
+              <div className="chat-error-container">
+                <p className="error">Something went wrong. Please try again</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      {createQuiz && (
+        <div>
+          <div className="input-wrapper notes">
+            <p className="input-title">{`Generate quiz from ${topic}`}</p>
+            <div className="input-container">
+              <label htmlFor="numberOfCards">Number of questions</label>
+              <input
+                type="text"
+                pattern="[0-9]*"
+                inputMode="numeric"
+                name="numberOfCards"
+                id="number-of-cards"
+                className={inputError ? "input-error" : ""}
+                value={numberOfCards}
+                onChange={onChange}
+                onInput={onInput}
+                required
+              />
+              {inputError && <span className="error">{inputError}</span>}
+            </div>
+
+            <Button
+              variant="orange"
+              type="submit"
+              disabled={!topic || !numberOfCards || loading}
+              aria-label="Generate flashcards"
+              // onClick={() => onSubmit(topic, numberOfCards)}
+            >
+              {loading ? "Generating Quiz..." : "Generate Quiz"}
             </Button>
           </div>
           <div ref={endRef} style={{ height: "4rem" }} />
