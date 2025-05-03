@@ -36,7 +36,7 @@ Each flashcard should follow these guidelines:
 
 Each flashcard must be unique and relevant to the topic. Do not reuse or repeat cards between requests.
 
-Return the output as a **valid JSON array**, using the **exact format** below with no extra explanation or commentary:
+Return the output as a **valid JSON array** without any delimiters, using the **exact format** below with no extra explanation or commentary:
 
 [
   {
@@ -67,7 +67,7 @@ Each flashcard should follow these guidelines:
 
 Each flashcard must be unique and relevant to the topic. Do not reuse or repeat cards between requests.
 
-Return the output as a **valid JSON array**, using the **exact format** below with no extra explanation or commentary:
+Return the output as a **valid JSON array** without any delimiters, using the **exact format** below with no extra explanation or commentary:
 
 [
   {

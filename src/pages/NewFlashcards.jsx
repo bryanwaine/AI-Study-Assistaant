@@ -20,12 +20,16 @@ const NewFlashcards = () => {
   const [inputError, setInputError] = useState(null);
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
-
-  const endRef = useRef(null);
+  
+  const cardStackRef = useRef(null);
 
   const scrollToBottom = () => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+    cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [deck]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -123,7 +127,7 @@ const NewFlashcards = () => {
             {loading ? "Generating Flashcards..." : "Generate Flashcards"}
           </Button>
         </div>
-        <div ref={endRef}  style={{ height: "4rem" }}/>
+        
         <div className="deck-wrapper">
           {loading && (
             <div className="loading-indicator">
@@ -141,6 +145,7 @@ const NewFlashcards = () => {
             </div>
           )}
         </div>
+        <div ref={cardStackRef}  style={{ height: "4rem" }}/>
       </div>
      
     </>

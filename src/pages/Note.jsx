@@ -13,6 +13,8 @@ import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import { saveDeck } from "../utils/flashcardService";
 import { generateFlashcards, generateFlashcardsFromNotes } from "../anthropic";
 import Button from "../components/Button";
+import TypingIndicator from "../components/TypingIndicator";
+import CardStack from "../components/Cardstack/CardStack";
 
 const Note = () => {
   const [fetching, setFetching] = useState(false);
@@ -36,10 +38,15 @@ const Note = () => {
   const userName = user?.displayName || location.state?.userName;
   const { noteId } = useParams();
   const aiMessageRef = useRef(null);
-  const endRef = useRef(null);
+  const inputSectionRef = useRef(null);
+  const cardStackRef = useRef(null);
 
   const scrollToBottom = () => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
+    cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToInputSection = () => {
+    inputSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -47,8 +54,12 @@ const Note = () => {
   }, []);
 
   useEffect(() => {
-    scrollToBottom();
+    scrollToInputSection();
   }, [createFlashcards, createQuiz]);
+  
+  useEffect(() => {
+    scrollToBottom();
+  }, [deck]);
 
   useEffect(() => {
     const fetchNote = async () => {
@@ -99,14 +110,13 @@ const Note = () => {
   const handleCreateFlashcards = () => {
     setCreateQuiz(false);
     setCreateFlashcards(true);
-    setTopic(metaData.title.toUpperCase())
-
+    setTopic(metaData.title.toUpperCase());
   };
 
   const handleCreateQuiz = () => {
     setCreateFlashcards(false);
     setCreateQuiz(true);
-    setTopic(metaData.title.toUpperCase())
+    setTopic(metaData.title.toUpperCase());
   };
 
   const onSubmit = async (notes, numberOfCards) => {
@@ -122,7 +132,10 @@ const Note = () => {
       scrollToBottom();
       setError(null);
       setLoading(true);
-      const aiResponse = await generateFlashcardsFromNotes(notes, numberOfCards);
+      const aiResponse = await generateFlashcardsFromNotes(
+        notes,
+        numberOfCards
+      );
       const parsedResponse = JSON.parse(aiResponse);
       const flashcards = parsedResponse.map((card, index) => ({
         ...card,
@@ -133,6 +146,7 @@ const Note = () => {
       setDeck(flashcards);
       setLoading(false);
     } catch (error) {
+      console.log(error);
       setLoading(false);
       setError(handleAnthropicError(error).message);
     }
@@ -194,7 +208,11 @@ const Note = () => {
               Flashcards
             </span>
           </button>
-          <button className="message-copy-button" title="Create quiz" onClick={handleCreateQuiz}>
+          <button
+            className="message-copy-button"
+            title="Create quiz"
+            onClick={handleCreateQuiz}
+          >
             <span>
               <QuizOutlinedIcon style={{ fontSize: ".85rem" }} />
               Quiz
@@ -203,7 +221,8 @@ const Note = () => {
         </div>
       </div>
       {createFlashcards && (
-        <div>
+        <>
+          <div ref={inputSectionRef} style={{ height: "4rem" }} />
           <div className="input-wrapper notes">
             <p className="input-title">{`Generate flashcards from ${topic}`}</p>
             <div className="input-container">
@@ -233,29 +252,34 @@ const Note = () => {
               {loading ? "Generating Flashcards..." : "Generate Flashcards"}
             </Button>
           </div>
-          <div ref={endRef} style={{ height: "4rem" }} />
-          <div className="deck-wrapper">
-            {loading && (
-              <div className="loading-indicator">
-                <TypingIndicator />
-              </div>
-            )}
-            {!loading && deck.length > 0 && (
-              <>
-                <h1>{deck[0].topic.toUpperCase()}</h1>
-                <CardStack cards={deck} />
-              </>
-            )}
-            {error && (
-              <div className="chat-error-container">
-                <p className="error">Something went wrong. Please try again</p>
-              </div>
-            )}
+          <div className="flashcards-container regular">
+            <div className="deck-wrapper">
+              {loading && (
+                <div className="loading-indicator">
+                  <TypingIndicator />
+                </div>
+              )}
+              {!loading && deck.length > 0 && (
+                <>
+                  <h1>{deck[0].topic.toUpperCase()}</h1>
+                  <CardStack cards={deck} />
+                </>
+              )}
+              {error && (
+                <div className="chat-error-container">
+                  <p className="error">
+                    Something went wrong. Please try again
+                  </p>
+                </div>
+              )}
+            </div>
+            <div ref={cardStackRef } />
           </div>
-        </div>
+        </>
       )}
       {createQuiz && (
         <div>
+          <div ref={inputSectionRef} style={{ height: "4rem" }} />
           <div className="input-wrapper notes">
             <p className="input-title">{`Generate quiz from ${topic}`}</p>
             <div className="input-container">
@@ -285,24 +309,28 @@ const Note = () => {
               {loading ? "Generating Quiz..." : "Generate Quiz"}
             </Button>
           </div>
-          <div ref={endRef} style={{ height: "4rem" }} />
-          <div className="deck-wrapper">
-            {loading && (
-              <div className="loading-indicator">
-                <TypingIndicator />
-              </div>
-            )}
-            {!loading && deck.length > 0 && (
-              <>
-                <h1>{deck[0].topic.toUpperCase()}</h1>
-                <CardStack cards={deck} />
-              </>
-            )}
-            {error && (
-              <div className="chat-error-container">
-                <p className="error">Something went wrong. Please try again</p>
-              </div>
-            )}
+          <div className="flashcards-container extended">
+            <div ref={cardStackRef} style={{ height: "4rem" }} />
+            <div className="deck-wrapper">
+              {loading && (
+                <div className="loading-indicator">
+                  <TypingIndicator />
+                </div>
+              )}
+              {!loading && deck.length > 0 && (
+                <>
+                  <h1>{deck[0].topic.toUpperCase()}</h1>
+                  <CardStack cards={deck} />
+                </>
+              )}
+              {error && (
+                <div className="chat-error-container">
+                  <p className="error">
+                    Something went wrong. Please try again
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
