@@ -1098,6 +1098,7 @@ fieldset .btn {
 }
 
 .chat-message.user p {
+  overflow-wrap: anywhere;
   overflow-wrap: break-word;
 }
 
