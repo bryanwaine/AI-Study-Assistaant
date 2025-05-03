@@ -1098,7 +1098,7 @@ fieldset .btn {
 }
 
 .chat-message.user p {
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .chat-message.assistant {
