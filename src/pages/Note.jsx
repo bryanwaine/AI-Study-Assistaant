@@ -11,7 +11,7 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import { saveDeck } from "../utils/flashcardService";
-import { generateFlashcards } from "../anthropic";
+import { generateFlashcards, generateFlashcardsFromNotes } from "../anthropic";
 import Button from "../components/Button";
 
 const Note = () => {
@@ -27,6 +27,7 @@ const Note = () => {
   ("");
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
+  const [notes, setNotes] = useState("");
   const [createFlashcards, setCreateFlashcards] = useState(false);
   const [createQuiz, setCreateQuiz] = useState(false);
 
@@ -56,6 +57,7 @@ const Note = () => {
         const data = await getNote(user.uid, noteId);
         setSummary(data.summary);
         setMetaData(data.metadata);
+        setNotes(data.summary[0].content);
       } catch (error) {
         setError(handleAnthropicError(error).message);
       } finally {
@@ -107,7 +109,7 @@ const Note = () => {
     setTopic(metaData.title.toUpperCase())
   };
 
-  const onSubmit = async (topic, numberOfCards) => {
+  const onSubmit = async (notes, numberOfCards) => {
     setInputError(null);
     if (numberOfCards < 5 || numberOfCards > 40) {
       setInputError("Please enter a number between 5 and 40");
@@ -116,12 +118,11 @@ const Note = () => {
     try {
       const cardTopic = topic;
       const cardCount = numberOfCards;
-      setTopic("");
       setNumberOfCards("");
       scrollToBottom();
       setError(null);
       setLoading(true);
-      const aiResponse = await generateFlashcards(topic, numberOfCards);
+      const aiResponse = await generateFlashcardsFromNotes(notes, numberOfCards);
       const parsedResponse = JSON.parse(aiResponse);
       const flashcards = parsedResponse.map((card, index) => ({
         ...card,
