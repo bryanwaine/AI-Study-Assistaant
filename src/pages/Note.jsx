@@ -255,7 +255,7 @@ const Note = () => {
           </div>
           <div className="flashcards-container regular">
             <div className="deck-wrapper">
-            <div ref={cardStackRef } style={{ height: "4rem" }}/>
+            <div ref={cardStackRef } style={{ height: "6rem" }}/>
               {loading && (
                 <div className="loading-indicator">
                   <TypingIndicator />
