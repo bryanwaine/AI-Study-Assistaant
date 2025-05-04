@@ -7,8 +7,6 @@ import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 import Button from "../components/Button";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import { saveDeck } from "../utils/flashcardService";
 import CardStack from "../components/Cardstack/CardStack";
 const NewFlashcards = () => {
@@ -22,18 +20,17 @@ const NewFlashcards = () => {
   const userName = user?.displayName || location.state?.userName;
   
   const cardStackRef = useRef(null);
-
-  const scrollToBottom = () => {
-    cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [deck]);
-
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    deck.length > 0 && scrollToBottom();
+  }, [deck]);
+  const scrollToBottom = () => {
+    cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   if (!user) {
     return <Navigate to="/login" replace />;

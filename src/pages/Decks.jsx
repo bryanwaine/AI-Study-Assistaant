@@ -47,8 +47,8 @@ const Decks = () => {
         {flashcards.length === 0 ? (
           <div className="empty-placeholder">
             <StyleOutlinedIcon />
-            <h2>You don't have any flashcards yet.</h2>
-            <p>When you do, they will show up here</p>
+            <h2>You don't have any flashcards yet</h2>
+            <p>When you do, they will show up here.</p>
           </div>
         ) : (
           <ul className="sessions">

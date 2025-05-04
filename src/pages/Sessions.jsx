@@ -49,8 +49,8 @@ const Sessions = () => {
         {sessions.length === 0 ? (
           <div className="empty-placeholder">
             <HistoryIcon />
-            <h2>You don't have any sessions yet.</h2>
-            <p>When you do, they will show up here</p>
+            <h2>You don't have any sessions yet</h2>
+            <p>When you do, they will show up here.</p>
           </div>
         ) : (
           <ul className="sessions">
