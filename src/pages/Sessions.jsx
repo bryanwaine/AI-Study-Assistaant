@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Button from "../components/Button";
 import formatFirebaseTimestamp from "../utils/formatFirebaseTimestamp";
 import sortSessionsByTime from "../utils/sortSessionsByTime";
+import HistoryIcon from "@mui/icons-material/History";
 
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);
@@ -33,7 +34,7 @@ const Sessions = () => {
     if (user) {
       fetchSessions();
     }
-  }, [ user ]);
+  }, [user]);
 
   return (
     <>
@@ -45,41 +46,49 @@ const Sessions = () => {
             New Session
           </Link>
         </Button>
-        <ul className="sessions">
-          {loading ? (
-            <Loader />
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            sortSessionsByTime(sessions).map((session) => (
-              <Link to={session.id} key={session.id}>
-                <li className="session card--blue">
-                  <h2>{session.metadata.title}</h2>
-                  <div className="session-footer">
-                    <div className="session-footer-left">
-                      <p>
-                        <span>Created</span>
-                        {formatFirebaseTimestamp(session.metadata.createdAt)}
-                      </p>
-                      <p>
-                        <span>Updated</span>
-                        {formatFirebaseTimestamp(session.metadata.updatedAt)}
-                      </p>
+        {sessions.length === 0 ? (
+          <div className="empty-placeholder">
+            <HistoryIcon />
+            <h2>You don't have any sessions yet.</h2>
+            <p>When you do, they will show up here</p>
+          </div>
+        ) : (
+          <ul className="sessions">
+            {loading ? (
+              <Loader />
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              sortSessionsByTime(sessions).map((session) => (
+                <Link to={session.id} key={session.id}>
+                  <li className="session card--blue">
+                    <h2>{session.metadata.title}</h2>
+                    <div className="session-footer">
+                      <div className="session-footer-left">
+                        <p>
+                          <span>Created</span>
+                          {formatFirebaseTimestamp(session.metadata.createdAt)}
+                        </p>
+                        <p>
+                          <span>Updated</span>
+                          {formatFirebaseTimestamp(session.metadata.updatedAt)}
+                        </p>
+                      </div>
+                      <div className="session-footer-right">
+                        <p>
+                          {session.metadata.messageCount}
+                          {session.metadata.messageCount === 1
+                            ? " message"
+                            : " messages"}
+                        </p>
+                      </div>
                     </div>
-                    <div className="session-footer-right">
-                      <p>
-                        {session.metadata.messageCount}
-                        {session.metadata.messageCount === 1
-                          ? " message"
-                          : " messages"}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </Link>
-            ))
-          )}
-        </ul>
+                  </li>
+                </Link>
+              ))
+            )}
+          </ul>
+        )}
       </div>
     </>
   );

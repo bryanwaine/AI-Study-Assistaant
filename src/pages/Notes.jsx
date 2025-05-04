@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import formatFirebaseTimestamp from "../utils/formatFirebaseTimestamp";
 import sortFlashcardsByTime from "../utils/sortFlashcardsByTime";
 import { getAllNotes } from "../utils/noteService";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
@@ -43,29 +44,41 @@ const Notes = () => {
             New Note
           </Link>
         </Button>
-        <ul className="sessions">
-          {loading ? (
-            <Loader />
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            sortFlashcardsByTime(notes).map((note) => (
-              <Link to={note.id} key={note.id}>
-                <li className="session card--blue">
-                  <h2>{note.metadata.title.toUpperCase()}</h2>
-                  <div className="session-footer">
-                    <div className="session-footer-left">
-                      <p>
-                        <span>Created</span>
-                        {formatFirebaseTimestamp(note.metadata.createdAt)}
-                      </p>
+        {notes.length === 0 ? (
+          <div className="empty-placeholder">
+            <DescriptionOutlinedIcon />
+            <h2>You don't have any notes yet.</h2>
+            <p>When you do, they will show up here</p>
+          </div>
+        ) : (
+          <ul className="sessions">
+            {loading ? (
+              <Loader />
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              sortFlashcardsByTime(notes).map((note) => (
+                <Link to={note.id} key={note.id}>
+                  <li className="session card--blue">
+                    <h2>{note.metadata.title.toUpperCase()}</h2>
+                    <div className="session-footer">
+                      <div className="session-footer-left">
+                        <p>
+                          <span>File</span>
+                          {note.metadata.fileName || ""}
+                        </p>
+                        <p>
+                          <span>Created</span>
+                          {formatFirebaseTimestamp(note.metadata.createdAt)}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              </Link>
-            ))
-          )}
-        </ul>
+                  </li>
+                </Link>
+              ))
+            )}
+          </ul>
+        )}
       </div>
     </>
   );

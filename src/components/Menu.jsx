@@ -1,4 +1,4 @@
-import {  NavLink } from "react-router";
+import { NavLink } from "react-router";
 import HistoryIcon from "@mui/icons-material/History";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
@@ -91,86 +91,32 @@ const Menu = (props) => {
           </li>
         </NavLink>
       </ul>
-      <ul className="menu-list">
-        <h3>Session History</h3>
-        {loading && <Loader />}
-        {error && <p>{error}</p>}
-        {sortSessionsByTime(sessions).map((session) => (
-          <NavLink
-            to={`/sessions/${session.id}`}
-            key={session.id}
-            style={({ isActive }) => (isActive ? activeStyles : null)}
-            onClick={onClick}
-          >
-            <li>
-              <div>
-                <span>
-                  {session.metadata.title.length > 40
-                    ? session.metadata.title.slice(0, 40) + "..."
-                    : session.metadata.title}
-                </span>
-              </div>
-            </li>
-          </NavLink>
-        ))}
-      </ul>
-      {/* <ul className="menu-list">
-            <h3>This week</h3>
-            <li>
-              <div>
-                <span> Memoization in React</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>useState hook best practices</span>
-              </div>
-            </li>
-          </ul>
-          <ul className="menu-list">
-            <h3>Last week</h3>
-            <li>
-              <div>
-                <span> Object destructuring in JavaScript</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>Empty array truthy or falsy</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>Save fetch data to local storage</span>
-              </div>
-            </li>
-          </ul>
-          <ul className="menu-list">
-            <h3>2 weeks ago</h3>
-            <li>
-              <div>
-                <span>Shalow vs deep copy</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>Searchng algorithm complexity</span>
-              </div>
-            </li>
-          </ul>
-          <ul className="menu-list">
-            <h3>1 month ago</h3>
-            <li>
-              <div>
-                <span>Select list items in Html</span>
-              </div>
-            </li>
-            <li>
-              <div>
-                <span>Conditional rendering in React</span>
-              </div>
-            </li>
-          </ul> */}
+      {sessions.length > 0 && (
+        <ul className="menu-list">
+          <h3>Session History</h3>
+          {loading && <Loader />}
+          {error && <p>{error}</p>}
+          {sortSessionsByTime(sessions).map((session) => (
+            <NavLink
+              to={`/sessions/${session.id}`}
+              key={session.id}
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+              onClick={onClick}
+            >
+              <li>
+                <div>
+                  <span>
+                    {session.metadata.title.length > 40
+                      ? session.metadata.title.slice(0, 40) + "..."
+                      : session.metadata.title}
+                  </span>
+                </div>
+              </li>
+            </NavLink>
+          ))}
+        </ul>
+      )}
+      
     </div>
   );
 };

@@ -13,12 +13,13 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 
 const FileUploadProcessor = ({ onExtractedText }) => {
   const [status, setStatus] = useState(null);
-  const [fileName, setFileName] = useState("");
+  const [displayFileName, setDisplayFileName] = useState("");
 
 
   const handleFile = async (e) => {
     const file = e.target.files[0];
-    setFileName(file.name);
+    const fileName = file.name
+    setDisplayFileName(file.name);
     if (!file) return;
 
     setStatus({ loading: true, message: "Uploading file..." });
@@ -39,7 +40,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       }
 
       setStatus({ success: true, message: "File uploaded successfully" });
-      onExtractedText(extractedText, setFileName, setStatus); 
+      onExtractedText(extractedText, fileName, setDisplayFileName, setStatus); 
     } catch (error) {
       console.error(error);
       setStatus({ error: true, message: "Failed to upload file" });
@@ -77,22 +78,22 @@ const FileUploadProcessor = ({ onExtractedText }) => {
     });
   };
 
-  const setImg = (fileName) => {
-    if (fileName.endsWith(".pdf")) return pdf;
-    if (fileName.endsWith(".docx") || fileName.endsWith(".doc")) return docx;
-    if (fileName.endsWith(".txt")) return txt;
+  const setImg = (displayFileName) => {
+    if (displayFileName.endsWith(".pdf")) return pdf;
+    if (displayFileName.endsWith(".docx") || displayFileName.endsWith(".doc")) return docx;
+    if (displayFileName.endsWith(".txt")) return txt;
     return "";
   };
 
-  const displayFileName = () => {
-    if (fileName.length > 30) {
+  const formatFileName = () => {
+    if (displayFileName.length > 30) {
       return (
-        fileName.substring(0, 15) +
+        displayFileName.substring(0, 15) +
         "..." +
-        fileName.substring(fileName.length - 15)
+        displayFileName.substring(displayFileName.length - 15)
       );
     }
-    return fileName;
+    return displayFileName;
   };
 
   return (
@@ -124,8 +125,8 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       </p>
       {status && (
         <div className="file-name">
-          <img src={setImg(fileName)} alt="" />
-          <p>{displayFileName()}</p>
+          <img src={setImg(displayFileName)} alt="" />
+          <p>{formatFileName()}</p>
         </div>
       )}
     </div>

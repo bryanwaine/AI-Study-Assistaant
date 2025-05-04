@@ -878,7 +878,7 @@ fieldset .btn {
 }
 
 .sessions-container h2 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   align-self: flex-start;
   text-align: left;
 }
@@ -1649,6 +1649,7 @@ input #file-upload-button {
   width: 100%;
   height: 100%;
   padding: 2rem 2rem 2rem 2rem;
+  /* margin: 0 0 2rem 0; */
   background-color: #e6f1f6;
   color: #035172;
   border-radius: .5rem;
@@ -1711,6 +1712,31 @@ input #file-upload-button {
   font-weight: 600;
   font-size: 1rem;
   color: #111111;
+}
+
+.empty-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin: 25% 0 0 0
+}
+
+.empty-placeholder svg {
+  width: 10rem;
+  height: 10rem;
+}
+
+.empty-placeholder h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0 0;
+  align-self: center;
 }
 
 /* Media Queries */

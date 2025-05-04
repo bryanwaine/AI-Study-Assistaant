@@ -69,7 +69,6 @@ const Note = () => {
         setSummary(data.summary);
         setMetaData(data.metadata);
         setNotes(data.summary[0].content);
-        console.log(data.summary[0].content.slice(0, 100));
       } catch (error) {
         setError(handleAnthropicError(error).message);
       } finally {
@@ -96,9 +95,6 @@ const Note = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    if (name === "topic") {
-      setTopic(value);
-    }
     if (name === "numberOfCards") {
       setNumberOfCards(value);
     }

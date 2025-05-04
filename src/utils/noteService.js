@@ -2,10 +2,11 @@ import { collection, doc, getDoc, getDocs, serverTimestamp, setDoc, updateDoc } 
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../firebase";
 
-const saveNote = async (userId, summary, title) => {
+const saveNote = async (userId, summary, title, fileName) => {
   const noteId = uuidv4();
   const metadata = {
     title,
+    fileName,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   };
