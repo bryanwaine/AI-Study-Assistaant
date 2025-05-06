@@ -17,7 +17,7 @@
     height: 10rem;
   }
   
-  .empty-placeholder h2 {
-    font-size: 1.5rem;
-    margin: 0 0 0 0;
+  .empty-placeholder-text {
+    font-weight: 600;
+    align-self: center;
   }

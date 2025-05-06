@@ -26,8 +26,8 @@ const EmptyState = ({page}) => {
   return (
     <div className="empty-placeholder">
       {currentPage()}
-      <h2>{`You don't have any ${page} yet`}</h2>
-      <p>When you do, they will show up here.</p>
+      <p className="empty-placeholder-text">{`You don't have any ${page} yet`}</p>
+      <p className="empty-placeholder-subtext">When you do, they will show up here.</p>
     </div>
   );
 };
