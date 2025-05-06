@@ -1,0 +1,40 @@
+.scroll-to-bottom {
+    position: fixed;
+    height: fit-content;
+    width: fit-content;
+    bottom: 10rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .scroll-to-bottom button {
+    border-radius: 50%;
+    font-size: 1.1rem;
+    width: 2rem;
+    height: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .scroll-to-bottom button:focus {
+    outline: none;
+  }
+  
+  .scroll-to-bottom.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .scroll-to-bottom.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }

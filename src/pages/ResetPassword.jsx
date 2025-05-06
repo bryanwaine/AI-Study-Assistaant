@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FormLayout from "../components/FormLayout";
-import TextInput from "../components/TextInput";
-import Button from "../components/Button";
+import FormLayout from "../components/FormLayout/FormLayout";
+import TextInput from "../components/TextInput/TextInput";
+import Button from "../components/Button/Button";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import emailValidation from "../utils/emailValidation";

@@ -1,0 +1,39 @@
+.typing-indicator {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 4px;
+    margin: 0;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 2rem;
+  }
+  
+  .typing-indicator span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    animation: bounce 1s infinite ease-in-out;
+  }
+  
+  .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes bounce {
+    0%,
+    80%,
+    100% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    40% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }

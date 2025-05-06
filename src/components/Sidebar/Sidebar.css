@@ -1,0 +1,84 @@
+.sidebar {
+    position: fixed;
+    width: 85%;
+    right: -100%;
+    top: 0;
+    opacity: 0;
+    height: 100vh;
+    padding: 1rem 0 4rem;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
+      width 0.3ms ease-in, visibility 0.3s;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 999999;
+  }
+  
+  .sidebar[data-sidebar-open="true"] {
+    right: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .sidebar-list {
+    width: 100%;
+    list-style-type: none;
+    text-align: left;
+    margin: 1rem 0 1rem 0;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .sidebar-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    width: 100%;
+    cursor: pointer;
+    background-color: #e6f1f6;
+    border-radius: 0.5rem;
+  }
+  
+  .sidebar-list li div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #035172;
+    width: 100%;
+  }
+  
+  .sidebar-list li .icon,
+  .sidebar-list li .icon {
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+  
+  .sidebar-list li div a {
+    width: 100%;
+  }
+  
+  
+  .sidebar-list li span {
+    font-weight: 500;
+  }
+  
+  
+  .sidebar-list li p {
+    color: #111111;
+    font-size: 0.95rem;
+    font-weight: 300;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    text-overflow: ellipsis;
+  }

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate, Navigate } from "react-router";
-import FormLayout from "../components/FormLayout";
+import FormLayout from "../components/FormLayout/FormLayout";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import googleIcon from "../assets/google-icon.png";
 import firstNameFilter from "../utils/firstNameFilter";
-import TextInput from "../components/TextInput";
-import PasswordInput from "../components/PasswordInput";
-import Button from "../components/Button";
+import TextInput from "../components/TextInput/TextInput";
+import PasswordInput from "../components/PasswordInput/PasswordInput";
+import Button from "../components/Button/Button";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { setGoogleUser } from "../firebase";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader/Loader";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
@@ -121,11 +121,6 @@ const Login = () => {
           <img src={googleIcon} className="google-icon" alt="google-icon" />
           Sign in with Google
         </Button>
-        <div className="form-group-bottom">
-          <Link className="link" to="/reset-password">
-            Forgotten password?
-          </Link>
-        </div>
       </FormLayout>
     </>
   );

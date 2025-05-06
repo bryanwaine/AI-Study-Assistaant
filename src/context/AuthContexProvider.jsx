@@ -11,7 +11,7 @@ import {
 import { auth, googleProvider } from "../firebase";
 import AuthContext from "./AuthContext";
 import useToast from "../hooks/useToast";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader/Loader";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 
 // provider

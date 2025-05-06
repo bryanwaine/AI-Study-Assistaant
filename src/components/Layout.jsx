@@ -4,10 +4,10 @@ import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
 
-import Header from "./Header";
-import Menu from "./Menu";
-import Sidebar from "./Sidebar";
-import Overlay from "./Overlay";
+import Header from "./Header/Header";
+import Menu from "./Menu/Menu";
+import Sidebar from "./Sidebar/Sidebar";
+import Overlay from "./Overlay/Overlay";
 import { getAllSessions } from "../utils/sessionService";
 import handleAnthropicError from "../utils/anthropicErrorHandler";
 

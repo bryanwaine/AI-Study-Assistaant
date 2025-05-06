@@ -1,0 +1,24 @@
+.flashcards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+}
+
+.flashcards-container.regular {
+  height: 100vh;
+  padding: 5rem 0 0 0;
+  overflow: hidden;
+}
+
+.deck-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 2rem 2rem 2rem;
+  border: none;
+}

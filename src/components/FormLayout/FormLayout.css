@@ -1,0 +1,106 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #035172;
+    padding: 2rem 0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f1f6;
+    width: 80%;
+    height: auto;
+    max-width: 500px;
+    padding: 2rem 1.75rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    overflow-y: scroll;
+  }
+  
+  form fieldset {
+    border: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  form fieldset legend {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  fieldset .btn {
+    width: 100%;
+    margin: 0.75rem 0;
+  }
+  
+  .form-group-top,
+  .form-group-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  .form-group-top {
+    margin-bottom: 2rem;
+  }
+  
+  .form-group-bottom {
+    margin-top: 1rem;
+  }
+  
+  .form-group-top p,
+  .form-group-bottom p {
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.85rem;
+    width: 100%;
+    position: relative;
+    padding: 0.75rem 0.5rem 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 200;
+    position: absolute;
+    top: -0.7rem;
+    left: 1rem;
+    background-color: #e6f1f6;
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    padding: 0.35rem;
+    border: 1px solid #e9e9e9;
+    border-radius: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+  }

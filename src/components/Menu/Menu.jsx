@@ -1,0 +1,125 @@
+import { NavLink } from "react-router";
+import HistoryIcon from "@mui/icons-material/History";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { DashboardOutlined } from "@mui/icons-material";
+import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
+import Loader from "../Loader/Loader";
+import sortSessionsByTime from "../../utils/sortSessionsByTime";
+import './Menu.css';
+
+const Menu = (props) => {
+  const { menuOpen, sessions, loading, error } = props;
+
+  const activeStyles = {
+    backgroundColor: "#e6f1f6",
+    width: "100%",
+    height: "100%",
+    borderRadius: ".5rem",
+  };
+
+  const onClick = () => {
+    props.setMenuOpen(false);
+  };
+  return (
+    <div className="menu" data-menu-open={menuOpen}>
+      <div className="search-container">
+        <button>
+          <SearchOutlinedIcon style={{ color: "#035172" }} />
+        </button>
+        <input type="text" placeholder="Search" />
+      </div>
+      <ul className="menu-list">
+        <NavLink
+          to="/dashboard"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
+            <div>
+              <DashboardOutlined className="icon" />
+              <span>Dashboard</span>
+            </div>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/sessions"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
+            <div>
+              <HistoryIcon className="icon" />
+              <span>Sessions</span>
+            </div>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/notes"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
+            <div>
+              <DescriptionOutlinedIcon className="icon" />
+              <span>Notes</span>
+            </div>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/quizzes"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
+            <div>
+              <QuizOutlinedIcon className="icon" />
+              <span>Quizzes</span>
+            </div>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/decks"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+          onClick={onClick}
+        >
+          <li>
+            <div>
+              <StyleOutlinedIcon className="icon" />
+              <span>Flashcards</span>
+            </div>
+          </li>
+        </NavLink>
+      </ul>
+      {sessions.length > 0 && (
+        <ul className="menu-list">
+          <h3>Session History</h3>
+          {loading && <Loader />}
+          {error && <p>{error}</p>}
+          {sortSessionsByTime(sessions).map((session) => (
+            <NavLink
+              to={`/sessions/${session.id}`}
+              key={session.id}
+              style={({ isActive }) => (isActive ? activeStyles : null)}
+              onClick={onClick}
+            >
+              <li>
+                <div>
+                  <span>
+                    {session.metadata.title.length > 40
+                      ? session.metadata.title.slice(0, 40) + "..."
+                      : session.metadata.title}
+                  </span>
+                </div>
+              </li>
+            </NavLink>
+          ))}
+        </ul>
+      )}
+      
+    </div>
+  );
+};
+
+export default Menu;

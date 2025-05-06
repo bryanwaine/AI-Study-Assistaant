@@ -1,3 +1,4 @@
+import EmptyState from "../components/EmptyState/EmptyState";
 import Layout from "../components/Layout";
 import useAuth from "../hooks/useAuth";
 
@@ -7,7 +8,10 @@ const Quizzes = () => {
   return (
     <>
       <Layout userName={userName} />
-      <h1 style={{ textAlign: "center", marginTop: "6rem" }}>Coming soon 😎</h1>
+      <div className="sessions-container">
+        <h1>Your Quizzes</h1>
+        <EmptyState page="quizzes" />
+      </div>
     </>
   );
 };
