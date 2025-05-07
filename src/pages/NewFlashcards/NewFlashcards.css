@@ -49,9 +49,9 @@
   outline: none;
 }
 
-.flashcards-container .input-container input::placeholder {
+/* .flashcards-container .input-container input::placeholder {
   color: #cccccc;
-}
+} */
 
 .flashcards-container .input-container #topic {
   width: 100%;

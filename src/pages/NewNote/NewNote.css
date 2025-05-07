@@ -101,9 +101,9 @@
     outline: none;
   }
   
-  .input-wrapper .input-container input::placeholder {
-    color: #cccccc;
-  }
+  /* .input-wrapper .input-container input::placeholder {
+    color: #cccccc ;
+  } */
   
   /* .notes-wrapper .input-container #topic {
     width: 100%;
@@ -117,12 +117,6 @@
     width: 8rem;
   }
 
-  .typing-indicator {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
   
   
