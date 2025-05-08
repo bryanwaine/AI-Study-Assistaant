@@ -613,7 +613,7 @@ form fieldset legend {
   opacity: 1;
 }
 
-.menu-list {
+.menu__list {
   width: 100%;
   list-style-type: none;
   text-align: left;
@@ -625,7 +625,7 @@ form fieldset legend {
   align-items: flex-start;
 }
 
-.menu-list li {
+.menu__list li {
   border: none;
   display: flex;
   align-items: center;
@@ -636,7 +636,7 @@ form fieldset legend {
   cursor: pointer;
 }
 
-.menu-list a {
+.menu__list a {
   width: 100%;
 } */
 
@@ -725,7 +725,7 @@ form fieldset legend {
   text-overflow: ellipsis;
 } */
 /* 
-.menu-list h3 {
+.menu__list h3 {
   font-size: 0.75rem;
   color: #035172;
 } */

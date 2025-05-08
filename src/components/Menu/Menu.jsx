@@ -26,20 +26,20 @@ const Menu = (props) => {
     <div className="menu" data-menu-open={menuOpen}>
       <div className="search-container">
         <button>
-          <SearchOutlinedIcon style={{ color: "#035172" }} />
+          <SearchOutlinedIcon fontSize="small" style={{ color: "#035172" }} />
         </button>
         <input type="text" placeholder="Search" />
       </div>
-      <ul className="menu-list">
+      <ul className="menu__list">
         <NavLink
           to="/dashboard"
           style={({ isActive }) => (isActive ? activeStyles : null)}
           onClick={onClick}
         >
           <li>
-            <div>
-              <DashboardOutlined className="icon" />
-              <span>Dashboard</span>
+            <div className="menu__list-item">
+              <DashboardOutlined fontSize="small" className="icon" />
+              <span className="menu__list-name">Dashboard</span>
             </div>
           </li>
         </NavLink>
@@ -49,9 +49,9 @@ const Menu = (props) => {
           onClick={onClick}
         >
           <li>
-            <div>
-              <HistoryIcon className="icon" />
-              <span>Sessions</span>
+            <div className="menu__list-item">
+              <HistoryIcon fontSize="small" className="icon" />
+              <span className="menu__list-name">Sessions</span>
             </div>
           </li>
         </NavLink>
@@ -61,9 +61,9 @@ const Menu = (props) => {
           onClick={onClick}
         >
           <li>
-            <div>
-              <DescriptionOutlinedIcon className="icon" />
-              <span>Notes</span>
+            <div className="menu__list-item">
+              <DescriptionOutlinedIcon fontSize="small" className="icon" />
+              <span className="menu__list-name">Notes</span>
             </div>
           </li>
         </NavLink>
@@ -73,9 +73,9 @@ const Menu = (props) => {
           onClick={onClick}
         >
           <li>
-            <div>
-              <QuizOutlinedIcon className="icon" />
-              <span>Quizzes</span>
+            <div className="menu__list-item">
+              <QuizOutlinedIcon fontSize="small" className="icon" />
+              <span className="menu__list-name">Quizzes</span>
             </div>
           </li>
         </NavLink>
@@ -85,15 +85,15 @@ const Menu = (props) => {
           onClick={onClick}
         >
           <li>
-            <div>
+            <div className="menu__list-item">
               <StyleOutlinedIcon className="icon" />
-              <span>Flashcards</span>
+              <span className="menu__list-name">Flashcards</span>
             </div>
           </li>
         </NavLink>
       </ul>
       {sessions.length > 0 && (
-        <ul className="menu-list">
+        <ul className="menu__list">
           <h3>Session History</h3>
           {loading && <Loader />}
           {error && <p>{error}</p>}
@@ -105,11 +105,9 @@ const Menu = (props) => {
               onClick={onClick}
             >
               <li>
-                <div>
-                  <span>
-                    {session.metadata.title.length > 40
-                      ? session.metadata.title.slice(0, 40) + "..."
-                      : session.metadata.title}
+                <div className="menu__list-item">
+                  <span className="menu__list-name">
+                    { session.metadata.title}
                   </span>
                 </div>
               </li>

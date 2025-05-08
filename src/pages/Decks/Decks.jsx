@@ -35,9 +35,9 @@ const Decks = () => {
   }, [user]);
 
   return (
-    <>
+    <div className="decks__wrapper">
       <Layout userName={userName} />
-      <div className="decks-container">
+      <div className="decks__container">
         <h1>Your Flashcards</h1>
         <Button variant="orange">
           <Link to="/new-deck" className="btn--link">
@@ -73,7 +73,7 @@ const Decks = () => {
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

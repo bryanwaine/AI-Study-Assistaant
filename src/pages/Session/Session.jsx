@@ -173,11 +173,11 @@ const Session = () => {
   };
 
   return (
-    <div className="session-wrapper">
+    <div className="session__wrapper">
       {fetching && <Loader />}
       <Layout userName={userName} />
-      <div className="session-container">
-        <div className="chat-window" ref={chatWindowRef}>
+      <div className="session__container">
+        <div className="chat__window" ref={chatWindowRef}>
           {messages.map((message) => (
             <div key={message.id} className={`chat-message ${message.role}`}>
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
@@ -220,12 +220,12 @@ const Session = () => {
           {error && <ErrorState error={error} onResubmit={onResubmit} />}
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
+          <ScrollToBottom
+            showScrollToBottom={showScrollToBottom}
+            scrollToBottom={scrollToBottom}
+          />
         </div>
       </div>
-      <ScrollToBottom
-        showScrollToBottom={showScrollToBottom}
-        scrollToBottom={scrollToBottom}
-      />
       <TextArea
         value={question}
         onChange={onChange}

@@ -37,9 +37,9 @@ const Sessions = () => {
   }, [user]);
 
   return (
-    <>
+    <div div className="sessions__wrapper">
       <Layout userName={userName} />
-      <div className="sessions-container">
+      <div className="sessions__container">
         <h1>Your Sessions</h1>
         <Button variant="orange">
           <Link to="/new-session" className="btn--link">
@@ -84,7 +84,7 @@ const Sessions = () => {
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

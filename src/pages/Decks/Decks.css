@@ -1,68 +1,96 @@
-.decks-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    padding: 7rem 0 2rem 0;
+.decks__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.decks__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding: 7rem 0 2rem 0;
+}
+
+.decks__container button {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.decks__container > h1 {
+  margin: 0 0 2rem 0;
+  align-self: center;
+}
+
+.decks__container h2 {
+  font-size: 1rem;
+  align-self: flex-start;
+  text-align: left;
+}
+
+.decks {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.decks a {
+  width: 80%;
+}
+
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 9rem;
+  min-height: 9rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.deck-footer {
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.deck p {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0;
+}
+
+.deck p span {
+  color: #035172;
+  font-weight: 500;
+}
+
+/* Media Queries */
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .decks__container {
+    padding-left: 8rem;
+    padding-right: 8rem;
   }
-  
-  .decks-container button {
-    width: 80%;
-    margin-bottom: 2rem;
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .decks__container {
+    align-self: flex-end;
+    width: 75%;
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
-  
-  .decks-container > h1 {
-    margin: 0 0 2rem 0;
-    align-self: center;
-  }
-  
-  .decks-container h2 {
-    font-size: 1rem;
-    align-self: flex-start;
-    text-align: left;
-  }
-  
-  .decks-container > ul {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .decks-container > ul > a {
-    width: 80%;
-  }
-  
-  .deck {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    height: 9rem;
-    min-height: 9rem;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    gap: 1rem;
-  }
-  
-  .deck-footer {
-    font-size: 0.75rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
-  }
-  
-  .deck p {
-    display: flex;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    width: 100%;
-    margin: 0;
-  }
-  
-  .deck p span {
-    color: #035172;
-    font-weight: 500;
-  }
+}

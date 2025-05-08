@@ -14,7 +14,7 @@ import Deck from "./pages/Deck/Deck";
 import NewQuiz from "./pages/NewQuiz";
 import NewNote from "./pages/NewNote/NewNote";
 import Notes from "./pages/Notes/Notes";
-import Quizzes from "./pages/Quizzes";
+import Quizzes from "./pages/Quizzes/Quizzes";
 import Note from "./pages/Note/Note";
 
 function App() {

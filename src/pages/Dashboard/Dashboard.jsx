@@ -11,7 +11,7 @@ import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import Loader from "../../components/Loader/Loader";
 import { getAllDecks } from "../../utils/flashcardService";
 import { getAllNotes } from "../../utils/noteService";
-import './Dashboard.css';
+import "./Dashboard.css";
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [sessions, setSessions] = useState([]);
@@ -23,10 +23,10 @@ const Dashboard = () => {
   const userName = user?.displayName || location.state?.userName;
 
   useEffect(() => {
-    const fetchSessions = async () => {
+    const fetchData = async (fetchFn, setter) => {
       try {
-        const data = await getAllSessions(user.uid);
-        setSessions(data);
+        const data = await fetchFn(user.uid);
+        setter(data);
       } catch (error) {
         setError(handleAnthropicError(error).message);
       } finally {
@@ -34,33 +34,11 @@ const Dashboard = () => {
       }
     };
 
-    const fetchDecks = async () => {
-      try {
-        const data = await getAllDecks(user.uid);
-        setFlashcards(data);
-      } catch (error) {
-        setError(handleAnthropicError(error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const fetchNotes = async () => {
-      try {
-        const data = await getAllNotes(user.uid);
-        setNotes(data);
-      } catch (error) {
-        setError(handleAnthropicError(error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNotes();
-    fetchSessions();
-    fetchDecks();
+    fetchData(getAllNotes, setNotes);
+    fetchData(getAllSessions, setSessions);
+    fetchData(getAllDecks, setFlashcards);
   }, [user]);
-
+  
   if (!user) {
     return <Navigate to="/login" replace />;
   }

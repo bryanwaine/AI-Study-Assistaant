@@ -35,9 +35,9 @@ const Notes = () => {
   }, [user]);
 
   return (
-    <>
+    <div className="notes__wrapper">
       <Layout userName={userName} />
-      <div className="notes-container">
+      <div className="notes__container">
         <h1>Your Notes</h1>
         <Button variant="orange">
           <Link to="/new-note" className="btn--link">
@@ -74,7 +74,7 @@ const Notes = () => {
           </ul>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

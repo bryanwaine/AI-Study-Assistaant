@@ -1,0 +1,96 @@
+.quizzes__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .quizzes__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      padding: 7rem 0 2rem 0;
+    }
+    
+    .quizzes__container button {
+      width: 80%;
+      margin-bottom: 2rem;
+    }
+    
+    .quizzes__container > h1 {
+      margin: 0 0 2rem 0;
+      align-self: center;
+    }
+    
+    .quizzes__container h2 {
+      font-size: 1rem;
+      align-self: flex-start;
+      text-align: left;
+    }
+    
+    .quizzes {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .quizzes a {
+      width: 80%;
+    }
+    
+    .quiz {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      height: 9rem;
+      min-height: 9rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+    
+    .quiz-footer {
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+    }
+    
+    .quiz p {
+      display: flex;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      width: 100%;
+      margin: 0;
+    }
+    
+    .quiz p span {
+      color: #035172;
+      font-weight: 500;
+    }
+  
+    /* Media Queries */
+  
+  /* Tablet */
+  @media screen and (min-width: 768px) {
+    .quizzes__container {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  } 
+  
+  /* Laptop */
+  @media screen and (min-width: 1024px) {
+    .quizzes__container {
+      align-self: flex-end;
+      width: 75% ;
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }

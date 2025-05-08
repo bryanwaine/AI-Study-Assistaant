@@ -38,18 +38,30 @@ header {
 /* Media Queries */
 
 /* Tablet */
- @media screen and (min-width: 768px) {} 
+ @media screen and (min-width: 768px) {
+  
+ } 
 
-/* Desktop */
+/* Laptop */
 
 @media screen and (min-width: 1024px) {
+  header {
+    left: 25%;
+    right: 0;
+    width: calc(100% - 25% );
+  }
+
+  .nav-left {
+    /* visibility: hidden; */
+    display: none;
+  }
+}
+/* Desktop */
+
+@media screen and (min-width: 1280px) {
   header {
     left: 20%;
     right: 0;
     width: calc(100% - 20% );
-  }
-
-  .nav-left {
-    visibility: hidden;
   }
 }
