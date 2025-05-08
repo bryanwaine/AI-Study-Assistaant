@@ -22,6 +22,10 @@
     align-items: flex-start;
     width: 100%;
   }
+
+  .dashboard-container > section > h2 {
+    font-size: 1.1rem;
+  }
   
   .dashboard-overview {
     /* width: 100%;
@@ -84,7 +88,7 @@
 
   /* Media Queries */
 
-/* Desktop */
+/* Laptops */
 
 @media screen and (min-width: 1024px) {
   .dashboard-wrapper {
@@ -94,8 +98,24 @@
   }
 
   .dashboard-container > section {
-    width: 40%;
+    width: 60%;
   }
+
+  
+}
+
+/* Large Desktop */
+
+@media screen and (min-width: 1024px) {
+  /* .dashboard-wrapper {
+    justify-self:  flex-end;
+    align-items: center;
+    width: 75%;
+  }
+
+  .dashboard-container > section {
+    width: 60%;
+  } */
 
   
 }

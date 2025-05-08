@@ -33,11 +33,19 @@
   }
 } 
 
-/* Desktop */
+/* Laptop */
 
 @media screen and (min-width: 1024px) {
   .overlay[data-sidebar-open="true"] {
-    left: -25%;
+    left: -30%;
    
+  }
+}
+
+/* Desktop */
+
+@media screen and (min-width: 1280px) {
+  .overlay[data-sidebar-open="true"] {
+    left: -20%;
   }
 }
