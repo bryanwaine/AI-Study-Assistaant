@@ -68,14 +68,14 @@ const Dashboard = () => {
   return (
     <>
       <Layout userName={userName} />
-      <div className="dashboard-container">
+      <div className="dashboard-wrapper">
         <h1>Dashboard</h1>
         {loading ? (
           <Loader />
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <>
+          <div className="dashboard-container">
             <section className="card--blue">
               <h2>{handleGreeting(firstNameFilter(userName))}</h2>
               <p className="dashboard-message">
@@ -134,7 +134,7 @@ const Dashboard = () => {
                 </Link>
               </div>
             </section>
-          </>
+          </div>
         )}
       </div>
     </>

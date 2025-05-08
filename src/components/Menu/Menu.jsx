@@ -10,7 +10,7 @@ import sortSessionsByTime from "../../utils/sortSessionsByTime";
 import './Menu.css';
 
 const Menu = (props) => {
-  const { menuOpen, sessions, loading, error } = props;
+  const { menuOpen, setMenuOpen, sessions, loading, error } = props;
 
   const activeStyles = {
     backgroundColor: "#e6f1f6",
@@ -20,7 +20,7 @@ const Menu = (props) => {
   };
 
   const onClick = () => {
-    props.setMenuOpen(false);
+    setMenuOpen(false);
   };
   return (
     <div className="menu" data-menu-open={menuOpen}>

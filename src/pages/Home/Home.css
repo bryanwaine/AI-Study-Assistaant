@@ -73,3 +73,13 @@
   gap: 2rem;
   margin-bottom: 1.5rem;
 }
+
+/* Media Queries */
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+    .home-cards-container {
+      flex-direction: row;
+      gap: 1rem;
+    }
+}
