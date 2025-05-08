@@ -90,7 +90,7 @@
   .dashboard-wrapper {
     justify-self:  flex-end;
     align-items: center;
-    width: 80%;
+    width: 75%;
   }
 
   .dashboard-container > section {
