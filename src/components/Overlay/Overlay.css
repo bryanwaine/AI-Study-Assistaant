@@ -1,28 +1,30 @@
 .overlay {
-    position: fixed;
-    inset: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    pointer-events: none;
-    transition: background-color 0.3s ease-in-out, left 0.3s ease-in-out;
-    z-index: 999999;
-  }
-  
-  .overlay[data-menu-open="true"] {
-    background-color: rgba(0, 0, 0, 0.4);
-    left: 85%;
-    pointer-events: auto;
-  }
-  
-  .overlay[data-sidebar-open="true"] {
-    background-color: rgba(0, 0, 0, 0.4);
-    left: -85%;
-    pointer-events: auto;
-  }
+  position: fixed;
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  transition: background-color 0.3s ease-in-out, left 0.3s ease-in-out;
+  z-index: 999999;
+}
 
-  /* Tablet */
+.overlay[data-menu-open="true"] {
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 85%;
+  pointer-events: auto;
+}
+
+.overlay[data-sidebar-open="true"] {
+  background-color: rgba(0, 0, 0, 0.4);
+  left: -85%;
+  pointer-events: auto;
+}
+
+/* Media Queries */
+
+/* Tablet */
 @media screen and (min-width: 768px) {
   .overlay[data-menu-open="true"] {
     left: 30%;
@@ -31,14 +33,13 @@
   .overlay[data-sidebar-open="true"] {
     left: -30%;
   }
-} 
+}
 
 /* Laptop */
 
 @media screen and (min-width: 1024px) {
   .overlay[data-sidebar-open="true"] {
     left: -30%;
-   
   }
 }
 

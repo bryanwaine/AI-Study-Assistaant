@@ -63,8 +63,8 @@
   width: 100%;
 }
 
-.sidebar__icon{
-  font-size: .5rem;
+.sidebar__icon {
+  font-size: 0.5rem;
   /* font-weight: 800; */
 }
 
@@ -95,14 +95,13 @@
   .sidebar {
     width: 40%;
   }
-} 
+}
 
 /* Laptop */
 
 @media screen and (min-width: 1024px) {
   .sidebar {
     width: 30%;
-   
   }
 }
 

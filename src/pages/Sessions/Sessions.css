@@ -79,7 +79,6 @@
   font-weight: 500;
 }
 
-
 /* Media Queries */
 
 /* Tablet */
@@ -88,15 +87,14 @@
     padding-left: 8rem;
     padding-right: 8rem;
   }
-} 
+}
 
 /* Laptop */
 @media screen and (min-width: 1024px) {
   .sessions__container {
     align-self: flex-end;
-    width: 75% ;
+    width: 75%;
     padding-left: 6rem;
     padding-right: 6rem;
   }
 }
-

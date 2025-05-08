@@ -152,14 +152,14 @@ const Note = () => {
   };
 
   return (
-    <>
+    <div div className="note__wrapper">
       <Layout userName={userName} />
-      <div className="notes-wrapper">
+      <div className="note__container">
         {fetching && <Loader />}
         {metaData?.title && (
-          <div className="notes-title">{metaData.title.toUpperCase()}</div>
+          <div className="note__title">{metaData.title.toUpperCase()}</div>
         )}
-        <div className="note-container">
+        <div className="note">
           {error && (
             <ErrorState/>
           )}
@@ -168,7 +168,7 @@ const Note = () => {
               message.role === "assistant" && (
                 <div
                   key={message.id}
-                  className={`note-summary ${message.role}`}
+                  className={`note__summary ${message.role}`}
                 >
                   <div ref={aiMessageRef}>
                     <MarkdownRenderer>{message.content}</MarkdownRenderer>
@@ -320,7 +320,7 @@ const Note = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

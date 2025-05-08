@@ -123,24 +123,24 @@
 }
 
 .typing-cursor::after {
-    content: "|";
-    animation: blink 1s step-end infinite;
-  }
-  
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
+  content: "|";
+  animation: blink 1s step-end infinite;
+}
 
-  /* Media Queries */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Media Queries */
 
 /* Laptop */
 @media screen and (min-width: 1024px) {
   .session__container {
     align-self: flex-end;
     align-items: center;
-    width: 75% ;
+    width: 75%;
   }
 
   .chat__window {
