@@ -1,9 +1,8 @@
 .notes__wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .notes__container {
