@@ -92,6 +92,7 @@
 
 .home-card__description {
   line-height: 1.5;
+  font-weight: 200;
 }
 
 /* Media Queries */
