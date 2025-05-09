@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button";
 import { saveDeck } from "../../utils/flashcardService";
 import CardStack from "../../components/Cardstack/CardStack";
 import ErrorState from "../../components/ErrorState/ErrorState";
+import "./NewFlashcards.css";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);

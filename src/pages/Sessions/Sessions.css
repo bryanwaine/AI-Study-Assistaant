@@ -77,6 +77,12 @@
   color: #111111;
 }
 
+.session-card__metadata-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .session-card__metadata-item {
   color: #035172;
   font-weight: 500;
