@@ -1,10 +1,10 @@
-.home-container {
+.home__container {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-.home-navbar {
+.home__navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,14 +17,14 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.home-navbar-left {
+.home__navbar-left {
   display: flex;
   align-items: center;
   margin-left: 1rem;
   width: 50%;
 }
 
-.home-navbar-right {
+.home__navbar-right {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -33,11 +33,11 @@
   width: 50%;
 }
 
-.home-navbar-right button {
+.home__navbar-right button {
   padding: 0.5rem 1rem;
 }
 
-.home-content {
+.home__content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,14 +46,14 @@
   text-align: center;
 }
 
-.home-content h1 {
+.home__content-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: #111111;
   font-weight: 600;
 }
 
-.home-content p {
+.home__content-subtitle {
   margin-bottom: 1rem;
   color: #111111;
   font-weight: 300;
@@ -61,12 +61,12 @@
   margin-bottom: 1.5rem;
 }
 
-.home-content button {
+.home__content button {
   padding: 0.5rem 2rem;
   margin-bottom: 2rem;
 }
 
-.home-cards-container {
+.home-cards__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,12 +74,27 @@
   margin-bottom: 1.5rem;
 }
 
+.home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem;
+}
+
+.home-card__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111111;
+  font-weight: 600;
+}
+
 /* Media Queries */
 
 /* Desktop */
 @media only screen and (min-width: 1024px) {
-    .home-cards-container {
-      flex-direction: row;
-      gap: 1rem;
+    .home-cards__container {
+      /* flex-direction: row;
+      gap: 1rem; */
     }
 }

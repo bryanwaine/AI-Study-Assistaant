@@ -46,42 +46,42 @@ const Dashboard = () => {
   return (
     <>
       <Layout userName={userName} />
-      <div className="dashboard-wrapper">
+      <div className="dashboard__wrapper">
         <h1>Dashboard</h1>
         {loading ? (
           <Loader />
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <div className="dashboard-container">
-            <section className="card--blue">
-              <h2>{handleGreeting(firstNameFilter(userName))}</h2>
-              <p className="dashboard-message">
+          <div className="dashboard__container">
+            <section className="dashboard-card card--blue">
+              <h2 className="dashboard-card__greeting">{handleGreeting(firstNameFilter(userName))}</h2>
+              <p className="dashboard-card__message">
                 Here's an overview of your study progress:
               </p>
-              <div className="dashboard-overview">
+              <div className="dashboard-card__overview">
                 <Link to="/sessions" className="link">
-                  <div className="dashboard-item card--white">
-                    <span className="dashboard-label">Sessions</span>
-                    <span className="dashboard-value">{sessions.length}</span>
+                  <div className="dashboard-card__item card--white">
+                    <span className="dashboard-card__item-label">Sessions</span>
+                    <span className="dashboard-card__item-value">{sessions.length}</span>
                   </div>
                 </Link>
                 <Link to="/notes" className="link">
-                  <div className="dashboard-item card--white">
-                    <span className="dashboard-label">Notes</span>
-                    <span className="dashboard-value">{notes.length}</span>
+                  <div className="dashboard-card__item card--white">
+                    <span className="dashboard-card__item-label">Notes</span>
+                    <span className="dashboard-card__item-value">{notes.length}</span>
                   </div>
                 </Link>
                 <Link to="/decks" className="link">
-                  <div className="dashboard-item card--white">
-                    <span className="dashboard-label">Decks</span>
-                    <span className="dashboard-value">{flashcards.length}</span>
+                  <div className="dashboard-card__item card--white">
+                    <span className="dashboard-card__item-label">Decks</span>
+                    <span className="dashboard-card__item-value">{flashcards.length}</span>
                   </div>
                 </Link>
                 <Link to="/quizzes" className="link">
-                  <div className="dashboard-item card--white">
-                    <span className="dashboard-label">Quizzes</span>
-                    <span className="dashboard-value">0</span>
+                  <div className="dashboard-card__item card--white">
+                    <span className="dashboard-card__item-label">Quizzes</span>
+                    <span className="dashboard-card__item-value">0</span>
                   </div>
                 </Link>
               </div>
@@ -91,22 +91,22 @@ const Dashboard = () => {
                 </Link>
               </Button>
             </section>
-            <section className="card--blue">
+            <section className="dashboard-card card--blue">
               <h2>Quick Links</h2>
-              <div className="dashboard-quicklinks">
-                <Link to="/new-session" className="link quicklink">
+              <div className="dashboard__quicklinks">
+                <Link to="/new-session" className="link dashboard__quicklink">
                   <p>Ask a Question</p>
                   <NavigateNext />
                 </Link>
-                <Link to="/new-note" className="link quicklink">
+                <Link to="/new-note" className="link dashboard__quicklink">
                   <p>Create a Note</p>
                   <NavigateNext />
                 </Link>
-                <Link to="/new-quiz" className="link quicklink">
+                <Link to="/new-quiz" className="link dashboard__quicklink">
                   <p>Take a Quiz</p>
                   <NavigateNext />
                 </Link>
-                <Link to="/new-deck" className="link quicklink">
+                <Link to="/new-deck" className="link dashboard__quicklink">
                   <p>Create a deck of Flashcards</p>
                   <NavigateNext />
                 </Link>

@@ -39,3 +39,14 @@
   opacity: 0;
   pointer-events: none;
 }
+
+
+
+/* Media Queries */
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .scroll-to-bottom {
+   
+  }
+}

@@ -24,7 +24,7 @@
   align-self: center;
 }
 
-.sessions__container h2 {
+.session-card__title {
   width: 100%;
   font-size: 1rem;
   align-self: flex-start;
@@ -32,20 +32,22 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin: 0;
+  color: #035172;
 }
 
-.sessions {
+.sessions__list {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.sessions a {
+.sessions__list a {
   width: 80%;
 }
 
-.session {
+.session-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,7 +60,7 @@
   gap: 1rem;
 }
 
-.session-footer {
+.session-card__metadata-container {
   font-size: 0.75rem;
   display: flex;
   justify-content: space-between;
@@ -66,15 +68,16 @@
   width: 100%;
 }
 
-.session p {
+.session-card__metadata {
   display: flex;
   justify-content: flex-start;
   gap: 0.5rem;
   width: 100%;
   margin: 0;
+  color: #111111;
 }
 
-.session p span {
+.session-card__metadata-item {
   color: #035172;
   font-weight: 500;
 }
@@ -94,7 +97,7 @@
   .sessions__container {
     align-self: flex-end;
     width: 75%;
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
   }
 }

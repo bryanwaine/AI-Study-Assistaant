@@ -7,6 +7,7 @@ import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getDeck } from "../../utils/flashcardService";
 import CardStack from "../../components/Cardstack/CardStack";
 import ErrorState from "../../components/ErrorState/ErrorState";
+import "./Deck.css";
 
 const Deck = () => {
   const [deck, setDeck] = useState([]);
@@ -47,7 +48,7 @@ const Deck = () => {
   if (!user) return <Navigate to="/login" replace />;
 
   return (
-    <>
+    <div className="flashcards__wrapper">
       <Layout userName={userName} />
       <div className="flashcards-container regular">
         <div className="deck-wrapper">
@@ -63,7 +64,7 @@ const Deck = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

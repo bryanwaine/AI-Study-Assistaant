@@ -51,22 +51,22 @@ const Notes = () => {
         ) : notes.length === 0 ? (
           <EmptyState page="notes" />
         ) : (
-          <ul className="notes">
+          <ul className="notes__list">
             {sortFlashcardsByTime(notes).map((note) => (
               <Link to={note.id} key={note.id}>
-                <li className="note card--blue">
-                  <h2>{note.metadata.title.toUpperCase()}</h2>
-                  <div className="note-footer">
-                    <div className="note-footer-left">
-                      <p>
-                        <span>File</span>
-                        {note.metadata.fileName || ""}
-                      </p>
-                      <p>
-                        <span>Created</span>
-                        {formatFirebaseTimestamp(note.metadata.createdAt)}
-                      </p>
-                    </div>
+                <li className="note-card card--blue">
+                  <h2 className="note-card__title">
+                    {note.metadata.title.toUpperCase()}
+                  </h2>
+                  <div className="note-card__metadata-container">
+                    <p className="note-card__metadata">
+                      <span className="note-card__metadata-item">File</span>
+                      {note.metadata.fileName || ""}
+                    </p>
+                    <p className="note-card__metadata">
+                      <span className="note-card__metadata-item">Created</span>
+                      {formatFirebaseTimestamp(note.metadata.createdAt)}
+                    </p>
                   </div>
                 </li>
               </Link>

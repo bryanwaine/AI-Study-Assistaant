@@ -1,3 +1,11 @@
+.flashcards__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
 .flashcards-container {
   display: flex;
   flex-direction: column;
@@ -21,4 +29,22 @@
   width: 100%;
   padding: 0 2rem 2rem 2rem;
   border: none;
+}
+
+/* Media Queries */
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .flashcards-container {
+    align-self: flex-end;
+    width: 75%;
+  }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .deck-wrapper {
+    align-self: center;
+    width: 40%;
+  }
 }

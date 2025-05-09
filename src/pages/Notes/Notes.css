@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  /* height: 100vh; */
 }
 
 .notes__container {
@@ -18,29 +17,23 @@
   margin-bottom: 2rem;
 }
 
-.notes__container > h1 {
+.notes__container h1 {
   margin: 0 0 2rem 0;
   align-self: center;
 }
 
-.notes__container h2 {
-  font-size: 1rem;
-  align-self: flex-start;
-  text-align: left;
-}
-
-.notes {
+.notes__list {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.notes a {
+.notes__list a {
   width: 80%;
 }
 
-.note {
+.note-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -53,25 +46,41 @@
   gap: 1rem;
 }
 
-.note-footer {
+.note-card__title {
+  width: 100%;
+  font-size: 1rem;
+  align-self: flex-start;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: #035172;
+}
+
+.note-card__metadata-container {
   font-size: 0.75rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-}
-
-.note p {
-  display: flex;
-  justify-content: flex-start;
+  align-items: flex-start;
   gap: 0.5rem;
   width: 100%;
-  margin: 0;
 }
 
-.note p span {
+
+.note-card__metadata {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0;
+  color: #111111;
+}
+
+.note-card__metadata-item {
   color: #035172;
   font-weight: 500;
+  margin-right: 0.5rem;
 }
 
 /* Media Queries */
@@ -89,7 +98,7 @@
   .notes__container {
     align-self: flex-end;
     width: 75%;
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
   }
 }

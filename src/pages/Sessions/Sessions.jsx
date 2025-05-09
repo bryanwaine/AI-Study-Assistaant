@@ -53,24 +53,30 @@ const Sessions = () => {
         ) : sessions.length === 0 ? (
           <EmptyState page="sessions" />
         ) : (
-          <ul className="sessions">
+          <ul className="sessions__list">
             {sortSessionsByTime(sessions).map((session) => (
               <Link to={session.id} key={session.id}>
-                <li className="session card--blue">
-                  <h2>{session.metadata.title}</h2>
-                  <div className="session-footer">
-                    <div className="session-footer-left">
-                      <p>
-                        <span>Created</span>
+                <li className="session-card card--blue">
+                  <h2 className="session-card__title">
+                    {session.metadata.title}
+                  </h2>
+                  <div className="session-card__metadata-container">
+                    <div className="session-card__metadata-left">
+                      <p className="session-card__metadata">
+                        <span className="session-card__metadata-item">
+                          Created
+                        </span>
                         {formatFirebaseTimestamp(session.metadata.createdAt)}
                       </p>
-                      <p>
-                        <span>Updated</span>
+                      <p className="session-card__metadata">
+                        <span className="session-card__metadata-item">
+                          Updated
+                        </span>
                         {formatFirebaseTimestamp(session.metadata.updatedAt)}
                       </p>
                     </div>
-                    <div className="session-footer-right">
-                      <p>
+                    <div className="session-card__metadata-right">
+                      <p className="session-card__metadata">
                         {session.metadata.messageCount}
                         {session.metadata.messageCount === 1
                           ? " message"

@@ -4,14 +4,13 @@ import LogoSm from "../../components/LogoSm/LogoSm";
 import "./Home.css";
 
 const Home = () => {
-  
   return (
-    <div className="home-container">
-      <div className="home-navbar">
-        <div className="home-navbar-left">
-                  <LogoSm variant="dark"/>
+    <div className="home__container">
+      <div className="home__navbar">
+        <div className="home__navbar-left">
+          <LogoSm variant="dark" />
         </div>
-        <div className="home-navbar-right">
+        <div className="home__navbar-right">
           <Link to="/login">
             <Button variant="light">Login</Button>
           </Link>
@@ -20,27 +19,27 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <section className="home-content">
-        <h1>Study Smarter with AI</h1>
-        <p>
-          Summarize your notes, chat with AI tutors, and quiz yourself with smart
-          flashcards.
+      <section className="home__content">
+        <h1 className="home__content-title">Study Smarter with AI</h1>
+        <p className="home__content-subtitle">
+          Summarize your notes, chat with AI tutors, and quiz yourself with
+          smart flashcards.
         </p>
         <Link to="/signup">
           <Button variant="orange">Get Started</Button>
         </Link>
-        <div className="home-cards-container">
-          <div className="card--blue">
-            <h2>AI Chat Assistant</h2>
-            <p>Ask questions and get instant answers.</p>
+        <div className="home-cards__container">
+          <div className="home-card card--blue">
+            <h2 className="home-card__title">AI Chat Assistant</h2>
+            <p className="home-card__description">Ask questions and get instant answers.</p>
           </div>
-          <div className="card--blue">
-            <h2>Smart Notes</h2>
-            <p>Upload, summarize, and organise your study notes.</p>
+          <div className="home-card card--blue">
+            <h2 className="home-card__title">Smart Notes</h2>
+            <p className="home-card__description">Upload, summarize, and organise your study notes.</p>
           </div>
-          <div className="card--blue">
-            <h2>Flashcards and Quizzes</h2>
-            <p>Auto-generate flashcards and quizzes from your notes.</p>
+          <div className="home-card card--blue">
+            <h2 className="home-card__title">Flashcards and Quizzes</h2>
+            <p className="home-card__description">Auto-generate flashcards and quizzes from your notes.</p>
           </div>
         </div>
       </section>
