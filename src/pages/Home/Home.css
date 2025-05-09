@@ -42,7 +42,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: 7rem 1rem 1rem 1rem;
+  padding: 7rem 3rem 1rem 3rem;
   text-align: center;
 }
 
@@ -77,16 +77,21 @@
 .home-card {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 1.5rem;
+  gap: .5rem;
+  padding: 1.5rem 2rem;
 }
 
 .home-card__title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #111111;
-  font-weight: 600;
+  font-weight: 400;
+}
+
+.home-card__description {
+  line-height: 1.5;
 }
 
 /* Media Queries */
