@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+
 }
 
 .home__navbar {
@@ -71,6 +72,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 2rem;
+  padding: 0 0 3rem;
   margin-bottom: 1.5rem;
 }
 
