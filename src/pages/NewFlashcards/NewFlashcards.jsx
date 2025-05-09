@@ -83,7 +83,7 @@ const NewFlashcards = () => {
   };
 
   return (
-    <>
+    <div className="flashcards__wrapper">
       <Layout userName={userName} />
       <div className="flashcards-container extended">
         <div className="input-wrapper">
@@ -143,7 +143,7 @@ const NewFlashcards = () => {
         </div>
         <div ref={cardStackRef} style={{ height: "4rem" }} />
       </div>
-    </>
+    </div>
   );
 };
 

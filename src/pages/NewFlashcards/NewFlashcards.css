@@ -1,3 +1,12 @@
+.flashcards__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+
 .flashcards-container {
   display: flex;
   flex-direction: column;
@@ -74,4 +83,32 @@
   width: 100%;
   padding: 0 2rem 2rem 2rem;
   border: none;
+}
+
+/* Media Queries */
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+ 
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .flashcards-container {
+    align-self: flex-end;
+    width: 75%;
+  }
+
+  /* .flashcards-container.extended {
+    padding: 3rem 10rem 0 10rem;
+  } */
+  .flashcards-container .input-wrapper {
+    align-self: center;
+    width: 40%;
+  }
+
+  .deck-wrapper {
+    align-self: center;
+    width: 40%;
+  }
 }
