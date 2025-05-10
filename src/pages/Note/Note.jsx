@@ -1,23 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import { getNote } from "../../utils/noteService";
-import MarkdownRenderer from "../../components/MarkdownRenderer";
+
 import { useLocation, useParams } from "react-router";
-import Loader from "../../components/Loader/Loader";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
-import { saveDeck } from "../../utils/flashcardService";
-import { generateFlashcardsFromNotes } from "../../anthropic";
+
+import "./Note.css";
+
+import "../NewFlashcards/NewFlashcards.css";
+
+import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import CardStack from "../../components/Cardstack/CardStack";
 import ErrorState from "../../components/ErrorState/ErrorState";
-import "./Note.css";
-import "../NewFlashcards/NewFlashcards.css";
+import Layout from "../../components/Layout";
+import useAuth from "../../hooks/useAuth";
+import { saveDeck } from "../../utils/flashcardService";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
+import { getNote } from "../../utils/noteService";
+import MarkdownRenderer from "../../components/MarkdownRenderer";
+import { generateFlashcardsFromNotes } from "../../anthropic";
 
 const Note = () => {
   const [fetching, setFetching] = useState(false);

@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from "react";
+
 import { Navigate, useParams } from "react-router";
-import { generateResponse } from "../../anthropic";
-import "highlight.js/styles/github.css";
-import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
-import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
-import TextArea from "../../components/TextArea/TextArea";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import { getSession, updateSession } from "../../utils/sessionService";
-import MarkdownRenderer from "../../components/MarkdownRenderer";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import "highlight.js/styles/github.css";
+
+import "./Session.css";
+
+import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import Loader from "../../components/Loader/Loader";
 import ScrollToBottom from "../../components/ScrollToBottom/ScrollToBottom";
 import ErrorState from "../../components/ErrorState/ErrorState";
-import "./Session.css";
+import Layout from "../../components/Layout";
+import TextArea from "../../components/TextArea/TextArea";
+import MarkdownRenderer from "../../components/MarkdownRenderer";
+import useAuth from "../../hooks/useAuth";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
+import { getSession, updateSession } from "../../utils/sessionService";
+import { generateResponse } from "../../anthropic";
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);

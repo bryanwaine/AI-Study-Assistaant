@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+
+import { motion as Motion, useAnimation } from "framer-motion";
+
 import "./CardStack.css";
 
 const CardStack = ({ cards }) => {
@@ -46,7 +48,7 @@ const CardStack = ({ cards }) => {
             }}
           >
             {isTop ? (
-              <motion.div
+              <Motion.div
                 className="card-drag-wrapper"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
@@ -56,7 +58,7 @@ const CardStack = ({ cards }) => {
                 }}
                 animate={controls}
               >
-                <motion.div
+                <Motion.div
                   className="card-inner"
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.6 }}
@@ -78,8 +80,8 @@ const CardStack = ({ cards }) => {
                       <span className="card-swipe">Swipe to change</span>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </Motion.div>
+              </Motion.div>
             ) : (
               <div className="card-inner">
                 <div className="card-face card-front"></div>

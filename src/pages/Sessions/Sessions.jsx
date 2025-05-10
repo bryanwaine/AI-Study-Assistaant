@@ -1,15 +1,18 @@
-import { Link, useLocation } from "react-router";
-import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import { getAllSessions } from "../../utils/sessionService";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
+
+import { Link, useLocation } from "react-router";
+
+import "./Sessions.css";
+
+import EmptyState from "../../components/EmptyState/EmptyState";
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
+import Layout from "../../components/Layout";
+import useAuth from "../../hooks/useAuth";
+import { getAllSessions } from "../../utils/sessionService";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
 import sortSessionsByTime from "../../utils/sortSessionsByTime";
-import EmptyState from "../../components/EmptyState/EmptyState";
-import "./Sessions.css";
 
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);

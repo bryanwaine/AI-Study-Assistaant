@@ -1,8 +1,9 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import CodeBlock from "./CodeBlock/CodeBlock";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css";
+
+import CodeBlock from "./CodeBlock/CodeBlock";
 
 const MarkdownRenderer = (props) => {
   const { children } = props;

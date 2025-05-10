@@ -2,6 +2,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import HistoryIcon from "@mui/icons-material/History";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
+
 import "./EmptyState.css";
 
 const EmptyState = ({page}) => {

@@ -124,6 +124,47 @@
   color: #035172;
 }
 
+
+.search__container {
+  display: flex;
+  width: 95%;
+  background-color: #fff;
+  border: 1px solid #035172;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.search__input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #111111;
+  background-color: transparent;
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+.search__input::placeholder {
+  color: #aaaaaa;
+}
+
+.search__container button {
+  background: transparent;
+  border: none;
+  color: #035172;
+  cursor: pointer;
+  width: min-content;
+  font-size: 0.85rem;
+}
+
+.search__container button:focus {
+  outline: none;
+}
+
 /* Media Queries */
 
 /* Tablet */

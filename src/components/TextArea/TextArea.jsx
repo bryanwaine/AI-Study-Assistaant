@@ -1,8 +1,11 @@
 import { useEffect, useRef } from "react";
-import Button from "../Button/Button";
+
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
-import KeyboardVoiceOutlinedIcon from '@mui/icons-material/KeyboardVoiceOutlined';
+import KeyboardVoiceOutlinedIcon from "@mui/icons-material/KeyboardVoiceOutlined";
+
 import "./TextArea.css";
+
+import Button from "../Button/Button";
 const TextArea = ({ value, onChange, onSubmit, loading }) => {
   const textareaRef = useRef(null);
 

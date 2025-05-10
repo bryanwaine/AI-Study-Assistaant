@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   signInWithEmailAndPassword,
   signOut,
@@ -6,10 +7,12 @@ import {
   onAuthStateChanged,
   updateProfile,
   signInWithPopup,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth, googleProvider } from "../firebase";
+
 import AuthContext from "./AuthContext";
+
+import { auth, googleProvider } from "../firebase";
 import useToast from "../hooks/useToast";
 import Loader from "../components/Loader/Loader";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
@@ -24,18 +27,22 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // User is signed in
         await user.reload();
-        const { uid, email, displayName, photoURL, metadata: { creationTime } } = user.auth.currentUser;
+        const {
+          uid,
+          email,
+          displayName,
+          photoURL,
+          metadata: { creationTime },
+        } = user.auth.currentUser;
         setUser({
           uid,
           email,
           displayName,
           photoURL,
-          creationTime
+          creationTime,
         });
       } else {
-        // User is signed out
         setUser(null);
       }
       setLoading(false);
@@ -79,9 +86,17 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signup, updateUser, login, logout, resetPassword, logInWithGoogle }}
+      value={{
+        user,
+        signup,
+        updateUser,
+        login,
+        logout,
+        resetPassword,
+        logInWithGoogle,
+      }}
     >
-      {loading ? <Loader/> : children}
+      {loading ? <Loader /> : children}
     </AuthContext.Provider>
   );
 };

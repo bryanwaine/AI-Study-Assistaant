@@ -1,6 +1,8 @@
-import './ScrollToBottom.css';
-import Button from '../Button/Button';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
+
+import './ScrollToBottom.css';
+
+import Button from '../Button/Button';
 
 const ScrollToBottom = ({ showScrollToBottom, scrollToBottom }) => {
     return (

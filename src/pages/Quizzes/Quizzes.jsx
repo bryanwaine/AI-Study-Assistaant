@@ -1,6 +1,7 @@
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Layout from "../../components/Layout";
 import useAuth from "../../hooks/useAuth";
+
 import './Quizzes.css';
 
 const Quizzes = () => {

@@ -1,18 +1,21 @@
 import { useState } from "react";
+
 import { useNavigate, Navigate } from "react-router";
+
 import FormLayout from "../components/FormLayout/FormLayout";
-import useAuth from "../hooks/useAuth";
-import passwordValidation from "../utils/passwordValidation";
-import useToast from "../hooks/useToast";
-import googleIcon from "../assets/google-icon.png";
-import firstNameFilter from "../utils/firstNameFilter";
 import TextInput from "../components/TextInput/TextInput";
 import Button from "../components/Button/Button";
 import PasswordInput from "../components/PasswordInput/PasswordInput";
+import Loader from "../components/Loader/Loader";
+import useAuth from "../hooks/useAuth";
+import useToast from "../hooks/useToast";
+import passwordValidation from "../utils/passwordValidation";
+import firstNameFilter from "../utils/firstNameFilter";
 import emailValidation from "../utils/emailValidation";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
-import Loader from "../components/Loader/Loader";
 import { addUser, setGoogleUser } from "../firebase";
+
+import googleIcon from "../assets/google-icon.png";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

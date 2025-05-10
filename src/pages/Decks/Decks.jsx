@@ -1,15 +1,18 @@
-import { Link, useLocation } from "react-router";
-import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
+
+import { Link, useLocation } from "react-router";
+
+import "./Decks.css";
+
+import Layout from "../../components/Layout";
+import EmptyState from "../../components/EmptyState/EmptyState";
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
+import useAuth from "../../hooks/useAuth";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
 import { getAllDecks } from "../../utils/flashcardService";
 import sortFlashcardsByTime from "../../utils/sortFlashcardsByTime";
-import EmptyState from "../../components/EmptyState/EmptyState";
-import "./Decks.css";
 
 const Decks = () => {
   const [flashcards, setFlashcards] = useState([]);

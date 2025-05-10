@@ -1,13 +1,16 @@
 import { NavLink } from "react-router";
+import { DashboardOutlined } from "@mui/icons-material";
 import HistoryIcon from "@mui/icons-material/History";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { DashboardOutlined } from "@mui/icons-material";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
+
+import "./Menu.css";
+
 import Loader from "../Loader/Loader";
+
 import sortSessionsByTime from "../../utils/sortSessionsByTime";
-import './Menu.css';
 
 const Menu = (props) => {
   const { menuOpen, setMenuOpen, sessions, loading, error } = props;
@@ -28,7 +31,7 @@ const Menu = (props) => {
         <button>
           <SearchOutlinedIcon fontSize="small" style={{ color: "#035172" }} />
         </button>
-        <input type="text" placeholder="Search" className="search__input"/>
+        <input type="text" placeholder="Search" className="search__input" />
       </div>
       <ul className="menu__list">
         <NavLink
@@ -107,7 +110,7 @@ const Menu = (props) => {
               <li>
                 <div className="menu__list-item">
                   <span className="menu__list-name">
-                    { session.metadata.title}
+                    {session.metadata.title}
                   </span>
                 </div>
               </li>
@@ -115,7 +118,6 @@ const Menu = (props) => {
           ))}
         </ul>
       )}
-      
     </div>
   );
 };

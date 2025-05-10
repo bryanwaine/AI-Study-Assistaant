@@ -1,4 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+
+import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
+import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
+
+import "./NewNote.css";
+
+import "../NewFlashcards/NewFlashcards.css";
+
 import {
   generateFlashcardsFromNotes,
   generateNoteSummary,
@@ -6,20 +16,14 @@ import {
 import FileUploadProcessor from "../../components/FileUploadProcessor/FileUploadProcessor";
 import Layout from "../../components/Layout";
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
+import MarkdownRenderer from "../../components/MarkdownRenderer";
+import Button from "../../components/Button/Button";
+import ErrorState from "../../components/ErrorState/ErrorState";
+import CardStack from "../../components/Cardstack/CardStack";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveNote, updateNote } from "../../utils/noteService";
-import MarkdownRenderer from "../../components/MarkdownRenderer";
-import Button from "../../components/Button/Button";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
-import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import { saveDeck } from "../../utils/flashcardService";
-import ErrorState from "../../components/ErrorState/ErrorState";
-import CardStack from "../../components/Cardstack/CardStack";
-import "./NewNote.css";
-import "../NewFlashcards/NewFlashcards.css";
 
 const NewNote = () => {
   const [loading, setLoading] = useState(false);

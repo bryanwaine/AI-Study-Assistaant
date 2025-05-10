@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from "react";
+
 import { Navigate } from "react-router";
-import { generateFlashcards } from "../../anthropic";
 import "highlight.js/styles/github.css";
+
+import "./NewFlashcards.css";
+
+import { generateFlashcards } from "../../anthropic";
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import Button from "../../components/Button/Button";
-import { saveDeck } from "../../utils/flashcardService";
 import CardStack from "../../components/Cardstack/CardStack";
 import ErrorState from "../../components/ErrorState/ErrorState";
-import "./NewFlashcards.css";
+import useAuth from "../../hooks/useAuth";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
+import { saveDeck } from "../../utils/flashcardService";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);

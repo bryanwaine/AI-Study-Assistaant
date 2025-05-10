@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+
 import "./LogoSm.css";
 
 const LogoSm = ({variant}) => {

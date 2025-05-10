@@ -1,13 +1,16 @@
-import { useLocation, useParams, Navigate } from "react-router";
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
-import Loader from "../../components/Loader/Loader";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import { getDeck } from "../../utils/flashcardService";
+
+import { useLocation, useParams, Navigate } from "react-router";
+
+import "./Deck.css";
+
 import CardStack from "../../components/Cardstack/CardStack";
 import ErrorState from "../../components/ErrorState/ErrorState";
-import "./Deck.css";
+import Layout from "../../components/Layout";
+import Loader from "../../components/Loader/Loader";
+import { getDeck } from "../../utils/flashcardService";
+import useAuth from "../../hooks/useAuth";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
 
 const Deck = () => {
   const [deck, setDeck] = useState([]);
@@ -53,9 +56,7 @@ const Deck = () => {
       <div className="flashcards-container regular">
         <div className="deck-wrapper">
           {fetching && <Loader />}
-          {error && (
-            <ErrorState/>
-          )}
+          {error && <ErrorState />}
           {!fetching && deck.length > 0 && (
             <>
               <h1>{deck[0]?.topic.toUpperCase()}</h1>

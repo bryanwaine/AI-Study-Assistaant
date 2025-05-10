@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate, Navigate } from "react-router";
+
+import { useLocation, useNavigate, Navigate } from "react-router";
+
 import FormLayout from "../components/FormLayout/FormLayout";
-import useAuth from "../hooks/useAuth";
-import useToast from "../hooks/useToast";
-import googleIcon from "../assets/google-icon.png";
-import firstNameFilter from "../utils/firstNameFilter";
 import TextInput from "../components/TextInput/TextInput";
 import PasswordInput from "../components/PasswordInput/PasswordInput";
 import Button from "../components/Button/Button";
+import Loader from "../components/Loader/Loader";
+import useAuth from "../hooks/useAuth";
+import useToast from "../hooks/useToast";
+import firstNameFilter from "../utils/firstNameFilter";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { setGoogleUser } from "../firebase";
-import Loader from "../components/Loader/Loader";
+import googleIcon from "../assets/google-icon.png";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");

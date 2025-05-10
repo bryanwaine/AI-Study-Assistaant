@@ -1,7 +1,10 @@
 import { useState } from "react";
+
 import mammoth from "mammoth";
-import "./FileUploadProcessor.css";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
+
+import "./FileUploadProcessor.css";
+
 import pdf from "/images/pdf_file_icon.png";
 import docx from "/images/doc_file_icon.png";
 import txt from "/images/txt_file_icon.png";
@@ -15,10 +18,9 @@ const FileUploadProcessor = ({ onExtractedText }) => {
   const [status, setStatus] = useState(null);
   const [displayFileName, setDisplayFileName] = useState("");
 
-
   const handleFile = async (e) => {
     const file = e.target.files[0];
-    const fileName = file.name
+    const fileName = file.name;
     setDisplayFileName(file.name);
     if (!file) return;
 
@@ -40,7 +42,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       }
 
       setStatus({ success: true, message: "File uploaded successfully" });
-      onExtractedText(extractedText, fileName, setDisplayFileName, setStatus); 
+      onExtractedText(extractedText, fileName, setDisplayFileName, setStatus);
     } catch (error) {
       console.error(error);
       setStatus({ error: true, message: "Failed to upload file" });
@@ -80,7 +82,8 @@ const FileUploadProcessor = ({ onExtractedText }) => {
 
   const setImg = (displayFileName) => {
     if (displayFileName.endsWith(".pdf")) return pdf;
-    if (displayFileName.endsWith(".docx") || displayFileName.endsWith(".doc")) return docx;
+    if (displayFileName.endsWith(".docx") || displayFileName.endsWith(".doc"))
+      return docx;
     if (displayFileName.endsWith(".txt")) return txt;
     return "";
   };

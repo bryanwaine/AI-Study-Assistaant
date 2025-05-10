@@ -1,13 +1,16 @@
 import { Link } from "react-router";
-import LogoLg from "../LogoLg/LogoLg";
+
 import "./FormLayout.css";
 
+import LogoLg from "../LogoLg/LogoLg";
+
 const FormLayout = (props) => {
-    const { type, title, message, linkText, link, children, handleSubmit, } = props;
+  const { type, title, message, linkText, link, children, handleSubmit } =
+    props;
   return (
     <div className="form-container">
-      <LogoLg variant="light"/>
-      <form  aria-labelledby={type} onSubmit={handleSubmit}>
+      <LogoLg variant="light" />
+      <form aria-labelledby={type} onSubmit={handleSubmit}>
         <fieldset>
           <legend>{title}</legend>
           <div className="form-group-top">
@@ -18,10 +21,10 @@ const FormLayout = (props) => {
           </div>
           {children}
           <div className="form-group-bottom">
-          <Link className="link" to="/reset-password">
-            Forgotten password?
-          </Link>
-        </div>
+            <Link className="link" to="/reset-password">
+              Forgotten password?
+            </Link>
+          </div>
         </fieldset>
       </form>
     </div>

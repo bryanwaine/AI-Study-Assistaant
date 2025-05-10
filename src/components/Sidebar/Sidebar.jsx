@@ -3,6 +3,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+
 import "./Sidebar.css";
 
 const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {

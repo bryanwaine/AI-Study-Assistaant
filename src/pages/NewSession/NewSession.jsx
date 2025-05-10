@@ -1,19 +1,22 @@
 import { useEffect, useRef, useState } from "react";
+
 import { Navigate } from "react-router";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import { generateResponse } from "../../anthropic";
 import "highlight.js/styles/github.css";
+
+import "./NewSession.css";
+
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import Layout from "../../components/Layout";
-import useAuth from "../../hooks/useAuth";
 import TextArea from "../../components/TextArea/TextArea";
-import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import { saveSession, updateSession } from "../../utils/sessionService";
 import MarkdownRenderer from "../../components/MarkdownRenderer";
 import ScrollToBottom from "../../components/ScrollToBottom/ScrollToBottom";
 import ErrorState from "../../components/ErrorState/ErrorState";
-import "./NewSession.css";
+import { generateResponse } from "../../anthropic";
+import useAuth from "../../hooks/useAuth";
+import handleAnthropicError from "../../utils/anthropicErrorHandler";
+import { saveSession, updateSession } from "../../utils/sessionService";
 const NewSession = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);

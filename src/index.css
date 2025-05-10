@@ -1,3 +1,5 @@
+/* ------------------------------------------------------------- */
+/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,7 +7,7 @@
 }
 
 :root {
-  font-size: 16px;
+  font-size: 14 px;
 }
 
 html,
@@ -21,14 +23,32 @@ main {
   height: 100vh;
 }
 
+/* Media Queries */
+
+@media screen and (max-width: 395px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+/* ------------------------------------------------------------- */
+/* Base Elements */
+
+input {
+  transition: all 0.2s ease-in-out;
+}
+
 input:focus,
 button:focus {
   outline: 2px solid #00e1ff;
   outline-offset: 2px;
 }
 
-button,
-input {
+a {
+  text-decoration: none;
+}
+
+button {
   transition: all 0.2s ease-in-out;
 }
 
@@ -38,6 +58,9 @@ button:disabled {
   color: #111111 !important;
   cursor: not-allowed !important;
 }
+
+/* ------------------------------------------------------------- */
+/* Utilities */
 
 .error {
   color: red;
@@ -55,16 +78,6 @@ button:disabled {
   outline: 1px solid red !important;
 }
 
-a {
-  text-decoration: none;
-}
-
-.btn--link {
-  background-color: transparent;
-  width: 100%;
-  color: #ffffff;
-}
-
 .google-icon {
   width: 1.5rem;
   height: 1.5rem;
@@ -79,56 +92,10 @@ a {
   cursor: pointer;
 }
 
-.card--blue {
-  background-color: #e6f1f6;
-  border-radius: 0.5rem;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card--white {
-  background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.search__container {
-  display: flex;
-  width: 95%;
-  background-color: #fff;
-  border: 1px solid #035172;
-  border-radius: 0.5rem;
-  padding: 0 0.5rem 0 0.5rem;
-}
-
-.search__input {
-  width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  border: none;
-  font-size: 1rem;
-  font-weight: 300;
-  color: #111111;
+.btn--link {
   background-color: transparent;
-}
-
-.search__input:focus {
-  outline: none;
-}
-
-.search__input::placeholder {
-  color: #aaaaaa;
-}
-
-.search__container button {
-  background: transparent;
-  border: none;
-  color: #035172;
-  cursor: pointer;
-  width: min-content;
-  font-size: 0.85rem;
-}
-
-.search__container button:focus {
-  outline: none;
+  width: 100%;
+  color: #ffffff;
 }
 
 .action-buttons-wrapper {
@@ -147,7 +114,6 @@ a {
   gap: 0.2rem;
 }
 
-
 .action-button:focus {
   outline: none;
 }
@@ -165,10 +131,16 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
-/* Media Queries */
+/* ------------------------------------------------------------- */
+/* Cards */
+.card--blue {
+  background-color: #e6f1f6;
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-@media screen and (max-width: 395px) {
-  :root {
-    font-size: 12px;
-  }
+.card--white {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }

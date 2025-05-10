@@ -1,11 +1,13 @@
 import { useState } from "react";
+
+import { Link } from "react-router";
+
 import FormLayout from "../components/FormLayout/FormLayout";
 import TextInput from "../components/TextInput/TextInput";
 import Button from "../components/Button/Button";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import emailValidation from "../utils/emailValidation";
-import { Link } from "react-router";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 
 const ResetPassword = () => {
