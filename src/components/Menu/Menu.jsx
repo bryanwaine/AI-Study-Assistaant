@@ -24,11 +24,11 @@ const Menu = (props) => {
   };
   return (
     <div className="menu" data-menu-open={menuOpen}>
-      <div className="search-container">
+      <div className="search__container">
         <button>
           <SearchOutlinedIcon fontSize="small" style={{ color: "#035172" }} />
         </button>
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" className="search__input"/>
       </div>
       <ul className="menu__list">
         <NavLink

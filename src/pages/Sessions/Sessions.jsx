@@ -41,7 +41,7 @@ const Sessions = () => {
       <Layout userName={userName} />
       <div className="sessions__container">
         <h1>Your Sessions</h1>
-        <Button variant="orange">
+        <Button variant="orange" >
           <Link to="/new-session" className="btn--link">
             New Session
           </Link>
@@ -55,8 +55,8 @@ const Sessions = () => {
         ) : (
           <ul className="sessions__list">
             {sortSessionsByTime(sessions).map((session) => (
-              <Link to={session.id} key={session.id}>
-                <li className="session-card card--blue">
+              <li key={session.id}>
+                <Link to={session.id} className="session-card card--blue">
                   <h2 className="session-card__title">
                     {session.metadata.title}
                   </h2>
@@ -84,8 +84,8 @@ const Sessions = () => {
                       </p>
                     </div>
                   </div>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
           </ul>
         )}

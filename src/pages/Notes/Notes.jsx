@@ -53,8 +53,8 @@ const Notes = () => {
         ) : (
           <ul className="notes__list">
             {sortFlashcardsByTime(notes).map((note) => (
-              <Link to={note.id} key={note.id}>
-                <li className="note-card card--blue">
+              <li key={note.id}>
+                <Link to={note.id} className="note-card card--blue">
                   <h2 className="note-card__title">
                     {note.metadata.title.toUpperCase()}
                   </h2>
@@ -68,8 +68,8 @@ const Notes = () => {
                       {formatFirebaseTimestamp(note.metadata.createdAt)}
                     </p>
                   </div>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
           </ul>
         )}

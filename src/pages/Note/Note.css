@@ -5,11 +5,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 4rem 2rem 0 2rem;
-  }
-  
-  .note__wrapper button {
-    margin: 1rem 0 2rem 0 ;
+    padding: 4rem 0 0 0
   }
 
   .note__container {
@@ -19,6 +15,8 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    margin: 1rem 0 2rem 0 ;
+    padding: 0 2rem 0 2rem;
   }
   
   .note {
@@ -45,7 +43,7 @@
     font-size: 1.25rem;
     text-align: center;
     line-height: 1.5;
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0 .5rem 0;
   }
   
   .note__summary h3 {
@@ -88,7 +86,7 @@
     color: #111111;
   }
 
- .input-container {
+  .input-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -131,4 +129,35 @@
   }
 
   
-  
+  /* Media Queries */
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .note__container{
+    align-self: flex-end;
+    width: 80%;
+  }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .note__container{
+    align-self: flex-end;
+    width: 75%;
+  }
+
+  .note__summary h1,
+  .note__summary h2,
+  .note__summary h3 {
+    text-align: left;
+  }
+}
+
+/* Desktop */
+
+@media screen and (min-width: 1280px) {
+  .note__container{
+    align-self: flex-end;
+    width: 80%;
+  }
+}

@@ -1,18 +1,29 @@
-.notes-wrapper {
+.new-note__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+.new-note__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
     padding: 4rem 2rem 0 2rem;
+  }
+
+  .new-note__file {
+    width: 100%;
   }
   
   .notes-wrapper button {
     margin: 1rem 0 2rem 0 ;
   }
   
-  .note-container {
+  .note-summary__container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,20 +86,20 @@
     color: #111111;
   }
 
- .input-container {
+ .new-note__title {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   
-.input-container label {
+.new-note__title label {
     font-size: 1rem;
   }
   
-.input-container input {
+.new-note__title input {
     width: 100%;
     max-width: 400px;
     padding: 0.5rem;
@@ -119,4 +130,26 @@
 
 
   
-  
+  /* Laptop */
+@media screen and (min-width: 1024px) {
+  .new-note__container{
+    align-self: flex-end;
+    align-items: center;
+    width: 75%;
+  }
+
+  .new-note__file {
+    align-self: center;
+    width: 40%;
+  }
+}
+
+/* Desktop */
+
+@media screen and (min-width: 1280px) {
+  .new-note__container {
+    align-self: flex-end;
+    align-items: center;
+    width: 80%;
+  }
+}

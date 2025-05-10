@@ -10,18 +10,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  padding: 7rem 0 2rem 0;
+  width: 100%;
+  padding: 7rem 3rem 2rem;
 }
 
 .sessions__container button {
-  width: 80%;
+  width: 100%;
   margin-bottom: 2rem;
 }
 
 .sessions__container > h1 {
   margin: 0 0 2rem 0;
   align-self: center;
+}
+
+.sessions__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+}
+
+.sessions__list li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.session-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 9rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
 .session-card__title {
@@ -34,30 +61,6 @@
   text-overflow: ellipsis;
   margin: 0;
   color: #035172;
-}
-
-.sessions__list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sessions__list a {
-  width: 80%;
-}
-
-.session-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  height: 9rem;
-  min-height: 9rem;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
 }
 
 .session-card__metadata-container {
@@ -92,9 +95,8 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-  .sessions__container {
-    padding-left: 8rem;
-    padding-right: 8rem;
+  .sessions__container button {
+    width: 50%;
   }
 }
 
@@ -103,7 +105,25 @@
   .sessions__container {
     align-self: flex-end;
     width: 75%;
-    padding-left: 20rem;
-    padding-right: 20rem;
+    padding: 7rem 5rem 2rem;
   }
+
+  .sessions__container button {
+    width: 50%;
+  }
+}
+
+/* Desktop */
+
+@media screen and (min-width: 1280px) {
+  .sessions__container {
+    align-self: flex-end;
+    width: 80%;
+    padding: 7rem 7rem 2rem;
+  }
+
+  .sessions__container button {
+    width: 40%;
+  }
+  
 }

@@ -192,40 +192,42 @@ const NewNote = () => {
   };
 
   return (
-    <>
+    <div className="new-note__wrapper">
       <Layout userName={userName} />
-      <div className="notes-wrapper">
-        <FileUploadProcessor
-          onExtractedText={(text, fileName, setDisplayFileName, setStatus) =>
-            setFileUploadProps({
-              text,
-              fileName,
-              setDisplayFileName,
-              setStatus,
-            })
-          }
-        />
-        <div className="input-container">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter a title for your notes"
-            id="title"
-            value={title}
-            onChange={onChange}
-            required
+      <div className="new-note__container">
+        <div className="new-note__file">
+          <FileUploadProcessor
+            onExtractedText={(text, fileName, setDisplayFileName, setStatus) =>
+              setFileUploadProps({
+                text,
+                fileName,
+                setDisplayFileName,
+                setStatus,
+              })
+            }
           />
+          <div className="new-note__title">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter a title for your notes"
+              id="title"
+              value={title}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <Button
+            variant="orange"
+            disabled={!fileUploadProps.text || !isTitleValid || loading}
+            onClick={() => onSubmit(fileUploadProps)}
+          >
+            {loading ? "Generating summary..." : "Generate summary"}
+          </Button>
         </div>
-        <Button
-          variant="orange"
-          disabled={!fileUploadProps.text || !isTitleValid || loading}
-          onClick={() => onSubmit(fileUploadProps)}
-        >
-          {loading ? "Generating summary..." : "Generate summary"}
-        </Button>
         {isResponseGenerated && (
-          <div className="note-container">
+          <div className="note-summary__container">
             {error && <ErrorState />}
             {loading && <TypingIndicator />}
             {loading
@@ -393,7 +395,7 @@ const NewNote = () => {
           </div>
         </div>
       )} */}
-    </>
+    </div>
   );
 };
 

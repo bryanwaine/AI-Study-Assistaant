@@ -220,11 +220,11 @@ const Session = () => {
           {error && <ErrorState error={error} onResubmit={onResubmit} />}
           <div ref={messagesEndRef} />
           {loading && <TypingIndicator />}
+        </div>
           <ScrollToBottom
             showScrollToBottom={showScrollToBottom}
             scrollToBottom={scrollToBottom}
           />
-        </div>
       </div>
       <TextArea
         value={question}

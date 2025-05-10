@@ -71,3 +71,10 @@
     left: 25%;
   }
 }
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .textarea-wrapper {
+    left: 20%;
+  }
+}

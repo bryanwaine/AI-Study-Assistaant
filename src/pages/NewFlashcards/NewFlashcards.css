@@ -89,7 +89,10 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
- 
+  .deck-wrapper {
+    align-self: center;
+    width: 70%;
+  }
 }
 
 /* Laptop */
@@ -99,16 +102,13 @@
     width: 75%;
   }
 
-  /* .flashcards-container.extended {
-    padding: 3rem 10rem 0 10rem;
-  } */
   .flashcards-container .input-wrapper {
     align-self: center;
-    width: 40%;
+    width: 50%;
   }
 
   .deck-wrapper {
     align-self: center;
-    width: 40%;
+    width: 50%;
   }
 }
