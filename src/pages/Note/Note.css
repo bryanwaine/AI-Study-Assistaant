@@ -133,10 +133,7 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-  .note__container{
-    align-self: flex-end;
-    width: 80%;
-  }
+  
 }
 
 /* Laptop */

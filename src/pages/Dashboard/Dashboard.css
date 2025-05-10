@@ -92,7 +92,7 @@
 /* Tablet */
 @media screen and (min-width: 768px) {
   .dashboard-card {
-    width: 50%;
+    width: 70%;
   }
 }
 
@@ -104,22 +104,16 @@
     align-items: center;
     width: 75%;
   }
-
-  .dashboard-container > section {
-    width: 60%;
-  }
 }
 
 /* Desktop */
 
-@media screen and (min-width: 1024px) {
-  /* .dashboard-wrapper {
-    justify-self:  flex-end;
-    align-items: center;
-    width: 75%;
+@media screen and (min-width: 1280px) {
+  .dashboard__wrapper {
+    width: 80%;
   }
 
-  .dashboard-container > section {
-    width: 60%;
-  } */
+  .dashboard-card {
+    width: 50%;
+  }
 }

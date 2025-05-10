@@ -17,6 +17,7 @@ import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import CardStack from "../../components/Cardstack/CardStack";
 import ErrorState from "../../components/ErrorState/ErrorState";
 import "./Note.css";
+import "../NewFlashcards/NewFlashcards.css";
 
 const Note = () => {
   const [fetching, setFetching] = useState(false);
@@ -253,7 +254,9 @@ const Note = () => {
             <div className="deck-wrapper">
             <div ref={cardStackRef } style={{ height: "6rem" }}/>
               {loading && (
+                  <div className="deck-wrapper__loading">
                   <TypingIndicator />
+                </div>
               )}
               {!loading && deck.length > 0 && (
                 <>

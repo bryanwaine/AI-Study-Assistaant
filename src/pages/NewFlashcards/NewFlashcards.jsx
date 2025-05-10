@@ -129,7 +129,9 @@ const NewFlashcards = () => {
 
         <div className="deck-wrapper">
           {loading && (
+            <div className="deck-wrapper__loading">
               <TypingIndicator />
+            </div>
           )}
           {!loading && deck.length > 0 && (
             <>

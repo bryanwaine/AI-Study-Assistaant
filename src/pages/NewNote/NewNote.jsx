@@ -19,6 +19,7 @@ import { saveDeck } from "../../utils/flashcardService";
 import ErrorState from "../../components/ErrorState/ErrorState";
 import CardStack from "../../components/Cardstack/CardStack";
 import "./NewNote.css";
+import "../NewFlashcards/NewFlashcards.css";
 
 const NewNote = () => {
   const [loading, setLoading] = useState(false);
@@ -328,7 +329,7 @@ const NewNote = () => {
             <div className="deck-wrapper">
               <div ref={cardStackRef} style={{ height: "6rem" }} />
               {loading && (
-                <div className="typing-indicator">
+                <div className="deck-wrapper__loading">
                   <TypingIndicator />
                 </div>
               )}

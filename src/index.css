@@ -91,11 +91,11 @@ a {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar-list h3 {
+/* .sidebar-list h3 {
   font-size: 1rem;
   font-weight: 300;
   color: #035172;
-}
+} */
 
 .search__container {
   display: flex;
@@ -171,7 +171,7 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
-.flashcards-container {
+/* .flashcards-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,9 +188,9 @@ a {
   height: 100vh;
   padding: 5rem 0 0 0;
   overflow: hidden;
-}
+} */
 
-
+/* 
 .input-wrapper {
   display: flex;
   flex-direction: column;
@@ -212,14 +212,14 @@ a {
   color: #fff;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-}
+} */
 
-.flashcards-container button:hover,
+/* .flashcards-container button:hover,
 .flashcards-container button:focus {
   outline: none;
-}
+} */
 
-.deck-wrapper{
+/* .deck-wrapper{
   position: relative;
   display: flex;
   flex-direction: column;
@@ -228,26 +228,26 @@ a {
   width: 100%;
   padding: 0 2rem 2rem 2rem;
   border: none;
-}
+} */
 
-.flashcards-container.extended .deck-wrapper {
+/* .flashcards-container.extended .deck-wrapper {
   height: 80vh;
   padding: 0 2rem 2rem 2rem;
   
-}
+} */
 
-.flashcards-container.regular .deck-wrapper {
+/* .flashcards-container.regular .deck-wrapper {
   height: 80vh;
-}
+} */
 
-.deck-wrapper h1 {
+/* .deck-wrapper h1 {
   margin: 0 0 1rem 0;
   font-size: 1.2rem;
   text-align: center;
   align-self: center;
-}
+} */
 
-.flashcard {
+/* .flashcard {
   position: absolute;
   bottom: 0;
   display: flex;
@@ -260,7 +260,7 @@ a {
   margin: 0;
   cursor: pointer;
   border: none;
-}
+} */
 
 /* Media Queries */
 
