@@ -102,7 +102,11 @@
 /* Desktop */
 @media only screen and (min-width: 1024px) {
     .home-cards__container {
-      /* flex-direction: row;
-      gap: 1rem; */
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .home-card {
+      width: 30%;
     }
 }
