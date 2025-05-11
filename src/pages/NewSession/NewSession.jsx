@@ -5,8 +5,6 @@ import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import "highlight.js/styles/github.css";
 
-import "./NewSession.css";
-
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import Layout from "../../components/Layout";
 import TextArea from "../../components/TextArea/TextArea";
@@ -17,6 +15,8 @@ import { generateResponse } from "../../anthropic";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveSession, updateSession } from "../../utils/sessionService";
+
+import "./NewSession.css";
 const NewSession = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,6 +27,7 @@ const NewSession = () => {
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
   const [sessionId, setSessionId] = useState(null);
   const [isCopied, setIsCopied] = useState(false);
+
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
   const messagesEndRef = useRef(null);

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router";
 
-import "./Sessions.css";
-
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
@@ -13,6 +11,8 @@ import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
 import sortSessionsByTime from "../../utils/sortSessionsByTime";
+
+import "./Sessions.css";
 
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);
@@ -40,7 +40,7 @@ const Sessions = () => {
   }, [user]);
 
   return (
-    <div div className="sessions__wrapper">
+    <div className="sessions__wrapper">
       <Layout userName={userName} />
       <div className="sessions__container">
         <h1>Your Sessions</h1>

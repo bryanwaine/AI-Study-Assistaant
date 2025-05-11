@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 
-import "./Home.css";
-
 import Button from "../../components/Button/Button";
 import LogoSm from "../../components/LogoSm/LogoSm";
+
+import "./Home.css";
 
 const Home = () => {
   return (

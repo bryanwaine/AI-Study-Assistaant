@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router";
 
-import "./Notes.css";
-
 import Layout from "../../components/Layout";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Loader from "../../components/Loader/Loader";
@@ -13,6 +11,8 @@ import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
 import sortFlashcardsByTime from "../../utils/sortFlashcardsByTime";
 import { getAllNotes } from "../../utils/noteService";
+
+import "./Notes.css";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);

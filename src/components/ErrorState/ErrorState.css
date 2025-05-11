@@ -1,5 +1,5 @@
 .chat-error-container {
-    color: #e74c3c;
+    color: #FF7B00;
     font-size: 0.9rem;
     padding: 0 1rem 1rem 1rem;
     margin-bottom: 0 !important;
@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid #e74c3c;
+    border-top: 1px solid #FF7B00;
   }
   
   .chat-error-container p {

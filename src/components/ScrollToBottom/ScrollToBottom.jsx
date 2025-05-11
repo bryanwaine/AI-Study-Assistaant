@@ -1,8 +1,8 @@
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 
-import './ScrollToBottom.css';
-
 import Button from '../Button/Button';
+
+import './ScrollToBottom.css';
 
 const ScrollToBottom = ({ showScrollToBottom, scrollToBottom }) => {
     return (
@@ -11,7 +11,7 @@ const ScrollToBottom = ({ showScrollToBottom, scrollToBottom }) => {
           showScrollToBottom ? "visible" : "hidden"
         }`}
       >
-        <Button variant="orange" onClick={scrollToBottom}>
+        <Button id="scroll-to-bottom" ariaLabel="scroll to bottom" ariaLabelledby="scroll to bottom" variant="orange" onClick={scrollToBottom}>
           <ArrowDownwardOutlinedIcon />
         </Button>
       </div>

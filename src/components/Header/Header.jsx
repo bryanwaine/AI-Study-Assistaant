@@ -1,11 +1,11 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import "./Header.css";
-
 import LogoSm from "../LogoSm/LogoSm";
 
-const Header = ({ setMenuOpen, setSidebarOpen, photoURL, displayName }) => {
+import "./Header.css";
+
+const Header = ({ setMenuOpen, setSidebarOpen, photoURL, userName }) => {
   return (
     <header>
       <nav>
@@ -27,7 +27,7 @@ const Header = ({ setMenuOpen, setSidebarOpen, photoURL, displayName }) => {
         >
           <div className="avatar-container">
             {photoURL ? (
-              <img className="avatar" src={photoURL} alt={displayName} />
+              <img className="avatar" src={photoURL} alt={userName || "avatar"} />
             ) : (
               <AccountCircleIcon style={{ color: "white", fontSize: "3rem" }} />
             )}

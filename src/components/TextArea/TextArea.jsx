@@ -3,9 +3,9 @@ import { useEffect, useRef } from "react";
 import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import KeyboardVoiceOutlinedIcon from "@mui/icons-material/KeyboardVoiceOutlined";
 
-import "./TextArea.css";
-
 import Button from "../Button/Button";
+
+import "./TextArea.css";
 const TextArea = ({ value, onChange, onSubmit, loading }) => {
   const textareaRef = useRef(null);
 
@@ -41,13 +41,20 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
           required
         />
         <div className="textarea-buttons">
-          <Button variant="ghost--orange">
+          <Button
+            variant="ghost--orange"
+            id="speech button"
+            ariaLabel="speech button"
+            ariaLabelledby="speech button"
+          >
             <KeyboardVoiceOutlinedIcon fontSize="small" />
           </Button>
           <Button
             variant="orange"
             onClick={onSubmit}
+            id="submit"
             ariaLabel="submit"
+            ariaLabelledby="submit"
             disabled={!value || loading}
           >
             <ArrowUpwardOutlinedIcon fontSize="small" />

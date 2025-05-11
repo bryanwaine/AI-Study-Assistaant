@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from 'dayjs'
 
 const formatFirebaseTimestamp = (timestamp) => {
   if (!timestamp || typeof timestamp.toDate !== "function") {
@@ -7,7 +7,7 @@ const formatFirebaseTimestamp = (timestamp) => {
 
   try {
     const date = timestamp.toDate();
-    return moment(date).format("DD MMMM YYYY, hh:mm A");
+    return dayjs(date).format("DD MMMM YYYY, hh:mm A");
   } catch (error) {
     console.error("Error formatting timestamp:", error);
     return "Error formatting date";

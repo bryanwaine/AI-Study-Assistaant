@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./ErrorState.css";
-
 import Button from "../Button/Button";
+
+import "./ErrorState.css";
 
 
 export const ErrorState = (props) => {

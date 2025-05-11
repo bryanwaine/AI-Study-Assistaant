@@ -9,25 +9,25 @@ import "./Sidebar.css";
 const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
   return (
     <div className="sidebar" data-sidebar-open={sidebarOpen}>
+      <h3 className="sidebar__list-title">ACCOUNT</h3>
       <ul className="sidebar__list">
-        <h3 className="sidebar__list-title">ACCOUNT</h3>
         <li>
           <div className="sidebar__item">
-            <PersonOutlineIcon fontSize="small"  className="sidebar__icon" />
+            <PersonOutlineIcon fontSize="small" className="sidebar__icon" />
             <span className="sidebar__item-name">Name</span>
           </div>
           <p className="sidebar__item-value">{userName}</p>
         </li>
         <li>
           <div className="sidebar__item">
-            <MailOutlineIcon fontSize="small"  className="sidebar__icon" />
+            <MailOutlineIcon fontSize="small" className="sidebar__icon" />
             <span className="sidebar__item-name">Email</span>
           </div>
           <p className="sidebar__item-value">{email}</p>
         </li>
       </ul>
+      <h3 className="sidebar__list-title">APP</h3>
       <ul className="sidebar__list">
-        <h3 className="sidebar__list-title">APP</h3>
         <li>
           <div className="sidebar__item">
             <DarkModeOutlinedIcon fontSize="small" className="sidebar__icon" />
@@ -37,7 +37,7 @@ const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
         </li>
         <li>
           <div className="sidebar__item">
-            <LogoutIcon fontSize="small"  className="sidebar__icon" />
+            <LogoutIcon fontSize="small" className="sidebar__icon" />
             <Link onClick={handleLogout} className="link">
               <span className="sidebar__item-name">Logout</span>
             </Link>

@@ -39,8 +39,8 @@
 
 .chat-message.user {
   align-self: flex-end;
-  background-color: #e74c3c;
-  color: white;
+  background-color: #FF7B00;
+  color: #111111;
   max-width: 70%;
 }
 
@@ -114,7 +114,7 @@
   width: 100%;
   font-size: 0.85rem;
   border-radius: 1rem;
-  background-color: #e6f1f6;
+  background-color: #e6f1f6 ;
 }
 
 .chat-message pre {

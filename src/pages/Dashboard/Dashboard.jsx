@@ -1,35 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 
-import { useLocation, Navigate, Link } from "react-router";
-import { NavigateNext } from "@mui/icons-material";
+import { useLocation, Navigate } from "react-router";
 
-import "./Dashboard.css";
+import DashboardOverviewSkeleton from "./DashboardOverviewSkeleton";
+import DashboardQuicklinksSkeleton from "./DashboardQuickLinksSkeleton";
 
 import Layout from "../../components/Layout";
 import Loader from "../../components/Loader/Loader";
-import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
-import firstNameFilter from "../../utils/firstNameFilter";
-import handleGreeting from "../../utils/greetingHandler";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getAllDecks } from "../../utils/flashcardService";
 import { getAllNotes } from "../../utils/noteService";
+
+import "./Dashboard.css";
+
+import "./DashboardSkeleton.css";
+
+// Lazy loaded components
+const DashboardOverviewCard = lazy(() => import("./DashboardOverviewCard"));
+const DashboardQuicklinksCard = lazy(() => import("./DashboardQuicklinksCard"));
+
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [sessions, setSessions] = useState([]);
   const [flashcards, setFlashcards] = useState([]);
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(null);
+
   const { user } = useAuth();
   const location = useLocation();
   const userName = user?.displayName || location.state?.userName;
 
   useEffect(() => {
-    const fetchData = async (fetchFn, setter) => {
+    if (!user) return;
+
+    const fetchData = async () => {
       try {
-        const data = await fetchFn(user.uid);
-        setter(data);
+        const [notes, sessions, flashcards] = await Promise.all([
+          getAllNotes(user.uid),
+          getAllSessions(user.uid),
+          getAllDecks(user.uid),
+        ]);
+        setNotes(notes);
+        setSessions(sessions);
+        setFlashcards(flashcards);
       } catch (error) {
         setError(handleAnthropicError(error).message);
       } finally {
@@ -37,9 +52,11 @@ const Dashboard = () => {
       }
     };
 
-    fetchData(getAllNotes, setNotes);
-    fetchData(getAllSessions, setSessions);
-    fetchData(getAllDecks, setFlashcards);
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(fetchData);
+    } else {
+      setTimeout(fetchData, 100);
+    }
   }, [user]);
 
   if (!user) {
@@ -57,72 +74,17 @@ const Dashboard = () => {
           <p>{error}</p>
         ) : (
           <div className="dashboard__container">
-            <section className="dashboard-card card--blue">
-              <h2 className="dashboard-card__greeting">
-                {handleGreeting(firstNameFilter(userName))}
-              </h2>
-              <p className="dashboard-card__message">
-                Here's an overview of your study progress:
-              </p>
-              <div className="dashboard-card__overview">
-                <Link to="/sessions" className="link">
-                  <div className="dashboard-card__item card--white">
-                    <span className="dashboard-card__item-label">Sessions</span>
-                    <span className="dashboard-card__item-value">
-                      {sessions.length}
-                    </span>
-                  </div>
-                </Link>
-                <Link to="/notes" className="link">
-                  <div className="dashboard-card__item card--white">
-                    <span className="dashboard-card__item-label">Notes</span>
-                    <span className="dashboard-card__item-value">
-                      {notes.length}
-                    </span>
-                  </div>
-                </Link>
-                <Link to="/decks" className="link">
-                  <div className="dashboard-card__item card--white">
-                    <span className="dashboard-card__item-label">Decks</span>
-                    <span className="dashboard-card__item-value">
-                      {flashcards.length}
-                    </span>
-                  </div>
-                </Link>
-                <Link to="/quizzes" className="link">
-                  <div className="dashboard-card__item card--white">
-                    <span className="dashboard-card__item-label">Quizzes</span>
-                    <span className="dashboard-card__item-value">0</span>
-                  </div>
-                </Link>
-              </div>
-              <Button variant="orange">
-                <Link to="/new-session" className="btn--link">
-                  New Session
-                </Link>
-              </Button>
-            </section>
-            <section className="dashboard-card card--blue">
-              <h2>Quick Links</h2>
-              <div className="dashboard__quicklinks">
-                <Link to="/new-session" className="link dashboard__quicklink">
-                  <p>Ask a Question</p>
-                  <NavigateNext />
-                </Link>
-                <Link to="/new-note" className="link dashboard__quicklink">
-                  <p>Create a Note</p>
-                  <NavigateNext />
-                </Link>
-                <Link to="/new-quiz" className="link dashboard__quicklink">
-                  <p>Take a Quiz</p>
-                  <NavigateNext />
-                </Link>
-                <Link to="/new-deck" className="link dashboard__quicklink">
-                  <p>Create a deck of Flashcards</p>
-                  <NavigateNext />
-                </Link>
-              </div>
-            </section>
+            <Suspense fallback={<DashboardOverviewSkeleton />}>
+              <DashboardOverviewCard
+                sessions={sessions}
+                notes={notes}
+                flashcards={flashcards}
+                userName={userName}
+              />
+            </Suspense>
+            <Suspense fallback={<DashboardQuicklinksSkeleton />}>
+              <DashboardQuicklinksCard />
+            </Suspense>
           </div>
         )}
       </div>

@@ -13,7 +13,7 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    background-color: #e74c3c;
+    background-color: #FF7B00;
     border-radius: 50%;
     animation: bounce 1s infinite ease-in-out;
   }

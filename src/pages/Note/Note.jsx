@@ -6,10 +6,6 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 
-import "./Note.css";
-
-import "../NewFlashcards/NewFlashcards.css";
-
 import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
@@ -22,6 +18,9 @@ import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getNote } from "../../utils/noteService";
 import MarkdownRenderer from "../../components/MarkdownRenderer";
 import { generateFlashcardsFromNotes } from "../../anthropic";
+
+import "./Note.css";
+import "../NewFlashcards/NewFlashcards.css";
 
 const Note = () => {
   const [fetching, setFetching] = useState(false);
@@ -157,7 +156,7 @@ const Note = () => {
   };
 
   return (
-    <div div className="note__wrapper">
+    <div className="note__wrapper">
       <Layout userName={userName} />
       <div className="note__container">
         {fetching && <Loader />}

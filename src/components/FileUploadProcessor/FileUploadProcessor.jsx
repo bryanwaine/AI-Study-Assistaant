@@ -3,13 +3,13 @@ import { useState } from "react";
 import mammoth from "mammoth";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 
-import "./FileUploadProcessor.css";
-
 import pdf from "/images/pdf_file_icon.png";
 import docx from "/images/doc_file_icon.png";
 import txt from "/images/txt_file_icon.png";
 
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
+
+import "./FileUploadProcessor.css";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
@@ -104,7 +104,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       <label htmlFor="file" className="file-upload-container">
         <div className="label-left">
           <UploadFileOutlinedIcon
-            style={{ fontSize: "3rem", color: "#e74c3c" }}
+            style={{ fontSize: "3rem", color: "#FF7B00" }}
           />
         </div>
         <div className="label-right">
@@ -128,7 +128,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       </p>
       {status && (
         <div className="file-name">
-          <img src={setImg(displayFileName)} alt="" />
+          <img src={setImg(displayFileName)} alt="file icon" />
           <p>{formatFileName()}</p>
         </div>
       )}

@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 
-import "./FormLayout.css";
-
 import LogoLg from "../LogoLg/LogoLg";
+
+import "./FormLayout.css";
 
 const FormLayout = (props) => {
   const { type, title, message, linkText, link, children, handleSubmit } =

@@ -3,8 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { Navigate } from "react-router";
 import "highlight.js/styles/github.css";
 
-import "./NewFlashcards.css";
-
 import { generateFlashcards } from "../../anthropic";
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import Layout from "../../components/Layout";
@@ -14,6 +12,8 @@ import ErrorState from "../../components/ErrorState/ErrorState";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveDeck } from "../../utils/flashcardService";
+
+import "./NewFlashcards.css";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,6 +21,7 @@ const NewFlashcards = () => {
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(null);
+
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
 

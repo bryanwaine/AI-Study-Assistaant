@@ -5,10 +5,6 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 
-import "./NewNote.css";
-
-import "../NewFlashcards/NewFlashcards.css";
-
 import {
   generateFlashcardsFromNotes,
   generateNoteSummary,
@@ -24,6 +20,9 @@ import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveNote, updateNote } from "../../utils/noteService";
 import { saveDeck } from "../../utils/flashcardService";
+
+import "./NewNote.css";
+import "../NewFlashcards/NewFlashcards.css";
 
 const NewNote = () => {
   const [loading, setLoading] = useState(false);
