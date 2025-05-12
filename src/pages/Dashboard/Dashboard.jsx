@@ -1,9 +1,9 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 
-import { useLocation, Navigate } from "react-router";
+import { useLocation, Navigate, Link } from "react-router";
 
 import DashboardOverviewSkeleton from "./DashboardOverviewSkeleton";
-import DashboardQuicklinksSkeleton from "./DashboardQuickLinksSkeleton";
+import DashboardQuicklinksCard from "./DashboardQuickLinksCard";
 
 import Layout from "../../components/Layout";
 import Loader from "../../components/Loader/Loader";
@@ -16,10 +16,12 @@ import { getAllNotes } from "../../utils/noteService";
 import "./Dashboard.css";
 
 import "./DashboardSkeleton.css";
+import handleGreeting from "../../utils/greetingHandler";
+import firstNameFilter from "../../utils/firstNameFilter";
+import Button from "../../components/Button/Button";
 
 // Lazy loaded components
 const DashboardOverviewCard = lazy(() => import("./DashboardOverviewCard"));
-const DashboardQuicklinksCard = lazy(() => import("./DashboardQuicklinksCard"));
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -68,25 +70,37 @@ const Dashboard = () => {
       <Layout userName={userName} />
       <div className="dashboard__wrapper">
         <h1>Dashboard</h1>
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
-          <div className="dashboard__container">
+        <div className="dashboard__container">
+          <section className="dashboard-card card--blue">
+            <h2 className="dashboard-card__greeting">
+              {handleGreeting(firstNameFilter(userName))}
+            </h2>
+            <p className="dashboard-card__message">
+              Here's an overview of your study progress:
+            </p>
+            {!loading && error && (
+              <p className="dashboard-card__error">{error}</p>
+            )}
             <Suspense fallback={<DashboardOverviewSkeleton />}>
-              <DashboardOverviewCard
-                sessions={sessions}
-                notes={notes}
-                flashcards={flashcards}
-                userName={userName}
-              />
+              {loading ? (
+                <DashboardOverviewSkeleton />
+              ) : (
+                <DashboardOverviewCard
+                  sessions={sessions}
+                  notes={notes}
+                  flashcards={flashcards}
+                  userName={userName}
+                />
+              )}
             </Suspense>
-            <Suspense fallback={<DashboardQuicklinksSkeleton />}>
-              <DashboardQuicklinksCard />
-            </Suspense>
-          </div>
-        )}
+            <Button variant="orange">
+              <Link to="/new-session" className="btn--link">
+                New Session
+              </Link>
+            </Button>
+          </section>
+            <DashboardQuicklinksCard />
+        </div>
       </div>
     </>
   );

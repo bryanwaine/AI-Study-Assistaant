@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  /* padding: 0.75rem; */
+  padding: 0.75rem;
   font-size: 1rem;
   margin: 0;
   border: none;
@@ -34,7 +34,6 @@
   color: #035172;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
   border: 1px solid #035172;
 }
 

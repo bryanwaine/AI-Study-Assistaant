@@ -87,6 +87,17 @@
   padding: 0;
 }
 
+.dashboard-card__error {
+  background-color: #ff000043;
+  width: 100%;
+  color: #ff0000;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Media Queries */
 
 /* Tablet */
