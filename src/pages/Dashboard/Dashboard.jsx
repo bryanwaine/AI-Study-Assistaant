@@ -3,7 +3,7 @@ import { useEffect, useState, lazy, Suspense } from "react";
 import { useLocation, Navigate, Link } from "react-router";
 
 import DashboardOverviewSkeleton from "./DashboardOverviewSkeleton";
-import DashboardQuicklinksCard from "./DashboardQuickLinksCard";
+import DashboardQuicklinksCard from "./DashboardQuicklinksCard";
 
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
@@ -98,7 +98,7 @@ const Dashboard = () => {
               </Link>
             </Button>
           </section>
-            <DashboardQuicklinksCard />
+          <DashboardQuicklinksCard/>
         </div>
       </div>
     </>
