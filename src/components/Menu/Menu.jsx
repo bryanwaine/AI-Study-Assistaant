@@ -6,8 +6,6 @@ import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 
-import Loader from "../Loader/Loader";
-
 import sortSessionsByTime from "../../utils/sortSessionsByTime";
 
 import "./Menu.css";
@@ -104,7 +102,7 @@ const Menu = (props) => {
         <>
           <h3 className="menu__list-title">Session History</h3>
           <ul className="menu__list">
-            {loading && <Loader />}
+            {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {sortSessionsByTime(sessions).map((session) => (
               <li className="menu__item"  key={session.id}>
