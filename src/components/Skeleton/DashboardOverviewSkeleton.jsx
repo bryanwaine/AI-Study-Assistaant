@@ -1,3 +1,5 @@
+import './Skeleton.css'
+
 const DashboardOverviewSkeleton = () => {
   return (
     <div className="dashboard-card__overview">

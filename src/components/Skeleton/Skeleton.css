@@ -1,3 +1,4 @@
+/* Dashboard */
 .skeleton-overview-card {
   width: 100%;
   height: 9rem;
@@ -61,4 +62,11 @@
   100% {
     background-position: -100% 0;
   }
+}
+
+/* Menu */
+
+.skeleton__menu {
+
+  height: 100%;
 }

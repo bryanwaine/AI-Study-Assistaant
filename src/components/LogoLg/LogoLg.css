@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    background-color: #001826;
+    padding: .5rem;
   }
   
   .logo-lg {

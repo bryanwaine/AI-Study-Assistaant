@@ -2,7 +2,7 @@ import { useEffect, useState, lazy, Suspense } from "react";
 
 import { useLocation, Navigate, Link } from "react-router";
 
-import DashboardOverviewSkeleton from "./DashboardOverviewSkeleton";
+import DashboardOverviewSkeleton from "../../components/Skeleton/DashboardOverviewSkeleton";
 import DashboardQuicklinksCard from "./DashboardQuicklinksCard";
 
 import Button from "../../components/Button/Button";
@@ -16,7 +16,6 @@ import handleGreeting from "../../utils/greetingHandler";
 import firstNameFilter from "../../utils/firstNameFilter";
 
 import "./Dashboard.css";
-import "./DashboardSkeleton.css";
 
 
 // Lazy loaded components

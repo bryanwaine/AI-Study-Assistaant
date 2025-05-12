@@ -4,15 +4,18 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    background-color: #001826;
+    padding: .5rem;
   }
-
-  .logo-sm {
-    font-weight: bold;
-  }
-
   
   .logo-sm {
-    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff !important;
+  }
+  
+  
+  .logo-sm {
+    font-size: 1.2rem;
   }
   
   .logo-sm span {
@@ -20,7 +23,7 @@
   }
   
   .logo-dark {
-    color: #111111;
+    color: #ffffff;
   }
   
   .logo-light {
@@ -30,6 +33,7 @@
   .tagline-sm {
     font-weight: 200;
     font-size: 0.5rem;
+    color: #ffffff !important;
   }
   
   .tagline-light {
@@ -37,5 +41,5 @@
   }
   
   .tagline-dark {
-    color: #111111;
+    color: #ffffff;
   }

@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 import { NavLink } from "react-router";
 import { DashboardOutlined } from "@mui/icons-material";
 import HistoryIcon from "@mui/icons-material/History";
@@ -6,9 +8,12 @@ import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 
-import sortSessionsByTime from "../../utils/sortSessionsByTime";
+import MenuListSkeleton from "../Skeleton/MenuListSkeleton";
 
 import "./Menu.css";
+
+// Lazy loaded components
+const MenuSessionsList = lazy(() => import("./MenuSessionsList"));
 
 const Menu = (props) => {
   const { menuOpen, setMenuOpen, sessions, loading, error } = props;
@@ -26,7 +31,12 @@ const Menu = (props) => {
   return (
     <div className="menu" data-menu-open={menuOpen}>
       <div className="search__container">
-        <button className="search__button" id="search__button" aria-label="search button" aria-labelledby="search button">
+        <button
+          className="search__button"
+          id="search__button"
+          aria-label="search button"
+          aria-labelledby="search button"
+        >
           <SearchOutlinedIcon fontSize="small" style={{ color: "#035172" }} />
         </button>
         <input type="text" placeholder="Search" className="search__input" />
@@ -101,26 +111,13 @@ const Menu = (props) => {
       {sessions.length > 0 && (
         <>
           <h3 className="menu__list-title">Session History</h3>
-          <ul className="menu__list">
-            {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-            {sortSessionsByTime(sessions).map((session) => (
-              <li className="menu__item"  key={session.id}>
-                <NavLink
-                  className="menu__navlink"
-                  to={`/sessions/${session.id}`}
-                  style={({ isActive }) => (isActive ? activeStyles : null)}
-                  onClick={onClick}
-                >
-                  <div className="menu__list-item">
-                    <span className="menu__list-name">
-                      {session.metadata.title}
-                    </span>
-                  </div>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <Suspense fallback={<MenuListSkeleton />}>
+            {loading ? (
+              <MenuListSkeleton />
+            ) : (
+              <MenuSessionsList sessions={sessions} loading={loading} error={error} activeStyles={activeStyles} onClick={onClick} />
+            )}
+          </Suspense>
         </>
       )}
     </div>
