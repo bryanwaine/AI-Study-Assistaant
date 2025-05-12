@@ -32,7 +32,7 @@
 }
 
 .skeleton__card{
-  height: 4.5rem;
+  height: 4rem;
 }
 
 .skeleton__card-label {
@@ -42,7 +42,7 @@
 
 .skeleton__card-value {
   width: 50%;
-  height: 1rem;
+  height: 1.5rem;
 }
 
 .skeleton__button {
