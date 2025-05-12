@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  signInWithEmailAndPassword,
-  signOut,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  updateProfile,
-  signInWithPopup,
-  sendPasswordResetEmail,
-} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 import AuthContext from "./AuthContext";
 
@@ -52,6 +44,7 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const logInWithGoogle = async () => {
+    const { signInWithPopup } = await import("firebase/auth");
     try {
       const result = await signInWithPopup(auth, googleProvider);
       return result;
@@ -61,26 +54,31 @@ const AuthContextProvider = ({ children }) => {
       throw error;
     }
   };
-  const signup = (email, password) => {
+  const signup = async (email, password) => {
+    const { createUserWithEmailAndPassword } = await import("firebase/auth");
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUser = (displayName, photoURL = null) => {
+  const updateUser = async (displayName, photoURL = null) => {
+    const { updateProfile } = await import("firebase/auth");
     return updateProfile(auth.currentUser, {
       displayName,
       photoURL,
     });
   };
 
-  const login = (email, password) => {
+  const login = async (email, password) => {
+    const { signInWithEmailAndPassword } = await import("firebase/auth");
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    const { signOut } = await import("firebase/auth");
     return signOut(auth);
   };
 
-  const resetPassword = (email) => {
+  const resetPassword = async (email) => {
+    const { sendPasswordResetEmail } = await import("firebase/auth");
     return sendPasswordResetEmail(auth, email);
   };
 

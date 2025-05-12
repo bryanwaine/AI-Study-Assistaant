@@ -40,8 +40,9 @@
 }
 
 .skeleton__card-value {
-  width: 50%;
+  width: 45%;
   height: 1.5rem;
+  padding: 0.5rem 0;
 }
 
 .skeleton__button {
