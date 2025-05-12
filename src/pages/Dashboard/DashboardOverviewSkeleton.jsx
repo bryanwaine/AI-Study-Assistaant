@@ -1,5 +1,3 @@
-import Button from "../../components/Button/Button";
-
 const DashboardOverviewSkeleton = () => {
   return (
     <div className="dashboard-card__overview">

@@ -5,20 +5,19 @@ import { useLocation, Navigate, Link } from "react-router";
 import DashboardOverviewSkeleton from "./DashboardOverviewSkeleton";
 import DashboardQuicklinksCard from "./DashboardQuickLinksCard";
 
+import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
-import Loader from "../../components/Loader/Loader";
 import useAuth from "../../hooks/useAuth";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getAllDecks } from "../../utils/flashcardService";
 import { getAllNotes } from "../../utils/noteService";
-
-import "./Dashboard.css";
-
-import "./DashboardSkeleton.css";
 import handleGreeting from "../../utils/greetingHandler";
 import firstNameFilter from "../../utils/firstNameFilter";
-import Button from "../../components/Button/Button";
+
+import "./Dashboard.css";
+import "./DashboardSkeleton.css";
+
 
 // Lazy loaded components
 const DashboardOverviewCard = lazy(() => import("./DashboardOverviewCard"));
