@@ -17,7 +17,6 @@ import firstNameFilter from "../../utils/firstNameFilter";
 
 import "./Dashboard.css";
 
-
 // Lazy loaded components
 const DashboardOverviewCard = lazy(() => import("./DashboardOverviewCard"));
 
@@ -76,12 +75,11 @@ const Dashboard = () => {
             <p className="dashboard-card__message">
               Here's an overview of your study progress:
             </p>
-            {!loading && error && (
-              <p className="dashboard-card__error">{error}</p>
-            )}
             <Suspense fallback={<DashboardOverviewSkeleton />}>
               {loading ? (
                 <DashboardOverviewSkeleton />
+              ) : error ? (
+                <p className="dashboard-card__error">{error}</p>
               ) : (
                 <DashboardOverviewCard
                   sessions={sessions}
@@ -97,7 +95,7 @@ const Dashboard = () => {
               </Link>
             </Button>
           </section>
-          <DashboardQuicklinksCard/>
+          <DashboardQuicklinksCard />
         </div>
       </div>
     </>

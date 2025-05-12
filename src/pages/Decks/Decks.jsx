@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router";
 
 import "./Decks.css";
 
+import DecksList from "./DecksList";
 import Layout from "../../components/Layout";
 import EmptyState from "../../components/EmptyState/EmptyState";
-import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
 import { getAllDecks } from "../../utils/flashcardService";
-import sortFlashcardsByTime from "../../utils/sortFlashcardsByTime";
+import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 
+/**
+ * Decks component displays a list of user's flashcards.
+ * It fetches flashcards from the database using the user's ID and displays them in a sorted list.
+ * The component also handles loading and error states.
+ * Users can navigate to create a new flashcard.
+ */
 const Decks = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [error, setError] = useState(null);
@@ -47,40 +52,17 @@ const Decks = () => {
             New Flashcards
           </Link>
         </Button>
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <p>{error}</p>
-        ) : flashcards.length === 0 ? (
-          <EmptyState page="flashcards" />
-        ) : (
-          <ul className="decks__list">
-            {sortFlashcardsByTime(flashcards).map((deck) => (
-              <li key={deck.id}>
-                <Link to={deck.id} className="deck-card card--blue">
-                  <h2 className="deck-card__title">
-                    {deck.metadata.title.toUpperCase()}
-                  </h2>
-                  <div className="deck-card__metadata-container">
-                    <div className="deck-card__metadata-left">
-                      <p className="deck-card__metadata">
-                        <span className="deck-card__metadata-item">
-                          Created
-                        </span>
-                        {formatFirebaseTimestamp(deck.metadata.createdAt)}
-                      </p>
-                    </div>
-                    <div className="deck-card__metadata-right">
-                      <p className="deck-card__metadata">
-                        {`${deck.metadata.cardCount} flashcards`}{" "}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
+         <Suspense fallback={<SessionsListSkeleton />}>
+                  {loading ? (
+                    <SessionsListSkeleton/>
+                  ) : error ? (
+                    <p className="error">{error}</p>
+                  ) : flashcards.length === 0 ? (
+                    <EmptyState page="flashcards" />
+                  ) : (
+                    <DecksList flashcards={flashcards} />
+                  )}
+                </Suspense>
       </div>
     </div>
   );

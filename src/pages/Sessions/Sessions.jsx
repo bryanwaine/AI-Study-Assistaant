@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router";
 
+import SessionsList from "./SessionsList";
 import EmptyState from "../../components/EmptyState/EmptyState";
-import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
 import useAuth from "../../hooks/useAuth";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
-import sortSessionsByTime from "../../utils/sortSessionsByTime";
+import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 
 import "./Sessions.css";
 
+/**
+ * Sessions component displays a list of user's sessions.
+ * It fetches sessions from the database using the user's ID and displays them in a sorted list.
+ * The component also handles loading and error states.
+ * Users can navigate to create a new session.
+ */
 const Sessions = () => {
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState(null);
@@ -49,49 +54,17 @@ const Sessions = () => {
             New Session
           </Link>
         </Button>
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <p>{error}</p>
-        ) : sessions.length === 0 ? (
-          <EmptyState page="sessions" />
-        ) : (
-          <ul className="sessions__list">
-            {sortSessionsByTime(sessions).map((session) => (
-              <li key={session.id}>
-                <Link to={session.id} className="session-card card--blue">
-                  <h2 className="session-card__title">
-                    {session.metadata.title}
-                  </h2>
-                  <div className="session-card__metadata-container">
-                    <div className="session-card__metadata-left">
-                      <p className="session-card__metadata">
-                        <span className="session-card__metadata-item">
-                          Created
-                        </span>
-                        {formatFirebaseTimestamp(session.metadata.createdAt)}
-                      </p>
-                      <p className="session-card__metadata">
-                        <span className="session-card__metadata-item">
-                          Updated
-                        </span>
-                        {formatFirebaseTimestamp(session.metadata.updatedAt)}
-                      </p>
-                    </div>
-                    <div className="session-card__metadata-right">
-                      <p className="session-card__metadata">
-                        {session.metadata.messageCount}
-                        {session.metadata.messageCount === 1
-                          ? " message"
-                          : " messages"}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
+        <Suspense fallback={<SessionsListSkeleton />}>
+          {loading ? (
+            <SessionsListSkeleton/>
+          ) : error ? (
+            <p className="error">{error}</p>
+          ) : sessions.length === 0 ? (
+            <EmptyState page="sessions" />
+          ) : (
+            <SessionsList sessions={sessions} />
+          )}
+        </Suspense>
       </div>
     </div>
   );

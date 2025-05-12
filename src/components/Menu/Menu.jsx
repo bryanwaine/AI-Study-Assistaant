@@ -114,8 +114,16 @@ const Menu = (props) => {
           <Suspense fallback={<MenuListSkeleton />}>
             {loading ? (
               <MenuListSkeleton />
+            ) : error ? (
+              <p className="error">{error}</p>
             ) : (
-              <MenuSessionsList sessions={sessions} loading={loading} error={error} activeStyles={activeStyles} onClick={onClick} />
+              <MenuSessionsList
+                sessions={sessions}
+                loading={loading}
+                error={error}
+                activeStyles={activeStyles}
+                onClick={onClick}
+              />
             )}
           </Suspense>
         </>

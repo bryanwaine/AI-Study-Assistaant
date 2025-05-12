@@ -55,6 +55,16 @@
   height: 1.5rem;
 }
 
+.skeleton__list-item {
+  height: 9rem;
+  margin-bottom: 1rem;
+}
+
+.skeleton__list {
+  height: 100%;
+}
+
+/* Animations */
 @keyframes shimmer {
   0% {
     background-position: 100% 0;
@@ -64,9 +74,3 @@
   }
 }
 
-/* Menu */
-
-.skeleton__menu {
-
-  height: 100%;
-}

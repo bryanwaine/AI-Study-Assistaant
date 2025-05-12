@@ -1,18 +1,24 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router";
 
+import NotesList from "./NotesList";
 import Layout from "../../components/Layout";
 import EmptyState from "../../components/EmptyState/EmptyState";
-import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import formatFirebaseTimestamp from "../../utils/formatFirebaseTimestamp";
-import sortFlashcardsByTime from "../../utils/sortFlashcardsByTime";
 import { getAllNotes } from "../../utils/noteService";
+import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 
 import "./Notes.css";
+
+/**
+ * Notes component displays a list of user's notes.
+ * It fetches notes from the database using the user's ID and displays them in a sorted list.
+ * The component also handles loading and error states.
+ * Users can navigate to create a new note.
+ */
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
@@ -47,35 +53,17 @@ const Notes = () => {
             New Note
           </Link>
         </Button>
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <p>{error}</p>
-        ) : notes.length === 0 ? (
-          <EmptyState page="notes" />
-        ) : (
-          <ul className="notes__list">
-            {sortFlashcardsByTime(notes).map((note) => (
-              <li key={note.id}>
-                <Link to={note.id} className="note-card card--blue">
-                  <h2 className="note-card__title">
-                    {note.metadata.title.toUpperCase()}
-                  </h2>
-                  <div className="note-card__metadata-container">
-                    <p className="note-card__metadata">
-                      <span className="note-card__metadata-item">File</span>
-                      {note.metadata.fileName || ""}
-                    </p>
-                    <p className="note-card__metadata">
-                      <span className="note-card__metadata-item">Created</span>
-                      {formatFirebaseTimestamp(note.metadata.createdAt)}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
+        <Suspense fallback={<SessionsListSkeleton />}>
+          {loading ? (
+            <SessionsListSkeleton />
+          ) : error ? (
+            <p className="error">{error}</p>
+          ) : notes.length === 0 ? (
+            <EmptyState page="notes" />
+          ) : (
+            <NotesList notes={notes} />
+          )}
+        </Suspense>
       </div>
     </div>
   );
