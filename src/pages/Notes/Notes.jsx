@@ -3,6 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 
 import NotesList from "./NotesList";
+import ErrorState from "../../components/ErrorState/ErrorState";
 import Layout from "../../components/Layout";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Button from "../../components/Button/Button";
@@ -57,7 +58,7 @@ const Notes = () => {
           {loading ? (
             <SessionsListSkeleton />
           ) : error ? (
-            <p className="error">{error}</p>
+             <ErrorState error={error} />
           ) : notes.length === 0 ? (
             <EmptyState page="notes" />
           ) : (

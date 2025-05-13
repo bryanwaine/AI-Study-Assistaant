@@ -8,8 +8,8 @@ import "./ErrorState.css";
 export const ErrorState = (props) => {
   const { error, onResubmit } = props;
   return (
-    <div className="chat-error-container">
-      <p className="error">{`${error} || Something went wrong. Please try again`}</p>
+    <div className="error__container">
+      <p className="error">{error || "Something went wrong. Please try again"}</p>
      { onResubmit && <Button variant="orange" onClick={onResubmit}>
         Retry
       </Button>}

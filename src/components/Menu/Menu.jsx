@@ -8,6 +8,7 @@ import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
 
+import ErrorState from "../ErrorState/ErrorState";
 import MenuListSkeleton from "../Skeleton/MenuListSkeleton";
 
 import "./Menu.css";
@@ -115,7 +116,7 @@ const Menu = (props) => {
             {loading ? (
               <MenuListSkeleton />
             ) : error ? (
-              <p className="error">{error}</p>
+              <ErrorState error={error} />
             ) : (
               <MenuSessionsList
                 sessions={sessions}

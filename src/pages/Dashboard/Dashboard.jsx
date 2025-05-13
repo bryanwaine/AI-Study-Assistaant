@@ -7,6 +7,7 @@ import DashboardQuicklinksCard from "./DashboardQuicklinksCard";
 
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
+import ErrorState from "../../components/ErrorState/ErrorState";
 import useAuth from "../../hooks/useAuth";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
@@ -79,7 +80,7 @@ const Dashboard = () => {
               {loading ? (
                 <DashboardOverviewSkeleton />
               ) : error ? (
-                <p className="dashboard-card__error">{error}</p>
+                 <ErrorState error={error} />
               ) : (
                 <DashboardOverviewCard
                   sessions={sessions}

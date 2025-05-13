@@ -1,12 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 
 import { useLocation, useParams } from "react-router";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
-import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 
-import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import CardStack from "../../components/Cardstack/CardStack";
@@ -16,11 +11,14 @@ import useAuth from "../../hooks/useAuth";
 import { saveDeck } from "../../utils/flashcardService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getNote } from "../../utils/noteService";
-import MarkdownRenderer from "../../components/MarkdownRenderer";
+import NoteContainerSkeleton from "../../components/Skeleton/NoteContainerSkeleton";
 import { generateFlashcardsFromNotes } from "../../anthropic";
 
 import "./Note.css";
 import "../NewFlashcards/NewFlashcards.css";
+
+// Lazy loaded components
+const NoteContainer = lazy(() => import("./NoteContainer"));
 
 const Note = () => {
   const [fetching, setFetching] = useState(false);
@@ -62,7 +60,7 @@ const Note = () => {
   useEffect(() => {
     scrollToInputSection();
   }, [createFlashcards, createQuiz]);
-  
+
   useEffect(() => {
     scrollToBottom();
   }, [deck]);
@@ -124,8 +122,8 @@ const Note = () => {
 
   const onSubmit = async () => {
     setInputError(null);
-    if (numberOfCards < 5 || numberOfCards > 40) {
-      setInputError("Please enter a number between 5 and 40");
+    if (numberOfCards < 20 || numberOfCards > 40) {
+      setInputError("Please enter a number between 20 and 40");
       return;
     }
     try {
@@ -158,74 +156,29 @@ const Note = () => {
   return (
     <div className="note__wrapper">
       <Layout userName={userName} />
-      <div className="note__container">
-        {fetching && <Loader />}
-        {metaData?.title && (
-          <div className="note__title">{metaData.title.toUpperCase()}</div>
+      <Suspense fallback={<NoteContainerSkeleton />}>
+        {fetching ? (
+          <NoteContainerSkeleton />
+        ) : error ? (
+          <ErrorState error={error} />
+        ) : (
+          <NoteContainer
+            summary={summary}
+            metaData={metaData}
+            notes={notes}
+            error={error}
+            isCopied={isCopied}
+            handleCopy={handleCopy}
+            handleCreateFlashcards={handleCreateFlashcards}
+            handleCreateQuiz={handleCreateQuiz}
+          />
         )}
-        <div className="note">
-          {error && (
-            <ErrorState/>
-          )}
-          {summary?.map(
-            (message) =>
-              message.role === "assistant" && (
-                <div
-                  key={message.id}
-                  className={`note__summary ${message.role}`}
-                >
-                  <div ref={aiMessageRef}>
-                    <MarkdownRenderer>{message.content}</MarkdownRenderer>
-                  </div>
-                </div>
-              )
-          )}
-        </div>
-        <div className="action-buttons-wrapper">
-          <button
-            className="action-button"
-            onClick={() => handleCopy()}
-            title="Copy code"
-          >
-            {isCopied ? (
-              <span>
-                <CheckOutlinedIcon style={{ fontSize: ".85rem" }} /> Copied!
-              </span>
-            ) : (
-              <span>
-                <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} />
-                Copy
-              </span>
-            )}
-          </button>
-
-          <button
-            className="action-button"
-            title="Create flashcards"
-            onClick={handleCreateFlashcards}
-          >
-            <span>
-              <StyleOutlinedIcon style={{ fontSize: ".85rem" }} />
-              Flashcards
-            </span>
-          </button>
-          <button
-            className="action-button"
-            title="Create quiz"
-            onClick={handleCreateQuiz}
-          >
-            <span>
-              <QuizOutlinedIcon style={{ fontSize: ".85rem" }} />
-              Quiz
-            </span>
-          </button>
-        </div>
-      </div>
+      </Suspense>
       {createFlashcards && (
         <>
           <div ref={inputSectionRef} style={{ height: "4rem" }} />
           <div className="input-wrapper notes">
-            <p className="input-title">{`Generate flashcards from ${topic}`}</p>
+            <p className="input-title">{`Generate flashcards from: \n ${topic}`}</p>
             <div className="input-container">
               <label htmlFor="numberOfCards">Number of cards</label>
               <input
@@ -255,9 +208,9 @@ const Note = () => {
           </div>
           <div className="flashcards-container regular">
             <div className="deck-wrapper">
-            <div ref={cardStackRef } style={{ height: "6rem" }}/>
+              <div ref={cardStackRef} style={{ height: "6rem" }} />
               {loading && (
-                  <div className="deck-wrapper__loading">
+                <div className="deck-wrapper__loading">
                   <TypingIndicator />
                 </div>
               )}
@@ -267,15 +220,12 @@ const Note = () => {
                   <CardStack cards={deck} />
                 </>
               )}
-              {error && (
-                <ErrorState/>
-              )}
+              {error && <ErrorState error={error} />}
             </div>
-           
           </div>
         </>
       )}
-      {createQuiz && (
+      {/* {createQuiz && (
         <div>
           <div ref={inputSectionRef} style={{ height: "4rem" }} />
           <div className="input-wrapper notes">
@@ -325,7 +275,7 @@ const Note = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

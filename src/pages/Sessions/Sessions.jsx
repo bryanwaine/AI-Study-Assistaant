@@ -6,10 +6,11 @@ import SessionsList from "./SessionsList";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
+import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
+import ErrorState from "../../components/ErrorState/ErrorState";
 import useAuth from "../../hooks/useAuth";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
-import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 
 import "./Sessions.css";
 
@@ -58,7 +59,7 @@ const Sessions = () => {
           {loading ? (
             <SessionsListSkeleton/>
           ) : error ? (
-            <p className="error">{error}</p>
+             <ErrorState error={error} />
           ) : sessions.length === 0 ? (
             <EmptyState page="sessions" />
           ) : (

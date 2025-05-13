@@ -64,6 +64,16 @@
   height: 100%;
 }
 
+.skeleton__paragraph {
+  margin-bottom: 0.5rem;
+}
+
+.skeleton__footer {
+  margin-top: 1rem;
+  width: 70%;
+  align-self: flex-start;
+}
+
 /* Animations */
 @keyframes shimmer {
   0% {

@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router";
 import "./Decks.css";
 
 import DecksList from "./DecksList";
+import ErrorState from "../../components/ErrorState/ErrorState";
 import Layout from "../../components/Layout";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Button from "../../components/Button/Button";
@@ -56,7 +57,7 @@ const Decks = () => {
                   {loading ? (
                     <SessionsListSkeleton/>
                   ) : error ? (
-                    <p className="error">{error}</p>
+                     <ErrorState error={error} />
                   ) : flashcards.length === 0 ? (
                     <EmptyState page="flashcards" />
                   ) : (

@@ -164,8 +164,8 @@ const NewNote = () => {
 
   const onGenerateFlashcards = async () => {
     setInputError(null);
-    if (numberOfCards < 10 || numberOfCards > 40) {
-      setInputError("Please enter a number between 10 and 40");
+    if (numberOfCards < 20 || numberOfCards > 40) {
+      setInputError("Please enter a number between 20 and 40");
       return;
     }
     try {
@@ -300,7 +300,7 @@ const NewNote = () => {
         <>
           <div ref={inputSectionRef} style={{ height: "4rem" }} />
           <div className="input-wrapper notes">
-            <p className="input-title">{`Generate flashcards from ${topic.toUpperCase()}`}</p>
+            <p className="input-title">{`Generate flashcards from: \n ${topic.toUpperCase()}`}</p>
             <div className="input-container">
               <label htmlFor="numberOfCards">Number of cards</label>
               <input

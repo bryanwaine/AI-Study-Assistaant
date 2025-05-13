@@ -1,7 +1,7 @@
-.chat-error-container {
+.error__container {
     color: #FF7B00;
     font-size: 0.9rem;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
     margin-bottom: 0 !important;
     width: 100%;
     display: flex;
@@ -11,10 +11,10 @@
     border-top: 1px solid #FF7B00;
   }
   
-  .chat-error-container p {
+  .error__container p {
     padding: 1.5rem 0;
   }
   
-  .chat-error-container button {
+  .error__container button {
     width: fit-content;
   }
