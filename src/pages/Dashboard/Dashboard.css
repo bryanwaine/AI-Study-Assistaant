@@ -50,6 +50,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: .5rem;
+  height: 5rem;
 }
 
 .dashboard-card__item-label {
