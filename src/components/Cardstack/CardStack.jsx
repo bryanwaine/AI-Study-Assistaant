@@ -66,7 +66,7 @@ const CardStack = ({ cards }) => {
                 >
                   <div className="card-face card-front">
                     <span className="card-question">Question</span>
-                    <p>{card.question}</p>
+                    <p className="card-face__question">{card.question}</p>
                     <div className="card-face-footer">
                       <span className="card-toggle">Tap to flip</span>
                       <span className="card-swipe">Swipe to change</span>
@@ -74,7 +74,7 @@ const CardStack = ({ cards }) => {
                   </div>
                   <div className="card-face card-back">
                     <span className="card-answer">Answer</span>
-                    <p>{card.answer}</p>
+                    <p className="card-face__answer">{card.answer}</p>
                     <div className="card-face-footer">
                       <span className="card-toggle">Tap to flip</span>
                       <span className="card-swipe">Swipe to change</span>
