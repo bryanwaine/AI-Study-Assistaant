@@ -143,9 +143,7 @@ const NewFlashcards = () => {
               <CardStack cards={deck} />
             </>
           )}
-          {error && (
-            <ErrorState />
-          )}
+          {error && <ErrorState />}
         </div>
         <div ref={cardStackRef} style={{ height: "4rem" }} />
       </div>

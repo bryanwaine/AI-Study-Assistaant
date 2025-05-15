@@ -126,7 +126,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       >
         {status?.message}
       </p>
-      {status && (
+      {status?.success && (
         <div className="file-name">
           <img src={setImg(displayFileName)} alt="file icon" />
           <p>{formatFileName()}</p>

@@ -25,6 +25,7 @@ const Note = () => {
   const [summary, setSummary] = useState([]);
   const [metaData, setMetaData] = useState({});
   const [error, setError] = useState(null);
+  const [flashcardError, setFlashcardError] = useState(null);
   const [isCopied, setIsCopied] = useState(false);
 
   const [deck, setDeck] = useState([]);
@@ -149,7 +150,7 @@ const Note = () => {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      setError(handleAnthropicError(error).message);
+      setFlashcardError(handleAnthropicError(error).message);
     }
   };
 
@@ -175,10 +176,13 @@ const Note = () => {
         )}
       </Suspense>
       {createFlashcards && (
-        <>
+        <div className="flashcards__container notes">
           <div ref={inputSectionRef} style={{ height: "4rem" }} />
           <div className="input-wrapper notes">
-            <p className="input-title">{`Generate flashcards from: \n ${topic}`}</p>
+            <p className="input__title-text">
+              Generate flashcards from:{" "}
+              <span className="input__title-value">{topic}</span>
+            </p>
             <div className="input-container">
               <label htmlFor="numberOfCards">Number of cards</label>
               <input
@@ -206,7 +210,7 @@ const Note = () => {
               {loading ? "Generating Flashcards..." : "Generate Flashcards"}
             </Button>
           </div>
-          <div className="flashcards-container regular">
+          <div className="flashcards-container regular" id="note__flashcards">
             <div className="deck-wrapper">
               <div ref={cardStackRef} style={{ height: "6rem" }} />
               {loading && (
@@ -220,10 +224,10 @@ const Note = () => {
                   <CardStack cards={deck} />
                 </>
               )}
-              {error && <ErrorState error={error} />}
+              {flashcardError && <ErrorState error={flashcardError} />}
             </div>
           </div>
-        </>
+        </div>
       )}
       {/* {createQuiz && (
         <div>

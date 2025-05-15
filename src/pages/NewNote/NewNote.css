@@ -2,8 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
   }
 
 .new-note__container {
@@ -11,16 +11,27 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
-    padding: 4rem 2rem 0 2rem;
+    /* height: 100%; */
+    padding: 4rem 0 2rem;
   }
 
   .new-note__file {
     width: 100%;
+    padding: 0 2rem 2rem;
+    border-bottom: 1px solid #ff5100;
   }
   
   .notes-wrapper button {
     margin: 1rem 0 2rem 0 ;
+  }
+
+  .note-summary__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem 2rem 0;
   }
   
   .note-summary__container {
@@ -29,11 +40,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     padding: 2rem 2rem 2rem 2rem;
     background-color: #e6f1f6 ;
     color: #035172;
     border-radius: .5rem;
+    border: 1px solid rgb(3, 81, 114, 0.2);
   }
   
   .note-summary h1 {
@@ -68,12 +80,14 @@
     margin: 0 0 1rem 0;
   }
   
-  .notes-title {
+  .note__title {
     margin: 2rem 0 1rem 0;
     font-weight: 700;
   }
   
   .input-wrapper.notes {
+    width: 100%;
+    padding: 0 2rem;
     margin-top: .5rem;
     border-top: 1px solid #ff5100;
     padding-top: 1.5rem;
@@ -107,18 +121,10 @@
     font-family: inherit;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
-    background-color: #e6f1f6 ;
+    background-color: #f6f6f6 ;
     resize: none;
     outline: none;
   }
-  
-  /* .input-wrapper .input-container input::placeholder {
-    color: #cccccc ;
-  } */
-  
-  /* .notes-wrapper .input-container #topic {
-    width: 100%;
-  } */
   
   .input-wrapper .input-container #number-of-cards {
     width: 3rem;
@@ -127,6 +133,16 @@
   .input-wrapper .input-container .error {
     width: 8rem;
   }
+
+  .deck-wrapper__loading,
+  .note-summary__loading {
+    width: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } 
 
 
   
@@ -152,4 +168,6 @@
     align-items: center;
     width: 80%;
   }
+
+ 
 }

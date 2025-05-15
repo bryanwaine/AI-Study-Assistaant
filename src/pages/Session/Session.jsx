@@ -180,7 +180,7 @@ const Session = () => {
       {fetching && <Loader />}
       <Layout userName={userName} />
       <div className="session__container">
-        <div className="chat__window" ref={chatWindowRef}>
+        <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
             <div key={message.id} className={`chat-message ${message.role}`}>
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
@@ -216,13 +216,17 @@ const Session = () => {
             </div>
           ))}
           {partialContent && (
-            <div className="chat-message assistant typing-cursor">
+            <span className="chat-message assistant typing-cursor">
               <MarkdownRenderer>{partialContent}</MarkdownRenderer>
-            </div>
+            </span>
           )}
           {error && <ErrorState error={error} onResubmit={onResubmit} />}
           <div ref={messagesEndRef} />
-          {loading && <TypingIndicator />}
+          {loading && (
+            <div className="chat-window__loading">
+              <TypingIndicator />
+            </div>
+          )}
         </div>
           <ScrollToBottom
             showScrollToBottom={showScrollToBottom}

@@ -48,11 +48,11 @@
 }
 
 .file-upload-status.error {
-  color: #FF7B00;
+  color: rgb(255, 0, 0);
 }
 
 .file-upload-status.success {
-  color: #2ecc71;
+  color: rgb(0, 100, 0);
 }
 
 .file-name {
@@ -61,7 +61,7 @@
   font-size: 1rem;
   color: #999;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 

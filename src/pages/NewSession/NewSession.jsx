@@ -162,7 +162,7 @@ const NewSession = () => {
     <div className="session-wrapper">
       <Layout userName={userName} />
       <div className="session__container">
-        <div className="chat__window" ref={chatWindowRef}>
+        <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
             <div key={message.id} className={`chat-message ${message.role}`}>
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
@@ -204,7 +204,11 @@ const NewSession = () => {
           )}
           {error && <ErrorState error={error} onResubmit={onResubmit} />}
           <div ref={messagesEndRef} />
-          {loading && <TypingIndicator />}
+          {loading && (
+            <div className="chat-window__loading">
+              <TypingIndicator />
+            </div>
+          )}
           <ScrollToBottom
             showScrollToBottom={showScrollToBottom}
             scrollToBottom={scrollToBottom}

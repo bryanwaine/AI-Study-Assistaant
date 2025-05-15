@@ -16,7 +16,7 @@
   z-index: 10;
 }
 
-.chat__window {
+.chat-window {
   position: relative;
   width: 100%;
   display: flex;
@@ -26,6 +26,12 @@
   overflow-y: auto;
   height: 100%;
   padding: 10rem 1.5rem 8rem 1.5rem;
+}
+
+.chat-window__loading {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .chat-message {
@@ -143,7 +149,7 @@
     width: 75%;
   }
 
-  .chat__window {
+  .chat-window {
     padding: 10rem 2rem 10rem;
   }
 }
@@ -157,7 +163,7 @@
     width: 80%;
   }
 
-  .chat__window {
-    padding: 10rem 3rem 10rem;
+  .chat-window {
+    padding: 10rem 3.5rem 10rem;
   }
 }

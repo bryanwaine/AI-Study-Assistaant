@@ -17,7 +17,19 @@
   z-index: 10;
 }
 
-.chat__window {
+.chat-window {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  overflow-y: auto;
+  height: 100%;
+  padding: 10rem 1.5rem 8rem 1.5rem;
+}
+
+.chat-window {
   position: relative;
   width: 100%;
   display: flex;
@@ -94,6 +106,7 @@
 .chat-message table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 1rem;
 }
 
 .chat-message th,
@@ -144,7 +157,7 @@
     width: 75%;
   }
 
-  .chat__window {
+  .chat-window {
     padding: 10rem 2rem 10rem;
   }
 }
@@ -158,7 +171,7 @@
     width: 80%;
   }
 
-  .chat__window {
-    padding: 10rem 3rem 10rem;
+  .chat-window {
+    padding: 10rem 3.5rem 10rem;
   }
 }

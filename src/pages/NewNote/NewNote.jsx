@@ -230,13 +230,17 @@ const NewNote = () => {
             {loading ? "Generating summary..." : "Generate summary"}
           </Button>
         </div>
-        {isResponseGenerated && (
-          <div className="note-summary__container">
-            {error && <ErrorState />}
-            {loading && <TypingIndicator />}
-            {loading
-              ? ""
-              : summary.length > 0 &&
+        <div className="note-summary__wrapper">
+          <div className="note__title">{topic.toUpperCase()}</div>
+          {isResponseGenerated && (
+            <div className="note-summary__container">
+              {error && <ErrorState />}
+              {loading && (
+                <div className="note-summary__loading">
+                  <TypingIndicator />
+                </div>
+              )}
+              {summary.length > 0 &&
                 summary.map(
                   (obj) =>
                     obj.role === "assistant" && (
@@ -247,54 +251,55 @@ const NewNote = () => {
                       </div>
                     )
                 )}
-            {partialContent && (
-              <div>
-                <MarkdownRenderer>{partialContent}</MarkdownRenderer>
-              </div>
-            )}
-          </div>
-        )}
-        {isResponseGenerated && !loading && (
-          <div className="action-buttons-wrapper">
-            <button
-              className="action-button"
-              onClick={() => handleCopy()}
-              title="Copy code"
-            >
-              {isCopied ? (
-                <span>
-                  <CheckOutlinedIcon style={{ fontSize: ".85rem" }} /> Copied!
-                </span>
-              ) : (
-                <span>
-                  <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} />
-                  Copy
-                </span>
+              {partialContent && (
+                <div>
+                  <MarkdownRenderer>{partialContent}</MarkdownRenderer>
+                </div>
               )}
-            </button>
+            </div>
+          )}
+          {isResponseGenerated && !loading && (
+            <div className="action-buttons-wrapper">
+              <button
+                className="action-button"
+                onClick={() => handleCopy()}
+                title="Copy code"
+              >
+                {isCopied ? (
+                  <span>
+                    <CheckOutlinedIcon style={{ fontSize: ".85rem" }} /> Copied!
+                  </span>
+                ) : (
+                  <span>
+                    <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} />
+                    Copy
+                  </span>
+                )}
+              </button>
 
-            <button
-              className="action-button"
-              title="Create flashcards"
-              onClick={handleCreateFlashcards}
-            >
-              <span>
-                <StyleOutlinedIcon style={{ fontSize: ".85rem" }} />
-                Flashcards
-              </span>
-            </button>
-            <button
-              className="action-button"
-              title="Create quiz"
-              onClick={handleCreateQuiz}
-            >
-              <span>
-                <QuizOutlinedIcon style={{ fontSize: ".85rem" }} />
-                Quiz
-              </span>
-            </button>
-          </div>
-        )}
+              <button
+                className="action-button"
+                title="Create flashcards"
+                onClick={handleCreateFlashcards}
+              >
+                <span>
+                  <StyleOutlinedIcon style={{ fontSize: ".85rem" }} />
+                  Flashcards
+                </span>
+              </button>
+              <button
+                className="action-button"
+                title="Create quiz"
+                onClick={handleCreateQuiz}
+              >
+                <span>
+                  <QuizOutlinedIcon style={{ fontSize: ".85rem" }} />
+                  Quiz
+                </span>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       {createFlashcards && (
         <>
@@ -328,7 +333,7 @@ const NewNote = () => {
               {loading ? "Generating Flashcards..." : "Generate Flashcards"}
             </Button>
           </div>
-          <div className="flashcards-container regular">
+          <div className="flashcards-container regular" id="new-note__flashcards">
             <div className="deck-wrapper">
               <div ref={cardStackRef} style={{ height: "6rem" }} />
               {loading && (
