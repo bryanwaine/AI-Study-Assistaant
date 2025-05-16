@@ -18,6 +18,7 @@ import { getSession, updateSession } from "../../utils/sessionService";
 import { generateResponse } from "../../anthropic";
 
 import "./Session.css";
+import ActionButtons from "../../components/ActionButtons/ActionButtons";
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -191,27 +192,7 @@ const Session = () => {
                 )}
               </div>
               {message.role === "assistant" && (
-                <span>
-                  <button
-                    className="action-button"
-                    onClick={() => handleCopy()}
-                    title="Copy code"
-                  >
-                    {isCopied ? (
-                      <span>
-                        <CheckOutlinedIcon style={{ fontSize: ".85rem" }} />
-                        Copied!
-                      </span>
-                    ) : (
-                      <span>
-                        <ContentCopyOutlinedIcon
-                          style={{ fontSize: ".85rem" }}
-                        />{" "}
-                        Copy
-                      </span>
-                    )}
-                  </button>
-                </span>
+                <ActionButtons handleCopy={handleCopy} isCopied={isCopied} />
               )}
             </div>
           ))}
@@ -228,10 +209,10 @@ const Session = () => {
             </div>
           )}
         </div>
-          <ScrollToBottom
-            showScrollToBottom={showScrollToBottom}
-            scrollToBottom={scrollToBottom}
-          />
+        <ScrollToBottom
+          showScrollToBottom={showScrollToBottom}
+          scrollToBottom={scrollToBottom}
+        />
       </div>
       <TextArea
         value={question}

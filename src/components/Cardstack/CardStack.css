@@ -70,7 +70,6 @@
 
 .card-face__question,
 .card-face__answer {
-  text-align: left;
   margin: 0.5rem 0 0 0;
   line-height: 1.75;
 }

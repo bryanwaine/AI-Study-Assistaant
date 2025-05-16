@@ -1,0 +1,32 @@
+.action-buttons__wrapper {
+  margin: 0 0 1rem 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.action-button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.action-button:focus {
+  outline: none;
+}
+
+.action-button {
+  background: transparent;
+  font-size: 0.85rem;
+  color: #575757;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}

@@ -1,0 +1,158 @@
+.generate-section__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2rem 0;
+  /* height: 100%; */
+}
+
+.generate-section__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.generate-section__input__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 2rem 2rem;
+}
+
+.generate-section__input__heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.generate-section__input__title,
+.generate-section__input__card-count {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.generate-section__input__card-count {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.generate-section__input__card-count label {
+  font-size: 1rem;
+}
+
+.generate-section__input__title input,
+.generate-section__input__card-count input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+}
+
+.generate-section__input__wrapper button {
+    margin: 1rem 0 0 0
+}
+
+.generate-flashcards__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+.generate-flashcards__container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.generate-flashcards__deck-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+  border: none;
+}
+
+.generate-flashcards__deck-title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.deck-wrapper__loading {
+  width: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Media Queries */
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .deck-wrapper {
+    align-self: center;
+    width: 70%;
+  }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .flashcards-container {
+    align-self: flex-end;
+    width: 75%;
+  }
+
+  .flashcards-container .input-wrapper {
+    align-self: center;
+    width: 50%;
+  }
+
+  .deck-wrapper {
+    align-self: center;
+    width: 50%;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .flashcards-container {
+    align-self: flex-end;
+    width: 80%;
+  }
+}

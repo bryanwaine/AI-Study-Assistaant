@@ -14,7 +14,7 @@ const Home = () => {
         </div>
         <div className="home__navbar-right">
           <Link to="/login">
-            <Button variant="light">Login</Button>
+            <Button variant="dark">Login</Button>
           </Link>
           <Link to="/signup">
             <Button variant="orange">Sign Up</Button>

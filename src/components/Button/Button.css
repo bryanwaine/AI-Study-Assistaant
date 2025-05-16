@@ -7,7 +7,7 @@
   font-size: 1rem;
   margin: 0;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   width: 100%;
@@ -16,23 +16,28 @@
 
 .btn--orange {
   background-color: #FF7B00;
-  color: #111111;
+  color: #111111 !important;
 }
 
 .btn--light {
   border: 1px solid #e9e9e9;
   background-color: #B6C6CF;
-  color: #111111;
+  color: #111111 !important;
+}
+
+.btn--dark {
+  background-color: #001826;
+  color: #ffffff !important;
 }
 
 .btn--blue {
   background-color: #035172;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .btn--ghost--blue {
   background-color: transparent;
-  color: #035172;
+  color: #035172 !important;
   border: none;
   cursor: pointer;
   border: 1px solid #035172;
@@ -40,7 +45,7 @@
 
 .btn--ghost--orange {
   background-color: transparent;
-  color: #FF7B00;
+  color: #FF7B00 !important;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
