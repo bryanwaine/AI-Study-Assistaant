@@ -89,7 +89,7 @@
   height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .generate-flashcards__deck-wrapper {
