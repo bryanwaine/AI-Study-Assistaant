@@ -3,7 +3,7 @@
   width: 100%;
   height: 9rem;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   background: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -16,7 +16,7 @@
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
   background-size: 400% 100%;
   animation: shimmer 1s ease infinite;
-  border-radius: 4px;
+  border-radius: 1rem;
   width: 100%;
   height: 1rem;
 }
@@ -70,7 +70,7 @@
 
 .skeleton__footer {
   margin-top: 1rem;
-  width: 70%;
+  width: 30%;
   align-self: flex-start;
 }
 

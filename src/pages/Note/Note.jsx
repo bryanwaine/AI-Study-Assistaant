@@ -126,8 +126,8 @@ const Note = () => {
 
   const onSubmit = async () => {
     setInputError(null);
-    if (numberOfCards < 5 || numberOfCards > 40) {
-      setInputError("Please enter a number between 5 and 40");
+    if (numberOfCards < 20 || numberOfCards > 40) {
+      setInputError("Please enter a number between 20 and 40");
       return;
     }
     setShowBottomRef(true);
