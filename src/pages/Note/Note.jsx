@@ -112,13 +112,13 @@ const Note = () => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
   };
 
-  const handleCreateFlashcards = () => {
+  const handleGenerateFlashcards = () => {
     setGenerateQuiz(false);
     setGenerateFlashcards(true);
     setTopic(metaData.title.toUpperCase());
   };
 
-  const handleCreateQuiz = () => {
+  const handleGenerateQuiz = () => {
     setGenerateFlashcards(false);
     setGenerateQuiz(true);
     setTopic(metaData.title.toUpperCase());
@@ -134,7 +134,6 @@ const Note = () => {
     try {
       const cardTopic = topic;
       const cardCount = numberOfCards;
-      setNumberOfCards("");
       setError(null);
       setLoading(true);
       const aiResponse = await generateFlashcardsFromNotes(
@@ -177,8 +176,10 @@ const Note = () => {
             <GenerateBtnGroup
               isCopied={isCopied}
               handleCopy={handleCopy}
-              handleCreateFlashcards={handleCreateFlashcards}
-              handleCreateQuiz={handleCreateQuiz}
+              handleGenerateFlashcards={handleGenerateFlashcards}
+                  handleGenerateQuiz={handleGenerateQuiz}
+                  generateFlashcards={generateFlashcards}
+                  generateQuiz={generateQuiz}
             />
           </>
         )}

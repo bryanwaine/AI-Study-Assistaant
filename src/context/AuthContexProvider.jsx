@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  onAuthStateChanged,
-} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 import AuthContext from "./AuthContext";
 
@@ -20,33 +18,39 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        await user.reload();
-        const {
-          uid,
-          email,
-          displayName,
-          photoURL,
-          metadata: { creationTime },
-        } = user.auth.currentUser;
-        setUser({
-          uid,
-          email,
-          displayName,
-          photoURL,
-          creationTime,
-        });
-      } else {
-        setUser(null);
+      try {
+        if (user) {
+          await user.reload();
+          const {
+            uid,
+            email,
+            displayName,
+            photoURL,
+            metadata: { creationTime },
+          } = user.auth.currentUser;
+          setUser({
+            uid,
+            email,
+            displayName,
+            photoURL,
+            creationTime,
+          });
+        } else {
+          setUser(null);
+        }
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        showToast(handleFirebaseError(error).message, "error");
+        throw error;
       }
-      setLoading(false);
     });
 
     return unsubscribe;
   }, []);
 
   const logInWithGoogle = async () => {
-    const {signInWithPopup} = await import("firebase/auth")
+    const { signInWithPopup } = await import("firebase/auth");
     try {
       const result = await signInWithPopup(auth, googleProvider);
       return result;
@@ -56,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
       throw error;
     }
   };
-  const signup = async(email, password) => {
+  const signup = async (email, password) => {
     const { createUserWithEmailAndPassword } = await import("firebase/auth");
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -69,17 +73,17 @@ const AuthContextProvider = ({ children }) => {
     });
   };
 
-  const login = async(email, password) => {
+  const login = async (email, password) => {
     const { signInWithEmailAndPassword } = await import("firebase/auth");
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logout = async() => {
+  const logout = async () => {
     const { signOut } = await import("firebase/auth");
     return signOut(auth);
   };
 
-  const resetPassword = async(email) => {
+  const resetPassword = async (email) => {
     const { sendPasswordResetEmail } = await import("firebase/auth");
     return sendPasswordResetEmail(auth, email);
   };

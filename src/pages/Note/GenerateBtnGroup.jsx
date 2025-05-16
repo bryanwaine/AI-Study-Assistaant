@@ -2,44 +2,21 @@ import React from "react";
 
 import Button from "../../components/Button/Button";
 
-const GenerateBtnGroup = ({
-  handleCreateFlashcards,
-  handleCreateQuiz,
-}) => {
+const GenerateBtnGroup = ({ handleGenerateFlashcards, handleGenerateQuiz, generateFlashcards, generateQuiz }) => {
   return (
     <div className="generate-btn__wrapper ">
-      <div className="generate-btn__container">
-        {/* <Button
-        variant="light"
-          className="action-button"
-          onClick={() => handleCopy()}
-          title="Copy code"
-        >
-          {isCopied ? (
-            <span>
-              <CheckOutlinedIcon style={{ fontSize: ".85rem" }} /> Copied!
-            </span>
-          ) : (
-            <span>
-              <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} />
-              Copy
-            </span>
-          )}
-        </Button> */}
-
+      <div className="generate-btn__container card--white">
         <Button
-          variant="dark"
-          className="generate-btn"
+          variant={generateFlashcards ? "dark" : "ghost--dark"}
           title="Create flashcards"
-          onClick={handleCreateFlashcards}
+          onClick={handleGenerateFlashcards}
         >
           <span>Generate Flashcards</span>
         </Button>
         <Button
-          variant="dark"
-          className="generate-btn"
+          variant={generateQuiz ? "dark" : "ghost--dark"}
           title="Create quiz"
-          onClick={handleCreateQuiz}
+          onClick={handleGenerateQuiz}
         >
           <span>Generate Quiz</span>
         </Button>
