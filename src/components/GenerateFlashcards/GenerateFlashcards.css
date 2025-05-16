@@ -90,6 +90,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  padding: 0 0 2rem 0;
 }
 
 .generate-flashcards__deck-wrapper {
@@ -100,7 +101,6 @@
   justify-content: center;
   width: 100%;
   height: 80vh;
-  border: none;
 }
 
 .generate-flashcards__deck-title {
