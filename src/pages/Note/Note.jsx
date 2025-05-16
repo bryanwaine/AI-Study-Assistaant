@@ -58,7 +58,7 @@ const Note = () => {
   useEffect(() => {
     scrollToBottom();
   }, [loading]);
-  
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
