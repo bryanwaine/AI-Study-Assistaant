@@ -56,6 +56,10 @@ const Note = () => {
   };
 
   useEffect(() => {
+    scrollToBottom();
+  }, [loading]);
+  
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
@@ -63,9 +67,6 @@ const Note = () => {
     scrollToInputSection();
   }, [generateFlashcards, generateQuiz]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [loading]);
 
   useEffect(() => {
     const fetchNote = async () => {
