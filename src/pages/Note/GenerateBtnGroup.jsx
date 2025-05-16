@@ -11,14 +11,14 @@ const GenerateBtnGroup = ({ handleGenerateFlashcards, handleGenerateQuiz, genera
           title="Create flashcards"
           onClick={handleGenerateFlashcards}
         >
-          <span>Generate Flashcards</span>
+          <span>Generate<br/>Flashcards</span>
         </Button>
         <Button
           variant={generateQuiz ? "dark" : "ghost--dark"}
           title="Create quiz"
           onClick={handleGenerateQuiz}
         >
-          <span>Generate Quiz</span>
+          <span>Generate<br/>Quiz</span>
         </Button>
       </div>
     </div>
