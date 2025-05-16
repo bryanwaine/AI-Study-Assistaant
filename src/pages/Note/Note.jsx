@@ -37,6 +37,7 @@ const Note = () => {
   const [notes, setNotes] = useState("");
   const [generateFlashcards, setGenerateFlashcards] = useState(false);
   const [generateQuiz, setGenerateQuiz] = useState(false);
+  const [showBottomRef, setShowBottomRef] = useState(false);
 
   const location = useLocation();
   const { user } = useAuth();
@@ -129,6 +130,7 @@ const Note = () => {
       setInputError("Please enter a number between 5 and 40");
       return;
     }
+    setShowBottomRef(true);
     try {
       const cardTopic = topic;
       const cardCount = numberOfCards;
@@ -197,7 +199,7 @@ const Note = () => {
           cardStackRef={cardStackRef}
         />
       )}
-      <div ref={bottomRef} style={{ height: "1px", width: "100%" }} />
+      {showBottomRef && <div ref={bottomRef} style={{ height: "1px", width: "100%" }} />}
     </div>
   );
 };
