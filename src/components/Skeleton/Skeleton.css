@@ -3,7 +3,7 @@
   width: 100%;
   height: 9rem;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: .75rem;
   background: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -16,7 +16,7 @@
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
   background-size: 400% 100%;
   animation: shimmer 1s ease infinite;
-  border-radius: 1rem;
+  border-radius: .75rem;
   width: 100%;
   height: 1rem;
 }
@@ -59,10 +59,25 @@
 .skeleton__list-item {
   height: 9rem;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  /* border: 1px solid #e9e9e9; */
+  background: #f0f0f0;
+  border-radius: .75rem;
+  padding: 1rem;
 }
 
 .skeleton__list {
   height: 100%;
+}
+
+.skeleton__div {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .skeleton__paragraph {

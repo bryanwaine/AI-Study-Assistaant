@@ -29,7 +29,7 @@
     padding: 2rem 2rem 2rem 2rem;
     background-color: #ffffff ;
     color: #035172;
-    border-radius: 1rem;
+    border-radius: .75rem;
     /* border: 1px solid rgb(3, 81, 114, 0.2); */
   }
   
@@ -95,7 +95,7 @@
   }
   
 .input-container label {
-    font-size: 1rem;
+    font-size: .75rem;
   }
   
 .input-container input {
@@ -105,7 +105,7 @@
     font-size: 1rem;
     font-family: inherit;
     border: 1px solid #ccc;
-    border-radius: 1rem;
+    border-radius: .75rem;
     background-color: #f5f5f5 ;
     resize: none;
     outline: none;

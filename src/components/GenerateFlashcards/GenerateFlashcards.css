@@ -49,8 +49,9 @@
   gap: 0.5rem;
 }
 
+.generate-section__input__title label,
 .generate-section__input__card-count label {
-  font-size: 1rem;
+  font-size: .75rem;
 }
 
 .generate-section__input__title input,
@@ -61,7 +62,7 @@
   font-size: 1rem;
   font-family: inherit;
   border: 1px solid #ccc;
-  border-radius: 1em;
+  border-radius: .75rem;
   background-color: transparent;
   resize: none;
   outline: none;

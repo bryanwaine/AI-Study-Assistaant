@@ -1,14 +1,23 @@
 import "./Skeleton.css";
 
 const SessionsListSkeleton = () => {
+  const renderSkeletonList = () => {
+    let list = [];
+    for (let i = 0; i < 10; i++) {
+      list.push(
+        <li className="skeleton__list-item">
+          <div className="skeleton " />
+          <div className="skeleton__div ">
+            <div className="skeleton " />
+            <div className="skeleton " />
+          </div>
+        </li>
+      );
+    }
+    return list;
+  };
   return (
-    <ul className="skeleton_list sessions__list">
-      <li className="skeleton skeleton__list-item" />
-      <li className="skeleton skeleton__list-item" />
-      <li className="skeleton skeleton__list-item" />
-      <li className="skeleton skeleton__list-item" />
-      <li className="skeleton skeleton__list-item" />
-    </ul>
+    <ul className="skeleton__list sessions__list">{renderSkeletonList()}</ul>
   );
 };
 

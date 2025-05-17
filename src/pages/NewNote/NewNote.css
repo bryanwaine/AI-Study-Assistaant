@@ -51,7 +51,7 @@
     width: 100%;
     padding: 2rem 2rem 2rem 2rem;
     color: #035172;
-    border-radius: 1rem;
+    border-radius: .75rem;
     border: 1px solid rgb(3, 81, 114, 0.2);
   }
   
@@ -115,7 +115,7 @@
   }
   
 .new-note__title label {
-    font-size: 1rem;
+    font-size: .75rem;
   }
   
 .new-note__title input {
@@ -125,7 +125,7 @@
   font-size: 1rem;
   font-family: inherit;
   border: 1px solid #ccc;
-  border-radius: 1em;
+  border-radius: .75rem;
   background-color: transparent;
   resize: none;
   outline: none;
