@@ -33,7 +33,7 @@ const Note = () => {
   const [inputError, setInputError] = useState(null);
   ("");
   const [flashcardTopic, setFlashcardTopic] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loadingFlashcards, setLoadingFlashcards] = useState(false);
   const [notes, setNotes] = useState("");
   const [generateFlashcards, setGenerateFlashcards] = useState(false);
   const [generateQuiz, setGenerateQuiz] = useState(false);
@@ -58,7 +58,7 @@ const Note = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [loading]);
+  }, [loadingFlashcards]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -136,7 +136,7 @@ const Note = () => {
       const cardTopic = flashcardTopic;
       const cardCount = numberOfCards;
       setError(null);
-      setLoading(true);
+      setLoadingFlashcards(true);
       const aiResponse = await generateFlashcardsFromNotes(
         notes,
         numberOfCards
@@ -149,10 +149,10 @@ const Note = () => {
       }));
       await saveDeck(user.uid, flashcards, cardTopic, cardCount);
       setDeck(flashcards);
-      setLoading(false);
+      setLoadingFlashcards(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
+      setLoadingFlashcards(false);
       setFlashcardError(handleAnthropicError(error).message);
     }
   };
@@ -192,7 +192,7 @@ const Note = () => {
           numberOfCards={numberOfCards}
           setNumberOfCards={setNumberOfCards}
           inputError={inputError}
-          loading={loading}
+          loadingFlashcards={loadingFlashcards}
           onChange={onChange}
           onInput={onInput}
           onGenerateFlashcards={onGenerateFlashcards}

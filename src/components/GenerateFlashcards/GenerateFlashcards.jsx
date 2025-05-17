@@ -11,7 +11,7 @@ const GenerateFlashcards = ({
   deck,
   numberOfCards,
   inputError,
-  loading,
+  loadingFlashcards,
   onChange,
   onInput,
   onGenerateFlashcards,
@@ -60,21 +60,21 @@ const GenerateFlashcards = ({
             <Button
               variant="orange"
               type="submit"
-              disabled={!topic || !numberOfCards || loading}
+              disabled={!topic || !numberOfCards || loadingFlashcards}
               aria-label="Generate flashcards"
               onClick={() => onGenerateFlashcards(topic, numberOfCards)}
             >
-              {loading ? "Generating Flashcards..." : "Generate Flashcards"}
+              {loadingFlashcards ? "Generating Flashcards..." : "Generate Flashcards"}
             </Button>
           </div>
         </div>
       </div>
-      {loading && (
+      {loadingFlashcards && (
         <div className="deck-wrapper__loading">
           <TypingIndicator />
         </div>
       )}
-      {!loading && deck.length > 0 && (
+      {!loadingFlashcards && deck.length > 0 && (
         <div className="generate-flashcards__wrapper">
           <div className="generate-flashcards__container">
             <div className="generate-flashcards__deck-wrapper">

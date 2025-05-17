@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import StyleOutlinedIcon from "@mui/icons-material/StyleOutlined";
-import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
-
 import {
   generateFlashcardsFromNotes,
   generateNoteSummary,
@@ -27,7 +22,8 @@ import "./NewNote.css";
 import "../NewFlashcards/NewFlashcards.css";
 
 const NewNote = () => {
-  const [loading, setLoading] = useState(false);
+  const [loadingSummary, setLoadingSummary] = useState(false);
+  const [loadingFlashcards, setLoadingFlashcards] = useState(false);
   const [summary, setSummary] = useState([]);
   const [error, setError] = useState(null);
   const [flashcardError, setFlashcardError] = useState(null);
@@ -56,7 +52,7 @@ const NewNote = () => {
   const bottomRef = useRef(null);
 
   const scrollToBottom = () => {
-    cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
+   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToInputSection = () => {
@@ -65,7 +61,7 @@ const NewNote = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [loading]);
+  }, [loadingFlashcards]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -130,9 +126,7 @@ const NewNote = () => {
         role: "user",
         content: text,
       };
-      setTitle("");
-      setStatus(null);
-      setLoading(true);
+      setLoadingSummary(true);
       setIsResponseGenerated(true);
       const updatedSummary = [...summary, userMessage];
       setSummary(updatedSummary);
@@ -143,7 +137,6 @@ const NewNote = () => {
       } else {
         await updateNote(user.uid, noteId || newNoteId, updatedSummary);
       }
-      setDisplayFileName("");
       const aiResponse = await generateNoteSummary(text);
       const words = aiResponse.split(" ");
       let currentWord = 0;
@@ -163,14 +156,17 @@ const NewNote = () => {
           clearInterval(interval);
           setSummary(finalSummary);
           setPartialContent("");
-          setLoading(false);
+          setLoadingSummary(false);
         }
       }, 30);
       await updateNote(user.uid, noteId || newNoteId, finalSummary);
+      setTitle("");
+      setStatus(null);
+      setDisplayFileName("");
     } catch (error) {
       setError(handleAnthropicError(error).message);
     } finally {
-      setLoading(false);
+      setLoadingSummary(false);
     }
   };
 
@@ -185,7 +181,7 @@ const NewNote = () => {
       const cardTopic = topic;
       const cardCount = numberOfCards;
       setError(null);
-      setLoading(true);
+      setLoadingFlashcards(true);
       const aiResponse = await generateFlashcardsFromNotes(
         notes,
         numberOfCards
@@ -198,10 +194,10 @@ const NewNote = () => {
       }));
       await saveDeck(user.uid, flashcards, cardTopic, cardCount);
       setDeck(flashcards);
-      setLoading(false);
+      setLoadingFlashcards(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
+      setLoadingFlashcards(false);
       setFlashcardError(handleAnthropicError(error).message);
     }
   };
@@ -241,21 +237,21 @@ const NewNote = () => {
             </div>
             <Button
               variant="orange"
-              disabled={!fileUploadProps.text || !isTitleValid || loading}
+              disabled={!fileUploadProps.text || !isTitleValid || loadingSummary}
               onClick={() => onSubmit(fileUploadProps)}
             >
-              {loading ? "Generating summary..." : "Generate summary"}
+              {loadingSummary ? "Generating summary..." : "Generate summary"}
             </Button>
           </div>
         </div>
-        {loading && (
+        {loadingSummary && (
           <div className="note-summary__loading">
             <TypingIndicator />
           </div>
         )}
         {error && <ErrorState error={error} />}
         <div className="note-summary__wrapper">
-          {isResponseGenerated && !loading && (
+          {isResponseGenerated && !loadingSummary && (
             <>
               <div className="note__title">{topic.toUpperCase()}</div>
               <div className="note-summary__container card--white">
@@ -297,7 +293,7 @@ const NewNote = () => {
               numberOfCards={numberOfCards}
               setNumberOfCards={setNumberOfCards}
               inputError={inputError}
-              loading={loading}
+              loadingFlashcards={loadingFlashcards}
               onChange={onChange}
               onInput={onInput}
               onGenerateFlashcards={onGenerateFlashcards}
