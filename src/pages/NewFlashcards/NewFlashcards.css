@@ -1,25 +1,21 @@
-.flashcards__wrapper {
+.new-flashcards__wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
-.flashcards-container {
+.new-flashcards__container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100vw;
-}
-
-.flashcards-container.extended {
-  height: 120vh;
   padding: 3rem 0 0 0;
 }
 
-.flashcards-container .input-wrapper {
+.new-flashcards__input-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,20 +25,29 @@
   margin-top: 3rem;
 }
 
-.flashcards-container .input-container {
+.new-flashcards__input-container {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+.new-flashcards__input {
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   width: 100%;
   margin-bottom: 1rem;
 }
 
-.flashcards-container .input-container label {
+.new-flashcards__input label {
   font-size: 1rem;
 }
 
-.flashcards-container .input-container input {
+.new-flashcards__input input {
   width: auto;
   max-width: 400px;
   padding: 0.5rem;
@@ -50,24 +55,23 @@
   font-family: inherit;
   border: 1px solid #ccc;
   border-radius: .75rem;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   resize: none;
   outline: none;
 }
 
-.flashcards-container .input-container #topic {
+.new-flashcards__input-container #topic {
   width: 100%;
 }
 
-.flashcards-container .input-container #number-of-cards {
-  width: 3rem;
+.new-flashcards__input-container #number-of-cards {
+  
+}
+.new-flashcards__input-container .error {
+  
 }
 
-.flashcards-container .input-container .error {
-  width: 8rem;
-}
-
-.deck-wrapper {
+.new-flashcards__deck-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -79,20 +83,25 @@
   border: none;
 }
 
-.deck-wrapper__loading {
+.new-flashcards__deck-wrapper h1 {
+  margin-bottom: 1rem;
+}
+
+.new-flashcards__deck-wrapper__loading {
   width: 100%;
   align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 }
 
 /* Media Queries */
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-  .deck-wrapper {
+  .new-flashcards__deck-wrapper {
     align-self: center;
     width: 70%;
   }
@@ -100,17 +109,17 @@
 
 /* Laptop */
 @media screen and (min-width: 1024px) {
-  .flashcards-container {
+  .new-flashcards__container {
     align-self: flex-end;
     width: 75%;
   }
 
-  .flashcards-container .input-wrapper {
+  .new-flashcards__input-wrapper {
     align-self: center;
     width: 50%;
   }
 
-  .deck-wrapper {
+  .new-flashcards__deck-wrapper {
     align-self: center;
     width: 50%;
   }
@@ -118,7 +127,7 @@
 
 /* Desktop */
 @media screen and (min-width: 1280px) {
-  .flashcards-container {
+  .new-flashcards__container {
     align-self: flex-end;
     width: 80%;
   }

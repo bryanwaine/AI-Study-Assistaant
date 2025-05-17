@@ -6,21 +6,18 @@
   height: 100vh;
 }
 
-.flashcards-container {
+.flashcards__container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  width: 100vw;
-}
-
-.flashcards-container.regular {
-  height: 100vh;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   padding: 5rem 0 0 0;
   overflow: hidden;
 }
 
-.deck-wrapper {
+.deck__wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -32,7 +29,7 @@
   border: none;
 }
 
-.deck-wrapper h1 {
+.deck__wrapper h1 {
   margin: 0 0 1rem 0;
   font-size: 1.2rem;
   text-align: center;

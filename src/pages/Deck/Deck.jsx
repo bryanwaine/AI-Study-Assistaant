@@ -53,8 +53,8 @@ const Deck = () => {
   return (
     <div className="flashcards__wrapper">
       <Layout userName={userName} />
-      <div className="flashcards-container regular">
-        <div className="deck-wrapper">
+      <div className="flashcards__container">
+        <div className="deck__wrapper">
           {fetching && <Loader />}
           {error && <ErrorState />}
           {!fetching && deck.length > 0 && (

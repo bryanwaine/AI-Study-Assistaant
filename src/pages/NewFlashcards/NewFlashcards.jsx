@@ -16,27 +16,29 @@ import { saveDeck } from "../../utils/flashcardService";
 import "./NewFlashcards.css";
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loadingFlashcards, setLoadingFlashcards] = useState(false);
   const [deck, setDeck] = useState([]);
   const [numberOfCards, setNumberOfCards] = useState("");
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(null);
+  const [showBottomRef, setShowBottomRef] = useState(false);
 
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
 
-  const cardStackRef = useRef(null);
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  useEffect(() => {
-    deck.length > 0 && scrollToBottom();
-  }, [deck]);
   const scrollToBottom = () => {
-    cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [loadingFlashcards]);
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -58,10 +60,11 @@ const NewFlashcards = () => {
 
   const onSubmit = async () => {
     setInputError(null);
-    if (numberOfCards < 20 || numberOfCards > 40) {
+    if (numberOfCards < 5 || numberOfCards > 40) {
       setInputError("Please enter a number between 20 and 40");
       return;
     }
+    setShowBottomRef(true);
     try {
       const cardTopic = topic;
       const cardCount = numberOfCards;
@@ -69,7 +72,7 @@ const NewFlashcards = () => {
       setNumberOfCards("");
       scrollToBottom();
       setError(null);
-      setLoading(true);
+      setLoadingFlashcards(true);
       const aiResponse = await generateFlashcards(topic, numberOfCards);
       const parsedResponse = JSON.parse(aiResponse);
       const flashcards = parsedResponse.map((card, index) => ({
@@ -79,73 +82,81 @@ const NewFlashcards = () => {
       }));
       await saveDeck(user.uid, flashcards, cardTopic, cardCount);
       setDeck(flashcards);
-      setLoading(false);
+      setLoadingFlashcards(false);
     } catch (error) {
-      setLoading(false);
+      setLoadingFlashcards(false);
       setError(handleAnthropicError(error).message);
     }
   };
 
   return (
-    <div className="flashcards__wrapper">
+    <div className="new-flashcards__wrapper">
       <Layout userName={userName} />
-      <div className="flashcards-container extended">
-        <div className="input-wrapper">
-          <div className="input-container">
-            <label htmlFor="topic">Topic</label>
-            <input
-              type="text"
-              name="topic"
-              placeholder="Enter a topic or subject"
-              id="topic"
-              value={topic}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="input-container">
-            <label htmlFor="numberOfCards">Number of cards</label>
-            <input
-              type="text"
-              pattern="[0-9]*"
-              inputMode="numeric"
-              name="numberOfCards"
-              id="number-of-cards"
-              className={inputError ? "input-error" : ""}
-              value={numberOfCards}
-              onChange={onChange}
-              onInput={onInput}
-              required
-            />
-            {inputError && <span className="error">{inputError}</span>}
-          </div>
+      <div className="new-flashcards__container">
+        <div className="new-flashcards__input-wrapper">
+          <div className="new-flashcards__input-container card--white">
+            <div className="new-flashcards__input ">
+              <label htmlFor="topic">Topic</label>
+              <input
+                type="text"
+                name="topic"
+                placeholder="Enter a topic or subject"
+                id="topic"
+                value={topic}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <div className="new-flashcards__input">
+              <label htmlFor="numberOfCards">Number of cards</label>
+              <input
+                type="text"
+                pattern="[0-9]*"
+                inputMode="numeric"
+                name="numberOfCards"
+                id="number-of-cards"
+                placeholder="Enter a number between 20 and 40"
+                className={inputError ? "input-error" : ""}
+                value={numberOfCards}
+                onChange={onChange}
+                onInput={onInput}
+                required
+              />
+              {inputError && <span className="error">{inputError}</span>}
+            </div>
 
-          <Button
-            variant="orange"
-            type="submit"
-            disabled={!topic || !numberOfCards || loading}
-            aria-label="Generate flashcards"
-            onClick={() => onSubmit(topic, numberOfCards)}
-          >
-            {loading ? "Generating Flashcards..." : "Generate Flashcards"}
-          </Button>
+            <Button
+              variant="orange"
+              type="submit"
+              disabled={!topic || !numberOfCards || loadingFlashcards}
+              aria-label="Generate flashcards"
+              onClick={() => onSubmit(topic, numberOfCards)}
+            >
+              {loadingFlashcards
+                ? "Generating Flashcards..."
+                : "Generate Flashcards"}
+            </Button>
+          </div>
         </div>
 
-        <div className="deck-wrapper">
-          {loading && (
-            <div className="deck-wrapper__loading">
-              <TypingIndicator />
-            </div>
-          )}
-          {!loading && deck.length > 0 && (
-            <>
+        {loadingFlashcards ? (
+          <div className="new-flashcards__deck-wrapper__loading">
+            <TypingIndicator />
+          </div>
+        ) : error ? (
+          <ErrorState />
+        ) : (
+          deck.length > 0 && (
+            <div className="new-flashcards__deck-wrapper">
               <h1>{deck[0].topic.toUpperCase()}</h1>
               <CardStack cards={deck} />
-            </>
-          )}
-          {error && <ErrorState />}
-        </div>
-        <div ref={cardStackRef} style={{ height: "4rem" }} />
+            </div>
+          )
+        )}
+        
+        {showBottomRef && (
+          <div ref={bottomRef} style={{ height: "1px", width: "100%" }} />
+        )}
       </div>
     </div>
   );

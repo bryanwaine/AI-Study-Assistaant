@@ -48,6 +48,7 @@ const GenerateFlashcards = ({
                 inputMode="numeric"
                 name="numberOfCards"
                 id="number-of-cards"
+                placeholder="Enter a number between 20 and 40"
                 className={inputError ? "input-error" : ""}
                 value={numberOfCards}
                 onChange={onChange}
