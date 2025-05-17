@@ -14,7 +14,7 @@ const GenerateFlashcards = ({
   loading,
   onChange,
   onInput,
-  onSubmit,
+  onGenerateFlashcards,
   inputSectionRef,
   flashcardError,
 }) => {
@@ -37,6 +37,7 @@ const GenerateFlashcards = ({
                 id="note-topic"
                 defaultValue={topic}
                 required
+                disabled
               />
             </div>
             <div className="generate-section__input__card-count">
@@ -61,7 +62,7 @@ const GenerateFlashcards = ({
               type="submit"
               disabled={!topic || !numberOfCards || loading}
               aria-label="Generate flashcards"
-              onClick={() => onSubmit(topic, numberOfCards)}
+              onClick={() => onGenerateFlashcards(topic, numberOfCards)}
             >
               {loading ? "Generating Flashcards..." : "Generate Flashcards"}
             </Button>
@@ -86,7 +87,6 @@ const GenerateFlashcards = ({
           </div>
         </div>
       )}
-     
     </>
   );
 };

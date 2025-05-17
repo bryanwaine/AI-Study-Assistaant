@@ -15,7 +15,9 @@ import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
 import MarkdownRenderer from "../../components/MarkdownRenderer";
 import Button from "../../components/Button/Button";
 import ErrorState from "../../components/ErrorState/ErrorState";
-import CardStack from "../../components/Cardstack/CardStack";
+import ActionButtons from "../../components/ActionButtons/ActionButtons";
+import GenerateBtnGroup from "../Note/GenerateBtnGroup";
+import GenerateFlashcards from "../../components/GenerateFlashcards/GenerateFlashcards";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveNote, updateNote } from "../../utils/noteService";
@@ -28,12 +30,15 @@ const NewNote = () => {
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState([]);
   const [error, setError] = useState(null);
+  const [flashcardError, setFlashcardError] = useState(null);
   const [noteId, setNoteId] = useState(null);
   const [partialContent, setPartialContent] = useState("");
   const [fileUploadProps, setFileUploadProps] = useState({});
-  const [createFlashcards, setCreateFlashcards] = useState(false);
-  const [createQuiz, setCreateQuiz] = useState(false);
+  const [generateFlashcards, setGenerateFlashcards] = useState(false);
+  const [generateQuiz, setGenerateQuiz] = useState(false);
+  const [showBottomRef, setShowBottomRef] = useState(false);
   const [topic, setTopic] = useState("");
+  const [flashcardTopic, setFlashcardTopic] = useState("");
   const [deck, setDeck] = useState([]);
   const [notes, setNotes] = useState("");
   const [numberOfCards, setNumberOfCards] = useState("");
@@ -48,6 +53,7 @@ const NewNote = () => {
   const aiMessageRef = useRef(null);
   const inputSectionRef = useRef(null);
   const cardStackRef = useRef(null);
+  const bottomRef = useRef(null);
 
   const scrollToBottom = () => {
     cardStackRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -58,12 +64,16 @@ const NewNote = () => {
   };
 
   useEffect(() => {
+    scrollToBottom();
+  }, [loading]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
     scrollToInputSection();
-  }, [createFlashcards, createQuiz]);
+  }, [generateFlashcards, generateQuiz]);
 
   if (!user) return <Navigate to="/login" replace />;
 
@@ -77,20 +87,6 @@ const NewNote = () => {
     }
   };
 
-  const onInput = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/g, "");
-  };
-
-  const handleCreateFlashcards = () => {
-    setCreateQuiz(false);
-    setCreateFlashcards(true);
-  };
-
-  const handleCreateQuiz = () => {
-    setCreateFlashcards(false);
-    setCreateQuiz(true);
-  };
-
   const handleCopy = () => {
     if (aiMessageRef.current) {
       navigator.clipboard.writeText(aiMessageRef.current.textContent);
@@ -99,6 +95,22 @@ const NewNote = () => {
     setTimeout(() => {
       setIsCopied(false);
     }, 3000);
+  };
+
+  const onInput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+  };
+
+  const handleGenerateFlashcards = () => {
+    setGenerateQuiz(false);
+    setGenerateFlashcards(true);
+    setFlashcardTopic(topic.toUpperCase());
+  };
+
+  const handleGenerateQuiz = () => {
+    setGenerateFlashcards(false);
+    setGenerateQuiz(true);
+    setFlashcardTopic(topic.toUpperCase());
   };
 
   const onSubmit = async (fileUploadProps) => {
@@ -168,11 +180,10 @@ const NewNote = () => {
       setInputError("Please enter a number between 20 and 40");
       return;
     }
+    setShowBottomRef(true);
     try {
       const cardTopic = topic;
       const cardCount = numberOfCards;
-      setNumberOfCards("");
-      scrollToBottom();
       setError(null);
       setLoading(true);
       const aiResponse = await generateFlashcardsFromNotes(
@@ -191,7 +202,7 @@ const NewNote = () => {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      setError(handleAnthropicError(error).message);
+      setFlashcardError(handleAnthropicError(error).message);
     }
   };
 
@@ -199,211 +210,107 @@ const NewNote = () => {
     <div className="new-note__wrapper">
       <Layout userName={userName} />
       <div className="new-note__container">
-        <div className="new-note__file">
-          <FileUploadProcessor
-            onExtractedText={(text, fileName, setDisplayFileName, setStatus) =>
-              setFileUploadProps({
+        <div className="new-note__file-upload__wrapper">
+          <div className="new-note__file-upload__container card--white">
+            <FileUploadProcessor
+              onExtractedText={(
                 text,
                 fileName,
                 setDisplayFileName,
-                setStatus,
-              })
-            }
-          />
-          <div className="new-note__title">
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter a title for your notes"
-              id="title"
-              value={title}
-              onChange={onChange}
-              required
+                setStatus
+              ) =>
+                setFileUploadProps({
+                  text,
+                  fileName,
+                  setDisplayFileName,
+                  setStatus,
+                })
+              }
             />
+            <div className="new-note__title">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                placeholder="Enter a title for your notes"
+                id="title"
+                value={title}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <Button
+              variant="orange"
+              disabled={!fileUploadProps.text || !isTitleValid || loading}
+              onClick={() => onSubmit(fileUploadProps)}
+            >
+              {loading ? "Generating summary..." : "Generate summary"}
+            </Button>
           </div>
-          <Button
-            variant="orange"
-            disabled={!fileUploadProps.text || !isTitleValid || loading}
-            onClick={() => onSubmit(fileUploadProps)}
-          >
-            {loading ? "Generating summary..." : "Generate summary"}
-          </Button>
         </div>
+        {loading && (
+          <div className="note-summary__loading">
+            <TypingIndicator />
+          </div>
+        )}
+        {error && <ErrorState error={error} />}
         <div className="note-summary__wrapper">
-          <div className="note__title">{topic.toUpperCase()}</div>
-          {isResponseGenerated && (
-            <div className="note-summary__container">
-              {error && <ErrorState />}
-              {loading && (
-                <div className="note-summary__loading">
-                  <TypingIndicator />
-                </div>
-              )}
-              {summary.length > 0 &&
-                summary.map(
-                  (obj) =>
-                    obj.role === "assistant" && (
-                      <div key={obj.id} className={`note-summary ${obj.role}`}>
-                        <div ref={aiMessageRef}>
-                          <MarkdownRenderer>{obj.content}</MarkdownRenderer>
-                        </div>
-                      </div>
-                    )
-                )}
-              {partialContent && (
-                <div>
-                  <MarkdownRenderer>{partialContent}</MarkdownRenderer>
-                </div>
-              )}
-            </div>
-          )}
           {isResponseGenerated && !loading && (
-            <div className="action-buttons-wrapper">
-              <button
-                className="action-button"
-                onClick={() => handleCopy()}
-                title="Copy code"
-              >
-                {isCopied ? (
-                  <span>
-                    <CheckOutlinedIcon style={{ fontSize: ".85rem" }} /> Copied!
-                  </span>
-                ) : (
-                  <span>
-                    <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} />
-                    Copy
-                  </span>
+            <>
+              <div className="note__title">{topic.toUpperCase()}</div>
+              <div className="note-summary__container card--white">
+                {summary.length > 0 &&
+                  summary.map(
+                    (obj) =>
+                      obj.role === "assistant" && (
+                        <div
+                          key={obj.id}
+                          className={`note-summary ${obj.role}`}
+                        >
+                          <div ref={aiMessageRef}>
+                            <MarkdownRenderer>{obj.content}</MarkdownRenderer>
+                          </div>
+                        </div>
+                      )
+                  )}
+                {partialContent && (
+                  <div>
+                    <MarkdownRenderer>{partialContent}</MarkdownRenderer>
+                  </div>
                 )}
-              </button>
-
-              <button
-                className="action-button"
-                title="Create flashcards"
-                onClick={handleCreateFlashcards}
-              >
-                <span>
-                  <StyleOutlinedIcon style={{ fontSize: ".85rem" }} />
-                  Flashcards
-                </span>
-              </button>
-              <button
-                className="action-button"
-                title="Create quiz"
-                onClick={handleCreateQuiz}
-              >
-                <span>
-                  <QuizOutlinedIcon style={{ fontSize: ".85rem" }} />
-                  Quiz
-                </span>
-              </button>
-            </div>
+              </div>
+              <ActionButtons isCopied={isCopied} handleCopy={handleCopy} />
+              <GenerateBtnGroup
+                isCopied={isCopied}
+                handleCopy={handleCopy}
+                handleGenerateFlashcards={handleGenerateFlashcards}
+                handleGenerateQuiz={handleGenerateQuiz}
+                generateFlashcards={generateFlashcards}
+                generateQuiz={generateQuiz}
+              />
+            </>
+          )}
+          {generateFlashcards && (
+            <GenerateFlashcards
+              topic={flashcardTopic}
+              deck={deck}
+              numberOfCards={numberOfCards}
+              setNumberOfCards={setNumberOfCards}
+              inputError={inputError}
+              loading={loading}
+              onChange={onChange}
+              onInput={onInput}
+              onGenerateFlashcards={onGenerateFlashcards}
+              inputSectionRef={inputSectionRef}
+              flashcardError={flashcardError}
+              cardStackRef={cardStackRef}
+            />
+          )}
+          {showBottomRef && (
+            <div ref={bottomRef} style={{ height: "1px", width: "100%" }} />
           )}
         </div>
       </div>
-      {createFlashcards && (
-        <>
-          <div ref={inputSectionRef} style={{ height: "4rem" }} />
-          <div className="input-wrapper notes">
-            <p className="input-title">{`Generate flashcards from: \n ${topic.toUpperCase()}`}</p>
-            <div className="input-container">
-              <label htmlFor="numberOfCards">Number of cards</label>
-              <input
-                type="text"
-                pattern="[0-9]*"
-                inputMode="numeric"
-                name="numberOfCards"
-                id="number-of-cards"
-                className={inputError ? "input-error" : ""}
-                value={numberOfCards}
-                onChange={onChange}
-                onInput={onInput}
-                required
-              />
-              {inputError && <span className="error">{inputError}</span>}
-            </div>
-
-            <Button
-              variant="orange"
-              type="submit"
-              disabled={!topic || !numberOfCards || loading}
-              aria-label="Generate flashcards"
-              onClick={() => onGenerateFlashcards(topic, numberOfCards)}
-            >
-              {loading ? "Generating Flashcards..." : "Generate Flashcards"}
-            </Button>
-          </div>
-          <div className="flashcards-container regular" id="new-note__flashcards">
-            <div className="deck-wrapper">
-              <div ref={cardStackRef} style={{ height: "6rem" }} />
-              {loading && (
-                <div className="deck-wrapper__loading">
-                  <TypingIndicator />
-                </div>
-              )}
-              {!loading && deck.length > 0 && (
-                <>
-                  <h1>{deck[0].topic.toUpperCase()}</h1>
-                  <CardStack cards={deck} />
-                </>
-              )}
-              {error && <ErrorState />}
-            </div>
-          </div>
-        </>
-      )}
-      {/* {createQuiz && (
-        <div>
-          <div ref={inputSectionRef} style={{ height: "4rem" }} />
-          <div className="input-wrapper notes">
-            <p className="input-title">{`Generate quiz from ${topic}`}</p>
-            <div className="input-container">
-              <label htmlFor="numberOfCards">Number of questions</label>
-              <input
-                type="text"
-                pattern="[0-9]*"
-                inputMode="numeric"
-                name="numberOfCards"
-                id="number-of-cards"
-                className={inputError ? "input-error" : ""}
-                value={numberOfCards}
-                onChange={onChange}
-                onInput={onInput}
-                required
-              />
-              {inputError && <span className="error">{inputError}</span>}
-            </div>
-
-            <Button
-              variant="orange"
-              type="submit"
-              disabled={!topic || !numberOfCards || loading}
-              aria-label="Generate flashcards"
-              // onClick={() => onSubmit(topic, numberOfCards)}
-            >
-              {loading ? "Generating Quiz..." : "Generate Quiz"}
-            </Button>
-          </div>
-          <div className="flashcards-container extended">
-            <div ref={cardStackRef} style={{ height: "4rem" }} />
-            <div className="deck-wrapper">
-              {loading && (
-                  <TypingIndicator />
-              )}
-              {!loading && deck.length > 0 && (
-                <>
-                  <h1>{deck[0].topic.toUpperCase()}</h1>
-                  <CardStack cards={deck} />
-                </>
-              )}
-              {error && (
-                <ErrorState/>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

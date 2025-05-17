@@ -32,7 +32,7 @@ const Note = () => {
   const [numberOfCards, setNumberOfCards] = useState("");
   const [inputError, setInputError] = useState(null);
   ("");
-  const [topic, setTopic] = useState("");
+  const [flashcardTopic, setFlashcardTopic] = useState("");
   const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState("");
   const [generateFlashcards, setGenerateFlashcards] = useState(false);
@@ -91,6 +91,13 @@ const Note = () => {
 
   if (!user) return <Navigate to="/login" replace />;
 
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "numberOfCards") {
+      setNumberOfCards(value);
+    }
+  };
+
   const handleCopy = () => {
     if (aiMessageRef.current) {
       navigator.clipboard.writeText(aiMessageRef.current.textContent);
@@ -101,12 +108,6 @@ const Note = () => {
     }, 3000);
   };
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "numberOfCards") {
-      setNumberOfCards(value);
-    }
-  };
 
   const onInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -115,16 +116,16 @@ const Note = () => {
   const handleGenerateFlashcards = () => {
     setGenerateQuiz(false);
     setGenerateFlashcards(true);
-    setTopic(metaData.title.toUpperCase());
+    setFlashcardTopic(metaData.title.toUpperCase());
   };
 
   const handleGenerateQuiz = () => {
     setGenerateFlashcards(false);
     setGenerateQuiz(true);
-    setTopic(metaData.title.toUpperCase());
+    setFlashcardTopic(metaData.title.toUpperCase());
   };
 
-  const onSubmit = async () => {
+  const onGenerateFlashcards = async () => {
     setInputError(null);
     if (numberOfCards < 20 || numberOfCards > 40) {
       setInputError("Please enter a number between 20 and 40");
@@ -132,7 +133,7 @@ const Note = () => {
     }
     setShowBottomRef(true);
     try {
-      const cardTopic = topic;
+      const cardTopic = flashcardTopic;
       const cardCount = numberOfCards;
       setError(null);
       setLoading(true);
@@ -186,7 +187,7 @@ const Note = () => {
       </Suspense>
       {generateFlashcards && (
         <GenerateFlashcards
-          topic={topic}
+          topic={flashcardTopic}
           deck={deck}
           numberOfCards={numberOfCards}
           setNumberOfCards={setNumberOfCards}
@@ -194,7 +195,7 @@ const Note = () => {
           loading={loading}
           onChange={onChange}
           onInput={onInput}
-          onSubmit={onSubmit}
+          onGenerateFlashcards={onGenerateFlashcards}
           inputSectionRef={inputSectionRef}
           flashcardError={flashcardError}
           cardStackRef={cardStackRef}
