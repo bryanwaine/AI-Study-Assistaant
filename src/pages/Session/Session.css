@@ -127,7 +127,7 @@
 .chat-message code {
   width: 100%;
   font-size: 0.85rem;
-  border-radius: .75rem;
+  border-radius: 0 0 .75rem.75rem !important;
   background-color: #e6f1f6 ;
 }
 
