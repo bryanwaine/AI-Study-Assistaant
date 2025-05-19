@@ -147,7 +147,7 @@ const NewFlashcards = () => {
           <ErrorState />
         ) : (
           deck.length > 0 && (
-            <div className="new-flashcards__deck-wrapper">
+            <div className="new-flashcards__deck__wrapper">
               <h1>{deck[0].topic.toUpperCase()}</h1>
               <CardStack cards={deck} />
             </div>

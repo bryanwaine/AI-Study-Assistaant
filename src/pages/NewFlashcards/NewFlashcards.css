@@ -71,7 +71,7 @@
   
 }
 
-.new-flashcards__deck-wrapper {
+.new-flashcards__deck__wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -83,7 +83,7 @@
   border: none;
 }
 
-.new-flashcards__deck-wrapper h1 {
+.new-flashcards__deck__wrapper h1 {
   margin-bottom: 1rem;
 }
 
@@ -101,7 +101,7 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-  .new-flashcards__deck-wrapper {
+  .new-flashcards__deck__wrapper {
     align-self: center;
     width: 70%;
   }
@@ -119,7 +119,7 @@
     width: 50%;
   }
 
-  .new-flashcards__deck-wrapper {
+  .new-flashcards__deck__wrapper {
     align-self: center;
     width: 50%;
   }

@@ -26,11 +26,10 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 2rem 2rem 2rem 2rem;
-    background-color: #ffffff ;
+    padding: 1rem 0 1rem;
     color: #035172;
-    border-radius: .75rem;
-    /* border: 1px solid rgb(3, 81, 114, 0.2); */
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
   }
   
   .note__summary h1 {
@@ -61,8 +60,10 @@
   }
   
   
-  .note__summary ul{
+  .note__summary ul,
+  .note__summary ol{
     margin: 0 0 1rem 0;
+    padding: 0 0 0 1rem;
   }
   
   .note__title {
@@ -105,7 +106,7 @@
     font-size: 1rem;
     font-family: inherit;
     border: 1px solid #ccc;
-    border-radius: .75rem;
+    border-radius: 1rem;
     background-color: #f5f5f5 ;
     resize: none;
     outline: none;
@@ -157,7 +158,7 @@
   }
 
   .generate-btn__container button {
-    padding: 1rem;
+    padding: 1rem .5rem;
     font-size: .85rem;
   }
   
@@ -175,7 +176,8 @@
 
 /* Laptop */
 @media screen and (min-width: 1024px) {
-  .note__container{
+  .note__container,
+  .generate-btn__wrapper{
     align-self: flex-end;
     width: 75%;
   }
@@ -196,12 +198,17 @@
     width: 50%;
    
   }
+
+  .generate-btn__container {
+    width: 60%;
+  }
 }
 
 /* Desktop */
 
 @media screen and (min-width: 1280px) {
-  .note__container{
+  .note__container,
+  .generate-btn__wrapper{
     align-self: flex-end;
     width: 80%;
   }
@@ -225,6 +232,10 @@
     width: 100%;
     height: 100%;
     margin: 0 0 1rem 0
+  }
+
+  .generate-btn__container {
+    width: 40%;
   }
 
 }

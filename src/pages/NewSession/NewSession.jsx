@@ -209,11 +209,11 @@ const NewSession = () => {
               <TypingIndicator />
             </div>
           )}
-          <ScrollToBottom
-            showScrollToBottom={showScrollToBottom}
-            scrollToBottom={scrollToBottom}
-          />
         </div>
+        <ScrollToBottom
+          showScrollToBottom={showScrollToBottom}
+          scrollToBottom={scrollToBottom}
+        />
       </div>
       <TextArea
         value={question}

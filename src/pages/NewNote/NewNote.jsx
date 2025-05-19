@@ -254,7 +254,7 @@ const NewNote = () => {
           {isResponseGenerated && !loadingSummary && (
             <>
               <div className="note__title">{topic.toUpperCase()}</div>
-              <div className="note-summary__container card--white">
+              <div className="note-summary__container">
                 {summary.length > 0 &&
                   summary.map(
                     (obj) =>

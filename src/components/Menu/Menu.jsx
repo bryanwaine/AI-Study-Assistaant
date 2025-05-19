@@ -23,7 +23,7 @@ const Menu = (props) => {
     backgroundColor: "#e6f1f6 ",
     width: "100%",
     height: "100%",
-    borderRadius: "1rem",
+    borderRadius: ".75rem",
   };
 
   const onClick = () => {

@@ -57,7 +57,7 @@
 .generate-section__input__title input,
 .generate-section__input__card-count input {
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-family: inherit;
@@ -94,7 +94,7 @@
   padding: 0 0 2rem 0;
 }
 
-.generate-flashcards__deck-wrapper {
+.generate-flashcards__deck__wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -126,7 +126,7 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-  .deck-wrapper {
+  .generate-flashcards__deck__wrapper {
     align-self: center;
     width: 70%;
   }
@@ -134,7 +134,9 @@
 
 /* Laptop */
 @media screen and (min-width: 1024px) {
-  .flashcards-container {
+    .generate-section__wrapper,
+    .generate-flashcards__wrapper, 
+    .deck-wrapper__loading{
     align-self: flex-end;
     width: 75%;
   }
@@ -148,12 +150,27 @@
     align-self: center;
     width: 50%;
   }
+
+  .generate-section__container,
+  .generate-flashcards__container {
+    align-self: center;
+    width: 60%;
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1280px) {
-  .flashcards-container {
+  .generate-section__wrapper,
+  .generate-flashcards__wrapper, 
+  .deck-wrapper__loading{
     align-self: flex-end;
     width: 80%;
   }
+
+  .generate-section__container,
+  .generate-flashcards__container{
+    align-self: center;
+    width: 50%;
+  }
+
 }

@@ -78,7 +78,7 @@ const GenerateFlashcards = ({
       {!loadingFlashcards && deck.length > 0 && (
         <div className="generate-flashcards__wrapper">
           <div className="generate-flashcards__container">
-            <div className="generate-flashcards__deck-wrapper">
+            <div className="generate-flashcards__deck__wrapper">
               <h2 className="generate-flashcards__deck-title">
                 {deck[0].topic.toUpperCase()}
               </h2>

@@ -56,3 +56,11 @@
     width: 50%;
   }
 }
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  .flashcards__container {
+    align-self: flex-end;
+    width: 80%;
+  }
+}
