@@ -34,11 +34,34 @@ const NewSession = () => {
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
   const aiMessageRef = useRef(null);
+  const welcomeMessage = [
+    {
+      id: Date.now(),
+      role: "assistant",
+      content: "👋 Hi there! I'm Auxiliaire, your AI assistant. How can I help you today?",
+    },
+  ]
+
+  const renderWelcomeMessage = () => {
+    const words = welcomeMessage[0].content.split(" ");
+    let currentWord = 0;
+    const interval = setInterval(() => {
+      setPartialContent((prev) => prev + words[currentWord] + " ");
+      currentWord++;
+
+      if (currentWord >= words.length) {
+        clearInterval(interval);
+        setMessages(welcomeMessage);
+        setPartialContent("");
+      }
+    }, 100);
+  }
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
+   renderWelcomeMessage()
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
 
