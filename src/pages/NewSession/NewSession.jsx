@@ -38,7 +38,33 @@ const NewSession = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const welcomeMessage = [
+    {
+      id: Date.now(),
+      role: "assistant",
+      content: "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
+    }
+  ]
+
+  const renderWelcomeMessage = () => {
+    const words = welcomeMessage[0].content.split(" ");
+      let currentWord = 0;
+      setPartialContent("");
+
+      const interval = setInterval(() => {
+        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
+        currentWord++;
+
+        if (currentWord >= words.length) {
+          clearInterval(interval);
+          setMessages(welcomeMessage);
+          setPartialContent("");
+        }
+      }, 3000);
+  }
+
   useEffect(() => {
+    renderWelcomeMessage();
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }, []);
 
@@ -133,7 +159,7 @@ const NewSession = () => {
       const finalMessages = [...updatedMessages, aiMessage];
 
       const interval = setInterval(() => {
-        setPartialContent((prev) => prev + words[currentWord] + " ");
+        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
         currentWord++;
 
         if (currentWord >= words.length) {

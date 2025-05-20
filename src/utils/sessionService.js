@@ -14,9 +14,9 @@ import { v4 as uuidv4 } from "uuid";
 const saveSession = async (userId, messages) => {
   const sessionId = uuidv4();
   const messageTitle =
-    messages[0]?.content.length > 100
-      ? messages[0]?.content.slice(0, 100) + "..."
-      : messages[0]?.content;
+    messages[1]?.content.length > 100
+      ? messages[1]?.content.slice(0, 100) + "..."
+      : messages[1]?.content;
   const metadata = {
     title: messageTitle || "Chat Session",
     createdAt: serverTimestamp(),
