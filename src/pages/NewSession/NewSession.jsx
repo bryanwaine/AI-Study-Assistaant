@@ -60,7 +60,7 @@ const NewSession = () => {
           setMessages(welcomeMessage);
           setPartialContent("");
         }
-      }, 3000);
+      }, 100);
   }
 
   useEffect(() => {
