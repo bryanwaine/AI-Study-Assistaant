@@ -185,7 +185,6 @@ const NewSession = () => {
   };
 
   return (
-    <>
     <div className="session-wrapper">
       <Layout userName={userName} />
       <div className="session__container">
@@ -242,14 +241,13 @@ const NewSession = () => {
           scrollToBottom={scrollToBottom}
         />
       </div>
-      </div>
       <TextArea
         value={question}
         onChange={onChange}
         onSubmit={() => onSubmit(question)}
         loading={loading}
       />
-      </>
+    </div>
   );
 };
 
