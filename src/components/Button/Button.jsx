@@ -1,10 +1,10 @@
 import "./Button.css";
 
 const Button = (props) => {
-  const { children, type, onClick, disabled, variant, ariaLabel, ariaLabelledby, id } = props;
+  const { children, type, onClick, disabled, variant, ariaLabel, ariaLabelledby, id, className } = props;
   return (
     <button
-      className={`btn btn--${variant}`}
+      className={`btn btn--${variant} ${className}`}
       type={type}
       disabled={disabled}
       onClick={onClick}

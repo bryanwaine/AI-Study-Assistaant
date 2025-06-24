@@ -1,4 +1,8 @@
 /* ------------------------------------------------------------- */
+
+@import "tailwindcss";
+
+
 /* Reset */
 * {
   box-sizing: border-box;
@@ -12,7 +16,7 @@
 
 html,
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Nunito', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
@@ -23,13 +27,57 @@ main {
   height: 100vh;
 }
 
-/* Media Queries */
-
-@media screen and (max-width: 395px) {
-  :root {
-    font-size: 12px;
-  }
+/* Animations */
+.animate {
+  opacity: 0;
+  transform: translateY(10rem);
+  transition: all 0.6s ease-out;
 }
+
+.animate.slide-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate.slide-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate.slide-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate.slide-down {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate.fade-in {
+  opacity: 1;
+}
+
+.animate.fade-out {
+  opacity: 0;
+}
+
+.animate.fade-in-out {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.animate.scale-up {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.animate.scale-down {
+  opacity: 1;
+  transform: scale(0);
+}
+
+
 
 /* ------------------------------------------------------------- */
 /* Base Elements */
