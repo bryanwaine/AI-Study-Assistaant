@@ -9,27 +9,37 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: 7rem 3rem 3rem 3rem;
+  /* padding: 7rem 3rem 3rem 3rem; */
   text-align: center;
 }
 
 
-.home-card__text {
+/* .home-card__text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: .5rem;
   padding: 0 2rem;
-}
+} */
 
 .home-card__image {
   background-image: url("/public/images/iPhone.png");
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 50rem;
+  height: 50rem; 
 }
+
+@media screen and (min-width: 1024px) {
+  .home-card__image {
+    width: 30%;
+    height: 50rem; 
+  }
+  
+} 
+
+
 
 
 

@@ -28,7 +28,7 @@ const Home = () => {
   });
 
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#001826] flex flex-col h-screen overflow-y-auto">
+    <div className="bg-[#f5f5f5] dark:bg-[#001826] flex flex-col items-center h-screen overflow-y-auto">
       <div className="fixed top-0 left-0 w-full !py-4 z-50 flex justify-between items-center bg-transparent backdrop-blur-md">
         <div className="flex items-center !ml-4 w-1/2">
           <LogoSm variant="dark" />
@@ -42,52 +42,52 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <section className="home__content w-full">
-        <h1 className="animate text-3xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
+      <section className="home__content w-full !px-12 !py-30">
+        <h1 className="animate text-4xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
           Study Smarter with AI
         </h1>
         <p className="animate text-lg text-[#111111] dark:text-gray-400 !mb-4">
           Summarize your notes, chat with AI tutors, and quiz yourself with
           smart flashcards.
         </p>
-        <Link to="/signup" className="animate w-full !mb-10">
+        <Link to="/signup" className="animate w-full md:w-1/5 !mb-20">
           <Button variant="orange" className="!mt-4 ">
             Get Started
           </Button>
         </Link>
-        <div className="flex flex-col justify-center items-center gap-8 !mt-10">
-          <div className="flex flex-col justify-center items-center">
-            <div className="home-card__text">
+        <div className="md:w-full flex flex-col justify-center items-center gap-8 md:gap-2 !mt-20">
+          <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
+            <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
               <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
                 AI Chat Assistant
               </h2>
-              <p className="animate text-lg text-[#111111] dark:text-gray-400">
-                Ask questions and get instant answers.
+              <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
+                Ask questions about any topic and get instant answers.
               </p>
             </div>
-            <div className="animate home-card__image !-mt-16" />
+            <div className="animate home-card__image w-full !-mt-16 !md:mt-10" />
           </div>
-          <div className="flex flex-col justify-center items-center">
-            <div className="home-card__text">
+           <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
+            <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
               <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
                 Smart Notes
               </h2>
-              <p className="animate text-lg text-[#111111] dark:text-gray-400">
+              <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
+                Upload, summarize, and organise your study notes.
+              </p>
+            </div>
+            <div className="animate home-card__image md:order-first !-mt-16" />
+          </div>
+           <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
+            <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
+              <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
+                Flashcards and Quizzes
+              </h2>
+              <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
                 Upload, summarize, and organise your study notes.
               </p>
             </div>
             <div className="animate home-card__image !-mt-16" />
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <div className="home-card__text">
-              <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
-                Flashcards and Quizzes
-              </h2>
-              <p className="animate text-lg text-[#111111] dark:text-gray-400">
-                Upload, summarize, and organise your study notes.
-              </p>
-            </div>
-            <di className="animate home-card__image !-mt-16" />
           </div>
         </div>
       </section>
