@@ -33,7 +33,7 @@ const Home = () => {
         <div className="flex items-center !ml-4 w-1/2">
           <LogoSm variant="dark" />
         </div>
-        <div className="home__navbar-right flex justify-end gap-3 w-1/2 !mr-4 items-center">
+        <div className="home__navbar-right flex justify-end gap-6 w-1/2 !mr-4 items-center">
           <Link to="/login">
             <Button variant="ghost--orange">Login</Button>
           </Link>
