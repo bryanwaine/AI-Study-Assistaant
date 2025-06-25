@@ -192,10 +192,10 @@ const NewSession = () => {
     <div className="session-wrapper">
       <Layout userName={userName} />
       <div className="session__container">
-        <div className="chat-window" ref={chatWindowRef}>
+        <div className="relative w-screen h-full flex flex-col items-center gap-4 overflow-y-auto !pt-[10rem] !pb-[8rem] !px-[1.5rem]" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role}`}>
-              <div ref={message.role === "assistant" ? aiMessageRef : null}>
+            <div ref={message.role === "assistant" ? aiMessageRef : null} className="w-full">
+                <div key={message.id} className={`text-[0.95rem] dark:text-gray-100 max-w-full px-4 py-2 my-4 rounded-xl leading-[1.5] ${message.role === "assistant" ? "w-full p-0 self-start " : "max-w-[70%] self-end bg-[#FF7B00]"}`}>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
                 ) : (
@@ -228,7 +228,7 @@ const NewSession = () => {
             </div>
           ))}
           {partialContent && (
-            <div className="chat-message assistant typing-cursor">
+            <div className="text-[0.95rem] dark:text-gray-100 max-w-full px-4 py-2 my-4 rounded-xl leading-[1.5] w-full p-0 self-start">
               <MarkdownRenderer>{partialContent}</MarkdownRenderer>
             </div>
           )}
