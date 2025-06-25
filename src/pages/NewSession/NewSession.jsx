@@ -34,6 +34,7 @@ const NewSession = () => {
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
   const aiMessageRef = useRef(null);
+  const partialRef = useRef("");
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -42,26 +43,27 @@ const NewSession = () => {
     {
       id: Date.now(),
       role: "assistant",
-      content: "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
-    }
-  ]
+      content:
+        "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
+    },
+  ];
 
   const renderWelcomeMessage = () => {
     const words = welcomeMessage[0].content.split(" ");
-      let currentWord = 0;
-      setPartialContent("");
+    let currentWord = 0;
+    setPartialContent("");
 
-      const interval = setInterval(() => {
-        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
-        currentWord++;
+    const interval = setInterval(() => {
+      setPartialContent((prev) => prev + " " + words[currentWord] + " ");
+      currentWord++;
 
-        if (currentWord >= words.length) {
-          clearInterval(interval);
-          setMessages(welcomeMessage);
-          setPartialContent("");
-        }
-      }, 100);
-  }
+      if (currentWord >= words.length) {
+        clearInterval(interval);
+        setMessages(welcomeMessage);
+        setPartialContent("");
+      }
+    }, 100);
+  };
 
   useEffect(() => {
     renderWelcomeMessage();
@@ -159,7 +161,8 @@ const NewSession = () => {
       const finalMessages = [...updatedMessages, aiMessage];
 
       const interval = setInterval(() => {
-        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
+        partialRef.current += words[currentWord] + " ";
+        setPartialContent(partialRef.current.trim());
         currentWord++;
 
         if (currentWord >= words.length) {
@@ -167,6 +170,7 @@ const NewSession = () => {
           setMessages(finalMessages);
           setPartialContent("");
           setLoading(false);
+          partialRef.current = ""; // Reset after done
         }
       }, 30);
       await updateSession(user.uid, sessionId || newSessionId, finalMessages);
