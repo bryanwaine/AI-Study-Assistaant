@@ -60,6 +60,26 @@ const Dashboard = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+      const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("slide-up");
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+  
+      const options = {
+        threshold: 0.2,
+      };
+  
+      const observer = new IntersectionObserver(callback, options);
+  
+      const animatedElements = document.querySelectorAll(".animate");
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
@@ -70,9 +90,9 @@ const Dashboard = () => {
       <div className="dashboard__wrapper ">
         <BubbleBackground />
 
-        <h1 className="dark:text-gray-100 text-3xl !mb-6">Dashboard</h1>
+        <h1 className="animate dark:text-gray-100 text-3xl !mb-6">Dashboard</h1>
         <div className="dashboard__container">
-          <section className="dashboard-card rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
+          <section className="animate dashboard-card rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
             <h2 className="dashboard-card__greeting dark:text-gray-100 ">
               {handleGreeting(firstNameFilter(userName))}
             </h2>
@@ -99,7 +119,7 @@ const Dashboard = () => {
               </Link>
             </Button>
           </section>
-          <DashboardQuicklinksCard />
+          <DashboardQuicklinksCard className="animate" />
         </div>
       </div>
     </>
