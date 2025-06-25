@@ -17,6 +17,7 @@ import handleGreeting from "../../utils/greetingHandler";
 import firstNameFilter from "../../utils/firstNameFilter";
 
 import "./Dashboard.css";
+import BubbleBackground from "../../components/BubbleBg";
 
 // Lazy loaded components
 const DashboardOverviewCard = lazy(() => import("./DashboardOverviewCard"));
@@ -66,21 +67,23 @@ const Dashboard = () => {
   return (
     <>
       <Layout userName={userName} />
-      <div className="dashboard__wrapper">
-        <h1>Dashboard</h1>
+      <div className="dashboard__wrapper ">
+        <BubbleBackground />
+
+        <h1 className="dark:text-gray-100 text-3xl !mb-6">Dashboard</h1>
         <div className="dashboard__container">
-          <section className="dashboard-card card--blue">
-            <h2 className="dashboard-card__greeting">
+          <section className="dashboard-card rounded-xl bg-sky-100/50 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
+            <h2 className="dashboard-card__greeting dark:text-gray-100 ">
               {handleGreeting(firstNameFilter(userName))}
             </h2>
-            <p className="dashboard-card__message">
+            <p className="dashboard-card__message dark:text-gray-100 ">
               Here's an overview of your study progress:
             </p>
             <Suspense fallback={<DashboardOverviewSkeleton />}>
               {loading ? (
                 <DashboardOverviewSkeleton />
               ) : error ? (
-                 <ErrorState error={error} />
+                <ErrorState error={error} />
               ) : (
                 <DashboardOverviewCard
                   sessions={sessions}

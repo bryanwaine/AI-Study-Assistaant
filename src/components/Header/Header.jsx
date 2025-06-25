@@ -8,11 +8,11 @@ import "./Header.css";
 const Header = ({ setMenuOpen, setSidebarOpen, photoURL, userName }) => {
   return (
     <header>
-      <nav>
+      <nav className="bg-[#001826]/10 backdrop-blur-md">
         <div className="nav-left">
           <MenuIcon
             fontSize="large"
-            style={{ color: "white" }}
+            className="text-black dark:text-white"
             onClick={() => {
               setMenuOpen((prev) => !prev);
             }}
