@@ -3,7 +3,7 @@ import { NavigateNext } from "@mui/icons-material";
 
 const DashboardQuicklinksCard = () => {
   return (
-    <section className="dashboard-card rounded-xl bg-sky-100/50 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
+    <section className="dashboard-card rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
       <h2 className="text-xl font-bold dark:text-gray-100">Quick Links</h2>
       <div className="dashboard__quicklinks">
         <Link to="/new-session" className=" dashboard__quicklink text-sky-900 dark:text-sky-100 ">

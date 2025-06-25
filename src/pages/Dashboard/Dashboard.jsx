@@ -72,7 +72,7 @@ const Dashboard = () => {
 
         <h1 className="dark:text-gray-100 text-3xl !mb-6">Dashboard</h1>
         <div className="dashboard__container">
-          <section className="dashboard-card rounded-xl bg-sky-100/50 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
+          <section className="dashboard-card rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
             <h2 className="dashboard-card__greeting dark:text-gray-100 ">
               {handleGreeting(firstNameFilter(userName))}
             </h2>

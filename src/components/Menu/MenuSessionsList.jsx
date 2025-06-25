@@ -18,7 +18,7 @@ const MenuSessionsList = ({sessions, loading, error, activeStyles, onClick}) => 
                       onClick={onClick}
                     >
                       <div className="menu__list-item">
-                        <span className="menu__list-name">
+                        <span className=" w-full text-sm text-sky-900 dark:text-sky-100 truncate overflow-hidden whitespace-nowrap">
                           {session.metadata.title}
                         </span>
                       </div>

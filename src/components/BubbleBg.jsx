@@ -13,7 +13,7 @@ const BubbleBackground = () => {
         return (
           <div
             key={i}
-            className="absolute bottom-[-2rem] rounded-full bg-white opacity-20 blur-md animate-float-up"
+            className="absolute bottom-[-2rem] rounded-full bg-pink-900 dark:bg-white opacity-20 blur-md animate-float-up"
             style={{
               width: `${size}px`,
               height: `${size}px`,

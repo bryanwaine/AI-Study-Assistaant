@@ -30,27 +30,35 @@ const Menu = (props) => {
     setMenuOpen(false);
   };
   return (
-    <div className="menu" data-menu-open={menuOpen}>
-      <div className="search__container">
+    <div
+      className="menu bg-gray-100/90 dark:bg-neutral-900/90  backdrop-blur-md"
+      data-menu-open={menuOpen}
+    >
+      <div className=" w-[95%] bg-white dark:bg-transparent flex border border-sky-900 dark:border-sky-100 rounded-xl !px-2 !mb-4">
         <button
-          className="search__button"
+          className="text-sky-900 dark:text-sky-100"
           id="search__button"
           aria-label="search button"
           aria-labelledby="search button"
         >
-          <SearchOutlinedIcon fontSize="small" style={{ color: "#035172" }} />
+          <SearchOutlinedIcon fontSize="small" />
         </button>
-        <input type="text" placeholder="Search" className="search__input" />
+        <input type="text" placeholder="Search" className="search__input w-full !p-2 text-neutral-900 dark:text-neutral-100" />
       </div>
       <ul className="menu__list">
         <li className="menu__item">
           <NavLink
-            className="menu__navlink"
+            className={({ isActive }) =>
+              `menu__navlink ${
+                isActive
+                  ? "bg-sky-100 dark:bg-black rounded-xl w-full h-full"
+                  : ""
+              }`
+            }
             to="/dashboard"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
             onClick={onClick}
           >
-            <div className="menu__list-item">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
               <DashboardOutlined fontSize="small" className="icon" />
               <span className="menu__list-name">Dashboard</span>
             </div>
@@ -58,12 +66,17 @@ const Menu = (props) => {
         </li>
         <li className="menu__item">
           <NavLink
-            className="menu__navlink"
+             className={({ isActive }) =>
+              `menu__navlink ${
+                isActive
+                  ? "bg-sky-100 dark:bg-black rounded-xl w-full h-full"
+                  : ""
+              }`
+            }
             to="/sessions"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
             onClick={onClick}
           >
-            <div className="menu__list-item">
+           <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
               <HistoryIcon fontSize="small" className="icon" />
               <span className="menu__list-name">Sessions</span>
             </div>
@@ -71,12 +84,17 @@ const Menu = (props) => {
         </li>
         <li className="menu__item">
           <NavLink
-            className="menu__navlink"
+            className={({ isActive }) =>
+              `menu__navlink ${
+                isActive
+                  ? "bg-sky-100 dark:bg-black rounded-xl w-full h-full"
+                  : ""
+              }`
+            }
             to="/notes"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
             onClick={onClick}
           >
-            <div className="menu__list-item">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
               <DescriptionOutlinedIcon fontSize="small" className="icon" />
               <span className="menu__list-name">Notes</span>
             </div>
@@ -84,12 +102,17 @@ const Menu = (props) => {
         </li>
         <li className="menu__item">
           <NavLink
-            className="menu__navlink"
+            className={({ isActive }) =>
+              `menu__navlink ${
+                isActive
+                  ? "bg-sky-100 dark:bg-black rounded-xl w-full h-full"
+                  : ""
+              }`
+            }
             to="/quizzes"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
             onClick={onClick}
           >
-            <div className="menu__list-item">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
               <QuizOutlinedIcon fontSize="small" className="icon" />
               <span className="menu__list-name">Quizzes</span>
             </div>
@@ -102,7 +125,7 @@ const Menu = (props) => {
             style={({ isActive }) => (isActive ? activeStyles : null)}
             onClick={onClick}
           >
-            <div className="menu__list-item">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
               <StyleOutlinedIcon className="icon" />
               <span className="menu__list-name">Flashcards</span>
             </div>
@@ -111,7 +134,7 @@ const Menu = (props) => {
       </ul>
       {sessions.length > 0 && (
         <>
-          <h3 className="menu__list-title">Session History</h3>
+          <h3 className=" text-md self-start !mt-4 !ml-4 text-sky-900 dark:text-sky-100 font-light">SESSION HISTORY</h3>
           <Suspense fallback={<MenuListSkeleton />}>
             {loading ? (
               <MenuListSkeleton />
