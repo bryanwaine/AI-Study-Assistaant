@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
   transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
     width 0.3ms ease-in, visibility 0.3s;
   overflow-x: hidden;
@@ -35,15 +34,6 @@
   align-items: flex-start;
 }
 
-.sidebar__list-title {
-  font-size: 1rem;
-  font-weight: 300;
-  align-self: flex-start;
-  text-align: left;
-  margin-left: 1rem;
-  color: #035172;
-}
-
 .sidebar__list li {
   display: flex;
   align-items: center;
@@ -52,40 +42,15 @@
   padding: 1rem 1rem 1rem 1rem;
   width: 100%;
   cursor: pointer;
-  background-color: #e6f1f6 ;
   border-radius: .75rem;
-}
-
-.sidebar__item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #035172;
-  width: 100%;
-}
-
-.sidebar__icon {
-  font-size: 0.5rem;
-  /* font-weight: 800; */
 }
 
 .sidebar-list li div a {
   width: 100%;
 }
 
-.sidebar__item-name {
-  font-weight: 500;
-  font-size: 0.85rem;
-}
-
 .sidebar__item-value {
-  color: #111111;
-  font-size: 0.85rem;
-  font-weight: 300;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: end;
+  font-family: "Poppins", sans-serif !important;
   text-overflow: ellipsis;
 }
 
@@ -99,7 +64,6 @@
 }
 
 /* Laptop */
-
 @media screen and (min-width: 1024px) {
   .sidebar {
     width: 30%;
@@ -107,7 +71,6 @@
 }
 
 /* Desktop */
-
 @media screen and (min-width: 1280px) {
   .sidebar {
     width: 20%;
