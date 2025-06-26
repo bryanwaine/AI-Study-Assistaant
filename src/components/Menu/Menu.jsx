@@ -132,7 +132,7 @@ const Menu = (props) => {
       </ul>
       {sessions.length > 0 && (
         <>
-          <h3 className=" text-md self-start !mt-4 !ml-4 text-sky-900 dark:text-sky-400 font-light">SESSION HISTORY</h3>
+          <h3 className=" text-sm self-start !mt-4 !ml-4 text-sky-900 dark:text-sky-400 font-bold">SESSION HISTORY</h3>
           <Suspense fallback={<MenuListSkeleton />}>
             {loading ? (
               <MenuListSkeleton />
