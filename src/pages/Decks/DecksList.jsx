@@ -10,19 +10,19 @@ const DecksList = ({ flashcards }) => {
     <ul className="decks__list">
       {sortFlashcardsByTime(flashcards).map((deck) => (
         <li key={deck.id}>
-          <Link to={deck.id} className="deck-card card--blue">
-            <h2 className="deck-card__title">
+          <Link to={deck.id} className="deck-card bg-gray-900/10 dark:bg-gray-100/10 rounded-xl">
+            <h2 className="deck-card__title text-sky-900 dark:text-sky-400">
               {deck.metadata.title.toUpperCase()}
             </h2>
             <div className="deck-card__metadata-container">
               <div className="deck-card__metadata-left">
-                <p className="deck-card__metadata">
-                  <span className="deck-card__metadata-item">Created</span>
+                <p className="deck-card__metadata text-neutral-900 dark:text-neutral-100">
+                  <span className="deck-card__metadata-item text-sky-900 dark:text-sky-400">Created</span>
                   {formatFirebaseTimestamp(deck.metadata.createdAt)}
                 </p>
               </div>
               <div className="deck-card__metadata-right">
-                <p className="deck-card__metadata">
+                <p className="deck-card__metadata text-neutral-900 dark:text-neutral-100">
                   {`${deck.metadata.cardCount} flashcards`}{" "}
                 </p>
               </div>

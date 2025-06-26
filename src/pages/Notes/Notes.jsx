@@ -13,6 +13,7 @@ import { getAllNotes } from "../../utils/noteService";
 import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 
 import "./Notes.css";
+import BubbleBackground from "../../components/BubbleBg";
 
 /**
  * Notes component displays a list of user's notes.
@@ -44,11 +45,32 @@ const Notes = () => {
     fetchNotes();
   }, [user]);
 
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+
   return (
     <div className="notes__wrapper">
       <Layout userName={userName} />
-      <div className="notes__container">
-        <h1>Your Notes</h1>
+      <BubbleBackground />
+      <div className="animate notes__container">
+        <h1 className=" dark:text-gray-100 text-3xl !mb-6">Your Notes</h1>
         <Button variant="orange">
           <Link to="/new-note" className="btn--link">
             New Note
@@ -58,7 +80,7 @@ const Notes = () => {
           {loading ? (
             <SessionsListSkeleton />
           ) : error ? (
-             <ErrorState error={error} />
+            <ErrorState error={error} />
           ) : notes.length === 0 ? (
             <EmptyState page="notes" />
           ) : (

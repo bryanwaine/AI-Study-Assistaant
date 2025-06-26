@@ -34,7 +34,6 @@ const NewSession = () => {
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
   const aiMessageRef = useRef(null);
-  const partialRef = useRef("");
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -43,27 +42,26 @@ const NewSession = () => {
     {
       id: Date.now(),
       role: "assistant",
-      content:
-        "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
-    },
-  ];
+      content: "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
+    }
+  ]
 
   const renderWelcomeMessage = () => {
     const words = welcomeMessage[0].content.split(" ");
-    let currentWord = 0;
-    setPartialContent("");
+      let currentWord = 0;
+      setPartialContent("");
 
-    const interval = setInterval(() => {
-      setPartialContent((prev) => prev + " " + words[currentWord] + " ");
-      currentWord++;
+      const interval = setInterval(() => {
+        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
+        currentWord++;
 
-      if (currentWord >= words.length) {
-        clearInterval(interval);
-        setMessages(welcomeMessage);
-        setPartialContent("");
-      }
-    }, 100);
-  };
+        if (currentWord >= words.length) {
+          clearInterval(interval);
+          setMessages(welcomeMessage);
+          setPartialContent("");
+        }
+      }, 100);
+  }
 
   useEffect(() => {
     renderWelcomeMessage();
@@ -161,8 +159,7 @@ const NewSession = () => {
       const finalMessages = [...updatedMessages, aiMessage];
 
       const interval = setInterval(() => {
-        partialRef.current += words[currentWord] + " ";
-        setPartialContent(partialRef.current.trim());
+        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
         currentWord++;
 
         if (currentWord >= words.length) {
@@ -170,7 +167,6 @@ const NewSession = () => {
           setMessages(finalMessages);
           setPartialContent("");
           setLoading(false);
-          partialRef.current = ""; // Reset after done
         }
       }, 30);
       await updateSession(user.uid, sessionId || newSessionId, finalMessages);
@@ -189,13 +185,13 @@ const NewSession = () => {
   };
 
   return (
-    <div className="session-wrapper">
+    <div className="new-session__wrapper">
       <Layout userName={userName} />
-      <div className="session__container">
-        <div className="relative w-screen h-full flex flex-col items-center gap-4 overflow-y-auto !pt-[10rem] !pb-[8rem] !px-[1.5rem]" ref={chatWindowRef}>
+      <div className="new-session__container">
+        <div className="new-chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div ref={message.role === "assistant" ? aiMessageRef : null} className="w-full">
-                <div key={message.id} className={`text-[0.95rem] dark:text-gray-100 max-w-full px-4 py-2 my-4 rounded-xl leading-[1.5] ${message.role === "assistant" ? "w-full p-0 self-start " : "max-w-[70%] self-end bg-[#FF7B00]"}`}>
+            <div key={message.id} className={`new-chat-message ${message.role} dark:text-gray-100`}>
+              <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
                 ) : (
@@ -228,14 +224,14 @@ const NewSession = () => {
             </div>
           ))}
           {partialContent && (
-            <div className="text-[0.95rem] dark:text-gray-100 max-w-full px-4 py-2 my-4 rounded-xl leading-[1.5] w-full p-0 self-start">
+            <div className="new-chat-message assistant dark:text-gray-100">
               <MarkdownRenderer>{partialContent}</MarkdownRenderer>
             </div>
           )}
           {error && <ErrorState error={error} onResubmit={onResubmit} />}
           <div ref={messagesEndRef} />
           {loading && (
-            <div className="chat-window__loading">
+            <div className="new-chat-window__loading">
               <TypingIndicator />
             </div>
           )}

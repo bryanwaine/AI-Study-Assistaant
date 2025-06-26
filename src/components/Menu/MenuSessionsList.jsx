@@ -1,32 +1,43 @@
-import React from 'react'
+import React from "react";
 
-import { NavLink } from 'react-router'
+import { NavLink } from "react-router";
 
-import sortSessionsByTime from '../../utils/sortSessionsByTime'
+import sortSessionsByTime from "../../utils/sortSessionsByTime";
 
-const MenuSessionsList = ({sessions, loading, error, activeStyles, onClick}) => {
+const MenuSessionsList = ({
+  sessions,
+  loading,
+  error,
+  onClick,
+}) => {
   return (
     <ul className="menu__list">
-                {loading && <p>Loading...</p>}
-                {error && <p>{error}</p>}
-                {sortSessionsByTime(sessions).map((session) => (
-                  <li className="menu__item" key={session.id}>
-                    <NavLink
-                      className="menu__navlink"
-                      to={`/sessions/${session.id}`}
-                      style={({ isActive }) => (isActive ? activeStyles : null)}
-                      onClick={onClick}
-                    >
-                      <div className="menu__list-item">
-                        <span className=" w-full text-sm text-sky-900 dark:text-sky-100 truncate overflow-hidden whitespace-nowrap">
-                          {session.metadata.title}
-                        </span>
-                      </div>
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-  )
-}
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {sortSessionsByTime(sessions).map((session) => (
+        <li className="menu__item" key={session.id}>
+          <NavLink
+            className={({ isActive }) =>
+              `menu__navlink ${
+                isActive
+                  ? "bg-sky-100 dark:bg-black rounded-xl w-full h-full"
+                  : ""
+              }`
+            }
+           
+            onClick={onClick}
+            to={`/sessions/${session.id}`}
+          >
+            <div className="menu__list-item">
+              <span className=" w-full text-sm text-sky-900 dark:text-sky-400 truncate overflow-hidden whitespace-nowrap">
+                {session.metadata.title}
+              </span>
+            </div>
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-export default MenuSessionsList
+export default MenuSessionsList;

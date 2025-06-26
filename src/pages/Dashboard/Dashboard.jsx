@@ -89,7 +89,6 @@ const Dashboard = () => {
       <Layout userName={userName} />
       <div className="dashboard__wrapper ">
         <BubbleBackground />
-
         <h1 className="animate dark:text-gray-100 text-3xl !mb-6">Dashboard</h1>
         <div className="dashboard__container">
           <section className="animate dashboard-card rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">

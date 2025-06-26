@@ -19,13 +19,6 @@ const MenuSessionsList = lazy(() => import("./MenuSessionsList"));
 const Menu = (props) => {
   const { menuOpen, setMenuOpen, sessions, loading, error } = props;
 
-  const activeStyles = {
-    backgroundColor: "#e6f1f6 ",
-    width: "100%",
-    height: "100%",
-    borderRadius: ".75rem",
-  };
-
   const onClick = () => {
     setMenuOpen(false);
   };
@@ -34,9 +27,9 @@ const Menu = (props) => {
       className="menu bg-gray-100/90 dark:bg-neutral-900/90  backdrop-blur-md"
       data-menu-open={menuOpen}
     >
-      <div className=" w-[95%] bg-white dark:bg-transparent flex border border-sky-900 dark:border-sky-100 rounded-xl !px-2 !mb-4">
+      <div className=" w-[95%] bg-white dark:bg-transparent flex border border-sky-900 dark:border-sky-400 rounded-xl !px-2 !mb-4">
         <button
-          className="text-sky-900 dark:text-sky-100"
+          className="text-sky-900 dark:text-sky-400"
           id="search__button"
           aria-label="search button"
           aria-labelledby="search button"
@@ -58,7 +51,7 @@ const Menu = (props) => {
             to="/dashboard"
             onClick={onClick}
           >
-            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-400">
               <DashboardOutlined fontSize="small" className="icon" />
               <span className="menu__list-name">Dashboard</span>
             </div>
@@ -76,7 +69,7 @@ const Menu = (props) => {
             to="/sessions"
             onClick={onClick}
           >
-           <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
+           <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-400">
               <HistoryIcon fontSize="small" className="icon" />
               <span className="menu__list-name">Sessions</span>
             </div>
@@ -94,7 +87,7 @@ const Menu = (props) => {
             to="/notes"
             onClick={onClick}
           >
-            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-400">
               <DescriptionOutlinedIcon fontSize="small" className="icon" />
               <span className="menu__list-name">Notes</span>
             </div>
@@ -112,20 +105,25 @@ const Menu = (props) => {
             to="/quizzes"
             onClick={onClick}
           >
-            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-400">
               <QuizOutlinedIcon fontSize="small" className="icon" />
               <span className="menu__list-name">Quizzes</span>
             </div>
           </NavLink>
         </li>
         <li className="menu__item">
-          <NavLink
-            className="menu__navlink"
+           <NavLink
+            className={({ isActive }) =>
+              `menu__navlink ${
+                isActive
+                  ? "bg-sky-100 dark:bg-black rounded-xl w-full h-full"
+                  : ""
+              }`
+            }
             to="/decks"
-            style={({ isActive }) => (isActive ? activeStyles : null)}
             onClick={onClick}
           >
-            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-100">
+            <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-400">
               <StyleOutlinedIcon className="icon" />
               <span className="menu__list-name">Flashcards</span>
             </div>
@@ -134,7 +132,7 @@ const Menu = (props) => {
       </ul>
       {sessions.length > 0 && (
         <>
-          <h3 className=" text-md self-start !mt-4 !ml-4 text-sky-900 dark:text-sky-100 font-light">SESSION HISTORY</h3>
+          <h3 className=" text-md self-start !mt-4 !ml-4 text-sky-900 dark:text-sky-400 font-light">SESSION HISTORY</h3>
           <Suspense fallback={<MenuListSkeleton />}>
             {loading ? (
               <MenuListSkeleton />
@@ -145,7 +143,6 @@ const Menu = (props) => {
                 sessions={sessions}
                 loading={loading}
                 error={error}
-                activeStyles={activeStyles}
                 onClick={onClick}
               />
             )}

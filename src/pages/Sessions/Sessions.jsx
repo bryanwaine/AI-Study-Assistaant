@@ -13,6 +13,7 @@ import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 
 import "./Sessions.css";
+import BubbleBackground from "../../components/BubbleBg";
 
 /**
  * Sessions component displays a list of user's sessions.
@@ -45,11 +46,32 @@ const Sessions = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+      const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("slide-up");
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+  
+      const options = {
+        threshold: 0.2,
+      };
+  
+      const observer = new IntersectionObserver(callback, options);
+  
+      const animatedElements = document.querySelectorAll(".animate");
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+
   return (
     <div className="sessions__wrapper">
       <Layout userName={userName} />
-      <div className="sessions__container">
-        <h1>Your Sessions</h1>
+      <div className="animate sessions__container">
+        <BubbleBackground />
+        <h1 className=" dark:text-gray-100 text-3xl !mb-6">Your Sessions</h1>
         <Button variant="orange" >
           <Link to="/new-session" className="btn--link">
             New Session

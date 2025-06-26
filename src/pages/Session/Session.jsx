@@ -183,7 +183,7 @@ const Session = () => {
       <div className="session__container">
         <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role}`}>
+            <div key={message.id} className={`chat-message ${message.role} dark:text-gray-100`}>
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
@@ -197,7 +197,7 @@ const Session = () => {
             </div>
           ))}
           {partialContent && (
-            <span className="chat-message assistant typing-cursor">
+            <span className="chat-message assistant">
               <MarkdownRenderer>{partialContent}</MarkdownRenderer>
             </span>
           )}

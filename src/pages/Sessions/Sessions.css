@@ -60,7 +60,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0;
-  color: #035172;
+  /* color: #035172; */
 }
 
 .session-card__metadata-container {
@@ -77,7 +77,7 @@
   gap: 0.5rem;
   width: 100%;
   margin: 0;
-  color: #111111;
+  /* color: #111111; */
 }
 
 .session-card__metadata-left {
@@ -87,7 +87,7 @@
 }
 
 .session-card__metadata-item {
-  color: #035172;
+  /* color: #035172; */
   font-weight: 500;
 }
 

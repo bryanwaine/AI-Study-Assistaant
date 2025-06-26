@@ -5,7 +5,7 @@ const SessionsListSkeleton = () => {
     let list = [];
     for (let i = 0; i < 10; i++) {
       list.push(
-        <li key={i} className="skeleton__list-item">
+        <li key={i} className="skeleton__list-item bg-gray-900/10 dark:bg-gray-100/10">
           <div className="skeleton " />
           <div className="skeleton__div ">
             <div className="skeleton " />

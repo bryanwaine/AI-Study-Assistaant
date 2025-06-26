@@ -41,7 +41,7 @@
 .chat-message.user {
   align-self: flex-end;
   background-color: #FF7B00;
-  color: #111111;
+  /* color: #111111; */
   max-width: 70%;
 }
 
@@ -53,7 +53,7 @@
 .chat-message.assistant {
   width: 100%;
   align-self: flex-start;
-  color: #333;
+  /* color: #333; */
   padding: 0;
 }
 
@@ -89,6 +89,18 @@
 
 .chat-message li {
   margin-bottom: 0.5rem;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li::marker {
+  color: #FF7B00 !important;
 }
 
 .chat-message table {

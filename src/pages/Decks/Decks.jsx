@@ -13,6 +13,7 @@ import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getAllDecks } from "../../utils/flashcardService";
 import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
+import BubbleBackground from "../../components/BubbleBg";
 
 /**
  * Decks component displays a list of user's flashcards.
@@ -43,27 +44,48 @@ const Decks = () => {
     fetchDecks();
   }, [user]);
 
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+
   return (
     <div className="decks__wrapper">
       <Layout userName={userName} />
-      <div className="decks__container">
-        <h1>Your Flashcards</h1>
+      <BubbleBackground />
+      <div className="animate decks__container">
+        <h1 className=" dark:text-gray-100 text-3xl !mb-6">Your Flashcards</h1>
         <Button variant="orange">
           <Link to="/new-deck" className="btn--link">
             New Flashcards
           </Link>
         </Button>
-         <Suspense fallback={<SessionsListSkeleton />}>
-                  {loading ? (
-                    <SessionsListSkeleton/>
-                  ) : error ? (
-                     <ErrorState error={error} />
-                  ) : flashcards.length === 0 ? (
-                    <EmptyState page="flashcards" />
-                  ) : (
-                    <DecksList flashcards={flashcards} />
-                  )}
-                </Suspense>
+        <Suspense fallback={<SessionsListSkeleton />}>
+          {loading ? (
+            <SessionsListSkeleton />
+          ) : error ? (
+            <ErrorState error={error} />
+          ) : flashcards.length === 0 ? (
+            <EmptyState page="flashcards" />
+          ) : (
+            <DecksList flashcards={flashcards} />
+          )}
+        </Suspense>
       </div>
     </div>
   );
