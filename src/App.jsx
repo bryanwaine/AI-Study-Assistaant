@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./pages/Home/Home";
@@ -18,6 +19,22 @@ import Quizzes from "./pages/Quizzes/Quizzes";
 import Note from "./pages/Note/Note";
 
 function App() {
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      // Optional: system preference fallback
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      prefersDark
+        ? document.documentElement.classList.add('dark')
+        : document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+
   return (
     <BrowserRouter>
       <Routes>
