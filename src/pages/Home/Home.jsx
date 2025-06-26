@@ -47,7 +47,7 @@ const Home = () => {
           Study Smarter with AI
         </h1>
         <p className="animate text-lg text-[#111111] dark:text-gray-400 !mb-4">
-          Summarize your notes, chat with AI tutors, and quiz yourself with
+          Summarize your notes, chat with an AI tutor, and quiz yourself with
           smart flashcards.
         </p>
         <Link to="/signup" className="animate w-full md:w-1/5 !mb-20">
@@ -62,10 +62,10 @@ const Home = () => {
                 AI Chat Assistant
               </h2>
               <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
-                Ask questions about any topic and get instant answers.
+                Got a question? Ask about any topic and get instant answers from your AI tutor.
               </p>
             </div>
-            <div className="animate home-card__image w-full !-mt-16 !md:mt-10" />
+            <div className="animate home-card__image bg-[url('/images/iPhone-chat-screen.png')] w-full !-mt-16 !md:mt-10" />
           </div>
            <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
             <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
@@ -73,10 +73,10 @@ const Home = () => {
                 Smart Notes
               </h2>
               <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
-                Upload, summarize, and organise your study notes.
+                Upload, summarize, and organise your study notes to make studying easier and more effective.
               </p>
             </div>
-            <div className="animate home-card__image md:order-first !-mt-16" />
+            <div className="animate home-card__image bg-[url('/images/iPhone-notes-screen.png')] md:order-first !-mt-16" />
           </div>
            <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
             <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
@@ -84,10 +84,10 @@ const Home = () => {
                 Flashcards and Quizzes
               </h2>
               <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
-                Upload, summarize, and organise your study notes.
+                Create and practice flashcards and quizzes from your notes with AI.
               </p>
             </div>
-            <div className="animate home-card__image !-mt-16" />
+            <div className="animate home-card__image bg-[url('/images/iPhone-flashcards-screen.png')] !-mt-16" />
           </div>
         </div>
       </section>
