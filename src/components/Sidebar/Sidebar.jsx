@@ -5,8 +5,38 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
 import "./Sidebar.css";
+import { useEffect, useState } from "react";
 
 const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+    } else if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      setTheme("light");
+    }
+  }, []);
+
+  function handleDarkMode() {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    setTheme("dark");
+  }
+
+  function handleLightMode() {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+    setTheme("light");
+  }
+
   return (
     <div
       className="sidebar bg-gray-100/90 dark:bg-neutral-900/90  backdrop-blur-md"
@@ -45,10 +75,21 @@ const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
             <span className="font-md text-sm"> Color Scheme</span>
           </div>
           <div className="sidebar__item-value w-full flex justify-end items-center gap-2 text-xs font-light text-neutral-900 dark:text-neutral-100 ">
-            <select name="color-scheme" id="color-scheme">
-              <option value="system">System</option>
-              <option value="light">Light</option>
+            <select
+              name="color-scheme"
+              id="color-scheme"
+              className="outline-none md:outline-2"
+              onChange={(e) => {
+                if (e.target.value === "dark") {
+                  handleDarkMode();
+                } else {
+                  handleLightMode();
+                }
+              }}
+              value={theme}
+            >
               <option value="dark">Dark</option>
+              <option value="light">Light</option>
             </select>
           </div>
         </li>

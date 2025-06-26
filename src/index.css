@@ -2,6 +2,9 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+
 /* Reset */
 * {
   box-sizing: border-box;
