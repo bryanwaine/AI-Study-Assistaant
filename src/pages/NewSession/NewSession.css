@@ -25,7 +25,7 @@
   gap: 1rem;
   overflow-y: auto;
   height: 100%;
-  padding: 10rem 1.5rem 8rem 1.5rem;
+  padding: 6rem 1.5rem 8rem 1.5rem;
 }
 
 .new-chat-window__loading {
