@@ -98,6 +98,26 @@ const Session = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
@@ -180,10 +200,13 @@ const Session = () => {
     <div className="session__wrapper">
       {fetching && <Loader />}
       <Layout userName={userName} />
-      <div className="session__container">
+      <div className="animate session__container">
         <div className="chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div key={message.id} className={`chat-message ${message.role} dark:text-gray-100`}>
+            <div
+              key={message.id}
+              className={`chat-message ${message.role} dark:text-gray-100`}
+            >
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (
                   <p>{message.content}</p>

@@ -42,26 +42,27 @@ const NewSession = () => {
     {
       id: Date.now(),
       role: "assistant",
-      content: "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
-    }
-  ]
+      content:
+        "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
+    },
+  ];
 
   const renderWelcomeMessage = () => {
     const words = welcomeMessage[0].content.split(" ");
-      let currentWord = 0;
-      setPartialContent("");
+    let currentWord = 0;
+    setPartialContent("");
 
-      const interval = setInterval(() => {
-        setPartialContent((prev) => prev + " " + words[currentWord] + " ");
-        currentWord++;
+    const interval = setInterval(() => {
+      setPartialContent((prev) => prev + " " + words[currentWord] + " ");
+      currentWord++;
 
-        if (currentWord >= words.length) {
-          clearInterval(interval);
-          setMessages(welcomeMessage);
-          setPartialContent("");
-        }
-      }, 100);
-  }
+      if (currentWord >= words.length) {
+        clearInterval(interval);
+        setMessages(welcomeMessage);
+        setPartialContent("");
+      }
+    }, 100);
+  };
 
   useEffect(() => {
     renderWelcomeMessage();
@@ -100,6 +101,26 @@ const NewSession = () => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -187,10 +208,13 @@ const NewSession = () => {
   return (
     <div className="new-session__wrapper">
       <Layout userName={userName} />
-      <div className="new-session__container">
+      <div className="animate new-session__container">
         <div className="new-chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
-            <div key={message.id} className={`new-chat-message ${message.role} dark:text-gray-100`}>
+            <div
+              key={message.id}
+              className={`new-chat-message ${message.role} dark:text-gray-100`}
+            >
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (
                   <p>{message.content}</p>
