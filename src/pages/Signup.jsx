@@ -218,9 +218,13 @@ const Signup = () => {
         >
           {status === "submitting" ? "Signing Up..." : "Sign Up"}
         </Button>
-        <Button type="submit" variant="ghost--blue" onClick={handleGoogleLogin}>
+        <Button
+          variant="ghost"
+          onClick={handleGoogleLogin}
+          className="!border border-sky-900 !dark:border-sky-400 text-sky-900 dark:text-sky-400 z-10"
+        >
           <img src={googleIcon} className="google-icon" alt="google-icon" />
-          Sign In with Google
+          Sign in with Google
         </Button>
       </FormLayout>
     </div>
