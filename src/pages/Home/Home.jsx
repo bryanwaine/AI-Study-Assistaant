@@ -101,7 +101,7 @@ const Home = () => {
                 </p>
           <Link to="/signup" className="animate w-full md:w-1/5 !mb-20">
             <Button variant="orange" className="!mt-4 !mb-20">
-              Start Studying Now
+              Start Studying
             </Button>
           </Link>
         </section>
