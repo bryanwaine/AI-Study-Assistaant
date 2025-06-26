@@ -90,6 +90,11 @@ const Home = () => {
             <div className="animate home-card__image bg-[url('/images/iPhone-flashcards-screen.png')] !-mt-16" />
           </div>
         </div>
+        <Link to="/signup" className="animate w-full md:w-1/5 !mb-20">
+          <Button variant="orange" className="!mt-4 !mb-20">
+            Start Studying
+          </Button>
+        </Link>
       </section>
     </div>
   );
