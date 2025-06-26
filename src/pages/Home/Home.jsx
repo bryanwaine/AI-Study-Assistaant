@@ -3,9 +3,9 @@ import { Link } from "react-router";
 
 import Button from "../../components/Button/Button";
 import LogoSm from "../../components/LogoSm/LogoSm";
+import BubbleBackground from "../../components/BubbleBg";
 
 import "./Home.css";
-import BubbleBackground from "../../components/BubbleBg";
 
 const Home = () => {
   useEffect(() => {
@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <div className="relative">
       <div className="relative bg-[#f5f5f5] dark:bg-[#001826] flex flex-col items-center h-screen w-screen overflow-y-auto z-100">
-         <BubbleBackground />
+        <BubbleBackground />
         <div className="fixed top-0 left-0 w-full !py-4 z-50 flex justify-between items-center bg-transparent backdrop-blur-md">
           <div className="flex items-center !ml-4 w-1/2">
             <LogoSm variant="dark" />
