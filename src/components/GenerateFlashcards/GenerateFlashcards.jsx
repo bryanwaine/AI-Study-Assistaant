@@ -24,13 +24,13 @@ const GenerateFlashcards = ({
         <div className="generate-section__container card--white">
           <div
             ref={inputSectionRef}
-            className="generate-section__input__heading"
+            className="generate-section__input__heading dark:text-gray-100"
           >
             Generate Flashcards
           </div>
           <div className="generate-section__input__wrapper">
             <div className="generate-section__input__title">
-              <label htmlFor="note-topic">Title</label>
+              <label htmlFor="note-topic" className="dark:text-gray-100">Title</label>
               <input
                 type="text"
                 name="note-topic"
@@ -38,10 +38,11 @@ const GenerateFlashcards = ({
                 defaultValue={topic}
                 required
                 disabled
+                className="bg-sky-100 dark:bg-black border border-neutral-200 dark:border-black dark:text-neutral-100"
               />
             </div>
             <div className="generate-section__input__card-count">
-              <label htmlFor="numberOfCards">Number of cards</label>
+              <label htmlFor="numberOfCards" className="dark:text-gray-100">Number of cards</label>
               <input
                 type="text"
                 pattern="[0-9]*"
@@ -49,7 +50,7 @@ const GenerateFlashcards = ({
                 name="numberOfCards"
                 id="number-of-cards"
                 placeholder="Enter a number between 20 and 40"
-                className={inputError ? "input-error" : ""}
+                className={`bg-sky-100 dark:bg-black border border-neutral-200 dark:border-black dark:text-neutral-100 ${inputError && "input-error"}`}
                 value={numberOfCards}
                 onChange={onChange}
                 onInput={onInput}

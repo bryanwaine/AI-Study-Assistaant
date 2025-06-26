@@ -7,14 +7,14 @@ const GenerateBtnGroup = ({ handleGenerateFlashcards, handleGenerateQuiz, genera
     <div className="generate-btn__wrapper ">
       <div className="generate-btn__container">
         <Button
-          variant={generateFlashcards ? "dark" : "ghost--dark"}
+          variant={generateFlashcards ? "orange" : "ghost--orange"}
           title="Create flashcards"
           onClick={handleGenerateFlashcards}
         >
           <span>Generate Flashcards</span>
         </Button>
         <Button
-          variant={generateQuiz ? "dark" : "ghost--dark"}
+          variant={generateQuiz ? "orange" : "ghost--orange"}
           title="Create quiz"
           onClick={handleGenerateQuiz}
         >
