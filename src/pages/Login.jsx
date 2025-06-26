@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate, Navigate } from "react-router";
 
@@ -13,6 +13,7 @@ import firstNameFilter from "../utils/firstNameFilter";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { setGoogleUser } from "../firebase";
 import googleIcon from "../assets/google-icon.png";
+import BubbleBackground from "../components/BubbleBg";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");
@@ -30,6 +31,26 @@ const Login = () => {
   const isFormValid = formData.email && formData.password.length >= 8;
 
   const origin = location.state?.from || "/dashboard";
+
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
 
   if (user) {
     return <Navigate to="/dashboard" replace />;
@@ -92,8 +113,9 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="animate">
       {loading && <Loader />}
+      <BubbleBackground />
       <FormLayout
         type="login-form"
         title="Login"
@@ -119,12 +141,16 @@ const Login = () => {
         >
           {status === "submitting" ? "Logging in..." : "Login"}
         </Button>
-        <Button variant="ghost--blue" onClick={handleGoogleLogin}>
+        <Button
+          variant="ghost"
+          onClick={handleGoogleLogin}
+          className="!border border-sky-900 !dark:border-sky-400 text-sky-900 dark:text-sky-400 z-10"
+        >
           <img src={googleIcon} className="google-icon" alt="google-icon" />
           Sign in with Google
         </Button>
       </FormLayout>
-    </>
+    </div>
   );
 };
 

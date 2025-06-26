@@ -10,21 +10,21 @@ const FormLayout = (props) => {
   return (
     <div className="form-container">
       <LogoLg variant="light" />
-      <form aria-labelledby={type} onSubmit={handleSubmit}>
+      <form aria-labelledby={type} onSubmit={handleSubmit} className="bg-gray-900/10 dark:bg-gray-100/10 z-10">
         <fieldset>
-          <legend>{title}</legend>
+          <legend className="dark:text-gray-100">{title}</legend>
           <div className="form-group-top">
-            <p>{message}</p>
-            <Link className="link" to={link}>
+            <p className="dark:text-gray-100">{message}</p>
+            <Link className="text-sky-900 dark:text-sky-400" to={link}>
               {linkText}
             </Link>
           </div>
           {children}
-          <div className="form-group-bottom">
-            <Link className="link" to="/reset-password">
+          {(type === "login-form" || type === "signup-form") && <div className="form-group-bottom z-10">
+            <Link className="text-sky-900 dark:text-sky-400" to="/reset-password">
               Forgotten password?
             </Link>
-          </div>
+          </div>}
         </fieldset>
       </form>
     </div>

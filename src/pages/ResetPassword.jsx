@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router";
 
@@ -9,6 +9,7 @@ import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import emailValidation from "../utils/emailValidation";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
+import BubbleBackground from "../components/BubbleBg";
 
 const ResetPassword = () => {
   const [status, setStatus] = useState("idle");
@@ -20,6 +21,26 @@ const ResetPassword = () => {
   const { showToast } = useToast();
 
   const isFormValid = formData.email && emailValidation(formData.email);
+
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,42 +65,51 @@ const ResetPassword = () => {
   };
 
   return status === "success" ? (
-    <FormLayout
-      type="reset-password"
-      title="Reset Password"
-      message="✅ Password reset link sent."
-    >
-      <p style={{ padding: 0, marginTop: "-1rem" }}>
-        Please check your email for instructions on how to reset your password.
-          </p>
-          <Link style={{ marginTop: "1rem" }}className="link" to="/login">
-              Back to Login
-            </Link>
-    </FormLayout>
-  ) : (
-    <FormLayout
-      type="reset-password"
-      title="Reset Password"
-      message="Please enter your email address"
-      handleSubmit={handleSubmit}
-    >
-      <TextInput
-        label="Email"
-        type="email"
-        id="email"
-        name="email"
-        value={formData.email}
-        handleChange={handleChange}
-      />
-      <Button
-        type="submit"
-        variant="orange"
-        disabled={status === "Submitting" || !isFormValid}
+    <div className="animate">
+      <BubbleBackground />
+      <FormLayout
+        type="reset-password"
+        title="Reset Password"
+        message="✅ Password reset link sent."
       >
-        {" "}
-        {status === "Submitting" ? "Sending Reset Email..." : "Send Reset Email"}
-      </Button>
-    </FormLayout>
+        <p style={{ padding: 0, marginTop: "-1rem" }}>
+          Please check your email for instructions on how to reset your
+          password.
+        </p>
+        <Link style={{ marginTop: "1rem" }} className="link" to="/login">
+          Back to Login
+        </Link>
+      </FormLayout>
+    </div>
+  ) : (
+    <div className="animate">
+      <BubbleBackground />
+      <FormLayout
+        type="reset-password"
+        title="Reset Password"
+        message="Please enter your email address"
+        handleSubmit={handleSubmit}
+      >
+        <TextInput
+          label="Email"
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          handleChange={handleChange}
+        />
+        <Button
+          type="submit"
+          variant="orange"
+          disabled={status === "Submitting" || !isFormValid}
+        >
+          {" "}
+          {status === "Submitting"
+            ? "Sending Reset Email..."
+            : "Send Reset Email"}
+        </Button>
+      </FormLayout>
+    </div>
   );
 };
 

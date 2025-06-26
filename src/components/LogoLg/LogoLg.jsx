@@ -4,11 +4,10 @@ import "./LogoLg.css";
 
 const LogoLg = ({variant}) => {
   return (
-    <Link to="/" className="logo-container">
-      <p className={`logo-lg logo-${variant}`}>
-        Auxili<span>ai</span>re
+    <Link to="/" className="bg-[#001826] flex justify-center items-center !px-2 !py-1 border-none rounded-lg">
+      <p className={`logo logo-${variant} text-white text-bold text-4xl`}>
+        Auxili<span className="text-[#FF7B00]">ai</span>re
       </p>
-      <p className={`tagline-lg tagline-${variant}`}>Your AI Study Assistant</p>
     </Link>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useNavigate, Navigate } from "react-router";
 
@@ -16,6 +16,7 @@ import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { addUser, setGoogleUser } from "../firebase";
 
 import googleIcon from "../assets/google-icon.png";
+import BubbleBackground from "../components/BubbleBg";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -32,6 +33,26 @@ const Signup = () => {
   const navigate = useNavigate();
   const userName =
     formData.firstName.toLowerCase() + " " + formData.lastName.toLowerCase();
+
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
 
   if (user) {
     return <Navigate to="/dashboard" replace />;
@@ -134,8 +155,9 @@ const Signup = () => {
   };
 
   return (
-    <>
+    <div className="animate">
       {loading && <Loader />}
+      <BubbleBackground />
       <FormLayout
         type="signup-form"
         title="Sign Up"
@@ -201,7 +223,7 @@ const Signup = () => {
           Sign In with Google
         </Button>
       </FormLayout>
-    </>
+    </div>
   );
 };
 
