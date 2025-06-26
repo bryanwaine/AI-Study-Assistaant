@@ -27,11 +27,11 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
 
   return (
     <div className="textarea-wrapper">
-      <div className="textarea-container">
+      <div className="textarea-container bg-sky-100 dark:bg-black">
         <textarea
           ref={textareaRef}
           rows={2}
-          className="textarea-input"
+          className="textarea-input bg-sky-100 dark:bg-black text-neutral-900 dark:text-neutral-100"
           placeholder="Ask anything..."
           id="question"
           name="question"
