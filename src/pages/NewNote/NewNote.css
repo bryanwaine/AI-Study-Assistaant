@@ -126,9 +126,9 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: .75rem;
-  background-color: transparent;
+  /* background-color: transparent; */
   resize: none;
   outline: none;
   }

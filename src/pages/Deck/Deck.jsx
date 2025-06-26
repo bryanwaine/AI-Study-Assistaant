@@ -48,18 +48,40 @@ const Deck = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
+
   if (!user) return <Navigate to="/login" replace />;
 
   return (
     <div className="flashcards__wrapper">
       <Layout userName={userName} />
-      <div className="flashcards__container">
+      <div className="animate flashcards__container">
         <div className="deck__wrapper">
           {fetching && <Loader />}
           {error && <ErrorState />}
           {!fetching && deck.length > 0 && (
             <>
-              <h1 className="dark:text-gray-100">{deck[0]?.topic.toUpperCase()}</h1>
+              <h1 className="dark:text-gray-100">
+                {deck[0]?.topic.toUpperCase()}
+              </h1>
               <CardStack cards={deck} />
             </>
           )}

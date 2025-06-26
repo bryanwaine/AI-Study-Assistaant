@@ -53,9 +53,9 @@
   padding: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: .75rem;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   resize: none;
   outline: none;
 }

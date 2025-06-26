@@ -52,7 +52,7 @@ const NewNote = () => {
   const bottomRef = useRef(null);
 
   const scrollToBottom = () => {
-   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToInputSection = () => {
@@ -70,6 +70,26 @@ const NewNote = () => {
   useEffect(() => {
     scrollToInputSection();
   }, [generateFlashcards, generateQuiz]);
+
+  useEffect(() => {
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
 
   if (!user) return <Navigate to="/login" replace />;
 
@@ -205,7 +225,7 @@ const NewNote = () => {
   return (
     <div className="new-note__wrapper">
       <Layout userName={userName} />
-      <div className="new-note__container">
+      <div className="animate new-note__container">
         <div className="new-note__file-upload__wrapper">
           <div className="new-note__file-upload__container card--white">
             <FileUploadProcessor
@@ -224,7 +244,7 @@ const NewNote = () => {
               }
             />
             <div className="new-note__title">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title" className="dark:text-gray-100">Title</label>
               <input
                 type="text"
                 name="title"
@@ -233,11 +253,14 @@ const NewNote = () => {
                 value={title}
                 onChange={onChange}
                 required
+                className="bg-sky-100 dark:bg-black border border-neutral-200 dark:border-black dark:text-neutral-100"
               />
             </div>
             <Button
               variant="orange"
-              disabled={!fileUploadProps.text || !isTitleValid || loadingSummary}
+              disabled={
+                !fileUploadProps.text || !isTitleValid || loadingSummary
+              }
               onClick={() => onSubmit(fileUploadProps)}
             >
               {loadingSummary ? "Generating summary..." : "Generate summary"}

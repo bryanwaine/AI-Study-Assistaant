@@ -40,6 +40,26 @@ const NewFlashcards = () => {
     scrollToBottom();
   }, [loadingFlashcards]);
 
+  useEffect(() => {
+      const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("slide-up");
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+  
+      const options = {
+        threshold: 0.2,
+      };
+  
+      const observer = new IntersectionObserver(callback, options);
+  
+      const animatedElements = document.querySelectorAll(".animate");
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
@@ -92,11 +112,11 @@ const NewFlashcards = () => {
   return (
     <div className="new-flashcards__wrapper">
       <Layout userName={userName} />
-      <div className="new-flashcards__container">
+      <div className="animate new-flashcards__container">
         <div className="new-flashcards__input-wrapper">
           <div className="new-flashcards__input-container card--white">
             <div className="new-flashcards__input ">
-              <label htmlFor="topic">Topic</label>
+              <label htmlFor="topic" className="dark:text-gray-100">Topic</label>
               <input
                 type="text"
                 name="topic"
@@ -105,10 +125,11 @@ const NewFlashcards = () => {
                 value={topic}
                 onChange={onChange}
                 required
+                className="bg-sky-100 dark:bg-black border border-neutral-200 dark:border-black dark:text-neutral-100"
               />
             </div>
             <div className="new-flashcards__input">
-              <label htmlFor="numberOfCards">Number of cards</label>
+              <label htmlFor="numberOfCards" className="dark:text-gray-100">Number of cards</label>
               <input
                 type="text"
                 pattern="[0-9]*"
@@ -116,7 +137,7 @@ const NewFlashcards = () => {
                 name="numberOfCards"
                 id="number-of-cards"
                 placeholder="Enter a number between 20 and 40"
-                className={inputError ? "input-error" : ""}
+                className={`bg-sky-100 dark:bg-black border border-neutral-200 dark:border-black dark:text-neutral-100 ${inputError && "input-error"}`}
                 value={numberOfCards}
                 onChange={onChange}
                 onInput={onInput}
