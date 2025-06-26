@@ -120,7 +120,7 @@ const Home = () => {
               <div className="animate home-card__image bg-[url('/images/iPhone-flashcards-screen.png')] !-mt-16" />
             </div>
           </div>
-          <div className="md:w-2/4 flex flex-col justify-center items-center gap-8 md:gap-2 !mt-20">
+          <div className="md:w-2/4 flex flex-col justify-center items-center gap-8 md:gap-2 !mt-10">
             <h2 className="animate text-2xl md:text-4xl font-bold text-[#111111] dark:text-gray-100 ">
               Studying made easy
             </h2>

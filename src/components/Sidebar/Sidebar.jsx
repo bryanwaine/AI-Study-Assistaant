@@ -33,7 +33,7 @@ const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
             <DarkModeOutlinedIcon fontSize="small" className="text-md" />
             <span className="font-md text-sm"> Color Scheme</span>
           </div>
-          <p className="sidebar__item-value w-full flex justify-end items-center gap-2 text-xs font-light text-neutral-900 dark:text-neutral-100 truncate overflow-hidden whitespace-nowrap">Light</p>
+          <p className="sidebar__item-value w-full flex justify-end items-center gap-2 text-xs font-light text-neutral-900 dark:text-neutral-100 truncate overflow-hidden whitespace-nowrap">System</p>
         </li>
          <li className="bg-sky-100 dark:bg-black">
           <div className="w-full flex items-center gap-2 text-sky-900 dark:text-sky-400">
