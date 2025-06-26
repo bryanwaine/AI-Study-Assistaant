@@ -3,9 +3,9 @@ import { useState } from "react";
 import mammoth from "mammoth";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 
-import pdf from "/images/pdf_file_icon.png";
-import docx from "/images/doc_file_icon.png";
-import txt from "/images/txt_file_icon.png";
+import pdf from "/images/pdf.png";
+import docx from "/images/docx.png";
+import txt from "/images/txt.png";
 
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 
@@ -128,7 +128,9 @@ const FileUploadProcessor = ({ onExtractedText }) => {
       </p>
       {status?.success && (
         <div className="file-name">
-          <img src={setImg(displayFileName)} alt="file icon" />
+          <div className="">
+            <img src={setImg(displayFileName)} alt="file icon" className="text-white" />
+          </div>
           <p>{formatFileName()}</p>
         </div>
       )}
