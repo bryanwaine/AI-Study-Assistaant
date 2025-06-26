@@ -41,7 +41,7 @@ const CardStack = ({ cards }) => {
             key={card.id}
             className="card-wrapper"
             style={{
-              transform: `translateY(${offset * 15}px) scale(${
+              transform: `translateY(${offset * 20}px) scale(${
                 1 - offset * 0.03
               })`,
               zIndex: deck.length - index,

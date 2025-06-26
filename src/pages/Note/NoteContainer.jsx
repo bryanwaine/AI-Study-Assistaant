@@ -6,9 +6,9 @@ const NoteContainer = ({ summary, metaData, aiMessageRef}) => {
   return (
     <div className="note__container">
     {metaData?.title && (
-      <div className="note__title">{metaData.title.toUpperCase()}</div>
+      <div className="note__title dark:text-gray-100">{metaData.title.toUpperCase()}</div>
     )}
-    <div className="note ">
+    <div className="note text-sky-900 dark:text-sky-400">
       {summary?.map(
         (message) =>
           message.role === "assistant" && (
