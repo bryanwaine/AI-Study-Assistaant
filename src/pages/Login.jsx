@@ -113,7 +113,7 @@ const Login = () => {
   };
 
   return (
-    <div className="animate">
+    <div className="animate relative">
       {loading && <Loader />}
       <BubbleBackground />
       <FormLayout

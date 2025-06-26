@@ -3,7 +3,7 @@ const BubbleBackground = () => {
   const bubbles = Array.from({ length: 40 });
 
   return (
-    <div className="fixed h-screen inset-0 overflow-hidden z-0">
+    <div className="fixed h-screen w-screen inset-0 overflow-hidden z-0 pointer-events-none">
       {bubbles.map((_, i) => {
         const size = Math.floor(Math.random() * 12) + 4; // 4–16px
         const left = Math.random() * 100; // percent

@@ -65,7 +65,7 @@ const ResetPassword = () => {
   };
 
   return status === "success" ? (
-    <div className="animate">
+    <div className="animate relative">
       <BubbleBackground />
       <FormLayout
         type="reset-password"
@@ -82,7 +82,7 @@ const ResetPassword = () => {
       </FormLayout>
     </div>
   ) : (
-    <div className="animate">
+    <div className="animate relative">
       <BubbleBackground />
       <FormLayout
         type="reset-password"

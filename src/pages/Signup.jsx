@@ -155,78 +155,80 @@ const Signup = () => {
   };
 
   return (
-    <div className="animate">
+    <div className="relative w-screen h-screen overflow-y-auto">
       {loading && <Loader />}
       <BubbleBackground />
-      <FormLayout
-        type="signup-form"
-        title="Sign Up"
-        message="Already have an account?"
-        linkText="Log In"
-        link="/login"
-        handleSubmit={handleSubmit}
-      >
-        <TextInput
-          label="First Name"
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName}
-          className={formError?.firstName?.length > 0 ? "input-error" : ""}
-          handleChange={handleChange}
-          renderError={formError?.firstName && <li>{formError.firstName}</li>}
-        />
-        <TextInput
-          label="Last Name"
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName}
-          className={formError?.lastName?.length > 0 ? "input-error" : ""}
-          handleChange={handleChange}
-          renderError={formError?.lastName && <li>{formError.lastName}</li>}
-        />
-        <TextInput
-          label="Email"
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          className={formError?.email?.length > 0 ? "input-error" : ""}
-          handleChange={handleChange}
-          renderError={formError?.email && <li>{formError.email}</li>}
-        />
-        <PasswordInput
-          handleChange={handleChange}
-          value={formData.password}
-          className={formError?.password?.length > 0 ? "input-error" : ""}
-          renderError={
-            formError?.password?.length > 0 && (
-              <ul className="error-list">
-                {formError?.password?.map((err, index) => (
-                  <li key={index}>{err}</li>
-                ))}
-              </ul>
-            )
-          }
-        />
-        <Button
-          type="submit"
-          disabled={status === "submitting" || !isFormValid}
-          variant="orange"
-          onClick={handleSubmit}
+      <div className="animate">
+        <FormLayout
+          type="signup-form"
+          title="Sign Up"
+          message="Already have an account?"
+          linkText="Log In"
+          link="/login"
+          handleSubmit={handleSubmit}
         >
-          {status === "submitting" ? "Signing Up..." : "Sign Up"}
-        </Button>
-        <Button
-          variant="ghost"
-          onClick={handleGoogleLogin}
-          className="!border border-sky-900 !dark:border-sky-400 text-sky-900 dark:text-sky-400 z-10"
-        >
-          <img src={googleIcon} className="google-icon" alt="google-icon" />
-          Sign in with Google
-        </Button>
-      </FormLayout>
+          <TextInput
+            label="First Name"
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            className={formError?.firstName?.length > 0 ? "input-error" : ""}
+            handleChange={handleChange}
+            renderError={formError?.firstName && <li>{formError.firstName}</li>}
+          />
+          <TextInput
+            label="Last Name"
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            className={formError?.lastName?.length > 0 ? "input-error" : ""}
+            handleChange={handleChange}
+            renderError={formError?.lastName && <li>{formError.lastName}</li>}
+          />
+          <TextInput
+            label="Email"
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            className={formError?.email?.length > 0 ? "input-error" : ""}
+            handleChange={handleChange}
+            renderError={formError?.email && <li>{formError.email}</li>}
+          />
+          <PasswordInput
+            handleChange={handleChange}
+            value={formData.password}
+            className={formError?.password?.length > 0 ? "input-error" : ""}
+            renderError={
+              formError?.password?.length > 0 && (
+                <ul className="error-list">
+                  {formError?.password?.map((err, index) => (
+                    <li key={index}>{err}</li>
+                  ))}
+                </ul>
+              )
+            }
+          />
+          <Button
+            type="submit"
+            disabled={status === "submitting" || !isFormValid}
+            variant="orange"
+            onClick={handleSubmit}
+          >
+            {status === "submitting" ? "Signing Up..." : "Sign Up"}
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={handleGoogleLogin}
+            className="!border border-sky-900 !dark:border-sky-400 text-sky-900 dark:text-sky-400 z-10"
+          >
+            <img src={googleIcon} className="google-icon" alt="google-icon" />
+            Sign in with Google
+          </Button>
+        </FormLayout>
+      </div>
     </div>
   );
 };
