@@ -46,7 +46,7 @@ const Home = () => {
           </div>
         </div>
         <section className="home__content w-full !px-12 !py-30">
-          <h1 className="animate text-4xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
+          <h1 className="animate text-4xl md:text-6xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
             Study Smarter with AI
           </h1>
           <p className="animate text-lg text-[#111111] dark:text-gray-400 !mb-4">
@@ -61,49 +61,81 @@ const Home = () => {
           <div className="md:w-full flex flex-col justify-center items-center gap-8 md:gap-2 !mt-20">
             <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
               <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
-                <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
+                <h2 className="animate text-2xl md:text-4xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
                   AI Chat Assistant
                 </h2>
-                <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
+                <p className="animate md:w-2/4 text-lg text-[#111111] dark:text-gray-400">
                   Got a question? Ask about any topic and get instant answers
                   from your AI tutor.
                 </p>
+                <Link
+                  to="/signup"
+                  className="animate hidden md:block w-full md:w-1/5 !mb-20"
+                >
+                  <Button variant="orange" className="!mt-4 !mb-20">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
               <div className="animate home-card__image bg-[url('/images/iPhone-chat-screen.png')] w-full !-mt-16 !md:mt-10" />
             </div>
             <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
               <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
-                <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
+                <h2 className="animate text-2xl md:text-4xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
                   Smart Notes
                 </h2>
-                <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
+                <p className="animate md:w-2/4 text-lg text-[#111111] dark:text-gray-400">
                   Upload, summarize, and organise your study notes to make
                   studying easier and more effective.
                 </p>
+                <Link
+                  to="/signup"
+                  className="animate hidden md:block w-full md:w-1/5 !mb-20"
+                >
+                  <Button variant="orange" className="!mt-4 !mb-20">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
               <div className="animate home-card__image bg-[url('/images/iPhone-notes-screen.png')] md:order-first !-mt-16" />
             </div>
             <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
               <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
-                <h2 className="animate text-2xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
+                <h2 className="animate text-2xl md:text-4xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
                   Flashcards and Quizzes
                 </h2>
-                <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
-                  Create and practice flashcards and quizzes from your notes
-                  with AI.
+                <p className="animate md:w-2/4 text-lg text-[#111111] dark:text-gray-400">
+                  Create high-quality flashcards and quizzes from your notes to
+                  practice your knowledge.
                 </p>
+                <Link
+                  to="/signup"
+                  className="animate hidden md:block w-full md:w-1/5 !mb-20"
+                >
+                  <Button variant="orange" className="!mt-4 !mb-20">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
               <div className="animate home-card__image bg-[url('/images/iPhone-flashcards-screen.png')] !-mt-16" />
             </div>
           </div>
-          <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
-                  Are you ready to boost your learning experience?
-                </p>
-          <Link to="/signup" className="animate w-full md:w-1/5 !mb-20">
-            <Button variant="orange" className="!mt-4 !mb-20">
-              Start Studying
-            </Button>
-          </Link>
+          <div className="md:w-2/4 flex flex-col justify-center items-center gap-8 md:gap-2 !mt-20">
+            <h2 className="animate text-2xl md:text-4xl font-bold text-[#111111] dark:text-gray-100 ">
+              Studying made easy
+            </h2>
+            <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
+              Are you ready to boost your learning experience? Wether you're studying for a test, an exam, or a course, or simply want to improve your knowledge, Auxiliare is the perfect tool for you.
+            </p>
+            <Link
+              to="/signup"
+              className="animate w-full md:w-1/5 md:!mt-8 !mb-20 "
+            >
+              <Button variant="orange" className="!mt-4 !mb-20">
+                Start Studying
+              </Button>
+            </Link>
+          </div>
         </section>
       </div>
     </div>
