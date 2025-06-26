@@ -12,6 +12,7 @@
   align-items: center;
   width: 100%;
   padding: 7rem 3rem 2rem;
+  z-index: 100 !important;
 }
 
 .sessions__container button {
