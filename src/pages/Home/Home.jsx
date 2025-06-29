@@ -19,7 +19,7 @@ const Home = () => {
     };
 
     const options = {
-      threshold: 0.1,
+      threshold: 0.2,
     };
 
     const observer = new IntersectionObserver(callback, options);
@@ -58,7 +58,7 @@ const Home = () => {
               Get Started
             </Button>
           </Link>
-          <div className="md:w-full flex flex-col justify-center items-center gap-8 md:gap-2 !mt-20">
+          <div className="md:w-full flex flex-col justify-center items-center gap-8 md:gap-2 !mt-10">
             <div className="flex flex-col md:flex-row md:w-full justify-center items-center">
               <div className="md:h-full flex flex-col justify-center items-center !px-6 ">
                 <h2 className="animate text-2xl md:text-4xl font-bold text-[#111111] dark:text-gray-100 !mb-4">
