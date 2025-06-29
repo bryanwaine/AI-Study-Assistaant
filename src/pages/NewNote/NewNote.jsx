@@ -223,11 +223,11 @@ const NewNote = () => {
   };
 
   return (
-    <div className="new-note__wrapper">
+    <div className="relative flex flex-col w-screen h-full">
       <Layout userName={userName} />
-      <div className="animate new-note__container">
-        <div className="new-note__file-upload__wrapper">
-          <div className="new-note__file-upload__container card--white">
+      <div className="animate flex flex-col items-center w-full !pt-[4rem] !pb-[2rem]">
+        <div className="w-full !p-[2rem]">
+          <div className="w-full flex flex-col justify-center items-center gap-[2rem] !p-[2rem] bg-gray-900/10 dark:bg-gray-100/10 rounded-xl">
             <FileUploadProcessor
               onExtractedText={(
                 text,

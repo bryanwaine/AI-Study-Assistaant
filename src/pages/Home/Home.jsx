@@ -6,6 +6,7 @@ import LogoSm from "../../components/LogoSm/LogoSm";
 import BubbleBackground from "../../components/BubbleBg";
 
 import "./Home.css";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   useEffect(() => {
@@ -138,6 +139,7 @@ const Home = () => {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 };

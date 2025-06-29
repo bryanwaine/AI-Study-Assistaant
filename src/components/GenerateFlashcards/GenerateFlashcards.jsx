@@ -28,7 +28,7 @@ const GenerateFlashcards = ({
           >
             Generate Flashcards
           </div>
-          <div className="generate-section__input__wrapper">
+          <div className="w-full flex flex-col items-center gap-[1rem] !p-[2rem] bg-gray-900/10 dark:bg-gray-100/10 rounded-xl">
             <div className="generate-section__input__title">
               <label htmlFor="note-topic" className="dark:text-gray-100">Title</label>
               <input
@@ -62,6 +62,7 @@ const GenerateFlashcards = ({
             <Button
               variant="orange"
               type="submit"
+              className="!mt-[1rem]"
               disabled={!topic || !numberOfCards || loadingFlashcards}
               aria-label="Generate flashcards"
               onClick={() => onGenerateFlashcards(topic, numberOfCards)}
