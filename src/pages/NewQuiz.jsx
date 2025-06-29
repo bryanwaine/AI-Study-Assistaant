@@ -7,7 +7,7 @@ const NewQuiz = () => {
   return (
     <>
       <Layout userName={userName} />
-      <h1 style={{ textAlign: "center", marginTop: "6rem" }}>Coming soon 😎</h1>
+      <h1 className="dark:text-gray-100 text-center !mt-[6rem]">Coming soon </h1>
     </>
   );
 };

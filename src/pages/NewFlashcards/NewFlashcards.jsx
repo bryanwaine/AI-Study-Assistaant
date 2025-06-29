@@ -113,8 +113,13 @@ const NewFlashcards = () => {
     <div className="new-flashcards__wrapper">
       <Layout userName={userName} />
       <div className="animate new-flashcards__container">
-        <div className="new-flashcards__input-wrapper">
-          <div className="new-flashcards__input-container card--white">
+         <div
+            className="flex justify-center items-center !mt-[2rem] !py-[1rem] text-[1.5rem] font-bold text-center dark:text-gray-100"
+          >
+            Create a new flashcard deck 
+          </div>
+        <div className="new-flashcards__input-wrapper ">
+          <div className="new-flashcards__input-container bg-gray-900/10 dark:bg-gray-100/10 rounded-xl">
             <div className="new-flashcards__input ">
               <label htmlFor="topic" className="dark:text-gray-100">Topic</label>
               <input

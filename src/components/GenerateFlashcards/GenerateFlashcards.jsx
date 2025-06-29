@@ -24,7 +24,7 @@ const GenerateFlashcards = ({
         <div className="generate-section__container card--white">
           <div
             ref={inputSectionRef}
-            className="generate-section__input__heading dark:text-gray-100"
+            className="flex justify-center items-center !py-[1rem] text-[1.5rem] font-bold text-center dark:text-gray-100"
           >
             Generate Flashcards
           </div>

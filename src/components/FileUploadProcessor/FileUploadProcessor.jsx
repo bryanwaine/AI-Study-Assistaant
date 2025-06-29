@@ -108,7 +108,7 @@ const FileUploadProcessor = ({ onExtractedText }) => {
           />
         </div>
         <div className="label-right">
-          <p>Upload notes</p>
+          <p>Upload note</p>
           <span>(PDF, DOCX, TXT)</span>
         </div>
       </label>

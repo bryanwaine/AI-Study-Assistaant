@@ -227,6 +227,11 @@ const NewNote = () => {
       <Layout userName={userName} />
       <div className="animate flex flex-col items-center w-full !pt-[4rem] !pb-[2rem]">
         <div className="w-full !p-[2rem]">
+          <div
+            className="flex justify-center items-center !py-[1rem] text-[1.5rem] font-bold text-center dark:text-gray-100"
+          >
+            Create a new note
+          </div>
           <div className="w-full flex flex-col justify-center items-center gap-[2rem] !p-[2rem] bg-gray-900/10 dark:bg-gray-100/10 rounded-xl">
             <FileUploadProcessor
               onExtractedText={(
@@ -248,7 +253,7 @@ const NewNote = () => {
               <input
                 type="text"
                 name="title"
-                placeholder="Enter a title for your notes"
+                placeholder="Enter a title for your note"
                 id="title"
                 value={title}
                 onChange={onChange}
