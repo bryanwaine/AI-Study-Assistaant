@@ -61,24 +61,24 @@ const Dashboard = () => {
   }, [user]);
 
   useEffect(() => {
-      const callback = (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("slide-up");
-            observer.unobserve(entry.target);
-          }
-        });
-      };
-  
-      const options = {
-        threshold: 0.2,
-      };
-  
-      const observer = new IntersectionObserver(callback, options);
-  
-      const animatedElements = document.querySelectorAll(".animate");
-      animatedElements.forEach((el) => observer.observe(el));
-    });
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const options = {
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    const animatedElements = document.querySelectorAll(".animate");
+    animatedElements.forEach((el) => observer.observe(el));
+  });
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -87,15 +87,18 @@ const Dashboard = () => {
   return (
     <>
       <Layout userName={userName} />
-      <div className="dashboard__wrapper ">
+      <div className="relative bg-transparent flex justify-center w-screen !pt-[7rem]">
         <BubbleBackground />
-        <h1 className="animate dark:text-gray-100 text-3xl !mb-6">Dashboard</h1>
+        <div className="md:w-[20%]"/>
         <div className="dashboard__container">
-          <section className="animate dashboard-card rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border  border-sky-200/50 dark:border-none  backdrop-blur shadow-md ">
-            <h2 className="dashboard-card__greeting dark:text-gray-100 ">
+          <h1 className="animate dark:text-gray-100 text-3xl md:text-5xl !mb-6">
+            Dashboard
+          </h1>
+          <section className="animate dashboard-card w-full rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border border-sky-200/50 dark:border-none backdrop-blur shadow-md ">
+            <h2 className="dark:text-gray-100 text-xl md:text-3xl">
               {handleGreeting(firstNameFilter(userName))}
             </h2>
-            <p className="dashboard-card__message dark:text-gray-100 ">
+            <p className="!mb-[1rem] md:text-lg dark:text-gray-100 ">
               Here's an overview of your study progress:
             </p>
             <Suspense fallback={<DashboardOverviewSkeleton />}>
@@ -112,7 +115,7 @@ const Dashboard = () => {
                 />
               )}
             </Suspense>
-            <Button variant="orange">
+            <Button variant="orange" className="!mb-[1rem]">
               <Link to="/new-session" className="btn--link">
                 New Session
               </Link>
