@@ -126,7 +126,9 @@ const Home = () => {
               Studying made easy
             </h2>
             <p className="animate md:w-2/3 text-lg text-[#111111] dark:text-gray-400">
-              Are you ready to boost your learning experience? Wether you're studying for a test, an exam, or a course, or simply want to improve your knowledge, Auxiliare is the perfect tool for you.
+              Are you ready to boost your learning experience? Wether you're
+              studying for a test, an exam, or a course, or simply want to
+              improve your knowledge, Auxiliare is the perfect tool for you.
             </p>
             <Link
               to="/signup"
@@ -137,9 +139,9 @@ const Home = () => {
               </Button>
             </Link>
           </div>
+          <Footer />
         </section>
       </div>
-      <Footer />
     </div>
   );
 };
