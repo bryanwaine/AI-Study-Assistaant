@@ -129,13 +129,6 @@ li::marker {
   padding: 0.5rem 1rem;
 }
 
-.new-chat-message code {
-  width: 100%;
-  font-size: 0.85rem;
-  border-radius: 0 0 .75rem.75rem !important;
-  background-color: #e6f1f6 ;
-}
-
 .new-chat-message pre {
   overflow-x: scroll;
   width: 100%;

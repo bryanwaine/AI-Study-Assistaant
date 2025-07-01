@@ -21,7 +21,9 @@ const CodeBlock = ({ className, children }) => {
     }, 3000);
   };
 
-  return (
+  return language === "code" ? (
+    <code className="text-[0.85rem] bg-[#dddddd] dark:bg-[#333333] !px-1">{children}</code>
+  ) : (
     <span className="code-block-container">
       <span className="code-block-language">{language}</span>
       <button
@@ -37,11 +39,11 @@ const CodeBlock = ({ className, children }) => {
           </span>
         ) : (
           <span>
-            <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }}/> Copy
+            <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} /> Copy
           </span>
         )}
       </button>
-      <code ref={codeRef} className={className}>
+      <code ref={codeRef} className={`${className} w-full text-[0.85rem] rounded-b-[0.75rem] bg-[#e6f1f6] text-[#111111]`}>
         {children}
       </code>
     </span>
