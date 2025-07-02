@@ -9,7 +9,7 @@ const Footer = () => {
       <span className="!mx-[0.5rem] text-[1rem]">|</span> Built by{" "}
       <Link to="https://bryanwaine.netlify.app" target="_blank">
         <p className="text-[#FF7B00] !ml-[0.3rem] underline underline-offset-8">
-          Nwanne Ezeaka
+          Bryan Ezeaka
         </p>
       </Link>
     </footer>
