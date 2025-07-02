@@ -29,6 +29,12 @@
   padding: 6rem 1.5rem 8rem 1.5rem;
 }
 
+.chat-window__loading {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .chat-message {
   font-size: 0.95rem;
   max-width: 100%;

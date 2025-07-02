@@ -17,6 +17,7 @@ import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveSession, updateSession } from "../../utils/sessionService";
 
 import "./NewSession.css";
+import ActionButtons from "../../components/ActionButtons/ActionButtons";
 const NewSession = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -223,27 +224,7 @@ const NewSession = () => {
                 )}
               </div>
               {message.role === "assistant" && (
-                <span>
-                  <button
-                    className="action-button"
-                    onClick={() => handleCopy()}
-                    title="Copy code"
-                  >
-                    {isCopied ? (
-                      <span>
-                        <CheckOutlinedIcon style={{ fontSize: ".85rem" }} />
-                        Copied!
-                      </span>
-                    ) : (
-                      <span>
-                        <ContentCopyOutlinedIcon
-                          style={{ fontSize: ".85rem" }}
-                        />{" "}
-                        Copy
-                      </span>
-                    )}
-                  </button>
-                </span>
+                <ActionButtons handleCopy={handleCopy} isCopied={isCopied} />
               )}
             </div>
           ))}

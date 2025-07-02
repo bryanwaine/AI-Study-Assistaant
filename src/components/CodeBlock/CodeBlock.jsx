@@ -22,7 +22,7 @@ const CodeBlock = ({ className, children }) => {
   };
 
   return language === "code" ? (
-    <code className="text-[0.85rem] bg-[#dddddd] dark:bg-[#333333] !px-1">{children}</code>
+    <code className="hyphens-auto text-[0.85rem] bg-[#dddddd] dark:bg-[#333333] !px-1 break-words" lang="en">{children}</code>
   ) : (
     <span className="code-block-container">
       <span className="code-block-language">{language}</span>

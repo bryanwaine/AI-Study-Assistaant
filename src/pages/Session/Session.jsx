@@ -220,7 +220,7 @@ const Session = () => {
             </div>
           ))}
           {partialContent && (
-            <span className="chat-message assistant">
+            <span className="chat-message assistant dark:text-gray-100">
               <MarkdownRenderer>{partialContent}</MarkdownRenderer>
             </span>
           )}
