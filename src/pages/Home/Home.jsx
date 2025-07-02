@@ -141,7 +141,7 @@ const Home = () => {
           </div>
           <div className="animate w-full md:w-1/3 !mb-20 italic">
             <p className="text-[#111111] dark:text-gray-400 font-[Poppins] leading-[2rem]">
-              <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>The more that you <strong>read</strong>, the more things you will <strong>know</strong>. The more that you <strong>learn</strong>, the more <strong>places you'll go.</strong><span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>
+              <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>The more that you <strong>read,</strong> the more things you will <strong>know.</strong> The more that you <strong>learn,</strong> the more <strong>places you'll go.</strong><span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>
             </p>
             <p className="text-[#FF7B00] font-bold !mt-[1rem] font-[Poppins]">- Dr. Seuss</p>
           </div>
