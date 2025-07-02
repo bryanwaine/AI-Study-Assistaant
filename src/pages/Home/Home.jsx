@@ -134,10 +134,16 @@ const Home = () => {
               to="/signup"
               className="animate w-full md:w-1/5 md:!mt-8 !mb-20 "
             >
-              <Button variant="orange" className="!mt-4 !mb-20">
+              <Button variant="orange" className="!mt-4 !mb-5">
                 Start Studying
               </Button>
             </Link>
+          </div>
+          <div className="animate w-full md:w-1/3 !mb-20 italic">
+            <p className="text-[#111111] dark:text-gray-400 font-[Poppins] leading-[2rem]">
+              <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>The more that you read, the more things you will know. The more that you learn, the more places you'll go.<span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>
+            </p>
+            <p className="text-[#FF7B00] font-bold !mt-[1rem] font-[Poppins]">- Dr. Seuss</p>
           </div>
           <Footer />
         </section>
