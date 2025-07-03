@@ -1,4 +1,3 @@
-// utils/anthropicErrorHandler.js
 
 export function handleAnthropicError(error) {
     let statusCode = error?.response?.status || error?.status || null;
