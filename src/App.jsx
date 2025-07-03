@@ -19,6 +19,7 @@ import Quizzes from "./pages/Quizzes/Quizzes";
 import Note from "./pages/Note/Note";
 
 function App() {
+
   useEffect(() => {
     const theme = localStorage.getItem('theme');
     if (theme === 'dark') {
@@ -26,14 +27,13 @@ function App() {
     } else if (theme === 'light') {
       document.documentElement.classList.remove('dark');
     } else {
-      // Optional: system preference fallback
+      // system preference fallback
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       prefersDark
         ? document.documentElement.classList.add('dark')
         : document.documentElement.classList.remove('dark');
     }
   }, []);
-
 
   return (
     <BrowserRouter>
