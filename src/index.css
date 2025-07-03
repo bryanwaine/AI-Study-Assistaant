@@ -1,7 +1,6 @@
 /* ------------------------------------------------------------- */
 
 @import "tailwindcss";
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 
@@ -27,7 +26,6 @@ body {
 main {
   height: 100vh;
 }
-
 
 /* Animations */
 .animate {
