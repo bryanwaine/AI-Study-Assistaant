@@ -11,7 +11,7 @@ import "./Sidebar.css";
 
 const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
   return (
-    <div
+    <aside
       className="sidebar bg-gray-100/90 dark:bg-neutral-900/90  backdrop-blur-md"
       data-sidebar-open={sidebarOpen}
     >
@@ -58,7 +58,7 @@ const Sidebar = ({ sidebarOpen, handleLogout, userName, email }) => {
           </div>
         </li>
       </ul>
-    </div>
+    </aside>
   );
 };
 

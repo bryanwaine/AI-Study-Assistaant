@@ -24,7 +24,7 @@ const CodeBlock = ({ className, children }) => {
   return language === "code" ? (
     <code className="hyphens-auto break-words text-[0.85rem] bg-[#dddddd] dark:bg-[#333333] !px-1 rounded" lang="en">{children}</code>
   ) : (
-    <span className="code-block-container">
+    <span className="code-block-container bg-[#e6f1f6] dark:bg-[#111111]">
       <span className="code-block-language">{language}</span>
       <button
         ref={copyButtonRef}
@@ -43,7 +43,7 @@ const CodeBlock = ({ className, children }) => {
           </span>
         )}
       </button>
-      <code ref={codeRef} className={`${className} w-full text-[0.85rem] rounded-b-[0.75rem] bg-[#e6f1f6] text-[#111111]`}>
+      <code ref={codeRef} className="w-full text-[0.85rem] rounded-b-[0.75rem] bg-[#e6f1f6] dark:bg-[#000000] text-[#111111] dark:text-[#f9f9f9]">
         {children}
       </code>
     </span>
