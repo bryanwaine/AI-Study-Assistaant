@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -9,7 +9,7 @@ import useToast from "../hooks/useToast";
 import Loader from "../components/Loader/Loader";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 
-// provider
+// create auth context provider
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import ToastContext from "./ToastContext";
 import Toast from "../components/Toast/Toast";
 
@@ -8,9 +8,11 @@ const ToastContextProvider = ({ children }) => {
   const showToast = useCallback((message, type) => {
     setToast({ message, type });
   }, []);
+
   const hideToast = () => {
     setToast(null);
   };
+
   return (
     <ToastContext.Provider value={{ showToast }}>
       {toast && (
