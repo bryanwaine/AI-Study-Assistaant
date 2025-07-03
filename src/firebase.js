@@ -20,6 +20,13 @@ const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
 
+/**
+ * Adds a user to the Firestore database.
+ *
+ * @param {{ userName: string, email: string }} data - The data to be added to the database.
+ * @returns {Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData>>} - A promise that resolves to a DocumentReference
+ *   of the newly created user document.
+ */
 const addUser = ({ userName, email }) => {
   return addDoc(collection(db, "users"), {
     userName,
@@ -27,6 +34,17 @@ const addUser = ({ userName, email }) => {
   });
 };
 
+/**
+ * Sets or updates a Google user in the Firestore database.
+ *
+ * @param {Object} param0 - An object containing the user details.
+ * @param {string} param0.userId - The unique identifier of the user.
+ * @param {string} param0.userName - The name of the user.
+ * @param {string} param0.email - The email address of the user.
+ *
+ * @returns {Promise<void>} - A promise that resolves when the user document
+ *   has been successfully set or updated in the database.
+ */
 const setGoogleUser = ({ userId, userName, email }) => { 
   return setDoc(doc(db, "users", userId), {
     userName,

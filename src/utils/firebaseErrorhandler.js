@@ -1,3 +1,20 @@
+/**
+ * Given a Firebase error, returns a human-readable error code and message.
+ *
+ * This function takes a Firebase error object as an argument and returns an
+ * object with three properties: `code`, `message`, and `isFirebaseError`. The
+ * `code` property is the original error code from the Firebase error. The
+ * `message` property is a human-readable string that describes the error. The
+ * `isFirebaseError` property is a boolean that is `true` if the error is a
+ * Firebase error and `false` otherwise.
+ *
+ * If the error is not a Firebase error, the function returns an object with a
+ * generic error message.
+ *
+ * @param {Object} error The Firebase error object.
+ * @return {Object} An object with the error code, message, and whether the error
+ * is a Firebase error.
+ */
 export function handleFirebaseError(error) {
     if (!error || !error.code) {
       return {

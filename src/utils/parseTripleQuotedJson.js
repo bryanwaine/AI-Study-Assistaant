@@ -1,3 +1,11 @@
+  /**
+   * Parse a string that contains a triple-quoted JSON string (delimited by '''json and ''')
+   * and return the parsed JSON object.
+   *
+   * @param {string} input - The string to parse.
+   * @returns {object} The parsed JSON object.
+   * @throws {Error} If the input string does not contain a valid triple-quoted JSON string.
+   */
 const parseTripleQuotedJson = (input) => {
     // Extract the JSON content between '''json and '''
     const jsonMatch = input.match(/'''json\s*([\s\S]*?)\s*'''/);

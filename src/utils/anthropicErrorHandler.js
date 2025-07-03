@@ -1,4 +1,15 @@
 
+/**
+ * Handles errors returned by the Anthropic API, extracting and returning a
+ * status code and a human-readable error message.
+ *
+ * @param {Object} error - The error object returned by the API, which should
+ *   have a `response` property containing the error response.
+ * @return {Object} - An object with two properties: `status` (the HTTP status
+ *   code returned by the API), and `message` (a human-readable error message).
+ *   The object also has a third property, `isAnthropicError`, which is always
+ *   `true`.
+ */
 export function handleAnthropicError(error) {
     let statusCode = error?.response?.status || error?.status || null;
     let message = "An unexpected error occurred.";
