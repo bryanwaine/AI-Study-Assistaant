@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import ToastContext from "./ToastContext";
 import Toast from "../components/Toast/Toast";
 
+// create and export toast context provider
 const ToastContextProvider = ({ children }) => {
   const [toast, setToast] = useState(null);
 

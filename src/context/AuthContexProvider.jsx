@@ -9,7 +9,7 @@ import useToast from "../hooks/useToast";
 import Loader from "../components/Loader/Loader";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 
-// create auth context provider
+// create and export auth context provider
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
