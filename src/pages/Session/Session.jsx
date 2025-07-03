@@ -204,7 +204,7 @@ const Session = () => {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`chat-message ${message.role} dark:text-gray-100`}
+              className={`chat-message ${message.role} ${message.role === "assistant" && "dark:text-gray-100"}`}
             >
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (

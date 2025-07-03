@@ -43,7 +43,7 @@ const CodeBlock = ({ className, children }) => {
           </span>
         )}
       </button>
-      <code ref={codeRef} className="w-full text-[0.85rem] rounded-b-[0.75rem] bg-[#e6f1f6] dark:bg-[#000000] text-[#111111] dark:text-[#f9f9f9]">
+      <code ref={codeRef} className="code-block w-full text-[0.85rem] rounded-b-[0.75rem] bg-[#e6f1f6] dark:bg-[#000000] text-[#111111] dark:text-[#f9f9f9]">
         {children}
       </code>
     </span>
