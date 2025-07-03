@@ -1,5 +1,7 @@
-import Layout from "../components/Layout";
-import useAuth from "../hooks/useAuth";
+import React from "react";
+
+import Layout from "../../components/Layout";
+import useAuth from "../../hooks/useAuth";
 
 const NewQuiz = () => {
   const { user } = useAuth();

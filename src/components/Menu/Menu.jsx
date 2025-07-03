@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 
 import { NavLink } from "react-router";
 import { DashboardOutlined } from "@mui/icons-material";

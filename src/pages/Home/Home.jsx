@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router";
 
 import Button from "../../components/Button/Button";
 import LogoSm from "../../components/LogoSm/LogoSm";
 import BubbleBackground from "../../components/BubbleBg";
+import Footer from "../../components/Footer/Footer";
 
 import "./Home.css";
-import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   useEffect(() => {

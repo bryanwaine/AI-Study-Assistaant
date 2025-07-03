@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useLocation, useNavigate, Navigate } from "react-router";
 
@@ -7,13 +7,13 @@ import TextInput from "../components/TextInput/TextInput";
 import PasswordInput from "../components/PasswordInput/PasswordInput";
 import Button from "../components/Button/Button";
 import Loader from "../components/Loader/Loader";
+import BubbleBackground from "../components/BubbleBg";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import firstNameFilter from "../utils/firstNameFilter";
 import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { setGoogleUser } from "../firebase";
 import googleIcon from "../assets/google-icon.png";
-import BubbleBackground from "../components/BubbleBg";
 
 const Login = () => {
   const [status, setStatus] = useState("idle");

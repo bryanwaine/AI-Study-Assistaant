@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import BubbleBackground from "../../components/BubbleBg";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Layout from "../../components/Layout";

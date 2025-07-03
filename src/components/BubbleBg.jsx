@@ -1,4 +1,4 @@
-// BubbleBackground.tsx
+import React from "react";
 const BubbleBackground = () => {
   const bubbles = Array.from({ length: 40 });
 

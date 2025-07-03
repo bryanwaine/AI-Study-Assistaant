@@ -12,7 +12,7 @@ import NewSession from "./pages/NewSession/NewSession";
 import NewFlashcards from "./pages/NewFlashcards/NewFlashcards";
 import Decks from "./pages/Decks/Decks";
 import Deck from "./pages/Deck/Deck";
-import NewQuiz from "./pages/NewQuiz";
+import NewQuiz from "./pages/NewQuiz/NewQuiz";
 import NewNote from "./pages/NewNote/NewNote";
 import Notes from "./pages/Notes/Notes";
 import Quizzes from "./pages/Quizzes/Quizzes";

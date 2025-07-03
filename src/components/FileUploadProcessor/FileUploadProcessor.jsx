@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import mammoth from "mammoth";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";

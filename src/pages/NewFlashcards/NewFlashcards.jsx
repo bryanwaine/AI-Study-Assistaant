@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Navigate } from "react-router";
 import "highlight.js/styles/github.css";
@@ -14,6 +14,7 @@ import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveDeck } from "../../utils/flashcardService";
 
 import "./NewFlashcards.css";
+
 const NewFlashcards = () => {
   const [topic, setTopic] = useState("");
   const [loadingFlashcards, setLoadingFlashcards] = useState(false);

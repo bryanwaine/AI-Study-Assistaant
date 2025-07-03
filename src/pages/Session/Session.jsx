@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Navigate, useParams } from "react-router";
-import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import "highlight.js/styles/github.css";
 
 import TypingIndicator from "../../components/TypingIndicator/TypingIndicator";
@@ -11,6 +9,7 @@ import ScrollToBottom from "../../components/ScrollToBottom/ScrollToBottom";
 import ErrorState from "../../components/ErrorState/ErrorState";
 import Layout from "../../components/Layout";
 import TextArea from "../../components/TextArea/TextArea";
+import ActionButtons from "../../components/ActionButtons/ActionButtons";
 import MarkdownRenderer from "../../components/MarkdownRenderer";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
@@ -18,7 +17,7 @@ import { getSession, updateSession } from "../../utils/sessionService";
 import { generateResponse } from "../../anthropic";
 
 import "./Session.css";
-import ActionButtons from "../../components/ActionButtons/ActionButtons";
+
 const Session = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);

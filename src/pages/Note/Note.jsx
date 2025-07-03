@@ -10,12 +10,12 @@ import { saveDeck } from "../../utils/flashcardService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getNote } from "../../utils/noteService";
 import NoteContainerSkeleton from "../../components/Skeleton/NoteContainerSkeleton";
+import ActionButtons from "../../components/ActionButtons/ActionButtons";
+import GenerateFlashcards from "../../components/GenerateFlashcards/GenerateFlashcards";
 import { generateFlashcardsFromNotes } from "../../anthropic";
 
 import "./Note.css";
 import "../NewFlashcards/NewFlashcards.css";
-import ActionButtons from "../../components/ActionButtons/ActionButtons";
-import GenerateFlashcards from "../../components/GenerateFlashcards/GenerateFlashcards";
 
 // Lazy loaded components
 const NoteContainer = lazy(() => import("./NoteContainer"));

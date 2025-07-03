@@ -7,13 +7,13 @@ import ErrorState from "../../components/ErrorState/ErrorState";
 import Layout from "../../components/Layout";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import Button from "../../components/Button/Button";
+import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
+import BubbleBackground from "../../components/BubbleBg";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getAllNotes } from "../../utils/noteService";
-import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 
 import "./Notes.css";
-import BubbleBackground from "../../components/BubbleBg";
 
 /**
  * Notes component displays a list of user's notes.

@@ -8,12 +8,12 @@ import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
 import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton";
 import ErrorState from "../../components/ErrorState/ErrorState";
+import BubbleBackground from "../../components/BubbleBg";
 import useAuth from "../../hooks/useAuth";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 
 import "./Sessions.css";
-import BubbleBackground from "../../components/BubbleBg";
 
 /**
  * Sessions component displays a list of user's sessions.

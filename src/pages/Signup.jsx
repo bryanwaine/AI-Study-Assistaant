@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate, Navigate } from "react-router";
 
@@ -7,6 +7,7 @@ import TextInput from "../components/TextInput/TextInput";
 import Button from "../components/Button/Button";
 import PasswordInput from "../components/PasswordInput/PasswordInput";
 import Loader from "../components/Loader/Loader";
+import BubbleBackground from "../components/BubbleBg";
 import useAuth from "../hooks/useAuth";
 import useToast from "../hooks/useToast";
 import passwordValidation from "../utils/passwordValidation";
@@ -16,7 +17,6 @@ import handleFirebaseError from "../utils/firebaseErrorhandler";
 import { addUser, setGoogleUser } from "../firebase";
 
 import googleIcon from "../assets/google-icon.png";
-import BubbleBackground from "../components/BubbleBg";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
