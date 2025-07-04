@@ -51,13 +51,6 @@
   transition: all 0.2s ease-in-out;
 }
 
-.code-copy-button span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-}
-
 .code-copy-button:focus {
   outline: none;
 }

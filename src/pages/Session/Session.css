@@ -70,20 +70,28 @@
 
 .chat-message h1 {
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 0.5rem;
+}
+
+.chat-message h1 code {
+  font-size: 1.2rem ;
+}
+
+.chat-message h2 code {
+  font-size: 1rem ;
 }
 
 .chat-message h2 {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 800;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
 .chat-message h3 {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 0.5rem;
 }
 

@@ -33,13 +33,13 @@ const CodeBlock = ({ className, children }) => {
         title="Copy code"
       >
         {isCopied ? (
-          <span>
+          <span className="flex justify-center items-center gap-1">
             <CheckOutlinedIcon style={{ fontSize: ".85rem" }} />
             Copied!
           </span>
         ) : (
-          <span>
-            <ContentCopyOutlinedIcon style={{ fontSize: ".85rem" }} /> Copy
+          <span className="flex justify-center items-center gap-2">
+            <ContentCopyOutlinedIcon style={{ fontSize: ".85rem", marginRight: "-1rem" }} /> Copy
           </span>
         )}
       </button>
