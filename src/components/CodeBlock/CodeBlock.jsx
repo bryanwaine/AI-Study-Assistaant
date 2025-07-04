@@ -38,7 +38,7 @@ const CodeBlock = ({ className, children }) => {
             Copied!
           </span>
         ) : (
-          <span className="flex justify-center items-center gap-2">
+          <span className="flex justify-center items-center gap-3">
             <ContentCopyOutlinedIcon style={{ fontSize: ".85rem", marginRight: "-1rem" }} /> Copy
           </span>
         )}
