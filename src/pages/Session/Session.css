@@ -47,7 +47,6 @@
 .chat-message.user {
   align-self: flex-end;
   background-color: #FF7B00;
-  /* color: #111111; */
   max-width: 70%;
 }
 
@@ -59,13 +58,13 @@
 .chat-message.assistant {
   width: 100%;
   align-self: flex-start;
-  /* color: #333; */
   padding: 0;
 }
 
 .chat-message.assistant ul,
 .chat-message.assistant ol {
   padding-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .chat-message h1 {
@@ -78,10 +77,6 @@
   font-size: 1.2rem ;
 }
 
-.chat-message h2 code {
-  font-size: 1rem ;
-}
-
 .chat-message h2 {
   font-size: 1.2rem;
   font-weight: 800;
@@ -89,9 +84,14 @@
   margin-bottom: 0.5rem;
 }
 
+.chat-message h2 code {
+  font-size: 1rem ;
+}
+
 .chat-message h3 {
   font-size: 1.1rem;
   font-weight: 800;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -144,6 +144,8 @@ li::marker {
 .chat-message pre {
   overflow-x: scroll;
   width: 100%;
+  margin-bottom: .5rem;
+  padding-bottom: 1rem;
 }
 
 
