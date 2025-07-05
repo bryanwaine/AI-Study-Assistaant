@@ -29,6 +29,7 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
     <div className="textarea-wrapper">
       <div className="textarea-container bg-sky-100 dark:bg-black">
         <textarea
+          enterKeyHint="enter"
           ref={textareaRef}
           rows={2}
           className="textarea-input bg-sky-100 dark:bg-black text-neutral-900 dark:text-neutral-100"
