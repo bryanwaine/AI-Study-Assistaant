@@ -27,34 +27,6 @@ For example:
 
 Adjust the follow-up prompt based on the topic discussed, and make it feel natural and relevant — not generic or repetitive.`;
 
-/**
- * FLASHCARD_SYSTEM_PROMPT
- * =======================
- *
- * A docstring for Anthropic AI that defines the format and requirements for generating flashcards.
- *
- * The AI is given a topic and a number of cards to generate, and must generate exactly that many high-quality flashcards.
- *
- * The generated flashcards must follow the following guidelines:
- * - The front side of the card should contain a clear, concise question, term, or concept prompt.
- * - The back side of the card should provide a succinct yet complete explanation or answer, tailored to a student's level of knowledge.
- * - Ensure information is factually accurate and uses student-friendly language.
- * - Focus on key terms, definitions, and core principles.
- * - For different subject areas, include formulas, laws, structured logic, syntax, logic, concepts, important dates, events, figures, diseases, symptoms, diagnostics, treatments, characters, plot points, themes, and literary devices.
- *
- * Each flashcard must be unique and relevant to the topic. Do not reuse or repeat cards between requests.
- *
- * The output should be a valid JSON array without any delimiters, using the exact format below with no extra explanation or commentary:
- *
- * [
- *   {
- *     "id": 1,
- *     "question": "What is the definition of ...?",
- *     "answer": "..."
- *   },
- *   ...
- * ]
- */
 const FLASHCARD_SYSTEM_PROMPT = (topic, numberOfCards) => `
 You are Auxiliaire, an AI-powered flashcard generator and academic assistant trained to help students study efficiently and retain key concepts across a wide range of subjects.
 
@@ -86,32 +58,6 @@ Return the output as a **valid JSON array** without any delimiters, using the **
 ]
 `;
 
-/**
- * NOTES_FLASHCARD_SYSTEM_PROMPT
- * =============================
- *
- * A docstring for Anthropic AI that defines the format and requirements for generating flashcards from study notes.
- *
- * The AI is given the study notes and a number of cards to generate, and must generate exactly that many high-quality flashcards.
- *
- * The generated flashcards must follow the following guidelines:
- * - The front side of the card should contain a clear, focused question, term, or concept prompt.
- * - The back side of the card should provide a complete but concise explanation or answer, written in a student-friendly tone.
- * - Ensure each card reflects a unique, significant point from the notes.
- * - Prioritize **key terminology, definitions, core ideas, and essential facts**.
- * - Adapt explanations to suit a student’s general understanding without oversimplifying.
- *
- * The output should be a valid JSON array without any delimiters, using the exact format below with no extra explanation or commentary:
- *
- * [
- *   {
- *     "id": 1,
- *     "question": "What is ...?",
- *     "answer": "..."
- *   },
- *   ...
- * ]
- */
 const NOTES_FLASHCARD_SYSTEM_PROMPT = (notes, numberOfCards) => `
 You are Auxiliaire, an AI-powered academic assistant and flashcard generator designed to help students study and retain information effectively.
 
@@ -147,22 +93,6 @@ Output only a **valid JSON array** with no delimiters and no additional text or 
 ]
 `;
 
-/**
- * NOTE_SUMMARY_SYSTEM_PROMPT
- * ==========================
- *
- * A docstring for Anthropic AI that defines the format and requirements for generating summaries from study notes.
- *
- * The AI is given study notes and must generate a summary that is clear, concise, and easy to understand.
- *
- * The generated summary must follow these guidelines:
- * - Highlight key concepts, important facts, and essential takeaways.
- * - Use a friendly and supportive tone.
- * - Tailor explanations to suit a student’s general understanding without oversimplifying.
- * - Utilize bullet points, analogies, or simple examples where appropriate to clarify complex ideas.
- *
- * The output should be focused on clarity and educational value, ensuring that the student can effectively grasp the material.
- */
 const NOTE_SUMMARY_SYSTEM_PROMPT = (notes) => `
 You are Auxiliaire, an AI-powered study assistant designed to help students learn and retain academic material effectively.
 
@@ -180,24 +110,16 @@ const anthropic = new Anthropic({
 });
 
 /**
- * generateResponse
- * ================
+ * Generates a response to a given question based on a conversation history.
  *
- * Given a question and a history of previous messages (user and assistant), this
- * function generates a response from the AI.
+ * @param {string} question - The question to be answered.
+ * @param {Array<Object>} history - The conversation history. Each element should have a `role` and a `content` field.
+ * @returns {Promise<string>} - A promise that resolves to the AI response.
  *
- * The function takes a question and a history of messages as input, and returns a
- * response as a string.
- *
- * The function limits the number of messages to include in the context to the
- * most recent 10 messages.
- *
- * The function uses the SESSION_SYSTEM_PROMPT as the system message for the AI,
- * which defines how the AI should behave and what information it should consider
- * when generating the response.
- *
- * The function returns the response as a string, which is the text of the first
- * message returned by the AI.
+ * This function uses the SESSION_SYSTEM_PROMPT to guide the AI in generating a high-quality response that takes into
+ * account the user's level of knowledge and provides a helpful and informative answer. The generated response will be
+ * concise and clear, with a friendly and supportive tone. The AI will also be able to infer the user's goals and use
+ * case, and provide context-aware invitations to help further.
  */
 const generateResponse = async (question, history) => {
   const MAX_CONTEXT = 10;
