@@ -17,11 +17,16 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
     }
   }, [value]);
 
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  console.log(isMobile);
+  
   const handleKeyDown = (event) => {
     if (loading) return;
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      onSubmit();
+    if (!isMobile) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        onSubmit();
+      }
     }
   };
 
