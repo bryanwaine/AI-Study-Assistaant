@@ -1,8 +1,8 @@
 .scroll-to-bottom {
-  position: sticky;
+  position: absolute;
   height: fit-content;
   width: fit-content;
-  bottom: 8rem;
+  top: -18vh;
   left: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
@@ -38,5 +38,11 @@
 .scroll-to-bottom.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .scroll-to-bottom {
+    top: -17vh;
+  }
 }
 
