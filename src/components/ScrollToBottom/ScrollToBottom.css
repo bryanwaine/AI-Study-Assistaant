@@ -2,7 +2,7 @@
   position: absolute;
   height: fit-content;
   width: fit-content;
-  top: -18vh;
+  bottom: 8.75rem;
   left: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
@@ -40,9 +40,4 @@
   pointer-events: none;
 }
 
-@media screen and (min-width: 1024px) {
-  .scroll-to-bottom {
-    top: -17vh;
-  }
-}
 

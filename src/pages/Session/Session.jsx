@@ -232,7 +232,7 @@ const Session = () => {
           )}
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 md:left-[20%] right-0 z-20 h-[auto]">
+      <div className="fixed bottom-0 left-0 md:left-[20%] right-0 z-20 h-[100vh]">
         <ScrollToBottom
           showScrollToBottom={showScrollToBottom}
           scrollToBottom={scrollToBottom}
