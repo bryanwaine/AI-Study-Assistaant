@@ -240,7 +240,7 @@ const NewSession = () => {
           )}
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 md:left-[20%] right-0 z-20 h-[auto]">
+       <div className="fixed bottom-0 left-0 md:left-[20%] right-0 z-20 h-[9rem] ">
         <ScrollToBottom
           showScrollToBottom={showScrollToBottom}
           scrollToBottom={scrollToBottom}
