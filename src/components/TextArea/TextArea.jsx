@@ -19,7 +19,7 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
 
   const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   console.log(isMobile);
-  
+
   const handleKeyDown = (event) => {
     if (loading) return;
     if (!isMobile) {
@@ -32,39 +32,41 @@ const TextArea = ({ value, onChange, onSubmit, loading }) => {
 
   return (
     <div className="textarea-wrapper bg-[#f5f5f5] dark:bg-[#001826]">
-      <div className="textarea-container bg-sky-100 dark:bg-black">
-        <textarea
-          enterKeyHint="enter"
-          ref={textareaRef}
-          rows={2}
-          className="textarea-input bg-sky-100 dark:bg-black text-neutral-900 dark:text-neutral-100"
-          placeholder="Ask anything..."
-          id="question"
-          name="question"
-          value={value}
-          onChange={onChange}
-          onKeyDown={handleKeyDown}
-          required
-        />
-        <div className="textarea-buttons">
-          <Button
-            variant="ghost--orange"
-            id="speech button"
-            ariaLabel="speech button"
-            ariaLabelledby="speech button"
-          >
-            <KeyboardVoiceOutlinedIcon fontSize="small" />
-          </Button>
-          <Button
-            variant="orange"
-            onClick={onSubmit}
-            id="submit"
-            ariaLabel="submit"
-            ariaLabelledby="submit"
-            disabled={!value || loading}
-          >
-            <ArrowUpwardOutlinedIcon fontSize="small" />
-          </Button>
+      <div className="w-[92%] h-auto !pb-[1rem] bg-[#f5f5f5] dark:bg-[#001826] rounded-t-[1.5rem]">
+        <div className="textarea-container bg-sky-100 dark:bg-black">
+          <textarea
+            enterKeyHint="enter"
+            ref={textareaRef}
+            rows={2}
+            className="textarea-input bg-sky-100 dark:bg-black text-neutral-900 dark:text-neutral-100"
+            placeholder="Ask anything..."
+            id="question"
+            name="question"
+            value={value}
+            onChange={onChange}
+            onKeyDown={handleKeyDown}
+            required
+          />
+          <div className="textarea-buttons">
+            <Button
+              variant="ghost--orange"
+              id="speech button"
+              ariaLabel="speech button"
+              ariaLabelledby="speech button"
+            >
+              <KeyboardVoiceOutlinedIcon fontSize="small" />
+            </Button>
+            <Button
+              variant="orange"
+              onClick={onSubmit}
+              id="submit"
+              ariaLabel="submit"
+              ariaLabelledby="submit"
+              disabled={!value || loading}
+            >
+              <ArrowUpwardOutlinedIcon fontSize="small" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -212,7 +212,7 @@ const NewSession = () => {
           {messages.map((message) => (
             <div
               key={message.id}
-               className={`chat-message ${message.role} ${message.role === "assistant" && "dark:text-gray-100"}`}
+              className={`chat-message ${message.role} ${message.role === "assistant" && "dark:text-gray-100"}`}
             >
               <div ref={message.role === "assistant" ? aiMessageRef : null}>
                 {message.role === "user" ? (
@@ -239,17 +239,19 @@ const NewSession = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="fixed bottom-0 left-0 md:left-[20%] right-0 z-20 h-[auto]">
         <ScrollToBottom
           showScrollToBottom={showScrollToBottom}
           scrollToBottom={scrollToBottom}
         />
+        <TextArea
+          value={question}
+          onChange={onChange}
+          onSubmit={() => onSubmit(question)}
+          loading={loading}
+        />
       </div>
-      <TextArea
-        value={question}
-        onChange={onChange}
-        onSubmit={() => onSubmit(question)}
-        loading={loading}
-      />
     </div>
   );
 };
