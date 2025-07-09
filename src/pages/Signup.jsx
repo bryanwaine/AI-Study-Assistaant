@@ -35,11 +35,11 @@ const Signup = () => {
     formData.firstName.toLowerCase() + " " + formData.lastName.toLowerCase();
 
   useEffect(() => {
-    const callback = (entries, observer) => {
+    const callback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
-          observer.unobserve(entry.target);
+          slideObserver.unobserve(entry.target);
         }
       });
     };
@@ -48,10 +48,10 @@ const Signup = () => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(callback, options);
+    const slideObserver = new IntersectionslideObserver(callback, options);
 
-    const animatedElements = document.querySelectorAll(".animate");
-    animatedElements.forEach((el) => observer.observe(el));
+    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
   });
 
   if (user) {
@@ -158,7 +158,7 @@ const Signup = () => {
     <div className="relative w-screen h-screen overflow-y-auto">
       {loading && <Loader />}
       <BubbleBackground />
-      <div className="animate">
+      <div className="animate-slide">
         <FormLayout
           type="signup-form"
           title="Sign Up"

@@ -46,11 +46,11 @@ const Notes = () => {
   }, [user]);
 
   useEffect(() => {
-    const callback = (entries, observer) => {
+    const callback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
-          observer.unobserve(entry.target);
+          slideObserver.unobserve(entry.target);
         }
       });
     };
@@ -59,17 +59,17 @@ const Notes = () => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(callback, options);
+    const slideObserver = new IntersectionslideObserver(callback, options);
 
-    const animatedElements = document.querySelectorAll(".animate");
-    animatedElements.forEach((el) => observer.observe(el));
+    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
   });
 
   return (
     <div className="notes__wrapper">
       <Layout userName={userName} />
       <BubbleBackground />
-      <div className="animate notes__container">
+      <div className="animate-slide notes__container">
         <h1 className=" dark:text-gray-100 text-3xl !mb-6">Your Notes</h1>
         <Button variant="orange">
           <Link to="/new-note" className="btn--link">

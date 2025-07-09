@@ -49,11 +49,11 @@ const Deck = () => {
   }, []);
 
   useEffect(() => {
-    const callback = (entries, observer) => {
+    const callback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
-          observer.unobserve(entry.target);
+          slideObserver.unobserve(entry.target);
         }
       });
     };
@@ -62,10 +62,10 @@ const Deck = () => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(callback, options);
+    const slideObserver = new IntersectionslideObserver(callback, options);
 
-    const animatedElements = document.querySelectorAll(".animate");
-    animatedElements.forEach((el) => observer.observe(el));
+    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
   });
 
   if (!user) return <Navigate to="/login" replace />;
@@ -73,7 +73,7 @@ const Deck = () => {
   return (
     <div className="flashcards__wrapper">
       <Layout userName={userName} />
-      <div className="animate flashcards__container">
+      <div className="animate-slide flashcards__container">
         <div className="deck__wrapper">
           {fetching && <Loader />}
           {error && <ErrorState />}

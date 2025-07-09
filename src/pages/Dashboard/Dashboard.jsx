@@ -61,11 +61,11 @@ const Dashboard = () => {
   }, [user]);
 
   useEffect(() => {
-    const callback = (entries, observer) => {
+    const callback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
-          observer.unobserve(entry.target);
+          slideObserver.unobserve(entry.target);
         }
       });
     };
@@ -74,10 +74,10 @@ const Dashboard = () => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(callback, options);
+    const slideObserver = new IntersectionslideObserver(callback, options);
 
-    const animatedElements = document.querySelectorAll(".animate");
-    animatedElements.forEach((el) => observer.observe(el));
+    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
   });
 
   if (!user) {
@@ -91,10 +91,10 @@ const Dashboard = () => {
         <BubbleBackground />
         <div className="md:w-[20%]"/>
         <div className="dashboard__container">
-          <h1 className="animate dark:text-gray-100 text-3xl md:text-5xl !mb-6">
+          <h1 className="animate-slide dark:text-gray-100 text-3xl md:text-5xl !mb-6">
             Dashboard
           </h1>
-          <section className="animate dashboard-card w-full rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border border-sky-200/50 dark:border-none backdrop-blur shadow-md ">
+          <section className="animate-slide dashboard-card w-full rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border border-sky-200/50 dark:border-none backdrop-blur shadow-md ">
             <h2 className="dark:text-gray-100 text-xl md:text-3xl">
               {handleGreeting(firstNameFilter(userName))}
             </h2>
@@ -121,7 +121,7 @@ const Dashboard = () => {
               </Link>
             </Button>
           </section>
-          <DashboardQuicklinksCard className="animate" />
+          <DashboardQuicklinksCard className="animate-slide" />
         </div>
       </div>
     </>

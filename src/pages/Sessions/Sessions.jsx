@@ -47,11 +47,11 @@ const Sessions = () => {
   }, [user]);
 
   useEffect(() => {
-    const callback = (entries, observer) => {
+    const callback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
-          observer.unobserve(entry.target);
+          slideObserver.unobserve(entry.target);
         }
       });
     };
@@ -60,10 +60,10 @@ const Sessions = () => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(callback, options);
+    const slideObserver = new IntersectionslideObserver(callback, options);
 
-    const animatedElements = document.querySelectorAll(".animate");
-    animatedElements.forEach((el) => observer.observe(el));
+    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
   });
 
   return (
@@ -71,7 +71,7 @@ const Sessions = () => {
       <Layout userName={userName} />
       <div className="sessions__wrapper">
         <BubbleBackground />
-        <div className="animate sessions__container">
+        <div className="animate-slide sessions__container">
           <h1 className=" dark:text-gray-100 text-3xl !mb-6">Your Sessions</h1>
           <Button variant="orange">
             <Link to="/new-session" className="btn--link">

@@ -4,11 +4,11 @@ import MarkdownRenderer from "../../components/MarkdownRenderer";
 
 const NoteContainer = ({ summary, metaData, aiMessageRef }) => {
   useEffect(() => {
-    const callback = (entries, observer) => {
+    const callback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
-          observer.unobserve(entry.target);
+          slideObserver.unobserve(entry.target);
         }
       });
     };
@@ -17,13 +17,13 @@ const NoteContainer = ({ summary, metaData, aiMessageRef }) => {
       threshold: 0.2,
     };
 
-    const observer = new IntersectionObserver(callback, options);
+    const slideObserver = new IntersectionslideObserver(callback, options);
 
-    const animatedElements = document.querySelectorAll(".animate");
-    animatedElements.forEach((el) => observer.observe(el));
+    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
   });
   return (
-    <div className="animate note__container">
+    <div className="animate-slide note__container">
       {metaData?.title && (
         <div className="note__title dark:text-gray-100">
           {metaData.title.toUpperCase()}

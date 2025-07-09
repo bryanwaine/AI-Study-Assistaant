@@ -42,11 +42,11 @@ const NewFlashcards = () => {
   }, [loadingFlashcards]);
 
   useEffect(() => {
-      const callback = (entries, observer) => {
+      const callback = (entries, slideObserver) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("slide-up");
-            observer.unobserve(entry.target);
+            slideObserver.unobserve(entry.target);
           }
         });
       };
@@ -55,10 +55,10 @@ const NewFlashcards = () => {
         threshold: 0.2,
       };
   
-      const observer = new IntersectionObserver(callback, options);
+      const slideObserver = new IntersectionslideObserver(callback, options);
   
-      const animatedElements = document.querySelectorAll(".animate");
-      animatedElements.forEach((el) => observer.observe(el));
+      const slideAnimatedElements = document.querySelectorAll(".animate-slide");
+      slideAnimatedElements.forEach((el) => slideObserver.observe(el));
     });
 
   if (!user) {
@@ -113,7 +113,7 @@ const NewFlashcards = () => {
   return (
     <div className="new-flashcards__wrapper">
       <Layout userName={userName} />
-      <div className="animate new-flashcards__container">
+      <div className="animate-slide new-flashcards__container">
          <div
             className="flex justify-center items-center !mt-[2rem] !py-[1rem] text-[1.5rem] font-bold text-center dark:text-gray-100"
           >
