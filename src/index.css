@@ -30,7 +30,7 @@ main {
 /* Animations */
 .animate {
   opacity: 0;
-  transform: translateY(10rem);
+  transform: translateY(5rem);
   transition: all 0.6s ease-out;
 }
 

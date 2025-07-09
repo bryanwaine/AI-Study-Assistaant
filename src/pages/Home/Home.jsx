@@ -54,7 +54,7 @@ const Home = () => {
             Summarize your notes, chat with an AI tutor, and quiz yourself with
             smart flashcards.
           </p>
-          <Link to="/signup" className="animate w-full md:w-1/5 !mb-20">
+          <Link to="/signup" className=" w-full md:w-1/5 !mb-20">
             <Button variant="orange" className="!mt-4 ">
               Get Started
             </Button>
@@ -71,7 +71,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="animate hidden md:block w-full md:w-1/5 !mb-20"
+                  className="hidden md:block w-full md:w-1/5 !mb-20"
                 >
                   <Button variant="orange" className="!mt-4 !mb-20">
                     Get Started
@@ -91,7 +91,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="animate hidden md:block w-full md:w-1/5 !mb-20"
+                  className="hidden md:block w-full md:w-1/5 !mb-20"
                 >
                   <Button variant="orange" className="!mt-4 !mb-20">
                     Get Started
@@ -111,7 +111,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="animate hidden md:block w-full md:w-1/5 !mb-20"
+                  className="hidden md:block w-full md:w-1/5 !mb-20"
                 >
                   <Button variant="orange" className="!mt-4 !mb-20">
                     Get Started
@@ -130,10 +130,7 @@ const Home = () => {
               studying for a test, an exam, or a course, or simply want to
               improve your knowledge, Auxiliare is the perfect tool for you.
             </p>
-            <Link
-              to="/signup"
-              className="animate w-full md:w-1/5 md:!mt-8 !mb-20 "
-            >
+            <Link to="/signup" className="w-full md:w-1/5 md:!mt-8 !mb-20 ">
               <Button variant="orange" className="!mt-4 !mb-5">
                 Start Studying
               </Button>
@@ -141,9 +138,19 @@ const Home = () => {
           </div>
           <div className="animate w-full md:w-1/3 !mb-20 italic">
             <p className="text-[#111111] dark:text-gray-400 font-[Poppins] leading-[2rem]">
-              <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>The more that you <strong>read,</strong> the more things you will <strong>know.</strong> The more that you <strong>learn,</strong> the more <strong>places you'll go.</strong><span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">“</span>
+              <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">
+                “
+              </span>
+              The more that you <strong>read,</strong> the more things you will{" "}
+              <strong>know.</strong> The more that you <strong>learn,</strong>{" "}
+              the more <strong>places you'll go.</strong>
+              <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">
+                “
+              </span>
             </p>
-            <p className="text-[#FF7B00] font-bold !mt-[1rem] font-[Poppins]">- Dr. Seuss</p>
+            <p className="text-[#FF7B00] font-bold !mt-[1rem] font-[Poppins]">
+              - Dr. Seuss
+            </p>
           </div>
           <Footer />
         </section>
