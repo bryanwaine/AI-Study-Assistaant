@@ -60,7 +60,7 @@ const Sessions = () => {
       threshold: 0.2,
     };
 
-    const slideObserver = new IntersectionslideObserver(callback, options);
+    const slideObserver = new IntersectionObserver(callback, options);
 
     const slideAnimatedElements = document.querySelectorAll(".animate-slide");
     slideAnimatedElements.forEach((el) => slideObserver.observe(el));
