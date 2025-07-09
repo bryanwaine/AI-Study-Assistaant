@@ -46,7 +46,6 @@ main {
 
 .animate-fade.fade-in {
   opacity: 1;
-  transform: scale(1);
 }
 
 @keyframes slow-float {
