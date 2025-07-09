@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(230, 241, 246, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999999;
     opacity: 0;
     animation: fadeIn 0.3s ease-in-out forwards;
@@ -15,7 +15,7 @@
   
   .spinner {
     border: 6px solid rgba(0, 0, 0, 0.1);
-    border-top: 6px solid #00e1ff;
+    border-top: 6px solid #FF7B00;
     border-radius: 50%;
     width: 3.75rem;
     height: 3.75rem;
