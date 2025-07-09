@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router";
 
@@ -21,26 +21,6 @@ const ResetPassword = () => {
   const { showToast } = useToast();
 
   const isFormValid = formData.email && emailValidation(formData.email);
-
-  useEffect(() => {
-    const callback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const options = {
-      threshold: 0.2,
-    };
-
-    const slideObserver = new IntersectionObserver(callback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
-  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,7 +45,7 @@ const ResetPassword = () => {
   };
 
   return status === "success" ? (
-    <div className="animate-slide relative">
+    <div className="relative">
       <BubbleBackground />
       <FormLayout
         type="reset-password"
@@ -82,7 +62,7 @@ const ResetPassword = () => {
       </FormLayout>
     </div>
   ) : (
-    <div className="animate-slide relative">
+    <div className="relative">
       <BubbleBackground />
       <FormLayout
         type="reset-password"

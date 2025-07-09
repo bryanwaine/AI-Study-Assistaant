@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useNavigate, Navigate } from "react-router";
 
@@ -33,26 +33,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const userName =
     formData.firstName.toLowerCase() + " " + formData.lastName.toLowerCase();
-
-  useEffect(() => {
-    const callback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const options = {
-      threshold: 0.2,
-    };
-
-    const slideObserver = new IntersectionObserver(callback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
-  });
 
   if (user) {
     return <Navigate to="/dashboard" replace />;
@@ -158,7 +138,7 @@ const Signup = () => {
     <div className="relative w-screen h-screen overflow-y-auto">
       {loading && <Loader />}
       <BubbleBackground />
-      <div className="animate-slide">
+      <div>
         <FormLayout
           type="signup-form"
           title="Sign Up"
