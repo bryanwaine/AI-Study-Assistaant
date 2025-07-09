@@ -61,7 +61,10 @@ const Dashboard = () => {
   }, [user]);
 
   useEffect(() => {
-    const callback = (entries, slideObserver) => {
+    const options = {
+      threshold: 0.2,
+    };
+    const slideCallback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
@@ -70,14 +73,24 @@ const Dashboard = () => {
       });
     };
 
-    const options = {
-      threshold: 0.2,
+    const slideObserver = new IntersectionObserver(slideCallback, options);
+
+    const fadeCallback = (entries, fadeObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fade-in");
+          fadeObserver.unobserve(entry.target);
+        }
+      });
     };
 
-    const slideObserver = new IntersectionObserver(callback, options);
+    const fadeObserver = new IntersectionObserver(fadeCallback, options);
 
     const slideAnimatedElements = document.querySelectorAll(".animate-slide");
     slideAnimatedElements.forEach((el) => slideObserver.observe(el));
+
+    const fadeAnimatedElements = document.querySelectorAll(".animate-fade");
+    fadeAnimatedElements.forEach((el) => fadeObserver.observe(el));
   });
 
   if (!user) {
@@ -89,9 +102,9 @@ const Dashboard = () => {
       <Layout userName={userName} />
       <div className="relative bg-transparent flex justify-center w-screen !pt-[7rem]">
         <BubbleBackground />
-        <div className="md:w-[20%]"/>
+        <div className="md:w-[20%]" />
         <div className="dashboard__container">
-          <h1 className="animate-slide dark:text-gray-100 text-3xl md:text-5xl !mb-6">
+          <h1 className="animate-fade dark:text-gray-100 text-3xl md:text-5xl !mb-6">
             Dashboard
           </h1>
           <section className="animate-slide dashboard-card w-full rounded-xl bg-sky-100/20 dark:bg-neutral-100/10 border border-sky-200/50 dark:border-none backdrop-blur shadow-md ">

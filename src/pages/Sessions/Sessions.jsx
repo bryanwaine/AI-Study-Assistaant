@@ -47,7 +47,10 @@ const Sessions = () => {
   }, [user]);
 
   useEffect(() => {
-    const callback = (entries, slideObserver) => {
+    const options = {
+      threshold: 0.2,
+    };
+    const slideCallback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("slide-up");
@@ -56,14 +59,24 @@ const Sessions = () => {
       });
     };
 
-    const options = {
-      threshold: 0.2,
+    const slideObserver = new IntersectionObserver(slideCallback, options);
+
+    const fadeCallback = (entries, fadeObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fade-in");
+          fadeObserver.unobserve(entry.target);
+        }
+      });
     };
 
-    const slideObserver = new IntersectionObserver(callback, options);
+    const fadeObserver = new IntersectionObserver(fadeCallback, options);
 
     const slideAnimatedElements = document.querySelectorAll(".animate-slide");
     slideAnimatedElements.forEach((el) => slideObserver.observe(el));
+
+    const fadeAnimatedElements = document.querySelectorAll(".animate-fade");
+    fadeAnimatedElements.forEach((el) => fadeObserver.observe(el));
   });
 
   return (
@@ -71,24 +84,28 @@ const Sessions = () => {
       <Layout userName={userName} />
       <div className="sessions__wrapper">
         <BubbleBackground />
-        <div className="animate-slide sessions__container">
-          <h1 className=" dark:text-gray-100 text-3xl !mb-6">Your Sessions</h1>
+        <div className="sessions__container">
+          <h1 className="animate-fade dark:text-gray-100 text-3xl md:text-5xl !mb-6">
+            Your Sessions
+          </h1>
           <Button variant="orange">
             <Link to="/new-session" className="btn--link">
               New Session
             </Link>
           </Button>
-          <Suspense fallback={<SessionsListSkeleton />}>
-            {loading ? (
-              <SessionsListSkeleton />
-            ) : error ? (
-              <ErrorState error={error} />
-            ) : sessions.length === 0 ? (
-              <EmptyState page="sessions" />
-            ) : (
-              <SessionsList sessions={sessions} />
-            )}
-          </Suspense>
+          <div className="animate-slide sessions__list">
+            <Suspense fallback={<SessionsListSkeleton />}>
+              {loading ? (
+                <SessionsListSkeleton />
+              ) : error ? (
+                <ErrorState error={error} />
+              ) : sessions.length === 0 ? (
+                <EmptyState page="sessions" />
+              ) : (
+                <SessionsList sessions={sessions} />
+              )}
+            </Suspense>
+          </div>
         </div>
       </div>
     </>

@@ -10,6 +10,9 @@ import "./Home.css";
 
 const Home = () => {
   useEffect(() => {
+    const options = {
+      threshold: 0.2,
+    };
     const slideCallback = (entries, slideObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -17,10 +20,6 @@ const Home = () => {
           slideObserver.unobserve(entry.target);
         }
       });
-    };
-
-    const options = {
-      threshold: 0.2,
     };
 
     const slideObserver = new IntersectionObserver(slideCallback, options);
@@ -144,7 +143,10 @@ const Home = () => {
               studying for a test, an exam, or a course, or simply want to
               improve your knowledge, Auxiliare is the perfect tool for you.
             </p>
-            <Link to="/signup" className="animate-fade w-full md:w-1/5 md:!mt-8 !mb-20 ">
+            <Link
+              to="/signup"
+              className="animate-fade w-full md:w-1/5 md:!mt-8 !mb-20 "
+            >
               <Button variant="orange" className="!mt-4 !mb-5">
                 Start Studying
               </Button>
