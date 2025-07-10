@@ -1,56 +1,38 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router";
 
 import Button from "../../components/Button/Button";
 import LogoSm from "../../components/LogoSm/LogoSm";
 import BubbleBackground from "../../components/BubbleBg";
 import Footer from "../../components/Footer/Footer";
+import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 
 import "./Home.css";
 
 const Home = () => {
-  useEffect(() => {
-    const options = {
-      threshold: 0.2,
-    };
-    const slideCallback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
+   useStaggeredAnimation({
+    selector: ".animate-slide",
+    animationClass: "slide-up",
+    threshold: 0.2,
+    staggerDelay: 50,
+   });
 
-    const slideObserver = new IntersectionObserver(slideCallback, options);
-
-    const fadeCallback = (entries, fadeObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in");
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const fadeObserver = new IntersectionObserver(fadeCallback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
-
-    const fadeAnimatedElements = document.querySelectorAll(".animate-fade");
-    fadeAnimatedElements.forEach((el) => fadeObserver.observe(el));
-  });
+   useStaggeredAnimation({
+    selector: ".animate-fade",
+    animationClass: "fade-in",
+    threshold: 0.2,
+    staggerDelay: 50,
+   });
 
   return (
     <div className="relative">
       <div className="relative bg-[#f5f5f5] dark:bg-[#001826] flex flex-col items-center h-screen w-screen overflow-y-auto z-100">
         <BubbleBackground />
         <div className="fixed top-0 left-0 w-full !py-4 z-50 flex justify-between items-center bg-transparent backdrop-blur-md">
-          <div className="flex items-center !ml-4 w-1/2">
+          <div className="animate-fade flex items-center !ml-4 w-1/2">
             <LogoSm variant="dark" />
           </div>
-          <div className="home__navbar-right flex justify-end gap-6 w-1/2 !mr-4 items-center">
+          <div className="animate-fade home__navbar-right flex justify-end gap-6 w-1/2 !mr-4 items-center">
             <Link to="/login">
               <Button variant="ghost--orange">Login</Button>
             </Link>
@@ -67,7 +49,7 @@ const Home = () => {
             Summarize your notes, chat with an AI tutor, and quiz yourself with
             smart flashcards.
           </p>
-          <Link to="/signup" className="animate-fade w-full md:w-1/5 !mb-20">
+          <Link to="/signup" className="animate-slide w-full md:w-1/5 !mb-20">
             <Button variant="orange" className="!mt-4 ">
               Get Started
             </Button>
@@ -84,7 +66,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="animate-fade hidden md:block w-full md:w-1/5 !mb-20"
+                  className="animate-slide hidden md:block w-full md:w-1/5 !mb-20"
                 >
                   <Button variant="orange" className="!mt-4 !mb-20">
                     Get Started
@@ -104,7 +86,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="animate-fade hidden md:block w-full md:w-1/5 !mb-20"
+                  className="animate-slide hidden md:block w-full md:w-1/5 !mb-20"
                 >
                   <Button variant="orange" className="!mt-4 !mb-20">
                     Get Started
@@ -124,7 +106,7 @@ const Home = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="animate-fade hidden md:block w-full md:w-1/5 !mb-20"
+                  className="animate-slide hidden md:block w-full md:w-1/5 !mb-20"
                 >
                   <Button variant="orange" className="!mt-4 !mb-20">
                     Get Started
@@ -145,7 +127,7 @@ const Home = () => {
             </p>
             <Link
               to="/signup"
-              className="animate-fade w-full md:w-1/5 md:!mt-8 !mb-20 "
+              className="animate-slide w-full md:w-1/5 md:!mt-8 !mb-20 "
             >
               <Button variant="orange" className="!mt-4 !mb-5">
                 Start Studying

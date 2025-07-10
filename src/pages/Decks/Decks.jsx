@@ -83,12 +83,12 @@ const Decks = () => {
       <BubbleBackground />
       <div className="decks__container">
         <h1 className="animate-fade dark:text-gray-100 text-3xl md:text-5xl !mb-6">Your Flashcards</h1>
-        <Button variant="orange">
+        <Button variant="orange" className="animate-fade">
           <Link to="/new-deck" className="btn--link">
             New Flashcards
           </Link>
         </Button>
-        <div className="animate-slide sessions__list">
+        <div className="sessions__list">
           <Suspense fallback={<SessionsListSkeleton />}>
             {loading ? (
               <SessionsListSkeleton />

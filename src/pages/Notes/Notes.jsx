@@ -45,39 +45,6 @@ const Notes = () => {
     fetchNotes();
   }, [user]);
 
-  useEffect(() => {
-    const options = {
-      threshold: 0.2,
-    };
-    const slideCallback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const slideObserver = new IntersectionObserver(slideCallback, options);
-
-    const fadeCallback = (entries, fadeObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in");
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const fadeObserver = new IntersectionObserver(fadeCallback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
-
-    const fadeAnimatedElements = document.querySelectorAll(".animate-fade");
-    fadeAnimatedElements.forEach((el) => fadeObserver.observe(el));
-  });
-
   return (
     <div className="notes__wrapper">
       <Layout userName={userName} />
@@ -86,12 +53,12 @@ const Notes = () => {
         <h1 className="animate-fade dark:text-gray-100 text-3xl md:text-5xl !mb-6">
           Your Notes
         </h1>
-        <Button variant="orange">
+        <Button variant="orange" className="animate-fade">
           <Link to="/new-note" className="btn--link">
             New Note
           </Link>
         </Button>
-        <div className="animate-slide sessions__list">
+        <div className="sessions__list">
           <Suspense fallback={<SessionsListSkeleton />}>
             {loading ? (
               <SessionsListSkeleton />

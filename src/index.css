@@ -3,7 +3,6 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-
 /* Reset */
 * {
   box-sizing: border-box;
@@ -36,20 +35,25 @@ main {
 
 .animate-fade {
   opacity: 0;
-  transition: all 0.6s ease-out;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+  transform: translateY(10px); /* optional subtle lift */
 }
 
-.animate-slide.slide-up {
+.slide-up {
   opacity: 1;
   transform: translateY(0);
 }
 
-.animate-fade.fade-in {
+.fade-in {
   opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes slow-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateX(0);
   }
   50% {
@@ -153,12 +157,13 @@ button:disabled {
 
 /* ------------------------------------------------------------- */
 /* Cards */
-.card{
+.card {
   /* From https://css.glass */
   border-radius: 0.75rem;
   background: rgba(233, 246, 251, 0.59);
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  box-shadow:
+    rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   backdrop-filter: blur(4.7px);
   -webkit-backdrop-filter: blur(4.7px);
 }
-

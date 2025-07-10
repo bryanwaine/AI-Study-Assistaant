@@ -9,6 +9,7 @@ import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout";
 import ErrorState from "../../components/ErrorState/ErrorState";
 import useAuth from "../../hooks/useAuth";
+import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getAllDecks } from "../../utils/flashcardService";
@@ -60,37 +61,18 @@ const Dashboard = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    const options = {
-      threshold: 0.2,
-    };
-    const slideCallback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
+  useStaggeredAnimation({
+    selector: ".animate-fade",
+    animationClass: "fade-in",
+    threshold: 0.2,
+    staggerDelay: 50,
+  });
 
-    const slideObserver = new IntersectionObserver(slideCallback, options);
-
-    const fadeCallback = (entries, fadeObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in");
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const fadeObserver = new IntersectionObserver(fadeCallback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
-
-    const fadeAnimatedElements = document.querySelectorAll(".animate-fade");
-    fadeAnimatedElements.forEach((el) => fadeObserver.observe(el));
+  useStaggeredAnimation({
+    selector: ".animate-slide",
+    animationClass: "slide-up",
+    threshold: 0.2,
+    staggerDelay: 50,
   });
 
   if (!user) {
