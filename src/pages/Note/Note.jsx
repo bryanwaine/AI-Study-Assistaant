@@ -6,6 +6,7 @@ import GenerateBtnGroup from "./GenerateBtnGroup";
 import ErrorState from "../../components/ErrorState/ErrorState";
 import Layout from "../../components/Layout";
 import useAuth from "../../hooks/useAuth";
+import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 import { saveDeck } from "../../utils/flashcardService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { getNote } from "../../utils/noteService";
@@ -89,25 +90,12 @@ const Note = () => {
     }
   }, [noteId, user]);
 
-  useEffect(() => {
-      const callback = (entries, slideObserver) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("slide-up");
-            slideObserver.unobserve(entry.target);
-          }
-        });
-      };
-  
-      const options = {
-        threshold: 0.2,
-      };
-  
-      const slideObserver = new IntersectionObserver(callback, options);
-  
-      const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-      slideAnimatedElements.forEach((el) => slideObserver.observe(el));
-    });
+   useStaggeredAnimation({
+    selector: ".animate-slide",
+    animationClass: "slide-up",
+    threshold: 0.2,
+    staggerDelay: 50,
+  })
 
   if (!user) return <Navigate to="/login" replace />;
 
