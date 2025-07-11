@@ -1,35 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import MarkdownRenderer from "../../components/MarkdownRenderer";
+import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 
 const NoteContainer = ({ summary, metaData, aiMessageRef }) => {
-  useEffect(() => {
-    const callback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const options = {
-      threshold: 0.2,
-    };
-
-    const slideObserver = new IntersectionObserver(callback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
+  useStaggeredAnimation({
+    selector: ".animate-slide",
+    animationClass: "slide-up",
+    threshold: 0.2,
+    staggerDelay: 50,
   });
+
+  useStaggeredAnimation({
+    selector: ".animate-fade",
+    animationClass: "fade-in",
+    threshold: 0.2,
+    staggerDelay: 50,
+  });
+
   return (
-    <div className="animate-slide note__container">
+    <div className="note__container">
       {metaData?.title && (
-        <div className="note__title dark:text-gray-100">
+        <div className="animate-fade note__title dark:text-gray-100">
           {metaData.title.toUpperCase()}
         </div>
       )}
-      <div className="note text-sky-900 dark:text-sky-400">
+      <div className="animate-slide note text-sky-900 dark:text-sky-400">
         {summary?.map(
           (message) =>
             message.role === "assistant" && (

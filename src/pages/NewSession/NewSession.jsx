@@ -103,8 +103,8 @@ const NewSession = () => {
   }, []);
 
   useStaggeredAnimation({
-    selector: ".animate-slide",
-    animationClass: "slide-up",
+    selector: ".animate-fade",
+    animationClass: "fade-in",
     threshold: 0.2,
     staggerDelay: 50,
   })
@@ -195,7 +195,7 @@ const NewSession = () => {
   return (
     <div className="new-session__wrapper">
       <Layout userName={userName} />
-      <div className="animate-slide new-session__container">
+      <div className="animate-fade new-session__container">
         <div className="new-chat-window" ref={chatWindowRef}>
           {messages.map((message) => (
             <div

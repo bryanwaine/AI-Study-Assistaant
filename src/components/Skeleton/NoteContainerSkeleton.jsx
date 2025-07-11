@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "./Skeleton.css";
+import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 
 const NoteContainerSkeleton = () => {
-  useEffect(() => {
-    const callback = (entries, slideObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-          slideObserver.unobserve(entry.target);
-        }
-      });
-    };
-
-    const options = {
-      threshold: 0.2,
-    };
-
-    const slideObserver = new IntersectionObserver(callback, options);
-
-    const slideAnimatedElements = document.querySelectorAll(".animate-slide");
-    slideAnimatedElements.forEach((el) => slideObserver.observe(el));
+  useStaggeredAnimation({
+    selector: ".animate-slide",
+    animationClass: "slide-up",
+    threshold: 0.2,
+    staggerDelay: 50,
   });
+
   const renderSkeletonParagraphs = () => {
     let paragraphs = [];
     for (let i = 0; i < 25; i++) {
