@@ -24,7 +24,7 @@ const NotesList = ({ notes }) => {
   return (
     <ul className="notes__list">
       {sortFlashcardsByTime(notes).map((note) => (
-        <li key={note.id} className="animate-slide">
+        <li key={note.id} >
           <Link
             to={note.id}
             className="session-card bg-gray-900/10 dark:bg-gray-100/10 rounded-xl"

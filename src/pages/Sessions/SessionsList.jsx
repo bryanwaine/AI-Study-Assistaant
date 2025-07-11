@@ -24,7 +24,7 @@ const SessionsList = ({ sessions }) => {
   return (
     <ul className="sessions__list">
       {sortSessionsByTime(sessions).map((session) => (
-        <li key={session.id} className="animate-slide">
+        <li key={session.id} >
           <Link
             to={session.id}
             className="session-card bg-gray-900/10 dark:bg-gray-100/10 rounded-xl"

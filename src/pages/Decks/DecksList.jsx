@@ -24,7 +24,7 @@ const DecksList = ({ flashcards }) => {
   return (
     <ul className="decks__list">
       {sortFlashcardsByTime(flashcards).map((deck) => (
-        <li key={deck.id} className="animate-slide">
+        <li key={deck.id}>
           <Link
             to={deck.id}
             className="deck-card bg-gray-900/10 dark:bg-gray-100/10 rounded-xl"

@@ -10,6 +10,7 @@ import SessionsListSkeleton from "../../components/Skeleton/SessionsListSkeleton
 import ErrorState from "../../components/ErrorState/ErrorState";
 import BubbleBackground from "../../components/BubbleBg";
 import useAuth from "../../hooks/useAuth";
+import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 import { getAllSessions } from "../../utils/sessionService";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 
@@ -45,6 +46,13 @@ const Sessions = () => {
       fetchSessions();
     }
   }, [user]);
+
+  useStaggeredAnimation({
+    selector: ".animate-fade",
+    animationClass: "fade-in",
+    threshold: 0.2,
+    staggerDelay: 50,
+  });
 
   return (
     <>
