@@ -134,7 +134,7 @@ const Home = () => {
               </Button>
             </Link>
           </div>
-          <div className="animate-slide w-full md:w-1/3 !mb-20 italic">
+          <blockquote className="animate-slide w-full md:w-1/3 !mb-20 italic">
             <p className="text-[#111111] dark:text-gray-400 font-[Poppins] leading-[2rem]">
               <span className="text-[#FF7B00] text-[2rem] font-bold font-[Nunito]">
                 “
@@ -149,7 +149,7 @@ const Home = () => {
             <p className="text-[#FF7B00] font-bold !mt-[1rem] font-[Poppins]">
               - Dr. Seuss
             </p>
-          </div>
+          </blockquote>
           <Footer />
         </section>
       </div>
