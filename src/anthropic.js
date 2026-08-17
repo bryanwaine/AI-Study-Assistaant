@@ -125,7 +125,7 @@ const generateResponse = async (question, history) => {
   const MAX_CONTEXT = 10;
   const recentContext = history?.slice(-MAX_CONTEXT);
   const msg = await anthropic.messages.create({
-    model: "claude-3-7-sonnet-20250219",
+    model: "claude-sonnet-5",
     max_tokens: 1024,
     system: SESSION_SYSTEM_PROMPT,
     messages: [
