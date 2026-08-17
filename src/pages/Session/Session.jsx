@@ -159,6 +159,7 @@ const Session = () => {
       await updateSession(user.uid, sessionId || newSessionId, updatedMessages);
 
       const aiResponse = await generateResponse(question, updatedMessages);
+      console.log(aiResponse);
       const words = aiResponse.split(" ");
       let currentWord = 0;
       setPartialContent("");
