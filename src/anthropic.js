@@ -125,7 +125,7 @@ const generateResponse = async (question, history) => {
   const MAX_CONTEXT = 10;
   const recentContext = history?.slice(-MAX_CONTEXT);
   const msg = await anthropic.messages.create({
-    model: "claude-haiku-4.5",
+    model: "claude-haiku-4-5",
     max_tokens: 1024,
     system: SESSION_SYSTEM_PROMPT,
     messages: [
@@ -137,7 +137,7 @@ const generateResponse = async (question, history) => {
       { role: "user", content: question },
     ],
   });
-  return msg.content[1].text;
+  return msg.content[0].text;
 };
 
 /**
@@ -153,7 +153,7 @@ const generateResponse = async (question, history) => {
  */
 const generateFlashcards = async (topic, numberOfCards) => {
   const msg = await anthropic.messages.create({
-    model: "claude-haiku-4.5",
+    model: "claude-haiku-4-5",
     max_tokens: 4096,
     system: FLASHCARD_SYSTEM_PROMPT(topic, numberOfCards),
     messages: [{ role: "user", content: topic }],
@@ -174,7 +174,7 @@ const generateFlashcards = async (topic, numberOfCards) => {
  */
 const generateFlashcardsFromNotes = async (notes, numberOfCards) => {
   const msg = await anthropic.messages.create({
-    model: "claude-haiku-4.5",
+    model: "claude-haiku-4-5",
     max_tokens: 4096,
     system: NOTES_FLASHCARD_SYSTEM_PROMPT(notes, numberOfCards),
     messages: [{ role: "user", content: notes }],
@@ -193,7 +193,7 @@ const generateFlashcardsFromNotes = async (notes, numberOfCards) => {
  */
 const generateNoteSummary = async (notes) => {
   const msg = await anthropic.messages.create({
-    model: "claude-haiku-4.5",
+    model: "claude-haiku-4-5",
     max_tokens: 1024,
     system: NOTE_SUMMARY_SYSTEM_PROMPT(notes),
     messages: [{ role: "user", content: notes }],
