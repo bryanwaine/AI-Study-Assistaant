@@ -15,6 +15,7 @@ import useStaggeredAnimation from "../../hooks/useStaggeredAnimation";
 import useAuth from "../../hooks/useAuth";
 import handleAnthropicError from "../../utils/anthropicErrorHandler";
 import { saveSession, updateSession } from "../../utils/sessionService";
+import firstNameFilter from "../../utils/firstNameFilter";
 
 import "./NewSession.css";
 const NewSession = () => {
@@ -30,7 +31,7 @@ const NewSession = () => {
 
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
-  const firstName = userName?.split(" ")[0] || "there";
+  const firstName = firstNameFilter(userName);
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
