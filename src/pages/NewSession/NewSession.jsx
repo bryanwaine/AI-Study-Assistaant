@@ -30,6 +30,7 @@ const NewSession = () => {
 
   const { user } = useAuth();
   const userName = user?.displayName || location.state?.userName;
+  const firstName = userName?.split(" ")[0] || "there";
   const messagesEndRef = useRef(null);
   const scrollToQuestionRef = useRef(false);
   const chatWindowRef = useRef(null);
@@ -38,12 +39,16 @@ const NewSession = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const welcomeMessage = [
     {
       id: Date.now(),
       role: "assistant",
       content:
-        "👋 Hi there! I'm Auxiliaire, your AI study assistant. How can I help you today?",
+        `👋 Hi ${capitalizeFirstLetter(firstName)}! How can I help you today?`,
     },
   ];
 
