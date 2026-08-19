@@ -18,6 +18,7 @@ import { saveSession, updateSession } from "../../utils/sessionService";
 import firstNameFilter from "../../utils/firstNameFilter";
 
 import "./NewSession.css";
+import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 const NewSession = () => {
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,10 +40,6 @@ const NewSession = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   const welcomeMessage = [
     {
