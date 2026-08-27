@@ -1,184 +1,174 @@
-# Auxiliaire
+# Auxiliaire — AI Study Assistant
 
-An AI-powered study workspace that helps students turn course material into clear summaries, persistent tutoring conversations, and interactive flashcard decks.
+A responsive AI-powered study workspace for asking questions, summarising uploaded notes, and generating interactive flashcard decks.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Open_Auxiliaire-ff7b00?style=for-the-badge)](https://auxiliaire.netlify.app)
-[![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-6-646cff?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
-[![Firebase](https://img.shields.io/badge/Firebase-Auth_%26_Firestore-ffca28?style=flat-square&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Claude](https://img.shields.io/badge/AI-Claude-d97757?style=flat-square)](https://www.anthropic.com/claude)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth%20%2B%20Firestore-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Anthropic](https://img.shields.io/badge/AI-Claude%20Haiku-D97757)](https://www.anthropic.com/)
+[![Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify&logoColor=white)](https://www.netlify.com/)
+
+**[Try the live application](https://auxiliaire.netlify.app/)**
 
 ## Overview
 
-Auxiliaire brings several everyday study tools into one responsive application. Students can ask an AI tutor questions, upload notes for summarisation, generate flashcards, and return to saved study material across sessions.
+Auxiliaire brings several study tools into one authenticated workspace. Users can hold context-aware conversations with an AI tutor, upload study material for summarisation, turn a topic or note into a reusable flashcard deck, and return to their saved work later.
 
-**Live application:** [auxiliaire.netlify.app](https://auxiliaire.netlify.app)
+The frontend is built with React and Vite. Firebase provides authentication and user-scoped persistence, while Anthropic Claude powers chat responses, summaries, and flashcard generation.
 
 ## Screenshots
 
 | AI tutor | Smart notes | Flashcards |
 | --- | --- | --- |
-| ![Auxiliaire AI tutor](public/images/iPhone-chat-screen.png) | ![Auxiliaire smart notes](public/images/iPhone-notes-screen.png) | ![Auxiliaire flashcards](public/images/iPhone-flashcards-screen.png) |
+| ![Auxiliaire AI tutor chat](./public/images/iPhone-chat-screen.png) | ![Auxiliaire smart notes](./public/images/iPhone-notes-screen.png) | ![Auxiliaire flashcards](./public/images/iPhone-flashcards-screen.png) |
 
 ## Features
 
-- **AI tutor** — ask questions across academic subjects and receive structured, Markdown-formatted answers.
-- **Persistent conversations** — save chat sessions in Firestore and continue them later.
-- **Smart note summaries** — extract and summarise text from PDF, DOCX, and TXT files in the browser.
-- **AI flashcards** — generate decks of 20–40 cards from a topic or directly from uploaded notes.
-- **Interactive study decks** — review saved cards through an animated, swipeable card stack.
-- **Personal study library** — keep notes, flashcard decks, and chat sessions organised by account.
-- **Secure routes** — protect study content behind Firebase Authentication.
-- **Flexible sign-in** — use email/password authentication or Google sign-in.
-- **Responsive interface** — study across mobile and desktop layouts, with light and dark themes.
-- **Readable AI output** — render GitHub-flavoured Markdown with highlighted code blocks and copy controls.
+- **AI tutor chat** — ask questions across different subjects and continue multi-message conversations.
+- **Persistent sessions** — save chat history in Firestore and resume previous sessions.
+- **Smart notes** — extract text from PDF, DOCX, and TXT files directly in the browser and generate concise summaries.
+- **AI flashcards** — generate decks of 20–40 cards from either a topic or an uploaded note.
+- **Interactive study experience** — tap to flip cards and swipe in either direction to move through a 3D card stack.
+- **Rich responses** — render GitHub-flavoured Markdown, syntax-highlighted code, typing indicators, and copy-to-clipboard actions.
+- **Authentication** — sign up with email and password, sign in with Google, reset passwords, and protect private routes.
+- **Personal dashboard** — view saved notes, sessions, and flashcard decks in one place.
+- **Responsive theming** — mobile-friendly layouts with persistent light and dark modes.
 
-> Quiz generation is represented in the interface but is not yet implemented. See the [roadmap](#roadmap).
+## Technology
 
-## Tech Stack
-
-| Area | Technologies |
+| Area | Tools |
 | --- | --- |
-| Frontend | React 19, Vite 6, React Router |
-| Styling and motion | Tailwind CSS 4, CSS, Material UI, Framer Motion |
-| AI | Anthropic SDK, Claude |
+| Frontend | React 19, React Router 7, Tailwind CSS 4, Material UI, Emotion |
+| Build and quality | Vite 6, ESLint 9, Prettier |
+| AI | Anthropic SDK, Claude Haiku 4.5 |
 | Authentication and data | Firebase Authentication, Cloud Firestore |
-| File processing | PDF.js, Mammoth, FileReader API |
-| Content rendering | React Markdown, Remark GFM, Rehype Highlight |
-| Utilities | Day.js, UUID, React Use Gesture |
-| Deployment | Netlify |
+| Document processing | PDF.js, Mammoth, browser FileReader API |
+| Interaction and content | Framer Motion, React Markdown, Remark GFM, Rehype Highlight |
+| Hosting | Netlify |
 
-## How It Works
+## How it works
 
-1. A student signs in with email/password or Google.
-2. The React client reads and writes that student's sessions, notes, and flashcard decks in Firestore.
-3. Questions and extracted note text are sent to Claude for tutoring, summarisation, or flashcard generation.
-4. PDF, DOCX, and TXT content is extracted locally in the browser before AI processing.
-5. Generated study material is saved under the authenticated user's Firestore document for later access.
+1. Firebase Authentication establishes the signed-in user's identity.
+2. The application sends chat, note, or flashcard prompts to Claude.
+3. Responses are rendered as Markdown or converted into structured flashcards.
+4. Sessions, summaries, and decks are saved beneath that user's Firestore document.
+5. The dashboard retrieves the saved resources in parallel for future study sessions.
 
-### Firestore structure
+## Firestore structure
 
 ```text
-users/{userId}
+users/{uid}
 ├── sessions/{sessionId}
+│   ├── messages[]
+│   └── metadata
 ├── notes/{noteId}
+│   ├── summary[]
+│   └── metadata
 └── flashcards/{deckId}
+    ├── deck[]
+    └── metadata
 ```
 
-## Getting Started
+Application access should be protected with Firestore Security Rules that restrict each path to its authenticated owner.
+
+## Getting started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 20 or later
-- npm
-- A [Firebase](https://firebase.google.com/) project
-- An [Anthropic API key](https://console.anthropic.com/)
+- Node.js and npm
+- A Firebase project with a registered web application
+- An Anthropic API key
 
-### 1. Clone the repository
+### Installation
 
 ```bash
 git clone https://github.com/bryanwaine/AI-Study-Assistaant.git
 cd AI-Study-Assistaant
-```
-
-### 2. Install dependencies
-
-```bash
 npm install
 ```
 
-### 3. Configure Firebase
+Create a `.env` file in the project root:
 
-In the Firebase console:
+```dotenv
+VITE_ANTHROPIC_API_KEY=your_anthropic_api_key
 
-1. Create or select a Firebase project and register a web app.
-2. Enable **Email/Password** and **Google** in Authentication.
-3. Create a Cloud Firestore database.
-4. Add Firestore security rules that restrict each user's study data to that authenticated user.
-
-### 4. Add environment variables
-
-Create a `.env.local` file in the project root:
-
-```env
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
-VITE_ANTHROPIC_API_KEY=your_anthropic_api_key
 ```
 
-The Firebase measurement ID is optional while Analytics remains disabled. Do not commit `.env.local`.
+In Firebase:
 
-### 5. Start the development server
+1. Enable **Email/Password** and **Google** in Authentication.
+2. Create a Cloud Firestore database.
+3. Add `localhost` and any deployed hostname to Authentication's authorised domains.
+4. Apply owner-only Firestore Security Rules for the user-scoped collections shown above.
+
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open the local URL shown by Vite, normally [http://localhost:5173](http://localhost:5173).
+Open the local URL printed by Vite.
 
-## Available Scripts
+## Available scripts
 
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the Vite development server |
-| `npm run build` | Create an optimised production build in `dist/` |
+| `npm run build` | Create a production build in `dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Run ESLint across the project |
 
-## Project Structure
+## Project structure
 
 ```text
-AI-Study-Assistaant/
-├── public/
-│   └── images/              # Static images and app previews
-├── src/
-│   ├── components/          # Reusable UI and study components
-│   ├── context/             # React context definitions
-│   ├── hooks/               # Authentication and UI hooks
-│   ├── pages/               # Route-level screens
-│   ├── routes/              # Protected-route handling
-│   ├── utils/               # Firestore services and helpers
-│   ├── anthropic.js         # Claude prompts and API requests
-│   ├── firebase.js          # Firebase client configuration
-│   └── App.jsx              # Application routes
-├── package.json
-└── vite.config.js
+src/
+├── components/    # Reusable UI and interaction components
+├── context/       # Authentication and toast providers
+├── hooks/         # Authentication, toast, and animation hooks
+├── pages/         # Public and protected route screens
+├── routes/        # Private-route guard
+├── utils/         # Firestore services, validation, sorting, and errors
+├── anthropic.js   # AI prompts and Anthropic requests
+├── firebase.js    # Firebase application configuration
+└── App.jsx        # Route definitions and theme initialisation
 ```
-
-## Security Note
-
-Vite exposes every variable prefixed with `VITE_` to browser code. Firebase web configuration is designed to be public, but access to Firestore must be protected with correctly scoped security rules.
-
-The current application also calls Anthropic directly from the browser using `VITE_ANTHROPIC_API_KEY`. Treat that approach as local-development only. Before deploying your own production instance, move Anthropic requests behind a trusted backend or serverless function, keep the API key server-side, and add authentication, rate limiting, and usage controls.
 
 ## Deployment
 
-For a standard Vite deployment:
+The live application is deployed on Netlify. For another Netlify deployment:
 
-- Build command: `npm run build`
-- Publish directory: `dist`
+- Use `npm run build` as the build command.
+- Publish the `dist` directory.
+- Configure every required environment variable in the Netlify project.
+- Keep `public/_redirects` so client-side routes resolve to `index.html`.
 
-When deploying a single-page application, configure the host to redirect unmatched paths to `/index.html` so client-side routes load correctly.
+## Security note
 
-## Roadmap
+> Vite exposes variables prefixed with `VITE_` to client-side code. The current implementation calls Anthropic directly from the browser using `dangerouslyAllowBrowser`, so an Anthropic key included in a public build can be discovered by users. Before deploying your own public instance, route AI requests through a trusted backend or serverless function and keep the API key server-side.
 
-- [x] AI tutoring conversations
-- [x] Persistent chat history
-- [x] Note upload and AI summaries
-- [x] Topic- and note-based flashcards
-- [x] Firebase authentication and Firestore persistence
-- [x] Responsive light and dark themes
-- [ ] AI-generated quizzes and saved quiz attempts
-- [ ] Server-side proxy for AI requests
-- [ ] Automated unit, integration, and end-to-end tests
+Firebase web configuration values identify the Firebase project but are not a substitute for access control. Enforce authorisation through Authentication and properly scoped Firestore Security Rules.
+
+## Current status and roadmap
+
+The core chat, note-summary, and flashcard workflows are implemented. Quiz routes and screens are scaffolded but quiz generation is still in progress.
+
+Planned improvements:
+
+- Move Anthropic requests behind a server-side API.
+- Complete quiz generation and persistence.
+- Add automated unit, integration, and end-to-end tests.
+- Add CI checks for linting, tests, and production builds.
+- Add an example environment file and version-controlled Firestore rules.
 
 ## Author
 
-Built by [Bryan Ezeaka](https://github.com/bryanwaine).
+Built by [Bryan Waine](https://github.com/bryanwaine).
 
-Feedback and contributions are welcome.
+Portfolio: [bryanwaine.vercel.app](https://bryanwaine.vercel.app/)
