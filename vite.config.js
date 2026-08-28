@@ -8,5 +8,11 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@emotion/styled'],
     exclude: ['firebase', 'firebase/app', 'firebase/firestore']
-  }
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.js'],
+    css: true,
+  },
 })
